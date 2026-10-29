@@ -125,13 +125,13 @@ impl Game {
     }
     pub(crate) fn xg16_entry_time(&mut self, f: &ResolutionFrame) {
         if let Some(c) = self.board_mut(&f.source.card.id).filter(|c| c.definition == "XG16" && !c.face_down) {
-            c.time_markers = c.time_markers.saturating_add(1);
+            let placement_before = c.time_markers; let placement_id = c.id.clone(); c.time_markers = c.time_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Time, placement_before);
         }
     }
     pub(crate) fn xg16_prepare_time(&mut self, f: &ResolutionFrame) {
         let n = self.regions.iter().filter(|r| !r.vacant && r.destroyed).count() as u32;
         if let Some(c) = f.targets.first().and_then(|t| self.board_mut(&t.id)) {
-            c.time_markers = c.time_markers.saturating_add(n);
+            let placement_before = c.time_markers; let placement_id = c.id.clone(); c.time_markers = c.time_markers.saturating_add(n); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Time, placement_before);
         }
     }
     pub(crate) fn validate_xg16_state(&self) -> RuleResult<()> {

@@ -439,7 +439,7 @@ impl Game {
         match f.source.card.definition.as_str() {
             "JC048" => {
                 if let Some(c) = self.board_mut(&f.source.card.id).filter(|c| !c.face_down) {
-                    c.time_markers = c.time_markers.saturating_add(1);
+                    let placement_before=c.time_markers;let placement_id=c.id.clone();c.time_markers = c.time_markers.saturating_add(1);self.record_board_marker_write(&placement_id,crate::batch4_markers::MarkerKind::Time,placement_before);
                 }
                 if let Some(r) = self.original_region(&f.source) {
                     let n = self.region_time(r);

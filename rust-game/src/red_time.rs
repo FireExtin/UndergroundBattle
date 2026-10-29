@@ -161,7 +161,7 @@ impl Game {
     pub(crate) fn jz30_add_one_time(&mut self, f: &ResolutionFrame) {
         if let Some(c) = self.board_mut(&f.source.card.id)
             .filter(|c| c.definition == "JZ30" && !c.face_down) {
-            c.time_markers = c.time_markers.saturating_add(1);
+            let placement_before = c.time_markers; let placement_id = c.id.clone(); c.time_markers = c.time_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Time, placement_before);
         }
     }
 
@@ -176,7 +176,7 @@ impl Game {
     pub(crate) fn xq18_add_one_time(&mut self, f: &ResolutionFrame) {
         if let Some(c) = f.targets.first().and_then(|t| self.board_mut(&t.id))
             .filter(|c| !c.face_down || crate::batch4_plans::secret(c)) {
-            c.time_markers = c.time_markers.saturating_add(1);
+            let placement_before = c.time_markers; let placement_id = c.id.clone(); c.time_markers = c.time_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Time, placement_before);
         }
     }
 

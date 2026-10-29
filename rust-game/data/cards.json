@@ -12302,7 +12302,8 @@
       "unique": false,
       "society": "",
       "supported": false
-    }
+    },
+    {"id": "WM031", "name": "凌虐恶魔", "kind": "character", "subtypes": ["恶魔", "异界"], "cost": 2, "loyalty": ["红色"], "loyaltyText": "红", "color": "红", "magic": "鲜血", "icons": {"permanent": {"investigation": 0, "combat": 1, "influence": 0}, "temporary": {"investigation": 0, "combat": 0, "influence": 1}}, "defense": 1, "text": "创伤1；暴露：混乱。\n强制触发：本回合中当首次有指示物标志置于凌虐恶魔上时，每位玩家各选择一个其所操控的角色，凌虐恶魔对这些角色各造成1点创伤。", "keywords": ["创伤1"], "source": {"file": "docs/factions/card-specifications.json", "record": "WM031", "image": "resource/ymsj-fun.github.io/cards/WM031 凌虐恶魔.jpg"}, "unique": false, "society": "", "supported": false}
   ],
   "decks": [
     {

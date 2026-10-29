@@ -84,7 +84,7 @@ impl Game {
     }
     pub(crate) fn jz40_resolve(&mut self, f: &ResolutionFrame) {
         if let Some(c) = self.board_mut(&f.targets[0].id) {
-            c.time_markers = c.time_markers.saturating_add(1);
+            let placement_before = c.time_markers; let placement_id = c.id.clone(); c.time_markers = c.time_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Time, placement_before);
         }
         if let Some(r) = self.original_region(&f.source) {
             if self.physical_region_time_markers(r) >= 4 { self.regions[r].destroyed = true; }

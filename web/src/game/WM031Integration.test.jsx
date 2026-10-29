@@ -1,0 +1,13 @@
+import {afterEach,expect,it,vi} from 'vitest';
+import {cleanup,render,fireEvent,screen} from '@testing-library/react';
+import {kernel,catalog} from '../../../rust-game-wasm/tests/current-kernel.mjs';
+import {loadCurrentFixture} from '../../../tools/current-native-source.mjs';
+import {Table} from './Table';
+import {actionForRoom} from './api';
+import {validateDeckDraft} from './deckLibrary';
+const fixture=loadCurrentFixture('rust-game-wasm/tests/current113/wm031.json.gz');
+afterEach(()=>{cleanup();sessionStorage.clear();});
+function submitActual(step){const view=JSON.parse(kernel.view(step.state,step.seat)),wanted=step.command.action.action,submit=vi.fn();const first=render(<Table catalog={catalog} view={view} busy={false} onAction={submit}/>);for(const id of wanted.selected)fireEvent.click(first.container.querySelector(`[data-choice-option="${id}"]`));first.unmount();render(<Table catalog={catalog} view={JSON.parse(kernel.view(step.state,step.seat))} busy={false} onAction={submit}/>);fireEvent.click(screen.getByRole('button',{name:'确认选择'}));expect(actionForRoom(view,submit.mock.calls[0][0])).toEqual(step.command.action);expect(JSON.parse(kernel.applyRoom(step.state,step.seat,JSON.stringify(step.command),'0'))).toEqual(step.expected);expect(JSON.parse(kernel.applyRoom(step.expected.state,step.seat,JSON.stringify(step.command),'0'))).toEqual(step.duplicate);for(let s=0;s<4;s++)if(s!==step.seat)expect(JSON.parse(kernel.view(step.state,s)).pendingChoice).toBeFalsy();cleanup();sessionStorage.clear();}
+it('keeps WM031 closed and validates only the private natural deck',()=>{expect(catalog.cards.find(c=>c.id==='WM031')).toMatchObject({supported:false,cost:2,color:'红'});const d=fixture.cases[0].construction.deck;expect(validateDeckDraft(d,catalog).valid).toBe(false);const c=structuredClone(catalog);c.cards.find(c=>c.id==='WM031').supported=true;c.societies.find(c=>c.id==='MSJC13').supported=true;expect(validateDeckDraft(d,c).valid).toBe(true);});
+it('four current-controller choices survive refresh without exposing private choices to other seats',()=>{const steps=fixture.cases[1].steps.filter(s=>JSON.parse(kernel.view(s.state,s.seat)).pendingChoice?.kind==='wm031-character');expect(steps.map(s=>s.seat)).toEqual([0,1,2,3]);for(const step of steps)submitActual(step);});
+it('natural deployment reaches the real paid clock trigger and mandatory wound choice',()=>{expect(fixture.cases[0].construction.noLayoutOrResourceMutation).toBe(true);const step=fixture.cases[0].steps.find(s=>JSON.parse(kernel.view(s.state,s.seat)).pendingChoice?.kind==='wm031-character');expect(step.command.action.action.selected).toHaveLength(1);submitActual(step);});

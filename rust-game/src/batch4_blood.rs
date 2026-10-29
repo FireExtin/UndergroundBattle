@@ -152,7 +152,7 @@ impl Game {
             self.regions[r].card.time_markers=self.regions[r].card.time_markers.saturating_add(n);Some(r)
         } else {
             let r=self.in_play(&t.id).and_then(|(r,_)|r);
-            if let Some(c)=self.board_mut(&t.id){c.time_markers=c.time_markers.saturating_add(n);}r
+            if let Some(c)=self.board_mut(&t.id){let placement_before = c.time_markers; let placement_id = c.id.clone(); c.time_markers=c.time_markers.saturating_add(n); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Time, placement_before);}r
         };
         if let Some(r)=region.filter(|r|self.region_live(*r)) {if self.physical_region_time_markers(r)>=4 {self.regions[r].destroyed=true;}}
         Ok(())

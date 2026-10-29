@@ -65,9 +65,9 @@ impl Game {
         Ok(())
     }
     pub(crate) fn bq079_reward(&mut self,source:&SourceSnapshot){
-        if let Some(c)=self.board_mut(&source.card.id).filter(|c|c.definition=="BQ079" && !c.face_down){
-            c.permanent_combat_markers=c.permanent_combat_markers.saturating_add(1);
-            c.permanent_defense_markers=c.permanent_defense_markers.saturating_add(1);
+        if self.in_play(&source.card.id).is_some_and(|(_,c)|c.definition=="BQ079"&&!c.face_down) {
+            self.place_board_markers(&source.card.id,crate::batch4_markers::MarkerKind::PermanentCombat,1);
+            self.place_board_markers(&source.card.id,crate::batch4_markers::MarkerKind::PermanentDefense,1);
         }
     }
     pub(crate) fn validate_bq079_markers(&self)->RuleResult<()> {

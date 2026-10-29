@@ -431,7 +431,7 @@ impl Game {
     }
     pub(crate) fn jz23_reward(&mut self, o: &LocalVampireReveal) {
         if let Some(c) = self.board_mut(&o.revealed.card.id).filter(|c| !c.face_down) {
-            c.permanent_combat_markers = c.permanent_combat_markers.saturating_add(1);
+            let placement_before = c.permanent_combat_markers; let placement_id = c.id.clone(); c.permanent_combat_markers = c.permanent_combat_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::PermanentCombat, placement_before);
         }
     }
     pub(crate) fn next_blue_gray_declare_forced(&mut self, d: &Declaration) -> RuleResult<bool> {

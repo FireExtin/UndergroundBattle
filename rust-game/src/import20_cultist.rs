@@ -199,7 +199,7 @@ impl Game {
         // the entry condition at that event. Later moon changes do not create
         // a missed entry or undo a declared trigger; only the original UID acts.
         if let Some(c) = self.board_mut(&id).filter(|c| !c.face_down && catalog::has_kind(catalog::card(&c.definition), "character")) {
-            c.time_markers = c.time_markers.saturating_add(1);
+            let placement_before = c.time_markers; let placement_id = c.id.clone(); c.time_markers = c.time_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Time, placement_before);
         }
         Ok(())
     }

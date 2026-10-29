@@ -87,7 +87,7 @@ impl Game {
         let spec=crate::batch4_clock::time_target();
         if !self.valid_binding(f.actor,&f.source,&spec,&selected[0]) {return Err("戴森展示后置目标无效".into());}
         if !self.shield_stops(f.actor,&selected[0]) {
-            let c=self.board_mut(&selected[0]).ok_or("原时间目标已离场")?;c.time_markers=c.time_markers.saturating_add(1);
+            let c=self.board_mut(&selected[0]).ok_or("原时间目标已离场")?;let placement_before = c.time_markers; let placement_id = c.id.clone(); c.time_markers=c.time_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Time, placement_before);
         }
         Ok(())
     }

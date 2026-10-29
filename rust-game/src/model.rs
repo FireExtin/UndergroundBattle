@@ -755,6 +755,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    WM031Victims(crate::wm031::Victims),
     MSJZ04Pay,
     JC053Draw,
     BQ065Shield {card_id:String},
@@ -1163,6 +1164,7 @@ impl Game {
         self.validate_jc053_state()?;
         self.validate_msbq01_state()?;
         self.validate_marker_placements()?;
+        self.validate_wm031_state()?;
         self.validate_wm036_state()?;
         self.validate_wm027_state()?;
         self.validate_xq13_state()?;

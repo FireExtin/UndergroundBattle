@@ -273,7 +273,7 @@ impl Game {
     pub(crate) fn jz45_lock_local_target(&mut self, frame: &ResolutionFrame) -> RuleResult<()> {
         let target = frame.targets.first().ok_or("JZ45缺少锁定目标")?;
         if let Some(c) = self.board_mut(&target.id) {
-            c.lock_markers = c.lock_markers.saturating_add(1);
+            let placement_before = c.lock_markers; let placement_id = c.id.clone(); c.lock_markers = c.lock_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Lock, placement_before);
         }
         Ok(())
     }

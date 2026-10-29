@@ -49,7 +49,7 @@ pub(crate) fn validate_action(a: &Action) -> RuleResult<()> {
 }
 impl Game {
     pub(crate) fn wm043_lock(&mut self, id: &str) {
-        if let Some(c) = self.board_mut(id) { c.lock_markers = c.lock_markers.saturating_add(1); }
+        if let Some(c) = self.board_mut(id) { let placement_before = c.lock_markers; let placement_id = c.id.clone(); c.lock_markers = c.lock_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Lock, placement_before); }
     }
     pub(crate) fn wm043_shown_after(&mut self, o: &ContestOutcome, index: usize) -> RuleResult<()> {
         let shown = o.shown.get(index).ok_or("精准打击展示索引无效")?;

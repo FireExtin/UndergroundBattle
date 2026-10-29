@@ -303,7 +303,7 @@ impl Game {
         {
             let c = self.board_mut(&inspected.id).ok_or("JZ46原暗藏者已失效")?;
             c.exhausted = true;
-            c.lock_markers = c.lock_markers.saturating_add(1);
+            let placement_before = c.lock_markers; let placement_id = c.id.clone(); c.lock_markers = c.lock_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Lock, placement_before);
         }
         Ok(())
     }

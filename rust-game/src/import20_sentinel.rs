@@ -440,7 +440,7 @@ impl Game {
             // This printed wave has no targets. Reuse the ordinary untargeted
             // effect contract; targeted post-contest locking still checks shields.
             if let Some(c) = self.board_mut(&id) {
-                c.lock_markers = c.lock_markers.checked_add(1).ok_or("锁定标志溢出")?;
+                let placement_before = c.lock_markers; let placement_id = c.id.clone(); c.lock_markers = c.lock_markers.checked_add(1).ok_or("锁定标志溢出")?; self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Lock, placement_before);
             }
         }
         Ok(())

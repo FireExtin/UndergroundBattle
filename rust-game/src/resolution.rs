@@ -504,10 +504,10 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if matches!(c.definition.as_str(),"JC028"|"JC097"|"JZ53"|"CQ27"|"CQ11"|"TK008"|"TK003"|"TK001") || c.definition==crate::bq045::ID || c.definition==crate::bq056::ID || c.definition==crate::bq055::ID || c.definition==crate::bq046::ID || c.definition==crate::bq086::ID || c.definition==crate::cq09::ID || c.definition==crate::cq10::ID || c.definition==crate::bq084::ID || c.definition==crate::bq001::ID || crate::next20_black_wraiths::CARDS.contains(&c.definition.as_str()) || crate::next20_blue_vampires::CARDS.contains(&c.definition.as_str()) || c.definition=="BQ057" || c.definition=="CQ18" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
+            source_region_instance: if matches!(c.definition.as_str(),"WM031"|"JC028"|"JC097"|"JZ53"|"CQ27"|"CQ11"|"TK008"|"TK003"|"TK001") || c.definition==crate::bq045::ID || c.definition==crate::bq056::ID || c.definition==crate::bq055::ID || c.definition==crate::bq046::ID || c.definition==crate::bq086::ID || c.definition==crate::cq09::ID || c.definition==crate::cq10::ID || c.definition==crate::bq084::ID || c.definition==crate::bq001::ID || crate::next20_black_wraiths::CARDS.contains(&c.definition.as_str()) || crate::next20_blue_vampires::CARDS.contains(&c.definition.as_str()) || c.definition=="BQ057" || c.definition=="CQ18" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
-            attachment_host_instance: (c.definition=="WM027" || c.definition=="XG20" || c.definition=="CQ19" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_tattoo::ID || matches!(c.definition.as_str(), "BQ052" | "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "BQ067" | "BQ065" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JC053" | "JZ41") || rules::definition(&c.definition)
+            attachment_host_instance: (c.definition=="WM031" || c.definition=="WM027" || c.definition=="XG20" || c.definition=="CQ19" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_tattoo::ID || matches!(c.definition.as_str(), "BQ052" | "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "BQ067" | "BQ065" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JC053" | "JZ41") || rules::definition(&c.definition)
                 .abilities
                 .iter()
                 .any(|a| {
@@ -1339,7 +1339,7 @@ impl Game {
         self.validate_batch3_declaration(&declaration)?;
         self.validate_batch4_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
-        if self.bq045_forced(&declaration)? || self.msbq02_forced(&declaration)? || self.pack_a_forced_declare(&declaration)? || self.omega_forced_declare(&declaration)? || self.plan_forced_declare(&declaration)? || self.batch3_forced_declare(&declaration)? || self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
+        if self.wm031_forced(&declaration)? || self.bq045_forced(&declaration)? || self.msbq02_forced(&declaration)? || self.pack_a_forced_declare(&declaration)? || self.omega_forced_declare(&declaration)? || self.plan_forced_declare(&declaration)? || self.batch3_forced_declare(&declaration)? || self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
         if self.jc054_declare(declaration.clone())? { return Ok(()); }
         if self.jc041_declare(declaration.clone())? { return Ok(()); }
         if self.jc035_declare(declaration.clone())? { return Ok(()); }
@@ -1885,6 +1885,7 @@ impl Game {
                 Op::BQ036TopSix => return self.bq036_search_start(frame),
                 Op::MSCQ02 { .. } => self.mscq02_resolve(&frame)?,
                 Op::MSJC16Mill|Op::MSJC16Revive => self.msjc16_resolve(&frame)?,
+                Op::WM031Wound { .. } => return self.wm031_continue(frame,crate::wm031::Victims{seat:0,selected:vec![]}),
                 Op::MSWM01 { grant } => self.mswm01_resolve(&frame,grant)?,
                 Op::MSBQ03 { search } => return self.msbq03_resolve(frame,search),
                 Op::MSWM02Clear { exposure } => self.mswm02_clear(&frame,exposure)?,
@@ -1929,7 +1930,7 @@ impl Game {
                 Op::NextBlueGraySearch | Op::JZ28DiscardSearch { .. } => return self.next_blue_gray_search_start(frame),
                 Op::JZ23RevealReward { observation } => self.jz23_reward(observation.as_ref().ok_or("缺少现身观察")?),
                 Op::CQ08Prepare { .. } => { self.jc035_resolve(&frame)?; return self.next_blue_gray_search_start(frame); },
-                Op::BQ059EntryShield => { if let Some(c) = self.board_mut(&frame.source.card.id).filter(|c| !c.face_down) { c.shield = c.shield.saturating_add(2); } },
+                Op::BQ059EntryShield => { if let Some(c) = self.board_mut(&frame.source.card.id).filter(|c| !c.face_down) { let placement_before = c.shield; let placement_id = c.id.clone(); c.shield = c.shield.saturating_add(2); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Shield, placement_before); } },
                 Op::BlackDeckToGraveyard { .. } => self.black_deck_recovery(&frame)?,
                 Op::BlackDeathRecovery { observation } => self.black_death_recovery(&frame, observation.as_ref().ok_or("黑色死亡事件缺少快照")?)?,
                 Op::XQ39GraveCharacterToDeckTop => self.xq39_grave_to_top(&frame)?,
@@ -1955,13 +1956,13 @@ impl Game {
                 Op::JC038GrantedRaid { grants } => self.jc038_raid_resolve(&frame, &grants)?,
                 Op::Batch20SearchEntry => return self.batch20_search_start(frame),
                 Op::CQ16LockLocalCharacter => {
-                    if let Some(c) = frame.targets.first().and_then(|t| self.board_mut(&t.id)) { c.lock_markers = c.lock_markers.saturating_add(1); }
+                    if let Some(c) = frame.targets.first().and_then(|t| self.board_mut(&t.id)) { let placement_before = c.lock_markers; let placement_id = c.id.clone(); c.lock_markers = c.lock_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Lock, placement_before); }
                 }
                 Op::BQ080HideForAttachment { .. } => { self.hide_in_place(&frame.source.card.id); }
                 Op::JZ57MillAndOptionalDraw => return self.jz57_resolve(frame),
                 Op::BQ054LockTarget => {
                     if let Some(c) = frame.targets.first().and_then(|t| self.board_mut(&t.id)) {
-                        c.lock_markers = c.lock_markers.saturating_add(1);
+                        let placement_before = c.lock_markers; let placement_id = c.id.clone(); c.lock_markers = c.lock_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Lock, placement_before);
                     }
                 }
                 Op::JZ26Trap { .. } => self.jz26_resolve(&frame)?,
@@ -2033,7 +2034,7 @@ impl Game {
                     self.jc035_resolve(&frame)?;
                     if frame.source.card.definition == "WM028" { return self.mystic_contest_start(frame, 0); }
                 },
-                Op::WM034AddOneTime => { if let Some(c) = self.board_mut(&frame.source.card.id).filter(|c| !c.face_down) { c.time_markers = c.time_markers.saturating_add(1); } }
+                Op::WM034AddOneTime => { if let Some(c) = self.board_mut(&frame.source.card.id).filter(|c| !c.face_down) { let placement_before = c.time_markers; let placement_id = c.id.clone(); c.time_markers = c.time_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Time, placement_before); } }
                 Op::WM034DestroyOtherCharacters => self.wm034_destroy_others(&frame),
                 Op::JC041RevealOriginalHidden => self.jc041_reveal_hidden(&frame)?,
                 Op::BQ030AttachmentDraw { .. } => self.bq030_draw_one(&frame)?,
@@ -2187,7 +2188,7 @@ impl Game {
                 Op::WM043Lock => { if let Some(t) = frame.targets.first() { self.wm043_lock(&t.id); } },
                 Op::WM043ShownLock { .. } => return Err("精准打击展示后置只由当前选择消费".into()),
                 Op::SentinelLock => {
-                    if let Some(c) = frame.targets.first().and_then(|t| self.board_mut(&t.id)) { c.lock_markers = c.lock_markers.saturating_add(1); }
+                    if let Some(c) = frame.targets.first().and_then(|t| self.board_mut(&t.id)) { let placement_before = c.lock_markers; let placement_id = c.id.clone(); c.lock_markers = c.lock_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Lock, placement_before); }
                 }
                 Op::SentinelMove => {
                     let mover = &frame.targets[0].id;
@@ -2196,7 +2197,7 @@ impl Game {
                 Op::JC069LockTarget => {
                     let target = frame.targets.first().ok_or("缺少锁定目标")?;
                     if let Some(c) = self.board_mut(&target.id) {
-                        c.lock_markers = c.lock_markers.saturating_add(1);
+                        let placement_before = c.lock_markers; let placement_id = c.id.clone(); c.lock_markers = c.lock_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Lock, placement_before);
                     }
                 }
                 Op::JZ43LockOrDamageLocalTarget => {
@@ -2204,7 +2205,7 @@ impl Game {
                     if self.board(&target.id).is_some_and(|(_, c)| self.effective_marker_count(c, crate::batch4_markers::MarkerKind::Lock) > 0) {
                         self.damage(BTreeMap::from([(target.id.clone(), 1)]))?;
                     } else if let Some(c) = self.board_mut(&target.id) {
-                        c.lock_markers = c.lock_markers.saturating_add(1);
+                        let placement_before = c.lock_markers; let placement_id = c.id.clone(); c.lock_markers = c.lock_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Lock, placement_before);
                     }
                 }
                 Op::JC069ChaseLockedTarget => {
@@ -2312,7 +2313,7 @@ impl Game {
                     if let Some(live) = self.board_mut(&frame.source.card.id)
                         .filter(|c| c.definition == "JC045" && !c.face_down)
                     {
-                        live.time_markers = live.time_markers.saturating_add(1);
+                        let placement_before = live.time_markers; let placement_id = live.id.clone(); live.time_markers = live.time_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Time, placement_before);
                     }
                 }
                 Op::JC090PlaceOneInfluenceInOriginalAttachedRegion => {
@@ -2834,6 +2835,7 @@ impl Game {
         self.bq041_choice_payload(&frame, chooser, &a)?;
         self.statue_choice_payload(&frame, &choice, chooser, &a)?;
         match choice {
+            FrameChoice::WM031Victims(v)=>return self.wm031_choose(*frame,v,chooser,&a,&selected),
             FrameChoice::BQ045Core(c)=>return self.bq045_core_choose(*frame,c,chooser,&a,&selected),
             FrameChoice::Next20Wraith(crate::next20_black_wraiths::WraithChoice::TigerSearch) => return self.cq25_search_finish(&frame,chooser,&selected),
             FrameChoice::Next20Blue(choice) => return match choice {

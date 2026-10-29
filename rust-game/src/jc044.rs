@@ -186,7 +186,7 @@ impl Game {
             return Err("JC044时间标志须来自已接受的进场触发".into());
         }
         if let Some(c) = self.board_mut(&f.source.card.id).filter(|c| c.definition == "JC044" && !c.face_down) {
-            c.time_markers = c.time_markers.saturating_add(1);
+            let placement_before = c.time_markers; let placement_id = c.id.clone(); c.time_markers = c.time_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Time, placement_before);
         }
         Ok(())
     }

@@ -37,8 +37,17 @@ impl Game {
     pub(crate) fn record_marker_placement(&mut self, event: MarkerPlacement) -> bool {
         self.first_marker_placements.retain(|e| e.turn == self.turn);
         let first = !self.first_marker_placements.iter().any(|e| e.carrier.id == event.carrier.id);
-        if first { self.first_marker_placements.push(event); }
+        if first { self.first_marker_placements.push(event.clone()); }
+        self.wm031_observe(&event,first);
         first
+    }
+    /// Observe this exact write before another operation may remove the marker.
+    pub(crate) fn record_board_marker_write(&mut self, id: &str, kind: MarkerKind, before: u32) {
+        let Some((_, c)) = self.in_play(id) else { return; };
+        let after = kind.count(c);
+        if after > before {
+            self.record_marker_placement(MarkerPlacement { turn: self.turn, carrier: c.clone(), kind, before, placed: after-before });
+        }
     }
     pub(crate) fn validate_marker_placements(&self) -> RuleResult<()> {
         let mut ids = BTreeSet::new();

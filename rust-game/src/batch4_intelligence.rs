@@ -133,7 +133,7 @@ impl Game {
     pub(crate) fn wm044_lock(&mut self, f: &ResolutionFrame) {
         if self.wm044_has_sentinel(f.actor) {
             if let Some(c) = f.targets.first().and_then(|t| self.board_mut(&t.id)).filter(|c| c.face_down) {
-                c.lock_markers = c.lock_markers.saturating_add(1);
+                let placement_before = c.lock_markers; let placement_id = c.id.clone(); c.lock_markers = c.lock_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Lock, placement_before);
             }
         }
     }

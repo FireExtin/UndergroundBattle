@@ -198,7 +198,7 @@ impl Game {
                 .board_mut(id)
                 .filter(|c| !c.face_down && catalog::card(&c.definition).kind == "character")
             {
-                c.time_markers = c.time_markers.saturating_add(1);
+                let placement_before = c.time_markers; let placement_id = c.id.clone(); c.time_markers = c.time_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Time, placement_before);
             }
         }
     }

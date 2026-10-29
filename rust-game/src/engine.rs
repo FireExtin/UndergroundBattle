@@ -671,6 +671,7 @@ impl Game {
         self.validate_jc053_state()?;
         self.validate_msbq01_state()?;
         self.validate_marker_placements()?;
+        self.validate_wm031_state()?;
         self.validate_wm036_state()?;
         self.validate_wm027_state()?;
         self.validate_xq13_state()?;
@@ -732,6 +733,7 @@ impl Game {
         next.validate_jc053_state()?;
         next.validate_msbq01_state()?;
         next.validate_marker_placements()?;
+        next.validate_wm031_state()?;
         next.validate_wm036_state()?;
         next.validate_wm027_state()?;
         next.validate_xq13_state()?;
@@ -855,7 +857,7 @@ impl Game {
                 if c.definition=="XQ35" && a.kind=="deploy" {return Err("白骨仆人不能正面打出".into());}
                 if c.definition=="XQ19"&&a.kind=="deploy"{return Err("熵力化身不能正面打出".into())}
                 if a.kind=="deploy" {self.msbq02_allow_play(seat,&c)?;if self.msbq02_chaos(&c){return Err("本候选尚未开放三失控时的核心派遣：响应降失控后的进场选区待裁定；这不是原规则禁止".into());}}
-                let chaos_play = a.kind == "deploy" && (rules::definition(&c.definition).traits.chaos||self.msbq02_chaos(&c));
+                let chaos_play = a.kind == "deploy" && (rules::definition(&c.definition).traits.chaos||self.msbq02_chaos(&c)||self.wm031_chaos(&c));
                 let r = if chaos_play {
                     if a.region.is_some() { return Err("混乱进场不能指定地区".into()); }
                     if !(0..self.regions.len()).any(|r| self.region_live(r)) { return Err("没有可进场的地区".into()); }
@@ -1487,7 +1489,7 @@ impl Game {
         self.validate_wm062_frame(&frame)?;
         self.validate_black_next20_frame(&frame)?;
         if let Some(c) = item.card.take() {
-            let chaos = card(&c.definition).kind == "character" && (rules::definition(&c.definition).traits.chaos||self.msbq02_chaos(&c));
+            let chaos = card(&c.definition).kind == "character" && (rules::definition(&c.definition).traits.chaos||self.msbq02_chaos(&c)||self.wm031_chaos(&c));
             let destination = if chaos { self.chaos_region() } else { item.deploy_region };
             if chaos && destination.is_none() { self.effects.push_front(Effect::Bury { card: c }); return Ok(()); }
             if let Some(region) = destination {
@@ -1558,7 +1560,7 @@ impl Game {
     pub(crate) fn enter_triggers_with_extra(&mut self,seat:usize,definition:&str,id:&str,reveal:bool,extra:Option<crate::batch3_blood::BQ029ExtraPayment>,carmen:Option<crate::import20_carmen::ExtraPayment>,final_region:bool) {
         let previous=self.effects.len();
         if !final_region { self.route_chaos_entry(id); }
-        if definition == "XG14" { if let Some(c) = self.board_mut(id).filter(|c| !c.face_down) { c.time_markers = c.time_markers.saturating_add(1); } }
+        if definition == "XG14" { if let Some(c) = self.board_mut(id).filter(|c| !c.face_down) { let placement_before = c.time_markers; let placement_id = c.id.clone(); c.time_markers = c.time_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Time, placement_before); } }
         self.batch3_entry_keywords(definition, id);
         // Intermezzo slow is an entry requirement, not an optional trigger or
         // an exhaust cost. Apply it before freezing the entry declaration.
@@ -3209,13 +3211,13 @@ impl Game {
                     ));
                 }
                 if d.kind == "character" {
-                    if (rules::definition(&d.id).traits.chaos||self.msbq02_chaos(c)) {
+                    if (rules::definition(&d.id).traits.chaos||self.msbq02_chaos(c)||self.wm031_chaos(c)) {
                         candidates.push((Action { card_id: Some(c.id.clone()), ..Action::new("deploy") }, format!("派遣 {}（混乱：随机地区）", d.name)));
                     }
                     for r in 0..self.regions.len() {
                         if !self.region_live(r) { continue; }
                         for kind in ["deploy", "conceal"] {
-                            if kind == "deploy" && (rules::definition(&d.id).traits.chaos||self.msbq02_chaos(c)) { continue; }
+                            if kind == "deploy" && (rules::definition(&d.id).traits.chaos||self.msbq02_chaos(c)||self.wm031_chaos(c)) { continue; }
                             candidates.push((
                                 Action {
                                     card_id: Some(c.id.clone()),
@@ -3253,7 +3255,7 @@ impl Game {
                 }}
                 if self.omega_can_play_assets(seat) { for c in &self.players[seat].assets {
                     if self.omega_asset_play(seat, c).is_none() { continue; }
-                    if (rules::definition(&c.definition).traits.chaos||self.msbq02_chaos(c)) {
+                    if (rules::definition(&c.definition).traits.chaos||self.msbq02_chaos(c)||self.wm031_chaos(c)) {
                         candidates.push((Action { card_id: Some(c.id.clone()), ..Action::new("deploy") }, format!("资产正面打出 {}（混乱）", card(&c.definition).name)));
                     } else { for r in 0..self.regions.len() { if self.region_live(r) {
                         candidates.push((Action { card_id: Some(c.id.clone()), region: Some(r), ..Action::new("deploy") }, format!("资产正面打出 {} → 地区{}", card(&c.definition).name,r+1)));
@@ -3267,7 +3269,7 @@ impl Game {
                     {
                         continue;
                     }
-                    if (rules::definition(&c.definition).traits.chaos||self.msbq02_chaos(c)) {
+                    if (rules::definition(&c.definition).traits.chaos||self.msbq02_chaos(c)||self.wm031_chaos(c)) {
                         candidates.push((Action { card_id: Some(c.id.clone()), ..Action::new("deploy") }, format!("墓地正面打出 {}（混乱：随机地区）", card(&c.definition).name)));
                         continue;
                     }

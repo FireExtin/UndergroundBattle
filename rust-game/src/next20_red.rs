@@ -296,7 +296,7 @@ impl Game {
     }
     pub(crate) fn jc055_prepare_time(&mut self, f: &ResolutionFrame) {
         if let Some(t) = f.targets.first().filter(|t| self.valid_bound_target(f.actor, &f.source, t)) {
-            if let Some(c) = self.board_mut(&t.id) { c.time_markers = c.time_markers.saturating_add(1); }
+            if let Some(c) = self.board_mut(&t.id) { let placement_before=c.time_markers;let placement_id=c.id.clone();c.time_markers = c.time_markers.saturating_add(1);self.record_board_marker_write(&placement_id,crate::batch4_markers::MarkerKind::Time,placement_before); }
         }
     }
     fn red_attach(&mut self, actor: usize, card: Card, host: String) {
@@ -399,7 +399,7 @@ impl Game {
     }
     pub(crate) fn jz41_wound(&mut self, f: &ResolutionFrame) {
         let [Step { op: Op::JZ41DamageWound { observation: Some(o) }, .. }] = f.steps.as_slice() else { return; };
-        if let Some(c) = self.board_mut(&o.card.id).filter(|c| !c.face_down && c.definition == o.card.definition && c.owner == o.card.owner) { c.wounds = c.wounds.saturating_add(1); }
+        if let Some(c) = self.board_mut(&o.card.id).filter(|c| !c.face_down && c.definition == o.card.definition && c.owner == o.card.owner) { let placement_before=c.wounds;let placement_id=c.id.clone();c.wounds = c.wounds.saturating_add(1);self.record_board_marker_write(&placement_id,crate::batch4_markers::MarkerKind::Wound,placement_before); }
         else { return; }
         if let Some((r, c)) = self.board(&o.card.id) { self.emit_event(c.controller, self.source_snapshot(c, Some(r)), Event::ReceiveWound); }
         self.settle_deaths();

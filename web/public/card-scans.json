@@ -1402,5 +1402,6 @@
   "MSBQ01": {"url": "/cards/MSBQ01.jpg", "source": "resource/ymsj-fun.github.io/cards/MSBQ01 龙之欢宴.jpg", "sha256": "91403c1c0af4ce700bfbde7061c0d123869a83d85a648a96fec00640302e9d3d"},
   "XQ13": {"url": "/cards/XQ13.jpg", "source": "resource/ymsj-fun.github.io/cards/XQ13 焚血之道.jpg", "sha256": "07656ef4e3406cc371ce5202fb88c64b68aec32cdc22e0adf660de41e23c836a"},
   "WM027": {"url": "/cards/WM027.jpg", "source": "resource/ymsj-fun.github.io/cards/WM027 阴影之道.jpg", "sha256": "f7a2fcfe47a2f412029229df4a01e89a8c3db7bb67fb5deeb3b78230d09fcfa0"},
-  "WM036": {"url": "/cards/WM036.jpg", "source": "resource/ymsj-fun.github.io/cards/WM036 烬归烬.jpg", "sha256": "afe11bd32b191576058e6f2f6c8369f606dc58731c82133037ef2cb2c1f11395"}
+  "WM036": {"url": "/cards/WM036.jpg", "source": "resource/ymsj-fun.github.io/cards/WM036 烬归烬.jpg", "sha256": "afe11bd32b191576058e6f2f6c8369f606dc58731c82133037ef2cb2c1f11395"},
+  "WM031": {"url": "/cards/WM031.jpg", "source": "resource/ymsj-fun.github.io/cards/WM031 凌虐恶魔.jpg", "sha256": "3a879800f043f5d7fe336c2dc900e912623dec76e16932630dd63fa59f5d94f2"}
 }
