@@ -35,7 +35,7 @@ impl Game{
         self.validate_batch3_declaration(d)?;let options=self.binding_options(d.actor,&d.source,&d.ability.targets[0]);
         if d.ability.key!="raid-1" || !matches!(stage,DeclareChoice::Target) || options.is_empty() || p.seat!=d.actor || p.choice.player_id!=player_id(d.actor) || p.choice.id.is_empty() || p.choice.title!=format!("{}：{}",catalog::card("BQ029").name,d.ability.label) || p.choice.kind!="trigger" || p.choice.min!=Some(0) || p.choice.max!=Some(1) || p.choice.allow_decline!=Some(true) || p.choice.amount.is_some() || !p.choice.preview_cards.is_empty() || !same(&options,&p.choice.options){return Err("赤鳞近卫袭击须保留原现身目标选择".into());}Ok(())
     }
-    pub(crate) fn current_non_asset(&self,c:&Card,actor:usize)->bool{catalog::card(&c.definition).keywords.iter().any(|k|k=="非资产") || matches!(c.definition.as_str(),"BQ029"|"BQ031"|"BQ032") && self.players.get(actor).is_some_and(|p|p.society_zone.exposure>0)}
+    pub(crate) fn current_non_asset(&self,c:&Card,actor:usize)->bool{catalog::card(&c.definition).keywords.iter().any(|k|k=="非资产") || matches!(c.definition.as_str(),"CQ27"|"BQ029"|"BQ031"|"BQ032") && self.players.get(actor).is_some_and(|p|p.society_zone.exposure>0)}
     pub(crate) fn bq029_pay_extra(&mut self,actor:usize)->RuleResult<PaidCost>{Ok(self.capture_money(actor,1)?.extra_money(false))}
     pub(crate) fn bq029_observe_entry(&mut self,id:&str,extra:Option<BQ029ExtraPayment>){
         let Some((r,c))=self.board(id).filter(|(_,c)|c.definition=="BQ029" && !c.face_down)else{return;};let actor=c.controller;let moon=self.players[actor].society_zone.secrecy;if extra.is_none() && moon==0{return;}

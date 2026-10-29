@@ -662,6 +662,7 @@ impl Game {
         self.validate_mswm01_state()?;
         self.validate_mswm02_state()?;
         self.validate_bq045_state()?;
+        self.validate_cq27_state()?;
         self.validate_bq088_state()?;
         self.validate_xg19_state()?;
         self.validate_cq11_state()?;
@@ -713,6 +714,7 @@ impl Game {
         next.validate_mswm01_state()?;
         next.validate_mswm02_state()?;
         next.validate_bq045_state()?;
+        next.validate_cq27_state()?;
         next.validate_bq088_state()?;
         next.validate_xg19_state()?;
         next.validate_cq11_state()?;
@@ -810,6 +812,7 @@ impl Game {
                 if c.definition=="BQ029" { crate::batch3::validate_action(&c.definition,&a)?; }
                 crate::bq048::validate_action(&c.definition,&a)?;
                 crate::bq062::validate_action(&c,&a)?;self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
+                crate::cq27::validate_action(&c.definition,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -842,6 +845,7 @@ impl Game {
                 };
                 crate::bq048::validate_action(&c.definition,&a)?;
                 crate::bq062::validate_action(&c,&a)?;self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
+                crate::cq27::validate_action(&c.definition,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -961,6 +965,7 @@ impl Game {
                 }
                 crate::bq048::validate_action(&c.definition,&a)?;
                 crate::bq062::validate_action(&c,&a)?;self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
+                crate::cq27::validate_action(&c.definition,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -1043,6 +1048,7 @@ impl Game {
                 }
                 crate::bq048::validate_action(&c.definition,&a)?;
                 crate::bq062::validate_action(&c,&a)?;self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
+                crate::cq27::validate_action(&c.definition,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -1104,6 +1110,7 @@ impl Game {
                 self.dispatch_frame(frame, label, Some(c), spec.response_policy);
             }
             "activate" => {
+                if a.ability_id.as_deref()==Some(crate::cq27::GRAVE){return self.cq27_begin(seat,&a);}
                 if a.ability_id.as_deref()==Some(crate::xq35::KEY) {return self.xq35_begin(seat,&a);}
                 if a.ability_id.as_deref()==Some(crate::import20_entropy::HAND){return self.xq19_begin_hand(seat,&a);}
                 if a.ability_id.as_deref().is_some_and(|k|k.starts_with(crate::import20_swords::PREFIX)) { return self.cq15_begin(seat,&a); }
@@ -1127,6 +1134,7 @@ impl Game {
                 crate::next20_black_wraiths::validate_action(&c.definition,&a)?;
                 crate::bq048::validate_action(&c.definition,&a)?;
                 crate::bq062::validate_action(&c,&a)?;self.bq060_action(seat,&c,&a)?;crate::bq067::validate_action(&c,&a)?;crate::bq049::validate_action(&c,&a)?;
+                crate::cq27::validate_action(&c.definition,&a)?;
                 crate::bq061::validate_action(&c,&a)?;
                 self.bq063_action(seat,&c,&a)?;
                 crate::bq045::validate_action(&c.definition,&a)?;
@@ -1411,6 +1419,7 @@ impl Game {
         self.validate_tentacle_play(&item)?;
         self.validate_core_play(&item)?;
         self.validate_bq048_play(&item)?;
+        self.validate_cq27_play(&item)?;
         self.validate_bq088_play(&item)?;self.validate_bq088_token_play(&item)?;
         self.validate_xg19_play(&item)?;self.validate_xg19_token_play(&item)?;
         self.validate_cq11_play(&item)?;
@@ -3297,6 +3306,7 @@ impl Game {
             for region in regions{let label=format!("派遣核心 {} → {}",card(&c.definition).name,region.map_or("随机地区".into(),|r|format!("地区{}",r+1)));let a=Action{card_id:Some(c.id.clone()),region,..Action::new("deploy")};candidates.push((a.clone(),label.clone()));if z.rest>0{let mut a=a;a.option=Some("honor-rest".into());candidates.push((a,format!("{label}（以名誉支付全部休整）")));}}
         }}
         let extra=candidates.iter().filter(|(a,_)|a.kind=="deploy" && a.card_id.as_ref().is_some_and(|id|self.players[seat].hand.iter().chain(&self.players[seat].graveyard).any(|c|c.id==*id && c.definition=="BQ029"))).map(|(a,label)|{let mut a=a.clone();a.option=Some("pay-extra-1".into());(a,format!("{label}（额外支付1）"))}).collect::<Vec<_>>();candidates.extend(extra);
+        candidates.extend(self.cq27_actions(seat));
         candidates.extend(self.xq35_actions(seat));
         candidates.extend(self.xg25_sealed_actions(seat));
         self.bq033_payment_candidates(seat, candidates)

@@ -1382,5 +1382,10 @@
     "url": "/cards/TK001.jpg",
     "source": "resource/ymsj-fun.github.io/cards/TK001 行尸.jpg",
     "sha256": "06cdd3b3396ef41cc1669192c5056cf0151460b5285f1645bede86809aa399e0"
+  },
+  "CQ27": {
+    "url": "/cards/CQ27.jpg",
+    "source": "resource/ymsj-fun.github.io/cards/CQ27 骨根灵主.jpg",
+    "sha256": "19c1a81185aaf17365c8888005b7ac4eb926db248e1349710b43de3b0aa1814d"
   }
 }

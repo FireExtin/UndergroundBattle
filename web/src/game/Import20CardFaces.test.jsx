@@ -12,7 +12,7 @@ const registry=JSON.parse(read('rust-game/data/cards.json'));
 const primary=JSON.parse(read('docs/factions/card-specifications.json'));
 const batch=JSON.parse(read('docs/factions/import20-rulings-2026-10-24.json')).batch20;
 const newlyAdmitted=['BQ034','CQ25','XG25'];
-const closedCandidates=["BQ088","TK001","XG19","TK003","CQ11","TK008","BQ062","BQ060","BQ067","BQ065","BQ049", "BQ061", "BQ045", "BQ052", "XQ35", "BQ084", "CQ10", "CQ09", "BQ086", "BQ046", "BQ055", "BQ048", "BQ056", "BQ050", "BQ051", "TEST034", "BQ063"];
+const closedCandidates=["CQ27","BQ088","TK001","XG19","TK003","CQ11","TK008","BQ062","BQ060","BQ067","BQ065","BQ049", "BQ061", "BQ045", "BQ052", "XQ35", "BQ084", "CQ10", "CQ09", "BQ086", "BQ046", "BQ055", "BQ048", "BQ056", "BQ050", "BQ051", "TEST034", "BQ063"];
 const scans=JSON.parse(read('web/public/card-scans.json'));
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const canonical=value=>Array.isArray(value)?value.map(canonical):value&&typeof value==='object'
@@ -58,7 +58,7 @@ it('keeps the current kernel and reviewed admission set while delivering artwork
   expect(registry.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
   expect(currentCatalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
   expect(currentCatalog.cards.map(card=>[card.id,card.supported])).toEqual(registry.cards.map(card=>[card.id,card.supported!==false]));
-  expect(registry.cards).toHaveLength(306);
+  expect(registry.cards).toHaveLength(307);
   for(const id of ['BQ033','BQ009','BQ001',...closedCandidates])expect(registry.cards.find(card=>card.id===id).supported,id).toBe(false);
   for(const id of ['BQ034','CQ25','XG25'])expect(registry.cards.find(card=>card.id===id).supported,id).toBe(true);
   expect(registry.cards.filter(card=>card.supported!==false)).toHaveLength(236);
@@ -85,3 +85,5 @@ it.each(['CQ11','TK008'])('%s preserves original artwork and closed admission',i
 it.each(['XG19','TK003'])('%s retains original pixels and closed admission',id=>{const source=primary.cards[id].sourceVerification,card=registry.cards.find(c=>c.id===id);expect(sha(read(source.imagePath))).toBe(source.imageSha256);expect(sha(read(`web/public/cards/${id}.jpg`))).toBe(source.imageSha256);expect(scans[id]).toEqual({url:`/cards/${id}.jpg`,source:source.imagePath,sha256:source.imageSha256});expect(cardScanUrl(id)).toBe(`/cards/${id}.jpg`);expect(card.supported).toBe(false);expect(card.keywords).toContain('非资产');if(id==='TK003'){expect(card.cost).toBe(0);expect(card.costAppearance).toBe('absent');expect(card.keywords).toContain('公开');}else{expect(card.cost).toBe(3);expect(card.loyalty).toEqual(['灰色','灰色']);}render(<DeckCardFace card={card} large/>);expect(screen.getByRole('img',{name:card.name+'原始牌面'})).toHaveAttribute('src',`/cards/${id}.jpg`);});
 
 it.each(['BQ088','TK001'])('%s retains original art and closed admission',id=>{const source=primary.cards[id].sourceVerification,card=registry.cards.find(c=>c.id===id);expect(sha(read(source.imagePath))).toBe(source.imageSha256);expect(sha(read(`web/public/cards/${id}.jpg`))).toBe(source.imageSha256);expect(scans[id]).toEqual({url:`/cards/${id}.jpg`,source:source.imagePath,sha256:source.imageSha256});expect(cardScanUrl(id)).toBe(`/cards/${id}.jpg`);expect(card.supported).toBe(false);if(id==='TK001'){expect(card.cost).toBe(0);expect(card.costAppearance).toBe('absent');expect(card.keywords).toEqual(['迟缓','非资产']);}else{expect(card.cost).toBe(1);expect(card.loyalty).toEqual(['黑色']);expect(card.text).toContain('目标副名为圣甲虫产业');}render(<DeckCardFace card={card} large/>);expect(screen.getByRole('img',{name:card.name+'原始牌面'})).toHaveAttribute('src',`/cards/${id}.jpg`);});
+
+it('CQ27 preserves its original death-domain artwork and closed admission',()=>{const id='CQ27',source=primary.cards[id].sourceVerification,card=registry.cards.find(c=>c.id===id);expect(sha(read(source.imagePath))).toBe(source.imageSha256);expect(sha(read(`web/public/cards/${id}.jpg`))).toBe(source.imageSha256);expect(scans[id]).toEqual({url:`/cards/${id}.jpg`,source:source.imagePath,sha256:source.imageSha256});expect(cardScanUrl(id)).toBe('/cards/CQ27.jpg');expect(card.supported).toBe(false);expect(card.cost).toBe(5);expect(card.loyalty).toEqual(['黑色']);expect(card.magic).toBe('死亡');render(<DeckCardFace card={card} large/>);expect(screen.getByRole('img',{name:card.name+'原始牌面'})).toHaveAttribute('src','/cards/CQ27.jpg');});

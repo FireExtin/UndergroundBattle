@@ -11998,6 +11998,45 @@
       ],
       "costAppearance": "absent",
       "defense": 1
+    },
+    {
+      "id": "CQ27",
+      "name": "骨根灵主",
+      "subtitle": "遗迹守卫者",
+      "unique": true,
+      "kind": "character",
+      "cost": 5,
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 1,
+          "combat": 1,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "subtypes": [
+        "植物",
+        "仙灵",
+        "超能力者"
+      ],
+      "text": "公开〔日形〕非资产；混乱；不能移动 准备步骤触发 将你墓地中的一张角色牌置于你的牌库底，然后在本地区生成一个行尸指示物角色。 墓地行动 牺牲三个角色：将骨根灵主从墓地放置进场。",
+      "supported": false,
+      "keywords": [
+        "公开〔日形〕非资产",
+        "混乱",
+        "不能移动"
+      ],
+      "loyalty": [
+        "黑色"
+      ],
+      "loyaltyText": "黑色",
+      "defense": 3
     }
   ],
   "decks": [

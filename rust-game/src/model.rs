@@ -656,6 +656,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    CQ27Sacrificed(Vec<SourceSnapshot>),
     MSJC16Sealed(Vec<Card>),
     CoreRestHonor { before:u32, rest:u32 },
     MSBQ02Honor { before:u32 },
@@ -765,6 +766,7 @@ pub enum FrameChoice {
     BQ063Repress {seat:usize,regions:Vec<(usize,String,u32)>},
     BQ086Sacrifice,
     BQ088 { repeat:bool },
+    CQ27Bottom,
     CQ10Discard,
     BQ084Anchor,
     BQ001StarHand,
@@ -1144,6 +1146,7 @@ impl Game {
         self.validate_msjc12_state()?;
         self.validate_mswm01_state()?;
         self.validate_mswm02_state()?;
+        self.validate_cq27_state()?;
         self.validate_bq088_state()?;
         self.validate_xg19_state()?;
         self.validate_cq11_state()?;

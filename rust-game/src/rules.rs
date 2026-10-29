@@ -91,6 +91,7 @@ pub enum Cost {
     MSJC16SealSeven,
     MSBQ02Honor,
     BQ045ExhaustTentacle,
+    CQ27SacrificeThree,
     TK008SacrificeThree,
     BQ052SacrificeThree,
     MSJC12ExhaustTrio,
@@ -328,6 +329,8 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    CQ27Prepare {event_id:Option<String>},
+    CQ27GraveReturn,
     BQ088(crate::bq088::Program),
     XG19Resolve { mode:u8, exposure:Option<Vec<u32>> },
     CQ11Generate,
@@ -890,6 +893,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     if crate::bq046::related(ability) { return crate::bq046::validate_ability(card_id,ability); }
     if crate::bq086::related(ability) { return crate::bq086::validate_ability(card_id,ability); }
     if crate::cq09::related(ability) { return crate::cq09::validate_ability(card_id,ability); }
+    if card_id=="CQ27"||crate::cq27::related(ability){return crate::cq27::validate_ability(card_id,ability);}
     if card_id=="BQ088"||crate::bq088::related(ability){return crate::bq088::validate_ability(card_id,ability);}
     if card_id=="XG19"||crate::xg19::related(ability){return crate::xg19::validate_ability(card_id,ability);}
     if matches!(card_id,"CQ11"|"TK008")||crate::cq11::related(ability){return crate::cq11::validate_ability(card_id,ability);}
@@ -1716,6 +1720,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::bq046::validate_definition(card_id,definition)?;
         crate::bq086::validate_definition(card_id,definition)?;
         crate::cq09::validate_definition(card_id,definition)?;
+        crate::cq27::validate_definition(card_id,definition)?;
         crate::bq088::validate_definition(card_id,definition)?;
         crate::xg19::validate_definition(card_id,definition)?;
         crate::cq11::validate_definition(card_id,definition)?;
@@ -2431,6 +2436,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert(crate::bq046::ID.into(),crate::bq046::definition());
         m.insert(crate::bq086::ID.into(),crate::bq086::definition());
         m.insert(crate::cq09::ID.into(),crate::cq09::definition());
+        m.insert("CQ27".into(),crate::cq27::definition());
         for id in ["BQ088","TK001"]{m.insert(id.into(),crate::bq088::definition(id));}
         for id in ["XG19","TK003"]{m.insert(id.into(),crate::xg19::definition(id));}
         for id in ["CQ11","TK008"]{m.insert(id.into(),crate::cq11::definition(id));}

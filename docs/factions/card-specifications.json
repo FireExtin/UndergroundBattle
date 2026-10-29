@@ -19522,7 +19522,12 @@
             "count": 1
           }
         ],
-        "domains": [],
+        "domains": [
+          {
+            "id": "death",
+            "count": 1
+          }
+        ],
         "permanentIcons": {
           "investigation": 1,
           "combat": 1,
