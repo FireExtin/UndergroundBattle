@@ -158,7 +158,7 @@ impl Game {
     }
     pub(crate) fn xg28_return(&mut self, f: &ResolutionFrame) -> RuleResult<()> {
         if let Some(index) = self.players[f.actor].graveyard.iter().position(|c| c.id == f.targets[0].id) {
-            let c = self.players[f.actor].graveyard.remove(index);
+            let c = self.take_grave_observed(f.actor,index);
             let c = self.reset_zone_card(c); self.players[f.actor].hand.push(c);
         }
         if self.players[f.actor].society_zone.secrecy > 0 {

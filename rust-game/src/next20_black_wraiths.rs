@@ -466,7 +466,7 @@ impl Game {
             .iter()
             .position(|c| &c.id == id)
         {
-            (self.players[chooser].graveyard.remove(i), false)
+            (self.take_grave_observed(chooser,i), false)
         } else {
             let i = self.players[chooser]
                 .deck

@@ -20,6 +20,8 @@ mod bq055_tests;
 mod core_zone;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod bq046_tests;
+mod jz53;
+#[cfg(test)] mod jz53_tests;
 mod cq27;
 #[cfg(test)] mod cq27_tests;
 mod bq088;

@@ -102,7 +102,7 @@ impl Game{
         if actor!=f.actor||f.cursor!=1||selected.len()!=1
             ||!self.bq081_grave_options(actor).iter().any(|o|o.id==selected[0]){return Err("凋零食腐怪须选择本人墓地的一张角色".into());}
         let index=self.players[actor].graveyard.iter().position(|c|c.id==selected[0]).ok_or("原墓地角色已失效")?;
-        let c=self.players[actor].graveyard.remove(index);let name=catalog::card(&c.definition).name.clone();let c=self.reset_zone_card(c);
+        let c=self.take_grave_observed(actor,index);let name=catalog::card(&c.definition).name.clone();let c=self.reset_zone_card(c);
         self.players[actor].deck.push(c);self.note(format!("{} 将墓地的 {} 置于牌库底",self.players[actor].name,name));
         self.remove_dead(&f.targets[0].id,RemovalCause::Destroy);Ok(())
     }

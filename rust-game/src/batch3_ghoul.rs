@@ -90,7 +90,7 @@ impl Game {
         self.validate_jc035_frame(f)?;
         if chooser!=f.actor || f.source.card.definition!="BQ079" || f.cursor!=1 || selected.len()!=1 || *a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("食尸鬼准备确认包含非准入载荷".into());}
         let i=self.players[f.actor].graveyard.iter().position(|c|c.id==selected[0]).ok_or("食尸鬼须选择本方墓地一张牌")?;
-        let c=self.players[f.actor].graveyard.remove(i);let c=self.reset_zone_card(c);self.players[f.actor].deck.push(c);Ok(())
+        let c=self.take_grave_observed(f.actor,i);let c=self.reset_zone_card(c);self.players[f.actor].deck.push(c);Ok(())
     }
     pub(crate) fn validate_bq079_trigger_pending(&self,p:&Pending,d:&Declaration,stage:&DeclareChoice)->RuleResult<()> {
         self.validate_batch3_declaration(d)?;

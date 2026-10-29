@@ -54,7 +54,7 @@ impl Game{
  pub(crate) fn msbq03_finish(&mut self,f:&ResolutionFrame,search:bool,seat:usize,a:&Action,ids:&[String])->RuleResult<()>{
   self.msbq03_frame(f)?;if seat!=f.actor||f.cursor!=1||search!=(f.ability_key==SEARCH)||*a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")})||ids.len()!=1||!self.msbq03_options(f,search).iter().any(|o|o.id==ids[0]){return Err("圣甲虫须选择原区域的一张实际牌".into());}
   if search{let i=self.players[seat].deck.iter().position(|c|c.id==ids[0]).ok_or("检索牌不在牌库")?;let c=self.players[seat].deck.remove(i);let c=self.fresh(c);self.note(format!("{} 展示检索的 {}",self.players[seat].name,catalog::card(&c.definition).name));self.players[seat].hand.push(c);self.shuffle_player(seat);}
-  else{if !self.valid_bound_target(seat,&f.source,&f.targets[0])||!self.seal_host_valid(&f.targets[0].id){return Err("原产业目标已失效".into());}let i=self.players[seat].graveyard.iter().position(|c|c.id==ids[0]).ok_or("尸体不在墓地")?;let c=self.players[seat].graveyard.remove(i);self.seal_card_on_valid_host(c,seat,&f.targets[0].id);}Ok(())
+  else{if !self.valid_bound_target(seat,&f.source,&f.targets[0])||!self.seal_host_valid(&f.targets[0].id){return Err("原产业目标已失效".into());}let i=self.players[seat].graveyard.iter().position(|c|c.id==ids[0]).ok_or("尸体不在墓地")?;let c=self.take_grave_observed(seat,i);self.seal_card_on_valid_host(c,seat,&f.targets[0].id);}Ok(())
  }
  pub(crate) fn validate_msbq03_state(&self)->RuleResult<()>{
   let mut frames=BTreeSet::new();let mut check=|f:&ResolutionFrame|->RuleResult<()>{self.msbq03_frame(f)?;if ours(f)&&!frames.insert(f.frame_id.clone()){return Err("圣甲虫原帧不能重复存在".into());}Ok(())};

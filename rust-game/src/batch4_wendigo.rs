@@ -90,7 +90,7 @@ impl Game {
         for id in selected {corpses.push(self.players[actor].graveyard.iter().find(|c|c.id==*id && corpse(c)).ok_or("尸体费用实例已失效")?.clone());}
         let host_id=format!("society:p{actor}");
         // Validate the whole batch before removing any corpse or allocating IDs.
-        self.players[actor].graveyard.retain(|c|!selected.contains(&c.id));
+        for id in selected {let i=self.players[actor].graveyard.iter().position(|c|&c.id==id).unwrap();self.take_grave_observed(actor,i);}
         for c in &corpses { self.seal_card_on_valid_host(c.clone(),actor,&host_id); }
         let a=definition().abilities.remove(1);
         let f=self.make_frame(actor,draft.source,&a,vec![],vec![PaidCost::JZ51Corpses(CorpsePayment{turn:self.turn,host_id,corpses})],None);

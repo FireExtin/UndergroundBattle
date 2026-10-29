@@ -51,7 +51,7 @@ impl Headquarters {
         // Validate before moving anything: failure must leave the grave intact.
         zone.validate_cards(&game.players[source.controller].graveyard)?;
         zone.id = game.id();
-        let cards = std::mem::take(&mut game.players[source.controller].graveyard);
+        let mut cards=vec![];while !game.players[source.controller].graveyard.is_empty(){cards.push(game.take_grave_observed(source.controller,0));}
         zone.cards = cards.into_iter().map(|c| game.reset_zone_card(c)).collect();
         Ok(zone)
     }

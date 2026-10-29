@@ -12037,6 +12037,41 @@
       ],
       "loyaltyText": "黑色",
       "defense": 3
+    },
+    {
+      "id": "JZ53",
+      "name": "尸舞舒拉密兹",
+      "subtitle": "死灵术士",
+      "unique": true,
+      "kind": "character",
+      "cost": 4,
+      "color": "黑",
+      "magic": "死亡",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 1
+        },
+        "temporary": {
+          "investigation": 1,
+          "combat": 0,
+          "influence": 1
+        }
+      },
+      "subtypes": [
+        "人类",
+        "法师"
+      ],
+      "text": "进场触发 将你墓地中的目标死亡领域角色牌置于你的手中。 触发 每当一张角色牌离开你的墓地时，在目标地区生成一个行尸角色指示物。",
+      "supported": false,
+      "keywords": [],
+      "loyalty": [
+        "黑色",
+        "黑色"
+      ],
+      "loyaltyText": "黑色 黑色",
+      "defense": 1
     }
   ],
   "decks": [

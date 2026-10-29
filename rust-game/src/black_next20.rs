@@ -804,7 +804,7 @@ impl Game {
         }) else {
             return Ok(());
         };
-        let c = self.players[actor].graveyard.remove(index);
+        let c = self.take_grave_observed(actor,index);
         let mut c = self.reset_zone_card(c);
         c.face_down = hidden;
         c.exhausted = exhausted;
@@ -822,7 +822,7 @@ impl Game {
         if let Some(index) = self.players[f.actor].graveyard.iter().position(|c| {
             c.id == *id && c.owner == f.actor && catalog::card(&c.definition).kind == "character"
         }) {
-            let c = self.players[f.actor].graveyard.remove(index);
+            let c = self.take_grave_observed(f.actor,index);
             let c = self.reset_zone_card(c);
             self.players[f.actor].deck.insert(0, c);
         }
@@ -872,7 +872,7 @@ impl Game {
                 .iter()
                 .position(|c| c.id == *id)
                 .unwrap();
-            let c = self.players[f.actor].graveyard.remove(i);
+            let c = self.take_grave_observed(f.actor,i);
             let c = self.reset_zone_card(c);
             self.players[f.actor].deck.push(c);
         }

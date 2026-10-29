@@ -437,7 +437,7 @@ impl Game {
                     .iter()
                     .position(|c| c.id == t.id)
                     .ok_or("原角色已不在墓地")?;
-                let c = self.players[f.actor].graveyard.remove(i);
+                let c = self.take_grave_observed(f.actor,i);
                 let mut c = self.reset_zone_card(c);
                 c.controller = f.actor;
                 let id = c.id.clone();

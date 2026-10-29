@@ -438,7 +438,7 @@ impl Game {
                     .iter()
                     .position(|c| &c.id == id)
                     .ok_or("双剑检索实体已离开原区")?;
-                p.graveyard.remove(i)
+                self.take_grave_observed(s.controller,i)
             };
             self.seal_card_on_valid_host(c, f.actor, &host);
         }

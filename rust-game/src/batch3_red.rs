@@ -300,7 +300,7 @@ impl Game {
             .iter()
             .position(|c| c.id == selected[0])
             .ok_or("所选牌已离开墓地")?;
-        let card = self.players[f.actor].graveyard.remove(index);
+        let card = self.take_grave_observed(f.actor,index);
         let card = self.reset_zone_card(card);
         self.players[f.actor].hand.push(card);
         Ok(())

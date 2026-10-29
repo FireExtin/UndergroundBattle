@@ -54,7 +54,7 @@ impl Game {
         if !self.seal_host_valid(&host) {return Err("本方秘社封印载体无效".into());}
         let i=self.players[actor].graveyard.iter().position(|c|c.id==selected[0] && c.owner==actor && catalog::card(&c.definition).kind=="character")
             .ok_or("封印费用不是本人墓地角色")?;
-        let card=self.players[actor].graveyard.remove(i);
+        let card=self.take_grave_observed(actor,i);
         self.seal_card_on_valid_host(card.clone(),actor,&host);
         Ok(PaidCost::XQ35Sealed(Payment{turn:self.turn,host,card}))
     }
@@ -97,7 +97,7 @@ impl Game {
         // A departed source or unavailable first region does not refund costs.
         if !self.region_live(0) {return Ok(());}
         let Some(i)=self.players[f.actor].graveyard.iter().position(|c|c.id==f.source.card.id && same(c,&f.source.card)) else {return Ok(());};
-        let c=self.players[f.actor].graveyard.remove(i);
+        let c=self.take_grave_observed(f.actor,i);
         let mut c=self.reset_zone_card(c); c.exhausted=true;
         let id=c.id.clone(); self.regions[0].cards.push(c);
         self.enter_triggers(f.actor,ID,&id,false); Ok(())

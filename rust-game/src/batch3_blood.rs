@@ -106,7 +106,7 @@ impl Game{
     }
     pub(crate) fn attach_selected_blood(&mut self,chooser:usize,host:&str,selected:&str)->RuleResult<(String,String)> {
         if self.blood_drinker(host).is_none_or(|c|c.controller!=chooser) || !self.blood_options(chooser).iter().any(|o|o.id==selected) {return Err("实际饮血来源或收受者已失效".into());}
-        let c=if let Some(i)=self.players[chooser].graveyard.iter().position(|c|c.id==selected){self.players[chooser].graveyard.remove(i)}else{let i=self.sealed_cards.iter().position(|s|s.card.id==selected && s.host_id==format!("society:p{chooser}")).ok_or("原秘社封印鲜血失效")?;self.sealed_cards.remove(i).card};
+        let c=if let Some(i)=self.players[chooser].graveyard.iter().position(|c|c.id==selected){self.take_grave_observed(chooser,i)}else{let i=self.sealed_cards.iter().position(|s|s.card.id==selected && s.host_id==format!("society:p{chooser}")).ok_or("原秘社封印鲜血失效")?;self.sealed_cards.remove(i).card};
         let mut c=self.reset_zone_card(c);c.controller=chooser;let id=c.id.clone();let definition=c.definition.clone();self.attachments.push(Attachment{card:c,host_id:host.into()});Ok((definition,id))
     }
     fn bq037_front_vampire(&self,f:&ResolutionFrame)->bool{f.targets.first().and_then(|t|self.board(&t.id)).is_some_and(|(_,c)|c.face_down && c.controller==f.actor && catalog::card(&c.definition).kind=="character" && catalog::card(&c.definition).subtypes.iter().any(|s|s=="吸血鬼"))}

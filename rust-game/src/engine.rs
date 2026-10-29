@@ -662,6 +662,7 @@ impl Game {
         self.validate_mswm01_state()?;
         self.validate_mswm02_state()?;
         self.validate_bq045_state()?;
+        self.validate_jz53_state()?;
         self.validate_cq27_state()?;
         self.validate_bq088_state()?;
         self.validate_xg19_state()?;
@@ -714,6 +715,7 @@ impl Game {
         next.validate_mswm01_state()?;
         next.validate_mswm02_state()?;
         next.validate_bq045_state()?;
+        next.validate_jz53_state()?;
         next.validate_cq27_state()?;
         next.validate_bq088_state()?;
         next.validate_xg19_state()?;
@@ -1429,6 +1431,7 @@ impl Game {
         self.validate_bq063_play(&item)?;
         self.validate_bq_command_play(&item)?;
         self.validate_bq086_play(&item)?;
+        self.validate_jz53_play(&item)?;
         self.validate_cq09_play(&item)?;
         self.validate_cq10_play(&item)?;
         if item.card.as_ref().is_some_and(|c| c.definition == crate::xq35::ID) {
@@ -2453,6 +2456,7 @@ impl Game {
         crate::next20_blue_vampires::validate_choice_action(&p,&a)?;
         crate::next20_black_wraiths::validate_choice_action(&p,&a)?;
         crate::bq086::validate_choice(&p,&a)?;
+        crate::jz53::validate_choice(&p,&a)?;
         crate::cq09::validate_choice(&p,&a)?;
         crate::cq10::validate_choice(&p,&a)?;
         crate::bq084::validate_choice(&p,&a)?;

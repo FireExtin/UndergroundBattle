@@ -12,7 +12,7 @@ const registry=JSON.parse(read('rust-game/data/cards.json'));
 const primary=JSON.parse(read('docs/factions/card-specifications.json'));
 const batch=JSON.parse(read('docs/factions/import20-rulings-2026-10-24.json')).batch20;
 const newlyAdmitted=['BQ034','CQ25','XG25'];
-const closedCandidates=["CQ27","BQ088","TK001","XG19","TK003","CQ11","TK008","BQ062","BQ060","BQ067","BQ065","BQ049", "BQ061", "BQ045", "BQ052", "XQ35", "BQ084", "CQ10", "CQ09", "BQ086", "BQ046", "BQ055", "BQ048", "BQ056", "BQ050", "BQ051", "TEST034", "BQ063"];
+const closedCandidates=["JZ53","CQ27","BQ088","TK001","XG19","TK003","CQ11","TK008","BQ062","BQ060","BQ067","BQ065","BQ049", "BQ061", "BQ045", "BQ052", "XQ35", "BQ084", "CQ10", "CQ09", "BQ086", "BQ046", "BQ055", "BQ048", "BQ056", "BQ050", "BQ051", "TEST034", "BQ063"];
 const scans=JSON.parse(read('web/public/card-scans.json'));
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const canonical=value=>Array.isArray(value)?value.map(canonical):value&&typeof value==='object'
@@ -20,7 +20,7 @@ const canonical=value=>Array.isArray(value)?value.map(canonical):value&&typeof v
 afterEach(cleanup);
 
 it('preserves all241 prior source-index records and all239 prior runtime URLs',()=>{
-  const prior=Object.fromEntries(Object.entries(scans).filter(([id])=>!batch.includes(id)&&!newlyAdmitted.includes(id)&&!closedCandidates.includes(id)&&id!=="TK010"&&!["MSWM01","MSJZ04","MSBQ02","MSJC12","MSWM02","MSCQ02","MSBQ03","MSJC16"].includes(id)));
+  const prior=Object.fromEntries(Object.entries(scans).filter(([id])=>!batch.includes(id)&&!newlyAdmitted.includes(id)&&(!closedCandidates.includes(id)||id==='JZ53')&&id!=="TK010"&&!["MSWM01","MSJZ04","MSBQ02","MSJC12","MSWM02","MSCQ02","MSBQ03","MSJC16"].includes(id)));
   expect(Object.keys(prior)).toHaveLength(241);
   expect(sha(JSON.stringify(canonical(prior)))).toBe('8391a760ca9b2d25d1767b53ebb2f092eb3f106f2d326b924a6eaa43e1de79b8');
   const runtime=Object.fromEntries(Object.keys(prior).filter(id=>!['BQ041','JZ38'].includes(id)).map(id=>[id,cardScanUrl(id)]));
@@ -58,7 +58,7 @@ it('keeps the current kernel and reviewed admission set while delivering artwork
   expect(registry.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
   expect(currentCatalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
   expect(currentCatalog.cards.map(card=>[card.id,card.supported])).toEqual(registry.cards.map(card=>[card.id,card.supported!==false]));
-  expect(registry.cards).toHaveLength(307);
+  expect(registry.cards).toHaveLength(308);
   for(const id of ['BQ033','BQ009','BQ001',...closedCandidates])expect(registry.cards.find(card=>card.id===id).supported,id).toBe(false);
   for(const id of ['BQ034','CQ25','XG25'])expect(registry.cards.find(card=>card.id===id).supported,id).toBe(true);
   expect(registry.cards.filter(card=>card.supported!==false)).toHaveLength(236);
@@ -87,3 +87,4 @@ it.each(['XG19','TK003'])('%s retains original pixels and closed admission',id=>
 it.each(['BQ088','TK001'])('%s retains original art and closed admission',id=>{const source=primary.cards[id].sourceVerification,card=registry.cards.find(c=>c.id===id);expect(sha(read(source.imagePath))).toBe(source.imageSha256);expect(sha(read(`web/public/cards/${id}.jpg`))).toBe(source.imageSha256);expect(scans[id]).toEqual({url:`/cards/${id}.jpg`,source:source.imagePath,sha256:source.imageSha256});expect(cardScanUrl(id)).toBe(`/cards/${id}.jpg`);expect(card.supported).toBe(false);if(id==='TK001'){expect(card.cost).toBe(0);expect(card.costAppearance).toBe('absent');expect(card.keywords).toEqual(['迟缓','非资产']);}else{expect(card.cost).toBe(1);expect(card.loyalty).toEqual(['黑色']);expect(card.text).toContain('目标副名为圣甲虫产业');}render(<DeckCardFace card={card} large/>);expect(screen.getByRole('img',{name:card.name+'原始牌面'})).toHaveAttribute('src',`/cards/${id}.jpg`);});
 
 it('CQ27 preserves its original death-domain artwork and closed admission',()=>{const id='CQ27',source=primary.cards[id].sourceVerification,card=registry.cards.find(c=>c.id===id);expect(sha(read(source.imagePath))).toBe(source.imageSha256);expect(sha(read(`web/public/cards/${id}.jpg`))).toBe(source.imageSha256);expect(scans[id]).toEqual({url:`/cards/${id}.jpg`,source:source.imagePath,sha256:source.imageSha256});expect(cardScanUrl(id)).toBe('/cards/CQ27.jpg');expect(card.supported).toBe(false);expect(card.cost).toBe(5);expect(card.loyalty).toEqual(['黑色']);expect(card.magic).toBe('死亡');render(<DeckCardFace card={card} large/>);expect(screen.getByRole('img',{name:card.name+'原始牌面'})).toHaveAttribute('src','/cards/CQ27.jpg');});
+it('JZ53 retains original pixels, death domain, two black loyalty and closed admission',()=>{const id='JZ53',source=primary.cards[id].sourceVerification,card=registry.cards.find(c=>c.id===id);expect(sha(read(source.imagePath))).toBe(source.imageSha256);expect(sha(read(`web/public/cards/${id}.jpg`))).toBe(source.imageSha256);expect(scans[id]).toEqual({url:`/cards/${id}.jpg`,source:source.imagePath,sha256:source.imageSha256});expect(cardScanUrl(id)).toBe('/cards/JZ53.jpg');expect(card.supported).toBe(false);expect(card.cost).toBe(4);expect(card.loyalty).toEqual(['黑色','黑色']);expect(card.magic).toBe('死亡');expect(card.unique).toBe(true);render(<DeckCardFace card={card} large/>);expect(screen.getByRole('img',{name:card.name+'原始牌面'})).toHaveAttribute('src','/cards/JZ53.jpg');});

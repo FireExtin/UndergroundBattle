@@ -528,7 +528,7 @@ impl Game {
             .iter()
             .position(|c| c.id == selected[0])
             .ok_or("BQ078回收的本方墓地实例或牌名已失效")?;
-        let c = self.players[actor].graveyard.remove(i);
+        let c = self.take_grave_observed(actor,i);
         let c = self.reset_zone_card(c);
         self.note(format!(
             "{} 将墓地中的无名尸体置于其手中",

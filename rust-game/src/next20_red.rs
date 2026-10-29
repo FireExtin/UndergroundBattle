@@ -352,7 +352,7 @@ impl Game {
         let Some(r) = self.original_region(&f.source) else { return Ok(()); };
         let id = selected.first().ok_or("请选择诅咒沙漏")?;
         let pos = self.players[f.actor].graveyard.iter().position(|c| c.id == *id && c.definition == "JC048").ok_or("沙漏已离墓")?;
-        let c = self.players[f.actor].graveyard.remove(pos); self.red_attach(f.actor, c, self.regions[r].card.id.clone()); Ok(())
+        let c = self.take_grave_observed(f.actor,pos); self.red_attach(f.actor, c, self.regions[r].card.id.clone()); Ok(())
     }
     fn jz34_sacrifice_options(&self, f: &ResolutionFrame) -> Vec<ChoiceOption> {
         self.original_region(&f.source).into_iter().flat_map(|r| self.regions[r].cards.iter().filter(|c|

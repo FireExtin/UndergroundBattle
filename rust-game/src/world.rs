@@ -173,7 +173,7 @@ impl Game {
             .iter()
             .position(|c| c.id == id && card(&c.definition).kind == "character")
             .ok_or("墓地角色已失效")?;
-        let c = self.players[seat].graveyard.remove(index);
+        let c = self.take_grave_observed(seat,index);
         let c = self.reset_zone_card(c);
         let id = c.id.clone();
         let definition = c.definition.clone();

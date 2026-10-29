@@ -76,7 +76,7 @@ impl Game {
                     .iter()
                     .position(|c| c.id == id)
                     .ok_or("墓地出牌引用已失效")?;
-                Ok(self.players[actor].graveyard.remove(index))
+                Ok(self.take_grave_observed(actor,index))
             }
         }
     }

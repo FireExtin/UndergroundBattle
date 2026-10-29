@@ -295,7 +295,7 @@ impl Game {
             let Some(region) = self.original_region(&f.source) else { return Ok(()); };
             let Some(target) = f.targets.first().filter(|t| self.valid_bound_target(f.actor,&f.source,t)) else { return Ok(()); };
             let Some(index) = self.players[f.actor].graveyard.iter().position(|c| c.id == target.id) else { return Ok(()); };
-            let c = self.players[f.actor].graveyard.remove(index); let mut c = self.reset_zone_card(c); c.exhausted = true;
+            let c = self.take_grave_observed(f.actor,index); let mut c = self.reset_zone_card(c); c.exhausted = true;
             let id = c.id.clone(); let definition = c.definition.clone();
             self.regions[region].cards.push(c);
             self.enter_triggers(f.actor,&definition,&id,false);
