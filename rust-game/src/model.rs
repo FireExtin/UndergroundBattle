@@ -1109,6 +1109,7 @@ impl Game {
         self.validate_msbq02_state()?;
         self.validate_msjc12_state()?;
         self.validate_mswm02_state()?;
+        self.validate_tentacle_state()?;
         self.validate_msbq03_state()?;
         self.validate_mscq02_state()?;
         self.validate_test034_state()?;

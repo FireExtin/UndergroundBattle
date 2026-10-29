@@ -739,6 +739,7 @@ pub struct Traits {
 pub enum StaticModifier {
     BQ056LockedEnemyInvestigation,
     BQ055CoreSupport,
+    TentacleCoreSupport,
     BQ001MysticAnchorShown,
     WM064HostLeaderRenownCriminal,
     JZ56ChosenUndeadAura,
@@ -1642,6 +1643,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
             return Err(format!("cardId={card_id}: 声望/威名奖励只能由实际事件生成"));
         }
         if (card_id==crate::xq35::ID || definition.abilities.iter().any(crate::xq35::related)) && serde_json::to_value(definition).unwrap()!=serde_json::to_value(crate::xq35::definition()).unwrap() { return Err("白骨仆人完整定义不能增删".into()); }
+        crate::tentacle::validate_definition(card_id,definition)?;
         crate::bq055::validate_definition(card_id,definition)?;
         crate::bq056::validate_definition(card_id,definition)?;
         crate::bq048::validate_definition(card_id,definition)?;
@@ -2352,6 +2354,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert(crate::test034::ID.into(),crate::test034::definition());
         m.insert(crate::bq063::ID.into(),crate::bq063::definition());
         for id in crate::bq_commands::IDS {m.insert(id.into(),crate::bq_commands::definition(id));}
+        m.insert(crate::tentacle::ID.into(),crate::tentacle::definition());
         m.insert(crate::bq055::ID.into(),crate::bq055::definition());
         m.insert(crate::bq046::ID.into(),crate::bq046::definition());
         m.insert(crate::bq086::ID.into(),crate::bq086::definition());

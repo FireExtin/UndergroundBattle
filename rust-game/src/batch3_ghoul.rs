@@ -24,6 +24,7 @@ impl Game {
     /// The caller has performed its original zone reset. This is the single
     /// physical graveyard commit; callers keep their own death/discard events.
     pub(crate) fn commit_owner_grave(&mut self,c:Card,frozen:Option<&[SourceSnapshot]>){
+        if self.tentacle_disappears(&c) { return; }
         let owner=c.owner;
         let observes=catalog::card(&c.definition).name=="无名尸体" && !self.players[owner].eliminated;
         let sources=if observes{frozen.map(<[SourceSnapshot]>::to_vec).unwrap_or_else(||self.bq079_sources())}else{vec![]};

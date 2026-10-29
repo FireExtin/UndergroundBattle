@@ -522,3 +522,7 @@ mod mswm02_tests;
 mod msjc12_tests;
 
 #[cfg(test)] mod shoggoth_tests;
+
+#[cfg(test)]
+mod tentacle_tests;
+mod tentacle;

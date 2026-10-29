@@ -62,7 +62,7 @@ impl Game {
         if f.cursor!=1 || !matches!(f.steps[0].op,Op::BQ063Sweep{hide:h} if h==hide) { return Err("神话威严清场须来自原第一步".into()); }
         // Snapshot eligible regions before the sweep hides its own core. Read the actual board after responses.
         let regions=(0..self.regions.len()).filter(|&r|self.region_live(r)&&self.region_characters(r).any(|c|
-            !c.face_down&&c.controller==f.actor&&(self.current_subtypes(c).iter().any(|s|s=="触手")
+            !c.face_down&&c.controller==f.actor&&(crate::tentacle::character(c)
                 || self.core_zones.iter().any(|z|z.owner==f.actor&&z.card.is_none()&&z.definition==c.definition&&c.owner==f.actor)))).collect::<Vec<_>>();
         let ids=self.in_play_cards().into_iter().filter(|(r,c)|r.is_some_and(|r|regions.contains(&r))
             && if hide { !c.face_down&&catalog::has_kind(catalog::card(&c.definition),"character") } else { c.face_down&&!crate::batch4_plans::is_plan(c) })

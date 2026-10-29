@@ -101,6 +101,7 @@ impl Game {
             .partition(|s| s.host_id == host_id);
         self.sealed_cards = staying;
         for s in returning {
+            if self.tentacle_disappears(&s.card) { continue; }
             let owner = s.card.owner;
             if !self.players[owner].eliminated {
                 let name = catalog::card(&s.card.definition).name.clone();
@@ -122,7 +123,7 @@ impl Game {
         view.cost = None;
         view.cost_appearance = None;
         view.effective_cost = None;
-        view.text = Some("封印牌：公开、场外、空白；载体离场或翻暗时回到拥有者手牌".into());
+        view.text = Some(if crate::tentacle::generated(card) { "封印触手：公开、场外、空白；载体离场或翻暗时触手消失，不进入手牌" } else { "封印牌：公开、场外、空白；载体离场或翻暗时回到拥有者手牌" }.into());
         view
     }
 

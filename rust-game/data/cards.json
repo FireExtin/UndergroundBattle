@@ -11486,6 +11486,33 @@
         "image": "resource/ymsj-fun.github.io/cards/BQ063 神话威严.jpg",
         "imageSha256": "1d9702f3d600ce4c7c1f50776a3a008c15b7b5d34706be8bd8ac2bef42246c98"
       }
+    },
+    {
+      "id": "TK010",
+      "name": "触手",
+      "kind": "character",
+      "cost": 0,
+      "color": "红",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": 1,
+      "subtypes": [
+        "突变体",
+        "器官"
+      ],
+      "text": "持续 本方核心角色获得防御+1。持续 若本方核心角色位于本地区，触手获得临时战斗2。",
+      "supported": false
     }
   ],
   "decks": [

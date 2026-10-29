@@ -24,7 +24,7 @@ impl Game {
  pub(crate) fn bq048_region_target(&self,actor:usize,source:&SourceSnapshot,target_id:&str)->bool {
   if source.card.definition!=ID{return false;}
   let Some((Some(region),_))=self.in_play(target_id) else{return false;};
-  self.region_characters(region).any(|c| !c.face_down&&c.controller==actor&&(self.current_subtypes(c).iter().any(|s|s=="触手")||self.core_zones.iter().any(|z|z.owner==actor&&z.card.is_none()&&z.definition==c.definition&&c.owner==actor)))
+  self.region_characters(region).any(|c| !c.face_down&&c.controller==actor&&(crate::tentacle::character(c)||self.core_zones.iter().any(|z|z.owner==actor&&z.card.is_none()&&z.definition==c.definition&&c.owner==actor)))
  }
  pub(crate) fn validate_bq048_frame(&self,f:&ResolutionFrame)->RuleResult<()> {
   if !frame_related(f){return Ok(());}let c=&f.source.card;

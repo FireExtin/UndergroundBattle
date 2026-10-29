@@ -452,6 +452,7 @@ impl Game {
         let (black_permanent, black_temporary) = self.black_next20_icon_bonus(c, region);
         permanent_result = permanent_result.add(black_permanent);
         temporary_result = temporary_result.add(black_temporary);
+        temporary_result.combat += self.tentacle_temporary_combat(c, region);
         temporary_result.influence += self.jc051_aura(c);
         temporary_result.influence += u32::from(self.xg26_local_influence(c, region));
         let ordinary = self.turn_attribute_bonus(c).1;
@@ -550,6 +551,7 @@ impl Game {
             .printed_defense_override(c)
             .unwrap_or_else(|| card(&c.definition).defense.unwrap_or(0))
             + bonus
+            + self.tentacle_core_defense(c)
             + self.turn_attribute_bonus(c).0
             + self.green_source_attribute_bonus(c, region).1
             + u32::from(self.jz48_other_controlled_criminal_active(c, region))
@@ -646,6 +648,7 @@ impl Game {
         self.validate_msbq02_state()?;
         self.validate_msjc12_state()?;
         self.validate_mswm02_state()?;
+        self.validate_tentacle_state()?;
         self.validate_msbq03_state()?;
         self.validate_mscq02_state()?;
         self.validate_test034_state()?;
@@ -683,6 +686,7 @@ impl Game {
         next.validate_msbq02_state()?;
         next.validate_msjc12_state()?;
         next.validate_mswm02_state()?;
+        next.validate_tentacle_state()?;
         next.validate_msbq03_state()?;
         next.validate_mscq02_state()?;
         next.validate_test034_state()?;
@@ -2214,6 +2218,7 @@ impl Game {
     pub(crate) fn return_hand(&mut self, target: &str) {
         let core=self.board(target).filter(|(_,c)|self.selected_core_card(c)).map(|(r,c)|self.source_snapshot(c,Some(r)));
         if let Some((_, mut c)) = self.leave_board(target) {
+            if self.tentacle_disappears(&c) { return; }
             if let Some(source)=core {let card=self.reset_zone_card(c);self.defer_core_departure(source,card,crate::core_zone::Destination::Hand);return;}
             c = self.fresh(c);
             c.face_down = false;
@@ -2228,6 +2233,7 @@ impl Game {
     pub(crate) fn to_bottom(&mut self, target: &str) {
         let core=self.board(target).filter(|(_,c)|self.selected_core_card(c)).map(|(r,c)|self.source_snapshot(c,Some(r)));
         if let Some((_, mut c)) = self.leave_board(target) {
+            if self.tentacle_disappears(&c) { return; }
             if let Some(source)=core {let card=self.reset_zone_card(c);self.defer_core_departure(source,card,crate::core_zone::Destination::Bottom);return;}
             c = self.fresh(c);
             c.face_down = false;
