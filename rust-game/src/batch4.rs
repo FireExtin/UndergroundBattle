@@ -133,6 +133,7 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     if crate::import20_broker::CARDS.contains(&id) { return crate::import20_broker::validate_action(id, a); }
     if crate::import20_vampires::CARDS.contains(&id) { return crate::import20_vampires::validate_action(a); }
     crate::batch4_clock::validate_action(id,a)?;
+    if id=="WM036" {return crate::wm036::validate_action(a);}
     if id=="WM037" {return crate::batch4_clock_spell::validate_action(a);}
     if crate::batch4_vampires::CARDS.contains(&id) { return crate::batch4_vampires::validate_action(id, a); }
     if crate::pack_a_contest::CARDS.contains(&id) { return crate::pack_a_contest::validate_action(id, a); }
@@ -251,7 +252,7 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_batch4_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
-        if f.source.card.definition=="WM037" {return self.validate_wm037_frame(f);}
+        if matches!(f.source.card.definition.as_str(),"WM037"|"WM036") {return self.validate_wm037_frame(f);}
         if crate::wm027::frame_related(f) { return self.validate_wm027_frame(f); }
         if crate::batch4_intelligence::frame_related(f) { return self.validate_wm044_frame(f); }
         if f.source.card.definition == "JZ56" { return self.validate_jz56_frame(f); }

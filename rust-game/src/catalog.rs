@@ -252,7 +252,7 @@ pub(crate) fn has_kind(d: &CardDefinition, kind: &str) -> bool {
 /// Snapshot validation admits only this fixed implemented pool. Deck and preset
 /// admission deliberately continue to use supported alone during batch work.
 pub(crate) fn runtime_implemented(d: &CardDefinition) -> bool {
-    if matches!(d.id.as_str(), "WM027"|"XQ13"|"JC053"|"JC028"|"JC097"|"JZ53"|"CQ27" | "BQ088" | "TK001" | "XG19" | "TK003" | "CQ11" | "TK008" | "BQ062" | "BQ060" | "BQ067" | "BQ065" | "MSJZ04" | "BQ049" | "BQ061" | "BQ045" | "BQ052" | "TK010" | "BQ063" | "BQ050" | "BQ051" | "TEST034" | "MSCQ02" | "MSWM02" | "MSWM01" | "MSJC12" | "MSBQ02" | crate::bq056::ID | crate::bq048::ID | crate::bq055::ID | crate::bq046::ID | crate::xq35::ID | crate::bq084::ID | crate::cq10::ID | crate::cq09::ID | crate::bq086::ID) { return true; }
+    if matches!(d.id.as_str(), "WM036"|"WM027"|"XQ13"|"JC053"|"JC028"|"JC097"|"JZ53"|"CQ27" | "BQ088" | "TK001" | "XG19" | "TK003" | "CQ11" | "TK008" | "BQ062" | "BQ060" | "BQ067" | "BQ065" | "MSJZ04" | "BQ049" | "BQ061" | "BQ045" | "BQ052" | "TK010" | "BQ063" | "BQ050" | "BQ051" | "TEST034" | "MSCQ02" | "MSWM02" | "MSWM01" | "MSJC12" | "MSBQ02" | crate::bq056::ID | crate::bq048::ID | crate::bq055::ID | crate::bq046::ID | crate::xq35::ID | crate::bq084::ID | crate::cq10::ID | crate::cq09::ID | crate::bq086::ID) { return true; }
     if crate::next20_black_wraiths::CARDS.contains(&d.id.as_str()) { return true; }
     if d.id==crate::bq001::ID { return true; }
     if d.id==crate::next20_anchor::ID { return true; }

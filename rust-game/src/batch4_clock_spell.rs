@@ -62,9 +62,9 @@ impl Game {
     }
     pub(crate) fn wm037_shown(&mut self,o:&ContestOutcome,index:usize)->RuleResult<()> {
         let shown=o.shown.get(index).ok_or("戴森展示后置索引无效")?;
-        if shown.card.definition!="WM037"||self.players[shown.seat].eliminated
+        if !matches!(shown.card.definition.as_str(),"WM037"|"WM036")||self.players[shown.seat].eliminated
             || !self.players[shown.seat].society_zone.card.as_ref().is_some_and(|c|c.definition=="MSJC13"&&!c.face_down) {return Ok(());}
-        let f=ResolutionFrame{ resource_payments: vec![],frame_id:self.id(),ability_key:SHOWN.into(),actor:shown.seat,source:self.source_snapshot(&shown.card,None),
+        let f=ResolutionFrame{ resource_payments: vec![],frame_id:self.id(),ability_key:if shown.card.definition=="WM036"{crate::wm036::SHOWN.into()}else{SHOWN.into()},actor:shown.seat,source:self.source_snapshot(&shown.card,None),
             targets:vec![],already_paid:vec![],guard:GuardState::Accepted,cursor:1,
             steps:vec![Step{context:shown.seat,op:Op::WM037ShownTime{contest_id:o.contest_id.clone(),index}}],chosen_region:None};
         let Some(state)=&mut self.mystic_contest else{return Err("戴森展示后置缺少原对抗".into());};
@@ -72,15 +72,18 @@ impl Game {
         *post_frame=Some(Box::new(f.clone()));self.validate_wm037_frame(&f)?;
         let options=self.binding_options(f.actor,&f.source,&crate::batch4_clock::time_target());
         if options.is_empty(){return Ok(());}
-        self.choice(f.actor,TARGET_KIND,TARGET_TITLE.into(),options,1,1,None,
+        let optional=f.source.card.definition=="WM036";
+        self.choice(f.actor,if optional{crate::wm036::TIME_KIND}else{TARGET_KIND},if optional{crate::wm036::TIME_TITLE.into()}else{TARGET_TITLE.into()},options,usize::from(!optional),1,None,
             ChoiceResolution::Frame{frame:Box::new(f),choice:FrameChoice::WM037TimeTarget});Ok(())
     }
     pub(crate) fn wm037_choose_time(&mut self,f:&ResolutionFrame,seat:usize,a:&Action,selected:&[String])->RuleResult<()> {
         self.validate_wm037_frame(f)?;
-        if seat!=f.actor||f.ability_key!=SHOWN||selected.len()!=1
+        let optional=f.source.card.definition=="WM036";
+        if seat!=f.actor||!matches!(f.ability_key.as_str(),SHOWN|crate::wm036::SHOWN)||selected.len()>1||(!optional&&selected.len()!=1)
             || *a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}) {
             return Err("戴森展示后置须由原本人选择一个合法角色或附属".into());
         }
+        if selected.is_empty(){return Ok(());}
         let spec=crate::batch4_clock::time_target();
         if !self.valid_binding(f.actor,&f.source,&spec,&selected[0]) {return Err("戴森展示后置目标无效".into());}
         if !self.shield_stops(f.actor,&selected[0]) {
@@ -89,8 +92,9 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_wm037_frame(&self,f:&ResolutionFrame)->RuleResult<()> {
+        if f.source.card.definition=="WM036"&&f.ability_key!=crate::wm036::SHOWN{return self.validate_wm036_frame(f);}
         let c=&f.source.card;
-        if c.definition!="WM037"||c.face_down||f.actor>=self.players.len()||c.controller!=f.actor||c.owner>=self.players.len()
+        if !matches!(c.definition.as_str(),"WM037"|"WM036")||c.face_down||f.actor>=self.players.len()||c.controller!=f.actor||c.owner>=self.players.len()
             || !self.mystic_instance_valid(&c.id)||!self.mystic_instance_valid(&f.frame_id)||f.frame_id==c.id
             || f.source.region.is_some()||f.source.source_region_instance.is_some()||f.source.attachment_host_instance.is_some()
             || f.source.play_source.is_some()||f.source.death_echo.is_some()||f.source.observed_death.is_some()
@@ -98,12 +102,13 @@ impl Game {
             return Err("戴森的计谋须保留原事务实例及个人操控者".into());
         }
         self.mobility_immutable_identity(c)?;
-        if f.ability_key==SHOWN {
+        if f.ability_key==SHOWN||f.ability_key==crate::wm036::SHOWN {
+            if (c.definition=="WM036")!=(f.ability_key==crate::wm036::SHOWN){return Err("展示后置卡与程序身份不符".into())}
             let [Step{context,op:Op::WM037ShownTime{contest_id,index}}]=f.steps.as_slice() else{return Err("戴森展示后置缺少原结果收据".into());};
             let state=self.mystic_states().find(|s|s.contest_id==*contest_id).ok_or("戴森展示后置缺少原层")?;
             let MysticPhase::After{outcome,next_shown,post_frame}=&state.phase else{return Err("戴森展示后置非展示阶段".into());};
             let shown=outcome.shown.get(*index).ok_or("戴森原展示索引无效")?;
-            if *context!=shown.seat||shown.seat!=f.actor||shown.card.definition!="WM037"||*next_shown!=index+1
+            if *context!=shown.seat||shown.seat!=f.actor||shown.card.definition!=c.definition||*next_shown!=index+1
                 || !same(&f.source,&self.source_snapshot(&shown.card,None))||!f.already_paid.is_empty()||f.cursor!=1||!matches!(f.guard,GuardState::Accepted)
                 || post_frame.as_ref().is_none_or(|p|!same(p.as_ref(),f))
                 || !self.players[shown.seat].society_zone.card.as_ref().is_some_and(|c|c.definition=="MSJC13"&&!c.face_down) {
@@ -122,16 +127,18 @@ impl Game {
         Ok(())
     }
     pub(crate) fn validate_wm037_state(&self)->RuleResult<()> {
-        let related=|f:&ResolutionFrame|f.source.card.definition=="WM037"||f.ability_key.starts_with("clock-wm037-")
+        let related=|f:&ResolutionFrame|matches!(f.source.card.definition.as_str(),"WM037"|"WM036")||f.ability_key.starts_with("clock-wm037-")
             || f.steps.iter().any(|s|owns(std::slice::from_ref(&s.op)));
         for item in &self.stack {if let Some(f)=&item.frame {if related(f){self.validate_wm037_frame(f)?;}}}
         for e in &self.effects {if let Effect::Frame{frame:f}=e {if related(f){self.validate_wm037_frame(f)?;}}}
         if let Some(p)=&self.pending {
             if let ChoiceResolution::Frame{frame:f,choice}=&p.resolution {
-                if !related(f){return Ok(());}self.validate_wm037_frame(f)?;
+                if !related(f){return Ok(());}if f.source.card.definition=="WM036"&&f.ability_key==crate::wm036::PLAY{return self.validate_wm036_state();}self.validate_wm037_frame(f)?;
                 let (kind,title,options,min)=match choice {
                     FrameChoice::WM037Contest if f.cursor==3&&f.ability_key==PLAY&&self.wm037_has_four_time()=>
                         (MAY_KIND,MAY_TITLE,vec![ChoiceOption{id:"contest".into(),label:"进行一次隐秘对抗".into(),card:None}],0),
+                    FrameChoice::WM037TimeTarget if f.ability_key==crate::wm036::SHOWN=>
+                        (crate::wm036::TIME_KIND,crate::wm036::TIME_TITLE,self.binding_options(f.actor,&f.source,&crate::batch4_clock::time_target()),0),
                     FrameChoice::WM037TimeTarget if f.ability_key==SHOWN=>
                         (TARGET_KIND,TARGET_TITLE,self.binding_options(f.actor,&f.source,&crate::batch4_clock::time_target()),1),
                     // Shared discard, contest commit and reward continuations

@@ -2457,6 +2457,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert(crate::bq052::ID.into(),crate::bq052::definition());
         m.insert(crate::tentacle::ID.into(),crate::tentacle::definition());
         m.insert(crate::bq055::ID.into(),crate::bq055::definition());
+        m.insert(crate::wm036::ID.into(),crate::wm036::definition());
         m.insert(crate::wm027::ID.into(),crate::wm027::definition());
         m.insert(crate::xq13::ID.into(),crate::xq13::definition());
         m.insert(crate::bq045::ID.into(),crate::bq045::definition());

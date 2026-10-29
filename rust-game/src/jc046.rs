@@ -27,6 +27,7 @@ fn own_ability(a: &AbilitySpec) -> bool {
     a.key == KEY || uses(&a.ops) || a.modes.iter().any(|m| uses(&m.ops))
 }
 fn related(f: &ResolutionFrame) -> bool {
+    if crate::wm036::related(f) { return false; }
     f.source.card.definition == "JC046"
         || f.ability_key == KEY
         || f.steps.iter().any(|s| uses(std::slice::from_ref(&s.op)))
@@ -47,12 +48,14 @@ pub(crate) fn definition() -> Definition {
     d
 }
 pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
+    if id==crate::wm036::ID { return crate::wm036::validate_ability(a); }
     if own_ability(a) && (id != "JC046" || !same(a, &definition().abilities[0])) {
         return Err("只准入JC046完整强制现身、全玩家牺牲程序".into());
     }
     Ok(())
 }
 pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
+    if id==crate::wm036::ID { return crate::wm036::validate_definition(d); }
     if (id == "JC046" && !same(d, &definition()))
         || (id != "JC046" && d.abilities.iter().any(own_ability))
     {

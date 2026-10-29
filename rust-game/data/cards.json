@@ -12260,6 +12260,48 @@
         "record": "WM027",
         "image": "resource/ymsj-fun.github.io/cards/WM027 阴影之道.jpg"
       }
+    },
+    {
+      "id": "WM036",
+      "name": "烬归烬",
+      "kind": "spell",
+      "subtypes": [
+        "仪式",
+        "灾难"
+      ],
+      "cost": 1,
+      "loyalty": [
+        "红色",
+        "红色"
+      ],
+      "loyaltyText": "红红",
+      "color": "红",
+      "magic": "鲜血",
+      "icons": {
+        "permanent": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        },
+        "temporary": {
+          "investigation": 0,
+          "combat": 0,
+          "influence": 0
+        }
+      },
+      "defense": null,
+      "text": "隐秘+2：在本次隐秘对抗后，若本方秘社为计时者，你可以在目标角色或附属上放置一个时间标志。\n非资产\n行动：每位玩家牺牲一个角色。",
+      "keywords": [
+        "非资产"
+      ],
+      "source": {
+        "file": "docs/factions/card-specifications.json",
+        "record": "WM036",
+        "image": "resource/ymsj-fun.github.io/cards/WM036 烬归烬.jpg"
+      },
+      "unique": false,
+      "society": "",
+      "supported": false
     }
   ],
   "decks": [

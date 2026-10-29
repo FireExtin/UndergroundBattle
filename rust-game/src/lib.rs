@@ -575,6 +575,8 @@ mod bq052;
 #[cfg(test)]
 mod bq052_tests;
 
+mod wm036;
+#[cfg(test)] mod wm036_tests;
 mod wm027;
 #[cfg(test)] mod wm027_tests;
 mod xq13;

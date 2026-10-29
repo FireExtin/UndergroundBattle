@@ -75,7 +75,7 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
 }
 impl Game {
     pub(crate) fn clock_time_target(&self, s:&SourceSnapshot, c:&Card) -> bool {
-        matches!(s.card.definition.as_str(),"MSJC13"|"WM037") && (!c.face_down || crate::batch4_plans::secret(c))
+        matches!(s.card.definition.as_str(),"MSJC13"|"WM037"|"WM036") && (!c.face_down || crate::batch4_plans::secret(c))
             && self.marker_move_carrier(&c.id)
     }
     pub(crate) fn clock_add_time(&mut self, f:&ResolutionFrame) {

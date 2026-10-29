@@ -118,6 +118,11 @@ export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckV
       if (!Number.isSafeInteger(society.startingHand) || society.startingHand < 0 || !Array.isArray(society.deckConstraints)) {
         issue('society-metadata', `「${society.name}」的起手或构筑要求尚未确认，暂不能用于开局。`);
       } else for (const constraint of society.deckConstraints) {
+        if(constraint.kind==='clockmakersOffColorMaximum'&&society.id==='MSJC13'){
+          const offColor=draft.cards.reduce((total,entry)=>{const card=definitions.get(entry.cardId);return total+(card&&!['红','中立'].includes(card.color||'')?entry.count:0);},0);
+          if(offColor>12)issue('society-clock',`计时者的非红且非中立牌至多12张，当前${offColor}张。`);
+          continue;
+        }
         if(constraint.kind==='blackNeutralOrDeath'&&society.id==='MSJC16'){
           for(const entry of draft.cards){const card=catalog.cards.find(c=>c.id===entry.cardId);if(card&&!(['黑','中立'].includes(card.color||'')||card.magic==='死亡'))issue('society-death','颂亡者仅黑、中立及死亡领域牌。',card.id);}
           continue;

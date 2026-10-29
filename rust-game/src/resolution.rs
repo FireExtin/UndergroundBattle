@@ -2827,6 +2827,7 @@ impl Game {
         option_ids: BTreeSet<String>,
     ) -> RuleResult<()> {
         let before_deaths = self.death_instances();
+        self.validate_wm036_choice(&frame, &choice, chooser, &a, &selected)?;
         self.validate_jc046_choice(&frame, &choice, chooser, &a, &selected)?;
         self.validate_jc041_choice(&frame, &choice, chooser, &a, &selected)?;
         self.wm060_choice_payload(&frame, chooser, &a)?;

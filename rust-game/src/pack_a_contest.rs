@@ -195,7 +195,7 @@ impl Game {
             || f.steps.iter().any(|s| crate::import20_contest::owns(std::slice::from_ref(&s.op))) {
             return self.validate_import20_frame(f);
         }
-        if f.source.card.definition=="WM037" {return self.validate_wm037_frame(f);}
+        if matches!(f.source.card.definition.as_str(),"WM037"|"WM036") {return self.validate_wm037_frame(f);}
         if f.ability_key == crate::wm043::SHOWN || f.steps.iter().any(|s| matches!(s.op, Op::WM043ShownLock { .. })) { return self.validate_wm043_post(f); }
         if crate::wm027::frame_related(f) { return self.validate_wm027_frame(f); }
         if crate::batch4_intelligence::frame_related(f) { return self.validate_wm044_frame(f); }
