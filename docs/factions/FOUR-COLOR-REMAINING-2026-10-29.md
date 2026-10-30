@@ -80,3 +80,7 @@ Supersedes the earlier BQ095 WIP inventory only: own-grave consumer routing/bind
 ### BQ048 closure, 2026-10-30
 
 BQ048's missing ready/combat-marker mode is now closed, with a documented BQ048-only project choice for parked cores (not an official ruling or generic core-zone access). Existing fresh-entity marker clearing remains. All three modes pass current Native/WASM/UI/Worker checks; see BQ048-READY-CLOSURE-2026-10-30.md. Increment one closed complete card, zero independent approvals, supported:false. MSBQ02 three-loss response-region completion and BQ049 neutral task dependency remain separate unfinished work; do not infer their completion from BQ048.
+
+### MSBQ02 dynamic Chaos entry gap closure, 2026-10-30
+
+The previous three-loss response-region blocker is now implemented with the explicit project timing choice documented in MSBQ02-CHAOS-ENTRY-2026-10-30.md. Actual current Chaos selects random entry or a mandatory one-region late choice on the original paid stack item. Selected Native100/0, related UI193/0, full Native/WASM794commands and scoped Worker32commands/cold reopens pass. Natural762preparation commands are not Worker coverage. No automatic full-society/new-card increment or task-win natural-chain claim; public admission/independent review remain closed. BQ049 neutral task dependency and49+1 unresolved scope are unchanged.
