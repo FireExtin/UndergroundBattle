@@ -392,7 +392,14 @@ fn source_bindings() -> &'static Value {
 }
 
 fn field(g: &mut Game, def: &str, seat: usize, r: usize) -> String {
-    let c = g.make_card(def, seat);
+    use crate::generated::GeneratedKind;
+    let c = match def {
+        "TK008"=>g.make_generated(GeneratedKind::Cultist,seat).unwrap(),
+        "TK003"=>g.make_generated(GeneratedKind::Police,seat).unwrap(),
+        "TK001"=>g.make_generated(GeneratedKind::Walker,seat).unwrap(),
+        "TK010"=>g.make_generated(GeneratedKind::Tentacle,seat).unwrap(),
+        _=>g.make_card(def,seat),
+    };
     let id = c.id.clone();
     g.regions[r].cards.push(c);
     id
@@ -836,6 +843,7 @@ fn bq035_every_admitted_human_or_vampire_uses_its_existing_validator_with_real_g
         .collect::<Vec<_>>();
     assert!(ids.len() > 40);
     for id in ids {
+        eprintln!("BQ035_GRANTED_RECIPIENT {id}");
         if crate::mobility::printed(&id) {
             continue;
         }
@@ -890,7 +898,7 @@ fn bq035_every_admitted_human_or_vampire_uses_its_existing_validator_with_real_g
 
 #[test]
 fn bq035_native_import_recipients_cannot_register_or_manually_activate_shared_grants() {
-    for id in ["XG13", "CQ24"] {
+    for id in ["XG13", "CQ24", "CQ11", "TK008"] {
         let a = crate::mobility::ability();
         crate::rules::validate_ability(id, &a).unwrap();
         let mut registry = crate::rules::definitions().clone();

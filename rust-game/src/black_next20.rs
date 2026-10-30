@@ -307,8 +307,8 @@ impl Game {
                     })
                     .map(move |c| (r, c))
             })
-            .filter(|(_,source)| {
-                cards.iter().any(|g|catalog::card(&g.definition).kind=="character" && self.bq095_own_reference(source)==self.bq095_destination(g.owner))
+            .filter(|_| {
+                cards.iter().any(|g|catalog::card(&g.definition).kind=="character" && matches!(self.bq095_destination(g.owner),crate::bq095::Destination::Graveyard(_)))
             })
             .map(|(r, c)| self.source_snapshot(c, Some(r)))
             .collect::<Vec<_>>();
@@ -482,7 +482,7 @@ impl Game {
                                 || !o
                                     .cards
                                     .iter()
-                                    .any(|c| catalog::card(&c.definition).kind == "character" && self.bq095_reference_at(&s.card,&o.event_id)==self.bq095_destination_at(c.owner,&o.event_id))))
+                                    .any(|c| catalog::card(&c.definition).kind == "character" && matches!(self.bq095_destination_at(c.owner,&o.event_id),crate::bq095::Destination::Graveyard(_)))))
                     {
                         return Err("牌库入墓观察的批次、角色或实际来源不符".into());
                     }

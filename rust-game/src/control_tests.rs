@@ -21,7 +21,7 @@ fn control_simultaneous_nonhuman_death_card_still_invalid_for_jz27() {
             .iter()
             .map(|c| c.id.as_str())
             .collect::<Vec<_>>(),
-        vec!["XQ12", "XQ17", "JZ59", "JZ61", "JZ31", "JZ30", "BQ078", "WM029", "XG25"]
+        vec!["XQ12", "XQ17", "JZ59", "JZ61", "JZ31", "JZ30", "BQ078", "WM029", "XG25", "WM026"]
     );
     assert_eq!(death_cards[0].subtypes, vec!["吸血鬼", "奴仆"]);
     assert_eq!(death_cards[1].subtypes, vec!["人类"]);
@@ -29,6 +29,7 @@ fn control_simultaneous_nonhuman_death_card_still_invalid_for_jz27() {
     assert_eq!(death_cards[3].subtypes, vec!["人类", "宿主"]);
     assert_eq!(death_cards[8].subtypes, vec!["幽灵", "诅咒"]);
     assert!(death_cards[8].supported);
+    assert!(!death_cards[9].supported);
     for card in ["XQ12", "XG25"] {
         let mut g = game();
         let target = field(&mut g, card, 2);

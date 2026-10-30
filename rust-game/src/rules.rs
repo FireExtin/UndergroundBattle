@@ -925,7 +925,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     if card_id=="CQ27"||crate::cq27::related(ability){return crate::cq27::validate_ability(card_id,ability);}
     if card_id=="BQ088"||crate::bq088::related(ability){return crate::bq088::validate_ability(card_id,ability);}
     if card_id=="XG19"||crate::xg19::related(ability){return crate::xg19::validate_ability(card_id,ability);}
-    if matches!(card_id,"CQ11"|"TK008")||crate::cq11::related(ability){return crate::cq11::validate_ability(card_id,ability);}
+    if (matches!(card_id,"CQ11"|"TK008")&&!crate::mobility::related_ability(ability)&&!crate::raid::related(ability)&&!crate::import20_swords::related(ability))||crate::cq11::related(ability){return crate::cq11::validate_ability(card_id,ability);}
     if crate::cq10::related(ability) { return crate::cq10::validate_ability(card_id,ability); }
     if crate::bq084::related(ability) { return crate::bq084::validate_ability(card_id,ability); }
     if crate::xq35::related(ability) { return crate::xq35::validate_ability(card_id,ability); }
@@ -4826,10 +4826,10 @@ mod tests {
     #[test]
     fn invalid_multi_target_ability_is_rejected_before_registration() {
         let mut registry = definitions().clone();
-        assert_eq!(
-            registry.len(),
-            crate::catalog::catalog().cards.len() + crate::catalog::catalog().societies.len()
-        );
+        let expected = crate::catalog::catalog().cards.iter().map(|c| c.id.as_str())
+            .chain(crate::catalog::catalog().societies.iter().map(|s| s.card.id.as_str()))
+            .chain(std::iter::once("JC028:blood-form")).collect::<std::collections::BTreeSet<_>>();
+        assert_eq!(registry.keys().map(String::as_str).collect::<std::collections::BTreeSet<_>>(), expected);
         assert!(registry.contains_key("JC001") && registry.contains_key("BQ083"));
         let ability = &mut registry.get_mut("LC20").unwrap().abilities[0];
         ability.targets.push(ability.targets[0].clone());

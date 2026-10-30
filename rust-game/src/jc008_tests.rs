@@ -158,7 +158,7 @@ fn jc008_printed_admission_and_finite_modifier_program() {
             .iter()
             .map(|s| s.card.id.as_str())
             .collect::<Vec<_>>(),
-        ["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC13", "MSJC14", "MSBQ02", "MSJZ04", "MSJC12", "MSWM01", "MSWM02", "MSBQ03", "MSCQ02", "MSJC16"]
+        ["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC13", "MSJC14", "MSBQ02", "MSJZ04", "MSBQ01", "MSJC12", "MSWM01", "MSWM02", "MSBQ03", "MSCQ02", "MSJC16"]
     );
     assert!(catalog::catalog().cards.iter().all(|c| c.id != "MSJC01"));
 }

@@ -928,7 +928,9 @@ impl Game {
                 }))
     }
     fn requires_region_instance(source: &SourceSnapshot, slot: &TargetSlotSpec) -> bool {
-        slot.zone == Zone::Region
+        // Canonical granted mobility keeps its shared destination contract,
+        // regardless of a recipient's separately pinned native region action.
+        slot.zone == Zone::Region && !crate::mobility::canonical_target(slot)
             && ((source.card.definition == "CQ24" && matches!(slot.attachment_host_condition, Some(AttachmentHostCondition::CQ24Host { .. }))) || source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "JZ53" | "BQ088" | "XG19" | "TK008" | "BQ060" | "BQ065" | "BQ049" | "MSJC16" | "LC16" | "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
                 || (source.card.definition == "JZ34" && slot.predicate == Some(TargetPredicate::JZ34DestroyedRegion))
                 || (source.card.definition == "BQ077" && slot.predicate == Some(TargetPredicate::BQ077WaterRegion))
