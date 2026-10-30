@@ -292,7 +292,7 @@ fn bq095_prepared_real_room_entry_and_prepare_export() {
     assert_eq!(t.room.game.bq095_headquarters.len(),1);assert_eq!(t.room.game.bq095_headquarters[0].cards.len(),1);
     let mut g=t.room.game.clone();let source=g.attachments.iter().find(|a|a.card.definition=="BQ095").unwrap().card.id.clone();let hand=g.players[0].hand.len();g.turn+=1;g.begin_window(Window::Prepare);g.drive().unwrap();
     let mut p=Trace::new_preserving_rng(g,"bq095-prepared-prepare-draw-discard".into(),972);p.choose(vec![source]);p.until_pending();assert_eq!(p.room.game.players[0].hand.len(),hand+2);assert_eq!(p.room.game.pending.as_ref().unwrap().choice.kind,"discard");let id=p.room.game.pending.as_ref().unwrap().choice.options[0].id.clone();p.choose(vec![id]);assert_eq!(p.room.game.players[0].hand.len(),hand+1);assert_eq!(p.room.game.bq095_headquarters[0].cards.len(),2);
-    let mut cases=vec![t.value(),p.value()];for c in &mut cases {c["preparedNativeLayout"]=true.into();for s in c["steps"].as_array_mut().unwrap(){let r=crate::room::RoomEnvelope::from_persisted(s["expected"]["state"].as_str().unwrap()).unwrap();let dup=r.transition(s["seat"].as_u64().unwrap()as usize,Some(serde_json::from_value(s["command"].clone()).unwrap()),0).unwrap();assert_eq!(dup.state,s["expected"]["state"]);assert!(!dup.changed&&dup.journal.is_empty());s["duplicate"]=serde_json::to_value(dup).unwrap();}}
+    let mut cases=vec![t.value(),p.value()];cases.extend(bq095_consumer_room_cases());for c in &mut cases {c["preparedNativeLayout"]=true.into();for s in c["steps"].as_array_mut().unwrap(){let r=crate::room::RoomEnvelope::from_persisted(s["expected"]["state"].as_str().unwrap()).unwrap();let dup=r.transition(s["seat"].as_u64().unwrap()as usize,Some(serde_json::from_value(s["command"].clone()).unwrap()),0).unwrap();assert_eq!(dup.state,s["expected"]["state"]);assert!(!dup.changed&&dup.journal.is_empty());s["duplicate"]=serde_json::to_value(dup).unwrap();}}
     use sha2::{Digest,Sha256};let mut bindings=crate::bq052_tests::source_bindings();for(n,b)in[("rust-game/src/bq095.rs",include_bytes!("bq095.rs").as_slice()),("rust-game/src/bq095_tests.rs",include_bytes!("bq095_tests.rs").as_slice()),("rust-game/src/jc035.rs",include_bytes!("jc035.rs").as_slice()),("rust-game/src/jz53.rs",include_bytes!("jz53.rs").as_slice()),("rust-game/src/batch3_ghoul.rs",include_bytes!("batch3_ghoul.rs").as_slice())]{bindings["files"][n]=format!("{:x}",Sha256::digest(b)).into();}
     let out=serde_json::json!({"catalog":crate::catalog::catalog(),"sourceBindings":bindings,"cases":cases});if let Ok(path)=std::env::var("BQ095_NATIVE_OUT"){std::fs::write(path,serde_json::to_vec(&out).unwrap()).unwrap();}
 }
@@ -379,4 +379,47 @@ fn bq095_xq35_intrinsic_headquarters_payment_and_departed_source_cancellation() 
  assert!(g.legal_actions(0).iter().any(|v|v.action==a));act(&mut g,0,a.clone());restore(&mut g);reject(&mut g,0,a);assert_eq!(g.sealed_cards.len(),1);
  if remove {let source=g.bq095_headquarters[0].cards[0].clone();let c=g.bq095_take_reference(&source,&id).unwrap();let c=g.reset_zone_card(c);g.players[0].hand.push(c);restore(&mut g);}
  crate::jc029_tests::pass_top(&mut g);assert_eq!(g.regions[0].cards.iter().any(|c|c.definition=="XQ35"&&c.exhausted),!remove);assert!(g.players[0].graveyard.is_empty());restore(&mut g);}
+}
+
+#[test]
+fn bq095_jz51_seals_three_headquarters_corpses_and_enters_selected_region() {
+ use crate::{model::*,unit_support::*};let mut g=game();for def in ["JZ51","XQ46","XQ46","XQ46"]{let c=g.make_card(def,0);g.players[0].graveyard.push(c);}let h=source(&mut g,0,0);g.bq095_create_or_reuse(&h,"society:p0").unwrap();let id=g.bq095_headquarters[0].cards[0].id.clone();
+ let a=Action{card_id:Some(id.clone()),ability_id:Some(crate::batch4_wendigo::GRAVE.into()),..Action::new("activate")};assert!(g.legal_actions(0).iter().any(|v|v.action==a));act(&mut g,0,a);restore(&mut g);
+ let ids=g.pending.as_ref().unwrap().choice.options.iter().map(|o|o.id.clone()).collect();choose(&mut g,ids);assert_eq!(g.sealed_cards.len(),3);restore(&mut g);crate::jc029_tests::pass_top(&mut g);assert_eq!(g.pending.as_ref().unwrap().choice.kind,"jz51-entry-region");choose(&mut g,vec!["region:0".into()]);assert!(g.regions[0].cards.iter().any(|c|c.definition=="JZ51"&&c.id!=id));assert!(g.bq095_headquarters[0].cards.is_empty());restore(&mut g);
+}
+
+#[test]
+fn bq095_msjc16_seven_payment_and_actual_headquarters_revival() {
+ use crate::{model::*,unit_support::*};let mut g=game();g.players[0].society_zone.card=Some(g.make_card("MSJC16",0));fund(&mut g,0,"JC096",6);for def in ["JC044","JC125","JC125","JC125","JC125","JC125","JC125","JC125"]{let c=g.make_card(def,0);g.players[0].graveyard.push(c);}let h=source(&mut g,0,0);g.bq095_create_or_reuse(&h,"society:p0").unwrap();let target=g.bq095_headquarters[0].cards[0].id.clone();let ids=g.bq095_headquarters[0].cards[1..].iter().map(|c|c.id.clone()).collect();let sid=g.players[0].society_zone.card.as_ref().unwrap().id.clone();
+ act(&mut g,0,Action{card_id:Some(sid),ability_id:Some(crate::msjc16::REVIVE.into()),target_id:Some(target),region:Some(0),..Action::new("activate")});restore(&mut g);assert_eq!(g.pending.as_ref().unwrap().choice.options.len(),8);choose(&mut g,ids);assert_eq!(g.sealed_cards.len(),7);restore(&mut g);crate::jc029_tests::pass_top(&mut g);assert!(g.regions[0].cards.iter().any(|c|c.definition=="JC044"));assert!(g.bq095_headquarters[0].cards.is_empty());restore(&mut g);
+}
+
+#[test]
+fn bq095_intrinsic_jc085_normal_deploy_from_headquarters_pays_once() {
+ use crate::{model::*,unit_support::*};let mut g=game();fund(&mut g,0,"JC085",2);let c=g.make_card("JC085",0);g.players[0].graveyard.push(c);let h=source(&mut g,0,0);g.bq095_create_or_reuse(&h,"society:p0").unwrap();let id=g.bq095_headquarters[0].cards[0].id.clone();let a=Action{card_id:Some(id.clone()),region:Some(0),..Action::new("deploy")};assert!(g.legal_actions(0).iter().any(|v|v.action==a));act(&mut g,0,a.clone());assert_eq!(g.resources(0),0);restore(&mut g);reject(&mut g,0,a);crate::jc029_tests::pass_top(&mut g);assert!(g.regions[0].cards.iter().any(|c|c.definition=="JC085"&&c.id!=id));assert!(g.bq095_headquarters[0].cards.is_empty());restore(&mut g);
+}
+
+fn bq095_consumer_room_cases()->Vec<serde_json::Value> {
+ use crate::{model::*,unit_support::*,abi112_review_play_tests::Trace};let mut cases=vec![];
+ for (n,def) in ["CQ27","XQ35","JZ51","MSJC16","JC085"].iter().enumerate() {
+  let mut g=game();let defs=match *def {"CQ27"=>vec!["CQ27"],"XQ35"=>vec!["XQ35","JC125"],"JZ51"=>vec!["JZ51","XQ46","XQ46","XQ46"],"MSJC16"=>vec!["JC044","JC125","JC125","JC125","JC125","JC125","JC125","JC125"],_=>vec!["JC085"]};
+  if *def=="MSJC16" {g.players[0].society_zone.card=Some(g.make_card(def,0));}
+  fund(&mut g,0,if *def=="JC085"{"JC085"}else{"JC096"},if *def=="MSJC16"{6}else if *def=="JC085"{2}else{1});
+  for d in defs {let c=g.make_card(d,0);g.players[0].graveyard.push(c);}let h=source(&mut g,0,0);g.bq095_create_or_reuse(&h,"society:p0").unwrap();let id=g.bq095_headquarters[0].cards[0].id.clone();
+  let action=match *def {
+   "CQ27"=>Action{card_id:Some(id),ability_id:Some(crate::cq27::GRAVE.into()),cost_selected:Some((0..3).map(|_|field(&mut g,"JC125",0)).collect()),..Action::new("activate")},
+   "XQ35"=>Action{card_id:Some(id),ability_id:Some(crate::xq35::KEY.into()),cost_selected:Some(vec![g.bq095_headquarters[0].cards[1].id.clone()]),..Action::new("activate")},
+   "JZ51"=>Action{card_id:Some(id),ability_id:Some(crate::batch4_wendigo::GRAVE.into()),..Action::new("activate")},
+   "MSJC16"=>Action{card_id:Some(g.players[0].society_zone.card.as_ref().unwrap().id.clone()),ability_id:Some(crate::msjc16::REVIVE.into()),target_id:Some(id),region:Some(0),..Action::new("activate")},
+   _=>Action{card_id:Some(id),region:Some(0),..Action::new("deploy")},
+  };
+  let mut t=Trace::new_preserving_rng(g,format!("bq095-prepared-{def}-headquarters"),980+n);t.action(0,action);
+  for _ in 0..100 {
+   if let Some(p)=t.room.game.pending.clone(){let ids=match p.choice.kind.as_str(){"jz51-seal-payment"=>p.choice.options.iter().take(3).map(|o|o.id.clone()).collect(),"jz51-entry-region"=>vec!["region:0".into()],"msjc16-seven"=>p.choice.options.iter().filter(|o|t.room.game.bq095_headquarters[0].cards.iter().any(|c|c.id==o.id&&c.definition=="JC125")).map(|o|o.id.clone()).collect(),_=>vec![]};t.choose(ids);}
+   else if t.room.game.stack.is_empty()&&t.room.game.effects.is_empty()&&t.room.pacing.window.is_none(){break;}
+   else{t.pass();}
+  }
+  let entered=if *def=="MSJC16"{"JC044"}else{def};assert!(t.room.game.regions.iter().flat_map(|r|&r.cards).any(|c|c.definition==entered),"{def} actual Room chain did not enter");assert!(t.room.game.players[0].graveyard.is_empty());assert!(t.room.game.pending.is_none());cases.push(t.value());
+ }
+ cases
 }

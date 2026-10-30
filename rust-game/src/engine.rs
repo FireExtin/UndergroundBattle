@@ -3286,7 +3286,7 @@ impl Game {
                     } } }
                 }
                 }
-                for c in &self.players[seat].graveyard {
+                for c in self.bq095_self_grave_sources(seat) {
                     if c.definition == "JZ51" { candidates.push((Action {card_id:Some(c.id.clone()),ability_id:Some(crate::batch4_wendigo::GRAVE.into()),..Action::new("activate")},"温迪戈墓地行动：封印三张无名尸体".into())); }
                     if card(&c.definition).kind != "character"
                         || !self.can_play_grave_character(seat, c)

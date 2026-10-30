@@ -60,25 +60,25 @@ impl Game {
             return Err("温迪戈只有原地区绑定的固定进场触发".into());
         } Ok(())
     }
-    fn jz51_payment_options(&self, actor:usize)->Vec<ChoiceOption> {
-        self.players[actor].graveyard.iter().filter(|c|corpse(c)).map(|c|self.option(c,actor,None,None)).collect()
+    fn jz51_payment_options(&self, actor:usize,source:&Card)->Vec<ChoiceOption> {
+        self.bq095_reference_cards(source).iter().filter(|c|corpse(c)).map(|c|self.option(c,actor,None,None)).collect()
     }
     fn validate_jz51_draft(&self,d:&GraveDraft)->RuleResult<()> {
         let actor=d.source.card.controller; self.jz51_source(actor,&d.source)?;
         if d.turn!=self.turn || d.source.region.is_some() || d.source.source_region_instance.is_some() || d.source.card.owner!=actor
             || self.status!="playing" || self.players[actor].eliminated || !self.stack.is_empty()
             || self.priority_team!=self.team(actor) || self.window!=Some(Window::Action(self.team(actor)))
-            || !self.players[actor].graveyard.iter().any(|c|c.id==d.source.card.id && same(c,&d.source.card))
-            || self.jz51_payment_options(actor).len()<3 || !self.seal_host_valid(&format!("society:p{actor}")) {
+            || !self.bq095_reference_cards(&d.source.card).iter().any(|c|c.id==d.source.card.id && same(c,&d.source.card))
+            || self.jz51_payment_options(actor,&d.source.card).len()<3 || !self.seal_host_valid(&format!("society:p{actor}")) {
             return Err("温迪戈墓地行动须保留原墓地实体、标准窗口及三张费用".into());
         } Ok(())
     }
     pub(crate) fn jz51_begin_grave(&mut self,actor:usize,a:&Action)->RuleResult<()> {
         validate_action(a)?;
         if !self.can_standard(actor) {return Err("墓地行动需要本方标准行动窗口".into());}
-        let c=self.players[actor].graveyard.iter().find(|c|Some(c.id.as_str())==a.card_id.as_deref() && c.definition=="JZ51").ok_or("温迪戈不在本人墓地")?;
+        let c=self.bq095_self_grave_sources(actor).into_iter().find(|c|Some(c.id.as_str())==a.card_id.as_deref() && c.definition=="JZ51").ok_or("温迪戈不在本人墓地")?;
         let draft=GraveDraft {source:self.source_snapshot(c,None),turn:self.turn}; self.validate_jz51_draft(&draft)?;
-        let options=self.jz51_payment_options(actor);
+        let options=self.jz51_payment_options(actor,&draft.source.card);
         self.choice(actor,PAYMENT,PAYMENT_TITLE.into(),options,3,3,None,ChoiceResolution::JZ51Payment{draft:Box::new(draft)});
         Ok(())
     }
@@ -87,10 +87,10 @@ impl Game {
         let actor=draft.source.card.controller;
         if selected.len()!=3 || selected.iter().collect::<BTreeSet<_>>().len()!=3 {return Err("须支付三张不同的无名尸体".into());}
         let mut corpses=vec![];
-        for id in selected {corpses.push(self.players[actor].graveyard.iter().find(|c|c.id==*id && corpse(c)).ok_or("尸体费用实例已失效")?.clone());}
+        for id in selected {corpses.push(self.bq095_reference_cards(&draft.source.card).iter().find(|c|c.id==*id && corpse(c)).ok_or("尸体费用实例已失效")?.clone());}
         let host_id=format!("society:p{actor}");
         // Validate the whole batch before removing any corpse or allocating IDs.
-        for id in selected {let i=self.players[actor].graveyard.iter().position(|c|&c.id==id).unwrap();self.take_grave_observed(actor,i);}
+        for id in selected {self.bq095_take_reference(&draft.source.card,id)?;}
         for c in &corpses { self.seal_card_on_valid_host(c.clone(),actor,&host_id); }
         let a=definition().abilities.remove(1);
         let f=self.make_frame(actor,draft.source,&a,vec![],vec![PaidCost::JZ51Corpses(CorpsePayment{turn:self.turn,host_id,corpses})],None);
@@ -155,7 +155,7 @@ impl Game {
         self.shuffle_player(f.actor); self.note(format!("{} 完成温迪戈顶八张检索并洗牌",self.players[f.actor].name)); Ok(())
     }
     fn jz51_regions(&self,f:&ResolutionFrame)->Vec<(usize,String)> {
-        if !self.players[f.actor].graveyard.iter().any(|c|c.id==f.source.card.id && c.definition=="JZ51") {return vec![];}
+        if !self.bq095_reference_cards(&f.source.card).iter().any(|c|c.id==f.source.card.id && c.definition=="JZ51") {return vec![];}
         (0..self.regions.len()).filter(|r|self.region_live(*r)).map(|r|(r,self.regions[r].card.id.clone())).collect()
     }
     fn jz51_region_options(&self,regions:&[(usize,String)])->Vec<ChoiceOption> {
@@ -169,7 +169,7 @@ impl Game {
     pub(crate) fn jz51_region_finish(&mut self,f:&ResolutionFrame,regions:&[(usize,String)],selected:&[String])->RuleResult<()> {
         if selected.len()!=1 || self.jz51_regions(f)!=regions {return Err("温迪戈原墓地实体或地区快照已失效".into());}
         let (r,_)=regions.iter().find(|(r,_)|selected[0]==format!("region:{r}")).ok_or("请选择当前可进场地区")?;
-        self.world_graveyard_entry(f.actor,*r,&f.source.card.id)
+        self.own_graveyard_entry(&f.source.card,f.actor,*r,&f.source.card.id)
     }
     pub(crate) fn jz51_private_choice(&self,p:&Pending,viewer:usize)->Choice {
         let mut out=p.choice.clone();
@@ -198,7 +198,7 @@ impl Game {
         match &p.resolution {
             ChoiceResolution::JZ51Payment{draft}=>{
                 self.validate_jz51_draft(draft)?;let actor=draft.source.card.controller;
-                if p.seat!=actor || p.choice.kind!=PAYMENT || p.choice.title!=PAYMENT_TITLE || p.choice.min!=Some(3) || p.choice.max!=Some(3) || p.choice.allow_decline!=Some(false) || !same(&p.choice.options,&self.jz51_payment_options(actor)) {return Err("温迪戈未支付待选费用被改写".into());}
+                if p.seat!=actor || p.choice.kind!=PAYMENT || p.choice.title!=PAYMENT_TITLE || p.choice.min!=Some(3) || p.choice.max!=Some(3) || p.choice.allow_decline!=Some(false) || !same(&p.choice.options,&self.jz51_payment_options(actor,&draft.source.card)) {return Err("温迪戈未支付待选费用被改写".into());}
             },
             ChoiceResolution::Frame{frame:f,choice:FrameChoice::JZ51TopEight{inspected_ids}}=>{
                 self.validate_jz51_frame(f)?;

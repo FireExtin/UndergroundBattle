@@ -13,8 +13,8 @@ impl Game {
     }
     pub(crate) fn can_play_grave_character(&self, actor: usize, c: &Card) -> bool {
         c.owner == actor && card(&c.definition).kind == "character"
-            && (rules::definition(&c.definition).graveyard_face_up
-                || (card(&c.definition).magic_icon == rules::MagicIcon::Death && self.jz52_grant(actor).is_some()))
+            && ((rules::definition(&c.definition).graveyard_face_up && self.bq095_reference_cards(c).iter().any(|v|v.id==c.id))
+                || (card(&c.definition).magic_icon == rules::MagicIcon::Death && self.jz52_grant(actor).is_some_and(|s|self.bq095_reference_cards(s).iter().any(|v|v.id==c.id))))
     }
     pub(crate) fn character_play_source(
         &self,
@@ -37,9 +37,7 @@ impl Game {
             if concealed { return Err("欧米伽仅许可资产中的声望角色正面打出".into()); }
             return self.omega_asset_play(actor, c).ok_or("资产没有当前本方欧米伽声望出牌许可".into());
         }
-        let c = self.players[actor]
-            .graveyard
-            .iter()
+        let c = self.bq095_self_grave_sources(actor).into_iter()
             .find(|c| c.id == id)
             .ok_or("出牌来源引用已失效")?;
         if concealed
@@ -70,14 +68,11 @@ impl Game {
                 c.exhausted = false; c.face_down = false;
                 Ok(c)
             },
-            PlaySource::Graveyard | PlaySource::GraveyardByJZ52(_) => {
-                let index = self.players[actor]
-                    .graveyard
-                    .iter()
-                    .position(|c| c.id == id)
-                    .ok_or("墓地出牌引用已失效")?;
-                Ok(self.take_grave_observed(actor,index))
-            }
+            PlaySource::Graveyard => {
+                let c=self.bq095_self_grave_sources(actor).into_iter().find(|c|c.id==id).cloned().ok_or("墓地出牌引用已失效")?;
+                self.bq095_take_reference(&c,id)
+            },
+            PlaySource::GraveyardByJZ52(grant) => self.bq095_take_reference(&grant,id),
         }
     }
 }
