@@ -1,12 +1,12 @@
 {
-  "baseline": "9c0b19ed10186a99b4967f01d7b9b9136d3b15ab",
-  "method": "Current source-bound WASM catalog vs all non-TEST red/black/blue/gray source records; implementation records are not new independent approvals or current full-suite results. Preserve historical reviews.",
+  "baseline": "186b9f341b1d01852c2e499fc43d6cb32ec1e6cb",
+  "method": "Prior full four-color inventory plus source-bound CQ12/CQ14/LC04 closure. Closed records are implementation counts, not independent review, public admission, whole-library or browser approval.",
   "counts": {
     "existing_public_catalog_entry": 165,
-    "closed_implementation_record_not_new_batch_approval": 89,
+    "closed_implementation_record_not_new_batch_approval": 92,
     "not_registered_task_scope_paused": 3,
     "partial_task_natural_chain_unclosed": 2,
-    "not_implemented": 4,
+    "not_implemented": 1,
     "supporting_identity_not_formal_card": 6
   },
   "rows": [
@@ -542,9 +542,10 @@
       "id": "CQ12",
       "name": "深渊惧影盖罗涅",
       "color": "红",
-      "status": "not_implemented",
-      "supported": null,
-      "source": "resource/ymsj-fun.github.io/cards/CQ12 深渊惧影盖罗涅.jpg"
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/CQ12 深渊惧影盖罗涅.jpg",
+      "implementationEvidence": "CQ12-CQ14-WIP-2026-10-30.md"
     },
     {
       "id": "CQ13",
@@ -558,9 +559,10 @@
       "id": "CQ14",
       "name": "盖罗涅的召令",
       "color": "红",
-      "status": "not_implemented",
-      "supported": null,
-      "source": "resource/ymsj-fun.github.io/cards/CQ14 盖罗涅的召令.jpg"
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/CQ14 盖罗涅的召令.jpg",
+      "implementationEvidence": "CQ12-CQ14-WIP-2026-10-30.md"
     },
     {
       "id": "CQ15",
@@ -1374,9 +1376,10 @@
       "id": "LC04",
       "name": "卡德兰大王",
       "color": "红",
-      "status": "not_implemented",
-      "supported": null,
-      "source": "resource/ymsj-fun.github.io/cards/LC04 卡德兰大王.jpg"
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/LC04 卡德兰大王.jpg",
+      "implementationEvidence": "LC04-WIP-2026-10-30.md"
     },
     {
       "id": "LC16",
@@ -2162,5 +2165,6 @@
       "supported": false,
       "source": "resource/ymsj-fun.github.io/cards/ZHWM026 古妮薇尔.jpg"
     }
-  ]
+  ],
+  "previousBaseline": "9c0b19ed10186a99b4967f01d7b9b9136d3b15ab"
 }

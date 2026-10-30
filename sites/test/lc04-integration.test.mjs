@@ -16,5 +16,5 @@ test(`${scenario.name}: LC04 private discards and four-category sacrifices survi
   commands++;await h.reopen();reopens++;if(commands%50===0)console.log(JSON.stringify({scenario:scenario.name,commands,reopens,total:scenario.steps.length}));
  }
  const first=scenario.steps[0],saved=await h.snapshot();const again=await h.api('commands',first.seat,first.command);assert.equal(again.status,200);assertPublicView(again.body,first.expected.view);assert.deepEqual(await h.snapshot(),saved);
- t.diagnostic(JSON.stringify({commands,reopens,views:commands*4,nativePreparationCommands:scenario.nativePreparationCommands||0,naturalClosedRegistry:!!scenario.construction,preparedNativeLayout:!scenario.construction,originalReceiptAfterCompletion:true}));
+ t.diagnostic(JSON.stringify({commands,reopens,views:commands*4,nativePreparationCommands:scenario.nativePreparationCommands||0,naturalClosedRegistry:!!scenario.construction.noLayoutOrResourceMutation,preparedNativeLayout:!!scenario.construction.explicitLayout,originalReceiptAfterCompletion:true}));
 });
