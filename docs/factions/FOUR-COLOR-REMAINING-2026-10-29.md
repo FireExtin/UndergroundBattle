@@ -64,3 +64,7 @@ BQ044 ordinary trigger and core sacrifice→draw→repress continuation, private
 ## WM026 closure 2026-10-30
 
 WM026 is now a complete closed blue-card mechanism, including actual natural sacrifice→mist→preparation return. ZHWM026 is its reverse and does not increment the formal-card count. See `WM026-CLOSED-MECHANISM-2026-10-30.md`: Native68 distinct, UI165, WASM/Worker898 commands; independent review0, admission closed. Earlier WM026 engineering-pending entries are historical, not current blockers. BQ049 remains blocked on the paused neutral task-region scope. No other inventory entry is changed.
+
+## BQ095 persistent-zone WIP 2026-10-30
+
+The repeat-headquarters question now has a scoped project ruling: reuse the society's lasting zone and retain its cards. The original card is black and does not require a paused neutral-card input. Persistent Game/Room zone, public projection, owner destination routing and owned BQ079 arrival observation are implemented as a WIP; migration uniqueness red test is retained. Actual BQ095 entry/prepare and the complete source-aware printed-reference consumers remain engineering work, not a new rule blocker. Complete-card increment0; no catalog/admission entry. See `BQ095-PERSISTENT-ZONE-WIP-2026-10-30.md`.

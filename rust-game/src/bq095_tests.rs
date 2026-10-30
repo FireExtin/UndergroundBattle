@@ -114,3 +114,98 @@ fn bq095_real_container_receive_and_take_preserve_one_physical_instance() {
     assert!(hq.cards.is_empty());
     assert!(hq.take_for_own_printed_reference(&own_source, &card.id).is_err());
 }
+
+#[test]
+fn bq095_persistent_zone_reentry_reuses_identity_and_keeps_existing_cards() {
+    let mut g=game();let s=source(&mut g,0,0);
+    let c=g.make_card("JC125",0);g.players[0].graveyard.push(c);
+    let id=g.bq095_create_or_reuse(&s,"society:p0").unwrap();
+    let before=serde_json::to_value(&g.bq095_headquarters).unwrap();
+    let s2=source(&mut g,0,0);
+    assert_eq!(g.bq095_create_or_reuse(&s2,"society:p0").unwrap(),id);
+    assert_eq!(serde_json::to_value(&g.bq095_headquarters).unwrap(),before);
+    crate::unit_support::restore(&mut g);
+    assert_eq!(g.bq095_headquarters.len(),1);
+    assert!(g.players[0].graveyard.is_empty());
+    for seat in 0..4 {let view=g.view(seat);assert_eq!(view.headquarters.len(),1);assert_eq!(view.headquarters[0].id,id);assert_eq!(view.headquarters[0].cards.len(),1);assert!(view.graveyard.is_empty());}
+}
+
+#[test]
+fn bq095_persistent_zone_rejects_duplicate_physical_entity_and_invalid_zone() {
+    let mut g=game();let s=source(&mut g,0,0);let c=g.make_card("JC125",0);g.players[0].graveyard.push(c);
+    g.bq095_create_or_reuse(&s,"society:p0").unwrap();
+    for case in 0..8 {let mut bad=g.clone();match case {
+        0=>bad.bq095_headquarters.push(bad.bq095_headquarters[0].clone()),
+        1=>bad.players[0].hand.push(bad.bq095_headquarters[0].cards[0].clone()),
+        2=>bad.bq095_headquarters[0].cards[0].owner=1,
+        3=>bad.bq095_headquarters[0].cards[0].controller=1,
+        4=>bad.bq095_headquarters[0].cards[0].damage=1,
+        5=>bad.bq095_headquarters[0].id=bad.bq095_headquarters[0].cards[0].id.clone(),
+        6=>bad.bq095_headquarters[0].source_instance="i999999999".into(),
+        _=>bad.bq095_headquarters[0].seat=99,
+    }assert!(crate::model::Game::from_persisted(&serde_json::to_string(&bad).unwrap()).is_err(),"case {case}");
+    let room=crate::room::RoomEnvelope::from_game(bad);
+    assert!(crate::room::RoomEnvelope::from_persisted(&serde_json::to_string(&room).unwrap()).is_err(),"room case {case}");}
+}
+
+#[test]
+fn bq095_two_owned_headquarters_do_not_follow_changed_control() {
+    let mut g=game();let a=source(&mut g,0,0);let b=source(&mut g,1,1);
+    let za=g.bq095_create_or_reuse(&a,"society:p0").unwrap();let zb=g.bq095_create_or_reuse(&b,"society:p1").unwrap();assert_ne!(za,zb);
+    let mut c=g.make_card("CQ09",0);c.controller=1;
+    assert_eq!(g.bq095_own_reference(&c),D::Headquarters(za));
+    assert_eq!(Headquarters::ordinary_grave_reference(1),D::Graveyard(1));
+    crate::unit_support::restore(&mut g);
+}
+
+#[test]
+fn bq095_actual_discard_routes_owner_destination_and_only_owned_text_observes() {
+    use crate::{model::*,unit_support::*};
+    let mut g=game();let s=source(&mut g,0,0);g.bq095_create_or_reuse(&s,"society:p0").unwrap();
+    let own=field(&mut g,"BQ079",0);let foreign=field(&mut g,"BQ079",2);g.board_mut(&foreign).unwrap().controller=0;
+    let mut corpse=g.make_card("XQ46",0);let old=corpse.id.clone();corpse.controller=2;g.players[2].hand.push(corpse);
+    g.discard_hand_card(2,&old).unwrap();
+    assert!(g.players.iter().all(|p|p.graveyard.is_empty()));assert_eq!(g.bq095_headquarters[0].cards.len(),1);
+    assert_ne!(g.bq095_headquarters[0].cards[0].id,old);
+    for _ in 0..32 {if g.pending.is_some(){choose(&mut g,vec!["accept".into()]);}else if !g.stack.is_empty(){pass(&mut g);}else if !g.effects.is_empty(){g.drive().unwrap();}else{break;}}
+    assert_eq!(g.board(&own).unwrap().1.permanent_combat_markers,1);
+    assert_eq!(g.board(&foreign).unwrap().1.permanent_combat_markers,0);
+    restore(&mut g);let room=crate::room::RoomEnvelope::from_game(g);assert!(crate::room::RoomEnvelope::from_persisted(&serde_json::to_string(&room).unwrap()).is_ok());
+}
+
+#[test]
+fn bq095_generated_departure_disappears_before_destination_replacement() {
+    use crate::{model::*,unit_support::*};let mut g=game();let s=source(&mut g,0,0);g.bq095_create_or_reuse(&s,"society:p0").unwrap();
+    let c=g.make_generated(crate::generated::GeneratedKind::Walker,0).unwrap();let id=c.id.clone();g.regions[0].cards.push(c);
+    g.remove_dead(&id,RemovalCause::Destroy);g.drive().unwrap();
+    assert!(g.board(&id).is_none());assert!(g.players[0].graveyard.is_empty());assert!(g.bq095_headquarters[0].cards.is_empty());restore(&mut g);
+}
+
+#[test]
+fn bq095_reentry_does_not_hide_unexpected_physical_grave_and_elimination_clears_cards() {
+    let mut g=game();let s=source(&mut g,0,0);g.bq095_create_or_reuse(&s,"society:p0").unwrap();
+    let c=g.make_card("JC125",0);g.players[0].graveyard.push(c);let before=serde_json::to_value(&g).unwrap();
+    assert!(g.bq095_create_or_reuse(&s,"society:p0").is_err());assert_eq!(serde_json::to_value(&g).unwrap(),before);
+    let c=g.players[0].graveyard.pop().unwrap();g.commit_owner_grave(c,None);assert_eq!(g.bq095_headquarters[0].cards.len(),1);
+    g.eliminate(0);assert!(g.bq095_headquarters[0].cards.is_empty());crate::unit_support::restore(&mut g);
+}
+
+#[test]
+fn bq095_invalid_first_migration_is_atomic_across_other_physical_zones() {
+    let mut g=game();let s=source(&mut g,0,0);let c=g.make_card("JC125",0);
+    g.players[0].hand.push(c.clone());g.players[0].graveyard.push(c);
+    let before=serde_json::to_value(&g).unwrap();
+    assert!(g.bq095_create_or_reuse(&s,"society:p0").is_err());assert_eq!(serde_json::to_value(&g).unwrap(),before);
+}
+
+#[test]
+fn bq095_prepared_room_discard_duplicate_and_cold_restore_keep_one_destination() {
+    use crate::{model::*,room::*};let mut g=game();let s=source(&mut g,0,0);g.bq095_create_or_reuse(&s,"society:p0").unwrap();
+    let c=g.make_card("JC125",0);let id=c.id.clone();g.players[0].hand.push(c);
+    g.effects.push_back(Effect::Discard{seat:0,amount:1,redraw:false,optional:false});g.drive().unwrap();
+    let p=g.pending.as_ref().unwrap();let room=RoomEnvelope::from_game(g.clone());
+    let command=RoomCommand{command_id:"bq095-prepared-discard".into(),expected_version:room.revision,action:Action{choice_id:Some(p.choice.id.clone()),selected:Some(vec![id]),..Action::new("choose")}.into()};
+    let result=room.transition(0,Some(command.clone()),0).unwrap();let restored=RoomEnvelope::from_persisted(&result.state).unwrap();
+    assert!(restored.game.players[0].graveyard.is_empty());assert_eq!(restored.game.bq095_headquarters[0].cards.len(),1);
+    let duplicate=restored.transition(0,Some(command),0).unwrap();assert_eq!(duplicate.state,result.state);assert!(!duplicate.changed&&duplicate.journal.is_empty());
+}

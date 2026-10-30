@@ -52,6 +52,7 @@ impl Game {
             return Err("模式必须为 duel 或 teams".into());
         }
         Ok(Self {
+            bq095_headquarters: vec![],
             wm026_pending: vec![],
             wm031_observations: vec![],
             first_marker_placements: vec![],
@@ -676,6 +677,7 @@ impl Game {
         self.validate_marker_placements()?;
         self.validate_bq044_state()?;
         self.validate_bq044_core_state()?;
+        self.validate_bq095_state()?;
         self.validate_wm026_state()?;
         self.validate_wm031_state()?;
         self.validate_wm036_state()?;
@@ -741,6 +743,7 @@ impl Game {
         next.validate_marker_placements()?;
         next.validate_bq044_state()?;
         next.validate_bq044_core_state()?;
+        next.validate_bq095_state()?;
         next.validate_wm026_state()?;
         next.validate_wm031_state()?;
         next.validate_wm036_state()?;
@@ -1211,6 +1214,7 @@ impl Game {
     pub(crate) fn start_validated_decks(&mut self,decks:Vec<crate::deck::DeckDraft>)->RuleResult<()> {
         if decks.len()!=self.players.len(){return Err("开局牌组与座位数量不符".into());}
         self.core_zones.clear();
+        self.bq095_headquarters.clear();
         self.wm026_pending.clear();
         self.bq049_grants.clear();self.bq067_grants.clear();
         self.status = "playing".into();
@@ -1349,6 +1353,7 @@ impl Game {
         self.players[seat].deck.clear();
         self.players[seat].assets.clear();
         self.players[seat].graveyard.clear();
+        for zone in &mut self.bq095_headquarters { if zone.seat==seat {zone.cards.clear();} }
         // Converted borrowed characters retain their owner in another seat's
         // asset area. Elimination removes that owner's cards everywhere; their
         // scored cards stay intact so the surviving teammate keeps the points.
@@ -2964,6 +2969,7 @@ impl Game {
             })
             .collect();
         View {
+            headquarters: self.bq095_views(seat),
             core_zones: self.core_zone_views(seat),
             room_id: self.room_id.clone(),
             invite_code: self.invite_code.clone(),

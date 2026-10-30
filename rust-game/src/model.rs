@@ -319,6 +319,8 @@ pub struct WaitingChoice {
 #[serde(rename_all = "camelCase")]
 pub struct View {
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub headquarters: Vec<crate::bq095::HeadquartersView>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub core_zones: Vec<crate::core_zone::CoreZoneView>,
     pub room_id: String,
     pub invite_code: String,
@@ -1036,6 +1038,8 @@ pub struct Pending {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Game {
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub bq095_headquarters: Vec<crate::bq095::Headquarters>,
     #[serde(default, skip_serializing_if="Vec::is_empty")]
     pub wm026_pending: Vec<SourceSnapshot>,
     #[serde(default,skip_serializing_if="Vec::is_empty")]
@@ -1158,6 +1162,7 @@ impl Game {
     /// use this list. Runtime checks retain their separate stage contracts;
     /// honest departed targets remain the paid frame guard's responsibility.
     pub(crate) fn validate_restored_domain(&self) -> Result<(), String> {
+        self.validate_bq095_state()?;
         self.validate_core_zones()?;
         self.validate_bq045_state()?;
         self.validate_bq046_state()?;

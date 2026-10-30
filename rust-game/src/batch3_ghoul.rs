@@ -28,10 +28,11 @@ impl Game {
         let owner=c.owner;
         let observes=catalog::card(&c.definition).name=="无名尸体" && !self.players[owner].eliminated;
         let sources=if observes{frozen.map(<[SourceSnapshot]>::to_vec).unwrap_or_else(||self.bq079_sources())}else{vec![]};
-        let sources=sources.into_iter().filter(|s|s.card.controller==owner).collect::<Vec<_>>();
-        if sources.is_empty(){self.players[owner].graveyard.push(c);return;}
+        let destination=self.bq095_destination(owner);
+        let sources=sources.into_iter().filter(|s|s.card.controller==owner && self.bq095_own_reference(&s.card)==destination).collect::<Vec<_>>();
+        if sources.is_empty(){self.bq095_commit_destination(c);return;}
         let observation=CorpseGraveObservation{event_id:self.id(),turn:self.turn,arrived:c.clone()};
-        self.players[owner].graveyard.push(c);
+        self.bq095_commit_destination(c);
         for source in sources{
             let mut a=definition().abilities.remove(1);
             a.ops=vec![Op::BQ079CorpseIcons{observation:Some(observation.clone())}];
@@ -40,6 +41,7 @@ impl Game {
     }
     pub(crate) fn batch3_physical_cards(&self)->impl Iterator<Item=&Card>{
         self.regions.iter().flat_map(|r|std::iter::once(&r.card).chain(&r.cards))
+            .chain(self.bq095_headquarters.iter().flat_map(|z|z.cards.iter()))
             .chain(self.core_zones.iter().filter_map(|z|z.card.as_ref()))
             .chain(self.effects.iter().filter_map(|e|if let Effect::CoreReturn{departure}=e{Some(&departure.card)}else{None}))
             .chain(self.pending.iter().filter_map(|p|if let ChoiceResolution::CoreReturn{departure}=&p.resolution{Some(&departure.card)}else{None}))
@@ -57,7 +59,7 @@ impl Game {
             || !catalog::catalog().cards.iter().any(|d|d.id==c.definition && d.name=="无名尸体")
             || o.turn!=self.turn || o.event_id==c.id || o.event_id==s.card.id
             || o.event_id.strip_prefix('i').and_then(|v|v.parse::<u64>().ok()).is_none_or(|n|n==0 || n>self.sequence)
-            || self.batch3_physical_cards().any(|live|live.id==c.id && (!same(live,c) || !self.players[actor].graveyard.iter().any(|grave|grave==live)))
+            || self.batch3_physical_cards().any(|live|live.id==c.id && (!same(live,c) || !self.bq095_reference_cards(&s.card).iter().any(|grave|grave==live)))
             || self.batch3_physical_cards().any(|live|live.id==s.card.id && !self.board(&s.card.id).is_some_and(|(_,board)|board.id==live.id && board.definition==s.card.definition && board.owner==s.card.owner)) {
             return Err("食尸鬼入墓观察的牌名、拥有者、原来源或区域不符".into());
         }

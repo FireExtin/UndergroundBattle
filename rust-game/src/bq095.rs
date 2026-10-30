@@ -1,4 +1,4 @@
-//! Closed BQ095 foundation. Not yet wired to Game, admission or card play.
+//! Closed BQ095 persistent-zone WIP. Card entry and reference consumers remain unwired.
 //! A headquarters is a distinct zone, never an alias for the physical grave.
 //! Entry dispatch, repeated creation and whole-engine consumers must be wired
 //! before this module can be used by the live rules interpreter.
@@ -11,7 +11,7 @@ pub(crate) const ID: &str = "BQ095";
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
-pub(crate) struct Headquarters {
+pub struct Headquarters {
     pub id: String,
     pub seat: usize,
     pub source_instance: String,
@@ -126,5 +126,99 @@ impl Headquarters {
         let index = self.cards.iter().position(|c| c.id == id)
             .ok_or("BQ095总部原目标已失效")?;
         Ok(self.cards.remove(index))
+    }
+}
+
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct HeadquartersView {
+    pub id: String,
+    pub player_id: String,
+    pub name: String,
+    pub cards: Vec<crate::model::CardView>,
+}
+
+impl Game {
+    /// Internal resolved-entry primitive, not a public action. Until the full
+    /// printed-reference integration lands, no card dispatch invokes it.
+    /// Project ruling: repeated entry reuses this society's one lasting zone.
+    pub(crate) fn bq095_create_or_reuse(&mut self, source: &Card, host: &str) -> RuleResult<String> {
+        if source.definition != ID || source.face_down || source.controller >= self.players.len()
+            || host != format!("society:p{}",source.controller)
+            || !self.mystic_instance_valid(&source.id) {
+            return Err("总部进场来源或本方秘社无效".into());
+        }
+        self.validate_bq095_state()?;
+        if let Some(zone)=self.bq095_headquarters.iter().find(|z|z.seat==source.controller) {
+            // Destination replacement will keep the physical grave empty.
+            // Never destroy/merge unexplained physical contents on re-entry.
+            if !self.players[source.controller].graveyard.is_empty() {
+                return Err("已有总部仍存在物理墓地牌，不能重进场掩盖损坏".into());
+            }
+            return Ok(zone.id.clone());
+        }
+        if self.players[source.controller].graveyard.iter().any(|c|
+            self.batch3_physical_cards().filter(|live|live.id==c.id).count()!=1) {
+            return Err("总部迁移前实体已重复，不能用新实例掩盖原损坏".into());
+        }
+        let mut next=self.clone();
+        let zone=Headquarters::first_entry(&mut next,source,host)?;
+        let id=zone.id.clone();next.bq095_headquarters.push(zone);
+        next.validate_bq095_state()?;
+        *self=next;Ok(id)
+    }
+
+    /// Resolve owned printed "own graveyard" independently of generic/enemy
+    /// graveyard access. The supplied source is the original frozen card.
+    pub(crate) fn bq095_own_reference(&self, source:&Card) -> Destination {
+        self.bq095_headquarters.iter().find(|z|z.seat==source.owner)
+            .map_or(Destination::Graveyard(source.controller),|z|z.own_printed_reference(source))
+    }
+    pub(crate) fn bq095_destination(&self,seat:usize)->Destination {
+        self.bq095_headquarters.iter().find(|z|z.seat==seat)
+            .map_or(Destination::Graveyard(seat),|z|Destination::Headquarters(z.id.clone()))
+    }
+    pub(crate) fn bq095_reference_cards(&self,source:&Card)->&[Card] {
+        match self.bq095_own_reference(source) {
+            Destination::Headquarters(id)=>&self.bq095_headquarters.iter().find(|z|z.id==id).unwrap().cards,
+            Destination::Graveyard(seat)=>&self.players[seat].graveyard,
+        }
+    }
+    pub(crate) fn bq095_commit_destination(&mut self,card:Card) {
+        if let Some(z)=self.bq095_headquarters.iter_mut().find(|z|z.seat==card.owner) {
+            z.cards.push(card);
+        } else {self.players[card.owner].graveyard.push(card);}
+    }
+    pub(crate) fn bq095_views(&self,viewer:usize)->Vec<HeadquartersView> {
+        self.bq095_headquarters.iter().map(|z|HeadquartersView {
+            id:z.id.clone(),player_id:crate::model::player_id(z.seat),name:"集团总部".into(),
+            cards:z.cards.iter().map(|c|self.card_view(c,viewer,None,Some("headquarters"))).collect(),
+        }).collect()
+    }
+    pub(crate) fn validate_bq095_state(&self)->RuleResult<()> {
+        let mut seats=BTreeSet::new();let mut zones=BTreeSet::new();
+        for z in &self.bq095_headquarters {
+            z.validate()?;
+            if z.seat>=self.players.len() || !self.players[z.seat].graveyard.is_empty() || !seats.insert(z.seat) || !zones.insert(&z.id)
+                || !self.mystic_instance_number(&z.source_instance).zip(self.mystic_instance_number(&z.id)).is_some_and(|(s,i)|s<i)
+                || !self.mystic_instance_valid(&z.id)
+                || self.batch3_physical_cards().any(|c|c.id==z.id) {
+                return Err("总部区域身份、创建来源或唯一归属损坏".into());
+            }
+            for c in &z.cards {
+                if !self.mystic_instance_valid(&c.id) || c.controller!=z.seat || c.face_down || c.exhausted
+                    || !crate::catalog::catalog().cards.iter().any(|d|d.id==c.definition)
+                    || c.named_character.is_some() || c.chosen_number.is_some() || c.chosen_subtype.is_some() || c.advancement_markers!=0 || c.blood_origin.is_some()
+                    || c.generated.is_some() || c.damage!=0 || c.wounds!=0 || c.shield!=0
+                    || c.lock_markers!=0 || c.time_markers!=0 || c.charge_markers!=0
+                    || c.permanent_combat_markers!=0 || c.permanent_investigation_markers!=0 || c.permanent_defense_markers!=0
+                    || self.batch3_physical_cards().filter(|v|v.id==c.id).count()!=1 {
+                    return Err("总部实体重复、生成物或跨区状态未清理".into());
+                }
+                self.mobility_immutable_identity(c)?;
+            }
+        }
+        Ok(())
     }
 }
