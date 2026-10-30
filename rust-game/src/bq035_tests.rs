@@ -398,6 +398,7 @@ fn field(g: &mut Game, def: &str, seat: usize, r: usize) -> String {
         "TK003"=>g.make_generated(GeneratedKind::Police,seat).unwrap(),
         "TK001"=>g.make_generated(GeneratedKind::Walker,seat).unwrap(),
         "TK010"=>g.make_generated(GeneratedKind::Tentacle,seat).unwrap(),
+        "TK009"=>g.make_generated(GeneratedKind::PendulumPriest,seat).unwrap(),
         _=>g.make_card(def,seat),
     };
     let id = c.id.clone();
