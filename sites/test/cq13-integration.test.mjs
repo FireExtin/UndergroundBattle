@@ -4,12 +4,8 @@ import assert from 'node:assert/strict';
 import {loadCurrentFixture} from '../../tools/current-native-source.mjs';
 import {harness} from './xq23-http-harness.mjs';
 import {assertPublicView,assertSessionJournal} from './assert-session-journal.mjs';
-const scenarios=loadCurrentFixture('rust-game-wasm/tests/current113/cq13.json.gz').cases.map(c=>{
- const start=c.construction.conversionDeclarationStep;assert(Number.isSafeInteger(start)&&start>0&&start<c.steps.length);assert.equal(c.steps[start].command.action.action.kind,'play');
- // Replay the conversion and all following actions. The preceding real Native
- // construction/draw/asset prefix is verified by Native/WASM, not this Worker.
- return {...c,name:`${c.name}-conversion-suffix`,nativePreparationCommands:start,initial:{state:c.steps[start].state,views:c.steps[start-1].views},steps:c.steps.slice(start)};
-});
+const scenarios=loadCurrentFixture('rust-game-wasm/tests/current113/cq13.json.gz').cases;
+for(const c of scenarios){assert(c.nativePreparationCommands>0);assert.equal(c.construction.conversionDeclarationStep,0);assert.equal(c.steps[0].command.action.action.kind,'play');}
 for(const scenario of scenarios)
 test(`${scenario.name}: JZ42 conversion, CQ13 entry/contest/blink/leave survive real Worker persistence`,async t=>{
  const h=await harness(t,scenario);let reopens=0,commands=0;
