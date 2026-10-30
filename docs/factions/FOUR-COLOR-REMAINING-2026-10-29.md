@@ -71,3 +71,8 @@ The repeat-headquarters question now has a scoped project ruling: reuse the soci
 
 
 BQ095 2026-10-30 WIP3 supersedes the earlier no-catalog/no-dispatch note: closed319th record, real paid attachment/entry/prepare, owner-bound BQ079/JZ53 departure integration and public HQ UI are implemented. Native85 selected/UI196 and two prepared16-command WASM/Worker scenarios pass; whole-card count remains0 because other printed-own-grave consumers and natural construction remain unfinished. See BQ095-PERSISTENT-ZONE-WIP-2026-10-30.md. No neutral dependency or new rule decision is being claimed as the remaining blocker.
+
+
+### BQ095 closure, 2026-10-30
+
+Supersedes the earlier BQ095 WIP inventory only: own-grave consumer routing/bindings, self-zone plays, natural50-card mill→HQ entry→prepare draw/discard→redeploy, and same-source recovery are now implemented. Tested source9e48517844968cbc69f4d38d2fb740b92b77a0d3: Native library3075pass/0fail/1originalignore, separate integration72pass, applicable UI199pass, WASM+Worker8scenarios/984commands (938natural including760preparation,46explicit prepared),984Worker cold reopens. BQ095 closed complete+1, independent review0, public supported:false. See BQ095-CONSUMER-INTEGRATION-2026-10-30.md for scope exclusions and preserved failures. No public batch/browser-play claim; prior review/upload/push restrictions remain.
