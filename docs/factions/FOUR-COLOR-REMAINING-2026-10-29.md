@@ -102,3 +102,7 @@ WM063 closure supersedes its start/WIP status above: the actual private50-card n
 ### MSWM03 closure, 2026-10-30
 
 MSWM03's previous missing opening search and paid Criminal action are now closed: original-art black society, actual offcolor copy cap, private pre-hand search/reveal/shuffle, exact two-entity payment and response-safe hiding. Native52selected and UI224pass; source-bound Native/WASM/Worker3scenarios488commands pass including the full478-command natural chain (1opening,162pre-market preparation,315following) and10explicit prepared commands. See MSWM03-COLD-MOUNTAIN-2026-10-30.md. Closed complete+1, independent approvals0, supported:false; WM063 not counted again. No new neutral/dual scope, full-library or browser-play claim. Remaining task-region, clock and omen dependencies above are unchanged.
+
+### BQ047 / MSJZ03 group WIP, 2026-10-30
+
+BQ047 now has source-bound forced entry/rumor/kill1/hidden+3 and conditional four-asset selection with Game/Room recovery. Selected Native59,UI223,and same-source495-command Native/WASM/Worker checks pass. Actual natural entry463commands includes454preparation;the clock-condition branch is explicitly prepared. MSJZ03 now has original identity and forbidden initial construction only;passives/actions/JZ42conversion remain actual engineering. Both complete-card increments0,independent approvals0,admissionclosed. CQ13/JZ42/TK009 not declared implemented. See BQ047-DOOM-ENTRY-2026-10-30.md for exact scope and prior failures.
