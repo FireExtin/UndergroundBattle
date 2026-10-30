@@ -5,10 +5,11 @@ pub(crate) const ID:&str="BQ047";
 pub(crate) const KEY:&str="bq047-destroy-and-sacrifice";
 fn same<T:serde::Serialize>(a:&T,b:&T)->bool{serde_json::to_value(a).unwrap()==serde_json::to_value(b).unwrap()}
 pub(crate) fn definition()->Definition{let mut d=with_abilities(vec![ability(KEY,"进场强制：毁灭本地区；本方末日钟时各牺牲四资产",Timing::Fast,vec![],vec![],vec![Op::BQ047Entry],Some(Event::Enter))]);d.traits.kill=1;d}
-pub(crate) fn related(a:&AbilitySpec)->bool{a.key.starts_with("bq047-")||a.ops.iter().any(|o|matches!(o,Op::BQ047Entry))}
+fn has_op(ops:&[Op])->bool{ops.iter().any(|o|match o{Op::BQ047Entry=>true,Op::ForEachLivingPlayer(v)|Op::ForEachLivingPlayerFromActor(v)=>has_op(v),Op::IfTargetExhausted{exhausted,ready,..}=>has_op(std::slice::from_ref(exhausted))||has_op(std::slice::from_ref(ready)),_=>false})}
+pub(crate) fn related(a:&AbilitySpec)->bool{a.key.starts_with("bq047-")||has_op(&a.ops)||a.modes.iter().any(|m|has_op(&m.ops))}
 pub(crate) fn validate_ability(id:&str,a:&AbilitySpec)->RuleResult<()>{if id!=ID||!same(a,&definition().abilities[0]){return Err("灭世魔原强制进场程序不可改写".into())}Ok(())}
 pub(crate) fn validate_definition(id:&str,d:&Definition)->RuleResult<()>{if(id==ID||d.abilities.iter().any(related))&&(id!=ID||!same(d,&definition())){return Err("灭世魔定义不可移植".into())}Ok(())}
-fn owned(f:&ResolutionFrame)->bool{f.ability_key.starts_with("bq047-")||f.steps.iter().any(|s|matches!(s.op,Op::BQ047Entry))}
+fn owned(f:&ResolutionFrame)->bool{f.ability_key.starts_with("bq047-")||f.steps.iter().any(|s|has_op(std::slice::from_ref(&s.op)))}
 impl Game{
  fn bq047_source(&self,actor:usize,s:&SourceSnapshot)->RuleResult<()>{let c=&s.card;if actor>=self.players.len()||c.controller!=actor||c.owner>=self.players.len()||c.definition!=ID||c.face_down||!self.mystic_instance_valid(&c.id)||s.region.is_none_or(|r|r>=self.regions.len())||s.source_region_instance.as_deref().is_none_or(|id|!self.mystic_instance_valid(id))||s.play_source.is_some()||s.attachment_host_instance.is_some()||s.death_echo.is_some()||s.observed_death.is_some()||s.observed_exposure.is_some()||s.observed_mobility_grant.is_some(){return Err("灭世魔原进场来源损坏".into())}self.mobility_immutable_identity(c)}
  pub(crate) fn bq047_forced(&mut self,d:&Declaration)->RuleResult<bool>{if d.source.card.definition!=ID&&!related(&d.ability){return Ok(false)}validate_ability(&d.source.card.definition,&d.ability)?;self.bq047_source(d.actor,&d.source)?;if !self.players[d.actor].eliminated{let f=self.make_frame(d.actor,d.source.clone(),&d.ability,vec![],vec![],None);self.dispatch_frame(f,d.ability.label.clone(),None,ResponsePolicy::Respondable);}Ok(true)}

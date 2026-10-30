@@ -1,0 +1,12 @@
+import React from 'react';
+import {afterEach,expect,it,vi} from 'vitest';
+import {cleanup,render,screen,fireEvent,within} from '@testing-library/react';
+import {Table} from './Table';
+import {actionForRoom} from './api';
+import {validateDeckDraft} from './deckLibrary';
+import {catalog,kernel} from '../../../rust-game-wasm/tests/current-kernel.mjs';
+import {loadCurrentFixture} from '../../../tools/current-native-source.mjs';
+const fixture=loadCurrentFixture('rust-game-wasm/tests/current113/bq047.json.gz');
+afterEach(()=>{cleanup();sessionStorage.clear();});
+it('keeps both candidates closed and never admits the clock as a starting society',()=>{expect(catalog.cards.find(c=>c.id==='BQ047').supported).toBe(false);expect(catalog.societies.find(c=>c.id==='MSJZ03').supported).toBe(false);const d={...fixture.cases.find(c=>c.construction).construction.deck,societyId:'MSJZ03'};const privateRegistry={...catalog,cards:catalog.cards.map(c=>c.id==='BQ047'?{...c,supported:true}:c),societies:catalog.societies.map(s=>s.id==='MSJZ03'?{...s,supported:true}:s)};expect(validateDeckDraft(d,privateRegistry).valid).toBe(false);});
+it('restores actual asset selections and submits exactly four; other players cannot select',()=>{const c=fixture.cases.find(c=>c.name.includes('clock-paid'));const step=c.steps.find(s=>s.command.action.action?.kind==='choose');const action=step.command.action.action,view=JSON.parse(kernel.view(step.state,step.seat)),send=vi.fn();expect(view.pendingChoice.kind).toBe('bq047-assets');expect(view.pendingChoice.min).toBe(4);for(let seat=0;seat<4;seat++)if(seat!==step.seat)expect(JSON.parse(kernel.view(step.state,seat)).pendingChoice).toBeNull();let ui=render(<Table catalog={catalog} view={view} busy={false} onAction={send}/>);let dialog=screen.getByRole('dialog',{name:'待完成的选择'});for(const id of action.selected.slice(0,3))fireEvent.click(dialog.querySelector(`[data-choice-option="${id}"]`));expect(within(dialog).getByRole('button',{name:/确认/})).toBeDisabled();ui.unmount();ui=render(<Table catalog={catalog} view={JSON.parse(kernel.view(step.state,step.seat))} busy={false} onAction={send}/>);dialog=screen.getByRole('dialog',{name:'待完成的选择'});fireEvent.click(dialog.querySelector(`[data-choice-option="${action.selected[3]}"]`));fireEvent.click(within(dialog).getByRole('button',{name:/确认/}));expect(actionForRoom(view,send.mock.calls[0][0])).toEqual(step.command.action);expect(JSON.parse(kernel.applyRoom(step.state,step.seat,JSON.stringify(step.command),'0'))).toEqual(step.expected);});

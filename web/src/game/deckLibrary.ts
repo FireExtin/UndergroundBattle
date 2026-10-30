@@ -118,6 +118,7 @@ export function validateDeckDraft(draft: DeckDraft, catalog: DeckCatalog): DeckV
       if (!Number.isSafeInteger(society.startingHand) || society.startingHand < 0 || !Array.isArray(society.deckConstraints)) {
         issue('society-metadata', `「${society.name}」的起手或构筑要求尚未确认，暂不能用于开局。`);
       } else for (const constraint of society.deckConstraints) {
+        if(constraint.kind==='notStartingSociety'){issue('society-not-starting','末日钟不能作为初始秘社。');continue;}
         if(constraint.kind==='coldMountainOffColorMaximum'&&society.id==='MSWM03'){
           const off=draft.cards.reduce((n,e)=>{const c=definitions.get(e.cardId);return n+(c&&!['黑','中立'].includes(c.color||'')?e.count:0);},0);
           if(off>12)issue('society-cold-mountain',`冷山帮非黑且非中立牌至多12张，当前${off}张。`);

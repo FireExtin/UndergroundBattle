@@ -2470,6 +2470,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert(crate::mswm01::ID.into(),crate::mswm01::definition());
         m.insert(crate::msjc12::ID.into(),crate::msjc12::definition());
         m.insert(crate::mswm03::ID.into(),crate::mswm03::definition());
+        m.insert(crate::msjz03::ID.into(),with_abilities(vec![]));
         m.insert(crate::bq047::ID.into(),crate::bq047::definition());
         m.insert(crate::wm063::ID.into(),crate::wm063::definition());
         m.insert(crate::mswm02::ID.into(),crate::mswm02::definition());

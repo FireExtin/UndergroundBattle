@@ -1422,5 +1422,6 @@
   "BQ095": {"url": "/cards/BQ095.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ095 圣甲虫药业集团总部.jpg", "sha256": "42f82a8ceb0d3513c0861995026f2891ae64d20699c3c49d44aa5a4120a749cc"},
   "WM063": {"url": "/cards/WM063.jpg", "source": "resource/ymsj-fun.github.io/cards/WM063 黑市.jpg", "sha256": "4f99db76b9f7da15c1a0a7daa242ddb8a94040b9410dbe53048e83675d066228"},
   "MSWM03": {"url": "/cards/MSWM03.jpg", "source": "resource/ymsj-fun.github.io/cards/MSWM03 冷山帮.jpg", "sha256": "3d8ea586e95a97418dca1c40537ed25774ef7b80d746e4c6b87befda9638de6f"},
-  "BQ047": {"url": "/cards/BQ047.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ047 灭世魔.jpg", "sha256": "14880ec17c29501d6b10eca7edded6b3c287ca1713acc5eda5482472aff65a29"}
+  "BQ047": {"url": "/cards/BQ047.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ047 灭世魔.jpg", "sha256": "14880ec17c29501d6b10eca7edded6b3c287ca1713acc5eda5482472aff65a29"},
+  "MSJZ03": {"url": "/cards/MSJZ03.jpg", "source": "resource/ymsj-fun.github.io/cards/MSJZ03 末日钟.jpg", "sha256": "56051dc91558ed994570aee388aefa0d2f34e8b4b8e813ddc96ee923aaf3a5f2"}
 }
