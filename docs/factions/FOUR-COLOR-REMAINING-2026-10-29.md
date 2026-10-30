@@ -60,3 +60,7 @@ The former single/all-enemies ambiguity is now a documented project choice: the 
 ## BQ044 closure superseding the WIP status above
 
 BQ044 ordinary trigger and core sacrifice→draw→repress continuation, private 50+1 natural entry, artwork/client mapping and applicable Native/WASM/UI/Worker recovery checks are closed. See `BQ044-CORE-CLOSURE-2026-10-29.md`. Count one complete closed implementation, zero independent approvals; public admission remains false. Earlier WIP and failed evidence remain historical records, not current missing work.
+
+## WM026 closure 2026-10-30
+
+WM026 is now a complete closed blue-card mechanism, including actual natural sacrifice→mist→preparation return. ZHWM026 is its reverse and does not increment the formal-card count. See `WM026-CLOSED-MECHANISM-2026-10-30.md`: Native68 distinct, UI165, WASM/Worker898 commands; independent review0, admission closed. Earlier WM026 engineering-pending entries are historical, not current blockers. BQ049 remains blocked on the paused neutral task-region scope. No other inventory entry is changed.
