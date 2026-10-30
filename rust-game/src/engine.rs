@@ -671,6 +671,7 @@ impl Game {
         self.validate_mswm02_state()?;
         self.validate_wm063_state()?;
         self.validate_mswm03_state()?;
+        self.validate_bq047_state()?;
         self.validate_bq045_state()?;
         self.validate_jz53_state()?;
         self.validate_jc097_state()?;
@@ -739,6 +740,7 @@ impl Game {
         next.validate_mswm02_state()?;
         next.validate_wm063_state()?;
         next.validate_mswm03_state()?;
+        next.validate_bq047_state()?;
         next.validate_bq045_state()?;
         next.validate_jz53_state()?;
         next.validate_jc097_state()?;

@@ -12,7 +12,7 @@ const registry=JSON.parse(read('rust-game/data/cards.json'));
 const primary=JSON.parse(read('docs/factions/card-specifications.json'));
 const batch=JSON.parse(read('docs/factions/import20-rulings-2026-10-24.json')).batch20;
 const newlyAdmitted=['BQ034','CQ25','XG25'];
-const closedCandidates=["WM063","BQ095","WM026","ZHWM026","BQ044","WM031","WM036","WM027","XQ13","JC053","JC028","JC097","JZ53","CQ27","BQ088","TK001","XG19","TK003","CQ11","TK008","BQ062","BQ060","BQ067","BQ065","BQ049", "BQ061", "BQ045", "BQ052", "XQ35", "BQ084", "CQ10", "CQ09", "BQ086", "BQ046", "BQ055", "BQ048", "BQ056", "BQ050", "BQ051", "TEST034", "BQ063"];
+const closedCandidates=["BQ047","WM063","BQ095","WM026","ZHWM026","BQ044","WM031","WM036","WM027","XQ13","JC053","JC028","JC097","JZ53","CQ27","BQ088","TK001","XG19","TK003","CQ11","TK008","BQ062","BQ060","BQ067","BQ065","BQ049", "BQ061", "BQ045", "BQ052", "XQ35", "BQ084", "CQ10", "CQ09", "BQ086", "BQ046", "BQ055", "BQ048", "BQ056", "BQ050", "BQ051", "TEST034", "BQ063"];
 const scans=JSON.parse(read('web/public/card-scans.json'));
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const canonical=value=>Array.isArray(value)?value.map(canonical):value&&typeof value==='object'
@@ -58,7 +58,7 @@ it('keeps the current kernel and reviewed admission set while delivering artwork
   expect(registry.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
   expect(currentCatalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
   expect(currentCatalog.cards.map(card=>[card.id,card.supported])).toEqual(registry.cards.map(card=>[card.id,card.supported!==false]));
-  expect(registry.cards).toHaveLength(320);
+  expect(registry.cards).toHaveLength(321);
   for(const id of ['BQ033','BQ009','BQ001',...closedCandidates])expect(registry.cards.find(card=>card.id===id).supported,id).toBe(false);
   for(const id of ['BQ034','CQ25','XG25'])expect(registry.cards.find(card=>card.id===id).supported,id).toBe(true);
   expect(registry.cards.filter(card=>card.supported!==false)).toHaveLength(236);
@@ -106,3 +106,5 @@ it("BQ044 preserves its exact original and closed core identity",()=>{const id="
 
 it.each(["BQ095","WM026","ZHWM026"])("%s original form art stays exact and closed",id=>{const card=registry.cards.find(c=>c.id===id),source=primary.cards[id].sourceVerification;expect(sha(read(source.imagePath))).toBe(source.imageSha256);expect(sha(read(`web/public/cards/${id}.jpg`))).toBe(source.imageSha256);expect(scans[id]).toEqual({url:`/cards/${id}.jpg`,source:source.imagePath,sha256:source.imageSha256});expect(cardScanUrl(id)).toBe(`/cards/${id}.jpg`);expect(card.supported).toBe(false);render(<DeckCardFace card={card} large/>);expect(screen.getByRole("img",{name:card.name+"原始牌面"})).toHaveAttribute("src",`/cards/${id}.jpg`);});
 it('WM063 preserves original pixels, black loyalty, no magic domain and closed admission',()=>{const id='WM063',source=primary.cards[id].sourceVerification,card=registry.cards.find(c=>c.id===id);expect(sha(read(source.imagePath))).toBe('4f99db76b9f7da15c1a0a7daa242ddb8a94040b9410dbe53048e83675d066228');expect(sha(read(`web/public/cards/${id}.jpg`))).toBe(source.imageSha256);expect(scans[id]).toEqual({url:`/cards/${id}.jpg`,source:source.imagePath,sha256:source.imageSha256});expect(cardScanUrl(id)).toBe('/cards/WM063.jpg');expect(card).toMatchObject({cost:2,color:'黑',magic:'',loyalty:['黑色'],supported:false,subtypes:['设施','罪犯']});render(<DeckCardFace card={card} large/>);expect(screen.getByRole('img',{name:'黑市原始牌面'})).toHaveAttribute('src','/cards/WM063.jpg');});
+
+it("BQ047 retains original art and closed printed fields",()=>{const id="BQ047",source=primary.cards[id].sourceVerification,card=registry.cards.find(c=>c.id===id);expect(sha(read(source.imagePath))).toBe("14880ec17c29501d6b10eca7edded6b3c287ca1713acc5eda5482472aff65a29");expect(sha(read(`web/public/cards/${id}.jpg`))).toBe(source.imageSha256);expect(scans[id]).toEqual({url:`/cards/${id}.jpg`,source:source.imagePath,sha256:source.imageSha256});expect(cardScanUrl(id)).toBe("/cards/BQ047.jpg");expect(card).toMatchObject({cost:4,defense:2,color:"红",supported:false,loyalty:["红色"],subtypes:["恶魔","异界","灾难"]});});

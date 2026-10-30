@@ -762,6 +762,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    BQ047Assets {chosen:Vec<Vec<String>>},
     WM031Victims(crate::wm031::Victims),
     MSJZ04Pay,
     JC053Draw,
@@ -1182,6 +1183,7 @@ impl Game {
         self.validate_mswm02_state()?;
         self.validate_wm063_state()?;
         self.validate_mswm03_state()?;
+        self.validate_bq047_state()?;
         self.validate_jz53_state()?;
         self.validate_jc097_state()?;
         self.validate_jc053_state()?;
