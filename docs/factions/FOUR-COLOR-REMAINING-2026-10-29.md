@@ -96,3 +96,5 @@ This supersedes no earlier evidence and is a dependency grouping, not a recounte
 - BQ048, BQ095 and WM026 are already closed and must not be selected again from the older26-entry table. MSBQ02 late-entry choice is closed without implying task-region or49+1 completion.
 
 See WM063-BLACK-MARKET-2026-10-30.md for original text versus the scoped project choice. No paused-color admission or independent review is added.
+
+WM063 closure supersedes its start/WIP status above: the actual private50-card natural attachment/draw chain, all three actions, personal enemy borrowing, typed costs, original target checks, Game/Room restoration, UI and full332-command Worker replay now pass. See WM063-BLACK-MARKET-2026-10-30.md. Closed complete+1, independent approvals0, supported:false. MSWM03's start search and criminal action remain the next actual missing mechanism; no paused neutral/dual scope is enabled.
