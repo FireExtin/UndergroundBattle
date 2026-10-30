@@ -868,7 +868,7 @@ impl Game {
                 let (c, play_source) = self.character_play_source(seat, id, a.kind == "conceal")?;
                 if c.definition=="XQ35" && a.kind=="deploy" {return Err("白骨仆人不能正面打出".into());}
                 if c.definition=="XQ19"&&a.kind=="deploy"{return Err("熵力化身不能正面打出".into())}
-                if a.kind=="deploy" {self.msbq02_allow_play(seat,&c)?;if self.msbq02_chaos(&c){return Err("本候选尚未开放三失控时的核心派遣：响应降失控后的进场选区待裁定；这不是原规则禁止".into());}}
+                if a.kind=="deploy" {self.msbq02_allow_play(seat,&c)?;}
                 let chaos_play = a.kind == "deploy" && (rules::definition(&c.definition).traits.chaos||self.msbq02_chaos(&c)||self.wm031_chaos(&c));
                 let r = if chaos_play {
                     if a.region.is_some() { return Err("混乱进场不能指定地区".into()); }
@@ -1344,6 +1344,7 @@ impl Game {
         self.players[seat].eliminated = true;
         self.cancel_pregrave_owner(seat);
         self.core_zones.retain(|z|z.owner!=seat);
+        if self.pending.as_ref().is_some_and(|p|p.seat==seat&&matches!(&p.resolution,ChoiceResolution::CoreEntryRegion{..})){self.pending=None;}
         self.bq067_grants.retain(|g|g.recipient.owner!=seat);
         self.bq049_grants.retain(|g|g.recipient.owner!=seat);
         if self.pending.as_ref().is_some_and(|p|matches!(&p.resolution,ChoiceResolution::CoreReturn{departure}if departure.card.owner==seat)){self.pending=None;}
@@ -1458,7 +1459,10 @@ impl Game {
         }
         Ok(())
     }
-    pub(crate) fn resolve_stack(&mut self, mut item: StackItem) -> RuleResult<()> {
+    pub(crate) fn resolve_stack(&mut self, item: StackItem) -> RuleResult<()> {
+        self.resolve_stack_with_core_region(item,None)
+    }
+    pub(crate) fn resolve_stack_with_core_region(&mut self, mut item: StackItem, core_region:Option<usize>) -> RuleResult<()> {
         self.validate_tentacle_play(&item)?;
         self.validate_core_play(&item)?;
         self.validate_bq048_play(&item)?;
@@ -1480,6 +1484,9 @@ impl Game {
         self.validate_cq10_play(&item)?;
         if item.card.as_ref().is_some_and(|c| c.definition == crate::xq35::ID) {
             return Err("白骨仆人不能正面打出或付费现身".into());
+        }
+        if core_region.is_none() && self.core_entry_needs_region(&item) {
+            return self.begin_core_entry_region(item);
         }
         self.note(format!("结算：{}", item.label));
         let mut frame = item.frame.take().ok_or("v2堆叠对象缺少已支付的通用frame")?;
@@ -1509,7 +1516,7 @@ impl Game {
         self.validate_black_next20_frame(&frame)?;
         if let Some(c) = item.card.take() {
             let chaos = card(&c.definition).kind == "character" && (rules::definition(&c.definition).traits.chaos||self.msbq02_chaos(&c)||self.wm031_chaos(&c));
-            let destination = if chaos { self.chaos_region() } else { item.deploy_region };
+            let destination = if chaos { self.chaos_region() } else { core_region.or(item.deploy_region) };
             if chaos && destination.is_none() { self.effects.push_front(Effect::Bury { card: c }); return Ok(()); }
             if let Some(region) = destination {
                 if !self.region_live(region)
@@ -2463,6 +2470,7 @@ impl Game {
         receipts
     }
     pub(crate) fn choose(&mut self, seat: usize, a: Action) -> RuleResult<()> {
+        self.validate_core_entry_region()?;
         self.validate_xq19_state()?;
         self.validate_cq28_state()?;
         self.validate_cq15_state()?;
@@ -2562,6 +2570,7 @@ impl Game {
         } else { None };
         self.pending = None;
         match p.resolution {
+            ChoiceResolution::CoreEntryRegion{frame_id,regions}=>self.finish_core_entry_region(&frame_id,&regions,&a,&selected)?,
             ChoiceResolution::CoreReturn{departure}=>self.finish_core_departure(*departure,&a,&selected)?,
             ChoiceResolution::CQ28Draft {draft} => self.cq28_choose(*draft,seat,&a,&selected)?,
             ChoiceResolution::JZ51Payment { draft } => self.jz51_finish_payment(*draft,&selected)?,

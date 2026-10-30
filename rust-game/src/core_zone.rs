@@ -40,6 +40,7 @@ impl Game {
         }
         for item in &self.stack {self.validate_core_play(item)?;}
         self.validate_core_departures()?;
+        self.validate_core_entry_region()?;
         Ok(())
     }
     pub(crate) fn selected_core_source(&self,seat:usize)->RuleResult<SourceSnapshot> {
@@ -132,7 +133,7 @@ impl Game {
   let ids=match f.already_paid.as_slice(){[PaidCost::Assets(ids)]=>ids,[PaidCost::Assets(ids),PaidCost::CoreRestHonor{before,rest}]if *rest>0&&matches!(f.source.play_source,Some(PlaySource::CoreZone{rest:r})if r==*rest)&&rest.checked_mul(2).is_some_and(|n|*before>=n)=>{extra=0;ids},_=>return Err("核心派遣费用回执无效".into())};
   if !is_core(&c.definition)||c.owner>=self.players.len()||c.controller!=f.actor||f.actor>=self.players.len()
    ||!matches!(f.ability_key.as_str(),"deploy"|"reveal")||f.ability_key=="deploy"&&(c.face_down||!f.source.valid_character_play())||f.ability_key=="reveal"&&(!c.face_down||f.source.play_source.is_some())||f.cursor!=0||!matches!(f.guard,GuardState::Unchecked)||!f.steps.is_empty()||!f.targets.is_empty()
-   ||f.source.region.map_or(!(f.ability_key=="deploy"&&self.msbq02_chaos(c)),|r|r>=self.regions.len())||f.chosen_region!=f.source.region||f.source.source_region_instance.as_deref().map_or(f.source.region.is_some(),|id|f.source.region.is_none()||!self.mystic_instance_valid(id))
+   ||f.source.region.map_or(!(f.ability_key=="deploy"&&self.has_shoggoth(f.actor)&&self.msbq02_core(f.actor,c)),|r|r>=self.regions.len())||f.chosen_region!=f.source.region||f.source.source_region_instance.as_deref().map_or(f.source.region.is_some(),|id|f.source.region.is_none()||!self.mystic_instance_valid(id))
    ||f.source.attachment_host_instance.is_some()||f.source.death_echo.is_some()||f.source.observed_death.is_some()||f.source.observed_exposure.is_some()||f.source.observed_mobility_grant.is_some()
    ||!self.mystic_instance_valid(&f.frame_id)||!self.mystic_instance_valid(&c.id)||item.id!=f.frame_id||item.controller!=f.actor||item.reveal!=(f.ability_key=="reveal")||item.target.is_some()||item.deploy_region!=f.source.region
    ||!(f.money_units(0)>=extra as usize&&f.money_units(0)<=extra.saturating_add(crate::catalog::card(&c.definition).cost) as usize&&ids.iter().all(|id|self.mystic_instance_valid(id)&&*id!=c.id)&&ids.iter().collect::<std::collections::BTreeSet<_>>().len()==ids.len())

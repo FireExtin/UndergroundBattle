@@ -27,6 +27,7 @@ mod bq055;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod bq055_tests;
 mod core_zone;
+mod core_entry;
 #[cfg(all(test, not(feature = "society-fixtures")))]
 mod bq046_tests;
 mod jz53;

@@ -982,6 +982,7 @@ pub enum RemovalCause {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ChoiceResolution {
+    CoreEntryRegion {frame_id:String,regions:Vec<(usize,String)>},
     MSJZ04Opening {seat:usize},
     MSBQ01Opening {seat:usize},
     MSJC16Payment { draft: Box<crate::msjc16::PaymentDraft> },
