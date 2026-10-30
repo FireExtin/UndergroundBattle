@@ -1,0 +1,2166 @@
+{
+  "baseline": "9c0b19ed10186a99b4967f01d7b9b9136d3b15ab",
+  "method": "Current source-bound WASM catalog vs all non-TEST red/black/blue/gray source records; implementation records are not new independent approvals or current full-suite results. Preserve historical reviews.",
+  "counts": {
+    "existing_public_catalog_entry": 165,
+    "closed_implementation_record_not_new_batch_approval": 89,
+    "not_registered_task_scope_paused": 3,
+    "partial_task_natural_chain_unclosed": 2,
+    "not_implemented": 4,
+    "supporting_identity_not_formal_card": 6
+  },
+  "rows": [
+    {
+      "id": "BQ026",
+      "name": "吸血蝙蝠群",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ026 吸血蝙蝠群.jpg"
+    },
+    {
+      "id": "BQ027",
+      "name": "血畜",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ027 血畜.jpg"
+    },
+    {
+      "id": "BQ028",
+      "name": "水沟鼠群密探",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ028 水沟鼠群密探.jpg"
+    },
+    {
+      "id": "BQ029",
+      "name": "赤鳞近卫",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "docs/factions/recovered-originals/BQ029 赤鳞近卫.jpg"
+    },
+    {
+      "id": "BQ030",
+      "name": "裁定官",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ030 裁定官.jpg"
+    },
+    {
+      "id": "BQ031",
+      "name": "雾羽千军",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ031 雾羽千军.jpg"
+    },
+    {
+      "id": "BQ032",
+      "name": "宴会司仪",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ032 宴会司仪.jpg"
+    },
+    {
+      "id": "BQ033",
+      "name": "热夜之梦",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ033 热夜之梦.jpg"
+    },
+    {
+      "id": "BQ034",
+      "name": "雾羽弥生",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ034 雾羽弥生.jpg"
+    },
+    {
+      "id": "BQ035",
+      "name": "幽冥骑士",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ035 幽冥骑士.jpg"
+    },
+    {
+      "id": "BQ036",
+      "name": "菲尼克斯",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ036 菲尼克斯.jpg"
+    },
+    {
+      "id": "BQ037",
+      "name": "穿刺公弗拉德三世",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ037 穿刺公弗拉德三世.jpg"
+    },
+    {
+      "id": "BQ038",
+      "name": "掠食时刻",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ038 掠食时刻.jpg"
+    },
+    {
+      "id": "BQ039",
+      "name": "恫吓之瞳",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ039 恫吓之瞳.jpg"
+    },
+    {
+      "id": "BQ040",
+      "name": "鲜血",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ040 鲜血.jpg"
+    },
+    {
+      "id": "BQ041",
+      "name": "欢宴",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ041 欢宴.jpg"
+    },
+    {
+      "id": "BQ042",
+      "name": "矛盾体",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ042 矛盾体.jpg"
+    },
+    {
+      "id": "BQ043",
+      "name": "繁荣者伊森哈德",
+      "color": "红",
+      "status": "not_registered_task_scope_paused",
+      "supported": null,
+      "source": "resource/ymsj-fun.github.io/cards/BQ043 繁荣者伊森哈德.jpg"
+    },
+    {
+      "id": "BQ044",
+      "name": "夷灭者厄贝尼亚",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ044 夷灭者厄贝尼亚.jpg"
+    },
+    {
+      "id": "BQ045",
+      "name": "追踪者赫卡忒",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ045 追踪者赫卡忒.jpg"
+    },
+    {
+      "id": "BQ046",
+      "name": "探巡者莫佳娜",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ046 探巡者莫佳娜.jpg"
+    },
+    {
+      "id": "BQ047",
+      "name": "灭世魔",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ047 灭世魔.jpg"
+    },
+    {
+      "id": "BQ048",
+      "name": "位格压迫",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ048 位格压迫.jpg"
+    },
+    {
+      "id": "BQ049",
+      "name": "吞噬蔓延",
+      "color": "红",
+      "status": "partial_task_natural_chain_unclosed",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ049 吞噬蔓延.jpg"
+    },
+    {
+      "id": "BQ050",
+      "name": "破坏欲",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ050 破坏欲.jpg"
+    },
+    {
+      "id": "BQ051",
+      "name": "大暴走",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ051 大暴走.jpg"
+    },
+    {
+      "id": "BQ052",
+      "name": "伊波·纳契的疯狂辞典",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ052 伊波·纳契的疯狂词典.jpg"
+    },
+    {
+      "id": "BQ053",
+      "name": "老看守",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ053 老看守.jpg"
+    },
+    {
+      "id": "BQ054",
+      "name": "沙地特种兵",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ054 沙地特种兵.jpg"
+    },
+    {
+      "id": "BQ055",
+      "name": "研究员戴维斯",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ055 研究员戴维斯.jpg"
+    },
+    {
+      "id": "BQ056",
+      "name": "便衣警探",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ056 便衣警探.jpg"
+    },
+    {
+      "id": "BQ057",
+      "name": "皮特·冈萨雷斯",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ057 皮特·冈萨雷斯.jpg"
+    },
+    {
+      "id": "BQ058",
+      "name": "控制小组",
+      "color": "灰",
+      "status": "not_registered_task_scope_paused",
+      "supported": null,
+      "source": "resource/ymsj-fun.github.io/cards/BQ058 控制小组.jpg"
+    },
+    {
+      "id": "BQ059",
+      "name": "伊尔级战斗集群",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ059 伊尔级战斗集群.jpg"
+    },
+    {
+      "id": "BQ060",
+      "name": "裂变",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ060 裂变.jpg"
+    },
+    {
+      "id": "BQ061",
+      "name": "钻研故纸堆",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ061 钻研故纸堆.jpg"
+    },
+    {
+      "id": "BQ062",
+      "name": "信息灌注",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ062 信息灌注.jpg"
+    },
+    {
+      "id": "BQ063",
+      "name": "神话威严",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ063 神话威严.jpg"
+    },
+    {
+      "id": "BQ064",
+      "name": "提取样本",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ064 提取样本.jpg"
+    },
+    {
+      "id": "BQ065",
+      "name": "计划：修格斯",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ065 计划：修格斯.jpg"
+    },
+    {
+      "id": "BQ066",
+      "name": "接头线人",
+      "color": "灰",
+      "status": "not_registered_task_scope_paused",
+      "supported": null,
+      "source": "resource/ymsj-fun.github.io/cards/BQ066 接头线人.jpg"
+    },
+    {
+      "id": "BQ067",
+      "name": "拟态",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ067 拟态.jpg"
+    },
+    {
+      "id": "BQ077",
+      "name": "近海食人鱼",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ077 近海食人鱼.jpg"
+    },
+    {
+      "id": "BQ078",
+      "name": "专业清理员",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ078 专业清理员.jpg"
+    },
+    {
+      "id": "BQ079",
+      "name": "亡嚎食尸鬼",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ079 亡嚎食尸鬼.jpg"
+    },
+    {
+      "id": "BQ080",
+      "name": "回收专员",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ080 回收专员.jpg"
+    },
+    {
+      "id": "BQ081",
+      "name": "凋零食腐怪",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ081 凋零食腐怪.jpg"
+    },
+    {
+      "id": "BQ082",
+      "name": "毒药专家塞巴斯蒂安",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ082 毒药专家塞巴斯蒂安.jpg"
+    },
+    {
+      "id": "BQ083",
+      "name": "索命骷髅",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ083 索命骷髅.jpg"
+    },
+    {
+      "id": "BQ084",
+      "name": "战栗凶灵",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ084 战栗凶灵.jpg"
+    },
+    {
+      "id": "BQ085",
+      "name": "三号骸堆",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ085 三号骸堆.jpg"
+    },
+    {
+      "id": "BQ086",
+      "name": "雅加达的萨迪金",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ086 雅加达的萨迪金.jpg"
+    },
+    {
+      "id": "BQ087",
+      "name": "赫雀瑟，黄金之蛇",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ087 赫雀瑟，黄金之蛇.jpg"
+    },
+    {
+      "id": "BQ088",
+      "name": "生化泄露",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ088 生化泄露.jpg"
+    },
+    {
+      "id": "BQ089",
+      "name": "生化改造手术",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ089 生化改造手术.jpg"
+    },
+    {
+      "id": "BQ090",
+      "name": "淘汰弱者",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ090 淘汰弱者.jpg"
+    },
+    {
+      "id": "BQ091",
+      "name": "废弃收容所",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ091 废弃收容所.jpg"
+    },
+    {
+      "id": "BQ092",
+      "name": "巴哈马群岛基金中心",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ092 巴哈马群岛基金中心.jpg"
+    },
+    {
+      "id": "BQ093",
+      "name": "样本陈列室",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ093 样本陈列室.jpg"
+    },
+    {
+      "id": "BQ094",
+      "name": "费格马变量实验室",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/BQ094 费格马变量实验室.jpg"
+    },
+    {
+      "id": "BQ095",
+      "name": "圣甲虫药业集团总部",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/BQ095 圣甲虫药业集团总部.jpg"
+    },
+    {
+      "id": "CQ07",
+      "name": "菲碧·π",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/CQ07 菲碧·π.jpg"
+    },
+    {
+      "id": "CQ08",
+      "name": "诡异三姐妹",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/CQ08 诡异三姐妹.jpg"
+    },
+    {
+      "id": "CQ09",
+      "name": "依莲娜·弗朗索瓦",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/CQ09 依莲娜·弗朗索瓦.jpg"
+    },
+    {
+      "id": "CQ10",
+      "name": "朱苏德拉·纳匹什提姆",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/CQ10 朱苏德拉·纳匹什提姆.jpg"
+    },
+    {
+      "id": "CQ11",
+      "name": "暴乱煽动者",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/CQ11 暴乱煽动者.jpg"
+    },
+    {
+      "id": "CQ12",
+      "name": "深渊惧影盖罗涅",
+      "color": "红",
+      "status": "not_implemented",
+      "supported": null,
+      "source": "resource/ymsj-fun.github.io/cards/CQ12 深渊惧影盖罗涅.jpg"
+    },
+    {
+      "id": "CQ13",
+      "name": "命定的薇儿丹迪",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/CQ13 命定的薇儿丹迪.jpg"
+    },
+    {
+      "id": "CQ14",
+      "name": "盖罗涅的召令",
+      "color": "红",
+      "status": "not_implemented",
+      "supported": null,
+      "source": "resource/ymsj-fun.github.io/cards/CQ14 盖罗涅的召令.jpg"
+    },
+    {
+      "id": "CQ15",
+      "name": "元屠、阿鼻双剑",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/CQ15 元屠、阿鼻双剑.jpg"
+    },
+    {
+      "id": "CQ16",
+      "name": "前线士官",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/CQ16 前线士官.jpg"
+    },
+    {
+      "id": "CQ17",
+      "name": "绍朗中尉",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/CQ17 绍朗中尉.jpg"
+    },
+    {
+      "id": "CQ18",
+      "name": "任秋雨",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/CQ18 任秋雨.jpg"
+    },
+    {
+      "id": "CQ19",
+      "name": "达摩克里斯之剑",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/CQ19 达摩克里斯之剑.jpg"
+    },
+    {
+      "id": "CQ24",
+      "name": "卡门",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/CQ24 卡门.jpg"
+    },
+    {
+      "id": "CQ25",
+      "name": "伥虎",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/CQ25 伥虎.jpg"
+    },
+    {
+      "id": "CQ26",
+      "name": "暮天使莉芮尔",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/CQ26 暮天使莉芮尔.jpg"
+    },
+    {
+      "id": "CQ27",
+      "name": "骨根灵主",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/CQ27 骨根灵主.jpg"
+    },
+    {
+      "id": "CQ28",
+      "name": "咒欲之门",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/CQ28 咒欲之门.jpg"
+    },
+    {
+      "id": "JC028",
+      "name": "鲜血奴仆",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/JC028 鲜血奴仆.jpg"
+    },
+    {
+      "id": "JC029",
+      "name": "新生血族",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC029 新生血族.jpg"
+    },
+    {
+      "id": "JC030",
+      "name": "巨型蝙蝠",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC030 巨型蝙蝠.jpg"
+    },
+    {
+      "id": "JC031",
+      "name": "唤灵师",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC031 唤灵师.jpg"
+    },
+    {
+      "id": "JC032",
+      "name": "血族长老",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC032 血族长老.jpg"
+    },
+    {
+      "id": "JC033",
+      "name": "家族传承",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC033 家族传承.jpg"
+    },
+    {
+      "id": "JC034",
+      "name": "心兽之道",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC034 心兽之道.jpg"
+    },
+    {
+      "id": "JC035",
+      "name": "传媒魔咒",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC035 传媒魔咒.jpg"
+    },
+    {
+      "id": "JC036",
+      "name": "初拥",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC036 初拥.jpg"
+    },
+    {
+      "id": "JC037",
+      "name": "克里斯蒂娜·爱弗罗德",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC037 克里斯蒂娜·爱弗罗德.jpg"
+    },
+    {
+      "id": "JC038",
+      "name": "列恩·爱弗罗德",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC038 列恩·爱弗罗德.jpg"
+    },
+    {
+      "id": "JC039",
+      "name": "王座会徽记",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC039 王座会徽记.jpg"
+    },
+    {
+      "id": "JC040",
+      "name": "安普莎，冥府的侍女",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC040 安普莎，冥府的侍女.jpg"
+    },
+    {
+      "id": "JC041",
+      "name": "禁婆",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC041 禁婆.jpg"
+    },
+    {
+      "id": "JC042",
+      "name": "末日信徒",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC042 末日信徒.jpg"
+    },
+    {
+      "id": "JC043",
+      "name": "纵火狂",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC043 纵火狂.jpg"
+    },
+    {
+      "id": "JC044",
+      "name": "灾难使者",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC044 灾难使者.jpg"
+    },
+    {
+      "id": "JC045",
+      "name": "钟摆祭司",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC045 钟摆祭司.jpg"
+    },
+    {
+      "id": "JC046",
+      "name": "无面屠戮者",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC046 无面屠戮者.jpg"
+    },
+    {
+      "id": "JC047",
+      "name": "烈火重围",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC047 烈火重围.jpg"
+    },
+    {
+      "id": "JC048",
+      "name": "诅咒沙漏",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC048 诅咒沙漏.jpg"
+    },
+    {
+      "id": "JC049",
+      "name": "深渊细语",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC049 深渊细语.jpg"
+    },
+    {
+      "id": "JC050",
+      "name": "丧钟回响",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC050 丧钟回响.jpg"
+    },
+    {
+      "id": "JC051",
+      "name": "诺恩纳格斯塔",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC051 诺恩纳格斯塔.jpg"
+    },
+    {
+      "id": "JC052",
+      "name": "终焉的诗寇蒂",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC052 终焉的诗寇蒂.jpg"
+    },
+    {
+      "id": "JC053",
+      "name": "鸣钟教派徽记",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/JC053 鸣钟教派徽记.jpg"
+    },
+    {
+      "id": "JC054",
+      "name": "蒙古死亡蠕虫",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC054 蒙古死亡蠕虫.jpg"
+    },
+    {
+      "id": "JC055",
+      "name": "安妮斯朵拉",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC055 安妮斯朵拉.jpg"
+    },
+    {
+      "id": "JC056",
+      "name": "地区警员",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC056 地区警员.jpg"
+    },
+    {
+      "id": "JC057",
+      "name": "监控员",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC057 监控员.jpg"
+    },
+    {
+      "id": "JC058",
+      "name": "坚毅的刑警",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC058 坚毅的刑警.jpg"
+    },
+    {
+      "id": "JC059",
+      "name": "安全保卫部门",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC059 安全保卫部门.jpg"
+    },
+    {
+      "id": "JC060",
+      "name": "神秘学顾问",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC060 神秘学顾问.jpg"
+    },
+    {
+      "id": "JC061",
+      "name": "危机处理特派小组",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC061 危机处理特派小组.jpg"
+    },
+    {
+      "id": "JC062",
+      "name": "调查档案",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC062 调查档案.jpg"
+    },
+    {
+      "id": "JC063",
+      "name": "警车追捕",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC063 警车追捕.jpg"
+    },
+    {
+      "id": "JC064",
+      "name": "戒严",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC064 戒严.jpg"
+    },
+    {
+      "id": "JC065",
+      "name": "审问嫌疑人",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC065 审问嫌疑人.jpg"
+    },
+    {
+      "id": "JC066",
+      "name": "封魔瓶瑟琳娜",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC066 封魔瓶瑟琳娜.jpg"
+    },
+    {
+      "id": "JC067",
+      "name": "约翰·F·纳特里",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC067 约翰·F·纳特里.jpg"
+    },
+    {
+      "id": "JC068",
+      "name": "阿格斯IV",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC068 阿格斯IV.jpg"
+    },
+    {
+      "id": "JC069",
+      "name": "警犬",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC069 警犬.jpg"
+    },
+    {
+      "id": "JC084",
+      "name": "街头混混",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC084 街头混混.jpg"
+    },
+    {
+      "id": "JC085",
+      "name": "复生行尸",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC085 复生行尸.jpg"
+    },
+    {
+      "id": "JC086",
+      "name": "窃尸人",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC086 窃尸人.jpg"
+    },
+    {
+      "id": "JC087",
+      "name": "格鲁尼的走私客",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC087 格鲁尼的走私客.jpg"
+    },
+    {
+      "id": "JC088",
+      "name": "职业杀手",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC088 职业杀手.jpg"
+    },
+    {
+      "id": "JC089",
+      "name": "毒血诅咒",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC089 毒血诅咒.jpg"
+    },
+    {
+      "id": "JC090",
+      "name": "灵魂契约",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC090 灵魂契约.jpg"
+    },
+    {
+      "id": "JC091",
+      "name": "谋杀",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC091 谋杀.jpg"
+    },
+    {
+      "id": "JC092",
+      "name": "死灵召唤",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC092 死灵召唤.jpg"
+    },
+    {
+      "id": "JC093",
+      "name": "怨灵咒刃",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC093 怨灵咒刃.jpg"
+    },
+    {
+      "id": "JC094",
+      "name": "威达的汀巴巴迪",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC094 威达的汀巴巴迪.jpg"
+    },
+    {
+      "id": "JC095",
+      "name": "唐·格鲁尼",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC095 唐·格鲁尼.jpg"
+    },
+    {
+      "id": "JC096",
+      "name": "阿格里帕之犬",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JC096 阿格里帕之犬.jpg"
+    },
+    {
+      "id": "JC097",
+      "name": "阿斯旺",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/JC097 阿斯旺.jpg"
+    },
+    {
+      "id": "JZ22",
+      "name": "暗夜游掠者",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ22 暗夜游掠者.jpg"
+    },
+    {
+      "id": "JZ23",
+      "name": "血宴召集人",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ23 血宴召集人.jpg"
+    },
+    {
+      "id": "JZ24",
+      "name": "卡迪纳追迹人",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ24 卡迪纳追迹人.jpg"
+    },
+    {
+      "id": "JZ25",
+      "name": "卡迪纳猎杀者",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ25 卡迪纳猎杀者.jpg"
+    },
+    {
+      "id": "JZ26",
+      "name": "袖中毒物",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ26 袖中毒物.jpg"
+    },
+    {
+      "id": "JZ27",
+      "name": "哈达莎·爱弗罗德",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ27 哈达莎·爱弗罗德.jpg"
+    },
+    {
+      "id": "JZ28",
+      "name": "霍瓦特·爱弗罗德",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ28 霍瓦特·爱弗罗德.jpg"
+    },
+    {
+      "id": "JZ29",
+      "name": "锐齿颈环",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ29 锐齿颈环.jpg"
+    },
+    {
+      "id": "JZ30",
+      "name": "末世论者",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ30 末世论者.jpg"
+    },
+    {
+      "id": "JZ31",
+      "name": "破茧者秘教线人",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ31 破茧者秘教线人.jpg"
+    },
+    {
+      "id": "JZ32",
+      "name": "癫狂的先知",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ32 癫狂的先知.jpg"
+    },
+    {
+      "id": "JZ33",
+      "name": "蚀日星魔",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ33 蚀日星魔.jpg"
+    },
+    {
+      "id": "JZ34",
+      "name": "主祭伊兹帕帕洛特",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ34 主祭伊兹帕帕洛特.jpg"
+    },
+    {
+      "id": "JZ35",
+      "name": "思维湮灭",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ35 思维湮灭.jpg"
+    },
+    {
+      "id": "JZ36",
+      "name": "血祭",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/JZ36 血祭.jpg"
+    },
+    {
+      "id": "JZ37",
+      "name": "终焉",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ37 终焉.jpg"
+    },
+    {
+      "id": "JZ38",
+      "name": "仪式雕像",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/JZ38 仪式雕像.jpg"
+    },
+    {
+      "id": "JZ39",
+      "name": "恶魔刺青",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/JZ39 恶魔刺青.jpg"
+    },
+    {
+      "id": "JZ40",
+      "name": "蚀刻头骨",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/JZ40 蚀刻头骨.jpg"
+    },
+    {
+      "id": "JZ41",
+      "name": "衰败之环",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ41 衰败之环.jpg"
+    },
+    {
+      "id": "JZ42",
+      "name": "末日钟降临",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/JZ42 末日钟降临.jpg"
+    },
+    {
+      "id": "JZ43",
+      "name": "武装市民",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ43 武装市民.jpg"
+    },
+    {
+      "id": "JZ44",
+      "name": "洛杉矶巡警",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ44 洛杉矶巡警.jpg"
+    },
+    {
+      "id": "JZ45",
+      "name": "警用直升机",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ45 警用直升机.jpg"
+    },
+    {
+      "id": "JZ46",
+      "name": "狴犴铜雕",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ46 狴犴铜雕.jpg"
+    },
+    {
+      "id": "JZ48",
+      "name": "街头劫匪",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ48 街头劫匪.jpg"
+    },
+    {
+      "id": "JZ49",
+      "name": "蹒跚行尸",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ49 蹒跚行尸.jpg"
+    },
+    {
+      "id": "JZ50",
+      "name": "墓穴食尸鬼",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ50 墓穴食尸鬼.jpg"
+    },
+    {
+      "id": "JZ51",
+      "name": "温迪戈",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/JZ51 温迪戈.jpg"
+    },
+    {
+      "id": "JZ52",
+      "name": "大维齐尔迈哈穆德",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ52 大维齐尔迈哈穆德.jpg"
+    },
+    {
+      "id": "JZ53",
+      "name": "尸舞舒拉密兹",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/JZ53 尸舞舒拉密兹.jpg"
+    },
+    {
+      "id": "JZ54",
+      "name": "阿塔玛斯奉献仪式",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ54 阿塔玛斯奉献仪式.jpg"
+    },
+    {
+      "id": "JZ55",
+      "name": "传奇落幕",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ55 传奇落幕.jpg"
+    },
+    {
+      "id": "JZ56",
+      "name": "亡者之夜",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/JZ56 亡者之夜.jpg"
+    },
+    {
+      "id": "JZ57",
+      "name": "骷髅纹身",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/JZ57 骷髅纹身.jpg"
+    },
+    {
+      "id": "LC04",
+      "name": "卡德兰大王",
+      "color": "红",
+      "status": "not_implemented",
+      "supported": null,
+      "source": "resource/ymsj-fun.github.io/cards/LC04 卡德兰大王.jpg"
+    },
+    {
+      "id": "LC16",
+      "name": "江月",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/LC16 江月.jpg"
+    },
+    {
+      "id": "MSBQ01",
+      "name": "龙之欢宴",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/MSBQ01 龙之欢宴.jpg"
+    },
+    {
+      "id": "MSBQ02",
+      "name": "修格斯",
+      "color": "灰",
+      "status": "partial_task_natural_chain_unclosed",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/MSBQ02 修格斯.jpg"
+    },
+    {
+      "id": "MSBQ03",
+      "name": "圣甲虫药业",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/MSBQ03 圣甲虫药业.jpg"
+    },
+    {
+      "id": "MSCQ02",
+      "name": "诺尔维隐修会",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/MSCQ02 诺尔维隐修会.jpg"
+    },
+    {
+      "id": "MSJC03",
+      "name": "王座会",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/MSJC03 王座会.jpg"
+    },
+    {
+      "id": "MSJC04",
+      "name": "鸣钟教派",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/MSJC04 鸣钟教派.jpg"
+    },
+    {
+      "id": "MSJC05",
+      "name": "国家机构",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/MSJC05 国家机构.jpg"
+    },
+    {
+      "id": "MSJC07",
+      "name": "方碑序列",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/MSJC07 方碑序列.jpg"
+    },
+    {
+      "id": "MSJC12",
+      "name": "爱弗罗德家族",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/MSJC12 爱弗罗德家族.jpg"
+    },
+    {
+      "id": "MSJC13",
+      "name": "计时者",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/MSJC13 计时者.jpg"
+    },
+    {
+      "id": "MSJC14",
+      "name": "哨兵",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/MSJC14 哨兵.jpg"
+    },
+    {
+      "id": "MSJC16",
+      "name": "颂亡者",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/MSJC16 颂亡者.jpg"
+    },
+    {
+      "id": "MSJZ03",
+      "name": "末日钟",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/MSJZ03 末日钟.jpg"
+    },
+    {
+      "id": "MSJZ04",
+      "name": "破茧者教团",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/MSJZ04 破茧者教团.jpg"
+    },
+    {
+      "id": "MSLC03",
+      "name": "洛杉矶警察局",
+      "color": "灰",
+      "status": "not_implemented",
+      "supported": null,
+      "source": "resource/ymsj-fun.github.io/cards/MSLC03 洛杉矶警察局.jpg"
+    },
+    {
+      "id": "MSWM01",
+      "name": "曼纽家族",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/MSWM01 曼纽家族.jpg"
+    },
+    {
+      "id": "MSWM02",
+      "name": "公众安全委员会",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/MSWM02 公众安全委员会.jpg"
+    },
+    {
+      "id": "MSWM03",
+      "name": "冷山帮",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/MSWM03 冷山帮.jpg"
+    },
+    {
+      "id": "TK001",
+      "name": "行尸",
+      "color": "黑",
+      "status": "supporting_identity_not_formal_card",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/TK001 行尸.jpg"
+    },
+    {
+      "id": "TK003",
+      "name": "警察",
+      "color": "灰",
+      "status": "supporting_identity_not_formal_card",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/TK003 警察.jpg"
+    },
+    {
+      "id": "TK008",
+      "name": "邪教徒",
+      "color": "红",
+      "status": "supporting_identity_not_formal_card",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/TK008 邪教徒.jpg"
+    },
+    {
+      "id": "TK009",
+      "name": "钟摆祭司",
+      "color": "红",
+      "status": "supporting_identity_not_formal_card",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/TK009 钟摆祭司.jpg"
+    },
+    {
+      "id": "TK010",
+      "name": "触手",
+      "color": "红",
+      "status": "supporting_identity_not_formal_card",
+      "supported": false,
+      "source": "docs/factions/recovered-originals/TK010 触手.png"
+    },
+    {
+      "id": "WM021",
+      "name": "秘闻记录官",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM021 秘闻记录官.jpg"
+    },
+    {
+      "id": "WM022",
+      "name": "阴影之子",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM022 阴影之子.jpg"
+    },
+    {
+      "id": "WM023",
+      "name": "尽职的珍珠",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM023 尽职的珍珠.jpg"
+    },
+    {
+      "id": "WM024",
+      "name": "阿剌穆特杀手",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM024 阿剌穆特杀手.jpg"
+    },
+    {
+      "id": "WM025",
+      "name": "安哥拉·曼纽",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM025 安哥拉·曼纽.jpg"
+    },
+    {
+      "id": "WM026",
+      "name": "古妮薇尔",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM026 古妮薇尔.jpg"
+    },
+    {
+      "id": "WM027",
+      "name": "阴影之道",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM027 阴影之道.jpg"
+    },
+    {
+      "id": "WM028",
+      "name": "曼纽的阴影厅堂",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM028 曼纽的阴影厅堂.jpg"
+    },
+    {
+      "id": "WM029",
+      "name": "被胁迫的政要",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM029 被胁迫的政要.jpg"
+    },
+    {
+      "id": "WM030",
+      "name": "狂热信众",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM030 狂热信众.jpg"
+    },
+    {
+      "id": "WM031",
+      "name": "凌虐恶魔",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM031 凌虐恶魔.jpg"
+    },
+    {
+      "id": "WM032",
+      "name": "扭曲的布道者",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM032 扭曲的布道者.jpg"
+    },
+    {
+      "id": "WM033",
+      "name": "钟楼怪客",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM033 钟楼怪客.jpg"
+    },
+    {
+      "id": "WM034",
+      "name": "消逝的乌尔德",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM034 消逝的乌尔德.jpg"
+    },
+    {
+      "id": "WM035",
+      "name": "安东尼·布洛克",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM035 安东尼·布洛克.jpg"
+    },
+    {
+      "id": "WM036",
+      "name": "烬归烬",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM036 烬归烬.jpg"
+    },
+    {
+      "id": "WM037",
+      "name": "戴森的计谋",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM037 戴森的计谋.jpg"
+    },
+    {
+      "id": "WM038",
+      "name": "信徒烙印",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM038 信徒烙印.jpg"
+    },
+    {
+      "id": "WM039",
+      "name": "P.S.C.精神分析师",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM039 P．S．C．精神分析师.jpg"
+    },
+    {
+      "id": "WM040",
+      "name": "心理审察委员",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM040 心理审察委员.jpg"
+    },
+    {
+      "id": "WM041",
+      "name": "阿尔法先生",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM041 阿尔法先生.jpg"
+    },
+    {
+      "id": "WM042",
+      "name": "新闻管控",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM042 新闻管控.jpg"
+    },
+    {
+      "id": "WM043",
+      "name": "精准打击",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM043 精准打击.jpg"
+    },
+    {
+      "id": "WM044",
+      "name": "情报分析中心",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM044 情报分析中心.jpg"
+    },
+    {
+      "id": "WM045",
+      "name": "计划：新秩序",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM045 计划：新秩序.jpg"
+    },
+    {
+      "id": "WM046",
+      "name": "计划：天眼",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM046 计划：天眼.jpg"
+    },
+    {
+      "id": "WM047",
+      "name": "计划：贝奥武夫",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM047 计划：贝奥武夫.jpg"
+    },
+    {
+      "id": "WM056",
+      "name": "赃物贩子",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM056 赃物贩子.jpg"
+    },
+    {
+      "id": "WM057",
+      "name": "信息掮客",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM057 信息掮客.jpg"
+    },
+    {
+      "id": "WM058",
+      "name": "“弹簧刀”钱斯",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM058 “弹簧刀”钱斯.jpg"
+    },
+    {
+      "id": "WM059",
+      "name": "雨夜屠夫",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM059 雨夜屠夫.jpg"
+    },
+    {
+      "id": "WM060",
+      "name": "多情达莉娅",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM060 多情达莉娅.jpg"
+    },
+    {
+      "id": "WM061",
+      "name": "土归土",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM061 土归土.jpg"
+    },
+    {
+      "id": "WM062",
+      "name": "跑路",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM062 跑路.jpg"
+    },
+    {
+      "id": "WM063",
+      "name": "黑市",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/WM063 黑市.jpg"
+    },
+    {
+      "id": "WM064",
+      "name": "巨蟒纹身",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/WM064 巨蟒纹身.jpg"
+    },
+    {
+      "id": "XG10",
+      "name": "领地巡查使",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XG10 领地巡查使.jpg"
+    },
+    {
+      "id": "XG11",
+      "name": "阴魂术士",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/XG11 阴魂术士.jpg"
+    },
+    {
+      "id": "XG12",
+      "name": "兽形变化",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/XG12 兽形变化.jpg"
+    },
+    {
+      "id": "XG13",
+      "name": "玛丽·林德博格",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XG13 玛丽·林德博格.jpg"
+    },
+    {
+      "id": "XG14",
+      "name": "朽灭者",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/XG14 朽灭者.jpg"
+    },
+    {
+      "id": "XG15",
+      "name": "雾涌海怪",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/XG15 雾涌海怪.jpg"
+    },
+    {
+      "id": "XG16",
+      "name": "计时人戴森·帕佐",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/XG16 计时人戴森·帕佐.jpg"
+    },
+    {
+      "id": "XG17",
+      "name": "专家研讨会",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/XG17 专家研讨会.jpg"
+    },
+    {
+      "id": "XG18",
+      "name": "欧米伽小姐",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/XG18 欧米伽小姐.jpg"
+    },
+    {
+      "id": "XG19",
+      "name": "枪火谈判",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/XG19 枪火谈判.jpg"
+    },
+    {
+      "id": "XG20",
+      "name": "禁令",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XG20 禁令.jpg"
+    },
+    {
+      "id": "XG21",
+      "name": "计划：幻影英雄",
+      "color": "灰",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/XG21 计划：幻影英雄.jpg"
+    },
+    {
+      "id": "XG25",
+      "name": "伥鬼",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XG25 伥鬼.jpg"
+    },
+    {
+      "id": "XG26",
+      "name": "看场打手",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XG26 看场打手.jpg"
+    },
+    {
+      "id": "XG27",
+      "name": "悍狼的怨灵",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XG27 悍狼的怨灵.jpg"
+    },
+    {
+      "id": "XG28",
+      "name": "违禁品临时收容所",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XG28 违禁品临时收容所.jpg"
+    },
+    {
+      "id": "XQ12",
+      "name": "暴躁血仆",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XQ12 暴躁血仆.jpg"
+    },
+    {
+      "id": "XQ13",
+      "name": "焚血之道",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/XQ13 焚血之道.jpg"
+    },
+    {
+      "id": "XQ14",
+      "name": "鲜血",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XQ14 鲜血.jpg"
+    },
+    {
+      "id": "XQ15",
+      "name": "爱弗罗德庄园",
+      "color": "蓝",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/XQ15 爱弗罗德庄园.jpg"
+    },
+    {
+      "id": "XQ16",
+      "name": "法务部律师团",
+      "color": "蓝",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XQ16 法务部律师团.jpg"
+    },
+    {
+      "id": "XQ17",
+      "name": "祭品",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XQ17 祭品.jpg"
+    },
+    {
+      "id": "XQ18",
+      "name": "计时人",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XQ18 计时人.jpg"
+    },
+    {
+      "id": "XQ19",
+      "name": "熵力化身",
+      "color": "红",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XQ19 熵力化身.jpg"
+    },
+    {
+      "id": "XQ20",
+      "name": "灵魂通道",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/XQ20 灵魂通道.jpg"
+    },
+    {
+      "id": "XQ21",
+      "name": "臣服于命运",
+      "color": "红",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/XQ21 臣服于命运.jpg"
+    },
+    {
+      "id": "XQ22",
+      "name": "州议员贝伦·希恩斯",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XQ22 州议员贝伦·希恩斯.jpg"
+    },
+    {
+      "id": "XQ23",
+      "name": "谨慎的办事员",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XQ23 谨慎的办事员.jpg"
+    },
+    {
+      "id": "XQ24",
+      "name": "防暴警察",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XQ24 防暴警察.jpg"
+    },
+    {
+      "id": "XQ25",
+      "name": "监控探头",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XQ25 监控探头.jpg"
+    },
+    {
+      "id": "XQ26",
+      "name": "通缉令",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XQ26 通缉令.jpg"
+    },
+    {
+      "id": "XQ27",
+      "name": "定点清除行动",
+      "color": "灰",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XQ27 定点清除行动.jpg"
+    },
+    {
+      "id": "XQ35",
+      "name": "白骨仆人",
+      "color": "黑",
+      "status": "closed_implementation_record_not_new_batch_approval",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/XQ35 白骨仆人.jpg"
+    },
+    {
+      "id": "XQ36",
+      "name": "圣甲虫的清理员",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XQ36 圣甲虫的清理员.jpg"
+    },
+    {
+      "id": "XQ37",
+      "name": "夜总会看门人",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XQ37 夜总会看门人.jpg"
+    },
+    {
+      "id": "XQ38",
+      "name": "金特·易卜拉欣",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XQ38 金特·易卜拉欣.jpg"
+    },
+    {
+      "id": "XQ39",
+      "name": "方碑印记",
+      "color": "黑",
+      "status": "existing_public_catalog_entry",
+      "supported": true,
+      "source": "resource/ymsj-fun.github.io/cards/XQ39 方碑徽记.jpg"
+    },
+    {
+      "id": "ZHWM026",
+      "name": "古妮薇尔",
+      "color": "蓝",
+      "status": "supporting_identity_not_formal_card",
+      "supported": false,
+      "source": "resource/ymsj-fun.github.io/cards/ZHWM026 古妮薇尔.jpg"
+    }
+  ]
+}
