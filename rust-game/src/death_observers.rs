@@ -133,6 +133,7 @@ impl Game {
     fn validate_observer_source(&self, actor: usize, source: &SourceSnapshot) -> RuleResult<()> {
         let c = &source.card;
         let dead = source.observed_death.as_ref().ok_or("死亡旁观缺少死亡快照")?;
+        if c.definition=="TK009"{self.validate_generated_identity(c)?;if source.source_region_instance.as_deref().is_none_or(|id|!self.mystic_instance_valid(id)){return Err("生成祭司原死亡观察地区身份缺失".into())}}
         if rules::death_observer_definition(&c.definition).is_none()
             || actor >= self.players.len() || actor != c.controller || c.owner >= self.players.len()
             || c.id.is_empty() || c.face_down || source.play_source.is_some()
