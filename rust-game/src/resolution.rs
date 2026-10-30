@@ -2410,7 +2410,7 @@ impl Game {
                             let owner = c.owner;
                             match destination {
                                 Destination::OwnerHand => self.players[owner].hand.push(c),
-                                Destination::ActorHand => self.players[frame.actor].hand.push(c),
+                                Destination::ActorHand => { c.controller=frame.actor; self.players[frame.actor].hand.push(c); },
                                 Destination::OwnerDeckBottom => self.players[owner].deck.push(c),
                                 Destination::HiddenInChosenRegion => {
                                     c.face_down = true;
