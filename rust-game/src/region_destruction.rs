@@ -21,8 +21,9 @@ impl Game {
 
     pub(crate) fn player_score(&self, seat: usize) -> u32 {
         let p = &self.players[seat];
-        p.score_cards.iter().map(|c| catalog::card(&c.definition).points.unwrap_or(0))
-            .sum::<u32>().saturating_sub(p.destruction_markers)
+        let zero=self.msjz03_zero_scores.iter().filter(|z|z.seat==seat).collect::<Vec<_>>();
+        p.score_cards.iter().filter(|c|!zero.iter().any(|z|z.card_id==c.id)).map(|c|catalog::card(&c.definition).points.unwrap_or(0))
+            .sum::<u32>().saturating_sub(p.destruction_markers.saturating_sub(zero.iter().filter(|z|z.destroyed).count()as u32))
     }
 
     pub(crate) fn validate_destruction_state(&self) -> RuleResult<()> {

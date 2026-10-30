@@ -45,7 +45,7 @@ impl Game {
         let ghoul_sources = self.bq079_sources();
         for (r, region) in self.regions.iter().enumerate() {
             for c in &region.cards {
-                if !c.face_down && matches!(c.definition.as_str(), "JC045" | "JC031") {
+                if !c.face_down && matches!(c.definition.as_str(), "JC045" | "TK009" | "JC031") {
                     observers.push(self.source_snapshot(c, Some(r)));
                 }
             }
@@ -94,7 +94,7 @@ impl Game {
                 }
                 self.jz34_observe_death(&red_observers, &dead.card);
                 for observer in &observers {
-                    if observer.card.definition != "JC045"
+                    if !matches!(observer.card.definition.as_str(),"JC045"|"TK009")
                         && (dead.card.controller != observer.card.controller
                             || (observer.card.definition == "JC031" && dead.card.id == observer.card.id))
                     { continue; }
@@ -140,16 +140,16 @@ impl Game {
             || dead.card.id.is_empty() || dead.card.face_down
             || dead.card.owner >= self.players.len() || dead.card.controller >= self.players.len()
             || !catalog::catalog().cards.iter().any(|d| d.id == dead.card.definition && d.kind == "character")
-            || (c.definition != "JC045" && dead.card.controller != actor)
+            || (!matches!(c.definition.as_str(),"JC045"|"TK009") && dead.card.controller != actor)
             || (c.definition == "JC031" && c.id == dead.card.id)
-            || (c.id == dead.card.id && (c.definition != "JC045" || !same(c, &dead.card)))
+            || (c.id == dead.card.id && (!matches!(c.definition.as_str(),"JC045"|"TK009") || !same(c, &dead.card)))
         { return Err("死亡旁观来源、死亡资格或冻结行动者无效".into()); }
         if matches!(c.definition.as_str(), "JC090" | "BQ094") {
             if !source.attachment_host_instance.as_ref().is_some_and(|id| !id.is_empty())
                 || source.attachment_host_instance != source.source_region_instance {
                 return Err("灵魂契约原地区实例无效".into());
             }
-        } else if source.attachment_host_instance.is_some() || source.source_region_instance.is_some() {
+        } else if source.attachment_host_instance.is_some() || (source.source_region_instance.is_some() && c.definition!="TK009") {
             return Err("角色死亡旁观含非准入宿主或地区绑定".into());
         }
         Ok(())

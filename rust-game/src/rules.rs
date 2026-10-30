@@ -179,6 +179,7 @@ pub enum TargetPredicate {
     XQ20MarkerCarrier,
     XG16CharacterOrAttachment,
     JZ36CharacterOrAttachment,
+    MSJZ03Carrier,
     JZ40CharacterOrAttachment,
     XG17PersonalPlan,
     Batch4DestroyedRegion,
@@ -339,6 +340,9 @@ pub enum SearchVisibility {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Op {
+    JZ42Convert,
+    MSJZ03Time,
+    MSJZ03Generate,
     BQ047Entry,
     BQ095Entry,
     BQ095Prepare {event_id:Option<String>},
@@ -906,6 +910,8 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     if card_id==crate::msjc16::ID||crate::msjc16::related(ability){return crate::msjc16::validate_ability(card_id,ability);}
     if card_id==crate::msbq03::ID||crate::msbq03::related(ability){return crate::msbq03::validate_ability(card_id,ability);}
     if card_id==crate::mswm03::ID||crate::mswm03::related(ability){return crate::mswm03::validate_ability(card_id,ability);}
+    if card_id==crate::msjz03::ID||crate::msjz03::related(ability){return crate::msjz03::validate_ability(card_id,ability);}
+    if card_id==crate::jz42::ID||crate::jz42::related(ability){return crate::jz42::validate_ability(card_id,ability);}
     if card_id==crate::bq047::ID||crate::bq047::related(ability){return crate::bq047::validate_ability(card_id,ability);}
     if card_id==crate::wm063::ID||crate::wm063::related(ability){return crate::wm063::validate_ability(card_id,ability);}
     if card_id==crate::mswm02::ID||crate::mswm02::related(ability){return crate::mswm02::validate_ability(card_id,ability);}
@@ -1747,6 +1753,8 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::mswm01::validate_definition(card_id,definition)?;
         crate::msjc12::validate_definition(card_id,definition)?;
         crate::mswm03::validate_definition(card_id,definition)?;
+        crate::msjz03::validate_definition(card_id,definition)?;
+        crate::jz42::validate_definition(card_id,definition)?;
         crate::bq047::validate_definition(card_id,definition)?;
         crate::wm063::validate_definition(card_id,definition)?;
         crate::mswm02::validate_definition(card_id,definition)?;
@@ -2248,7 +2256,7 @@ pub(crate) fn death_observer_ops(ops: &[Op]) -> bool {
 }
 pub(crate) fn death_observer_definition(id: &str) -> Option<Definition> {
     let (label, op) = match id {
-        "JC045" => ("角色死亡：在原钟摆祭司上放置一个时间标志", Op::JC045AddOneTimeToOriginalSource),
+        "JC045" | "TK009" => ("角色死亡：在原钟摆祭司上放置一个时间标志", Op::JC045AddOneTimeToOriginalSource),
         "JC031" => ("另一本方角色死亡：令目标玩家弃一张手牌（吸血鬼则随机弃牌，每回合一次）", Op::JC031DiscardForObservedDeath),
         "JC090" | "BQ094" => ("本方角色死亡：在原结附地区放置一个本方势力标志", Op::JC090PlaceOneInfluenceInOriginalAttachedRegion),
         _ => return None,
@@ -2259,7 +2267,7 @@ pub(crate) fn death_observer_definition(id: &str) -> Option<Definition> {
         } else { vec![] }, vec![op], Some(Event::CharacterDeathObserved));
     if id == "JC031" { trigger.per_turn_limit = Some(1); }
     let mut d = with_abilities(vec![trigger]);
-    if id == "JC045" { d.modifiers = vec![StaticModifier::JC045TimeInfluence]; }
+    if matches!(id,"JC045"|"TK009") { d.modifiers = vec![StaticModifier::JC045TimeInfluence]; }
     if matches!(id, "JC090" | "BQ094") {
         let host = target(Zone::Region, EntityKind::Any, Relation::Any, Range::Anywhere);
         let mut attach = ability("attach", "结附目标地区", Timing::Standard,
@@ -2470,7 +2478,8 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert(crate::mswm01::ID.into(),crate::mswm01::definition());
         m.insert(crate::msjc12::ID.into(),crate::msjc12::definition());
         m.insert(crate::mswm03::ID.into(),crate::mswm03::definition());
-        m.insert(crate::msjz03::ID.into(),with_abilities(vec![]));
+        m.insert(crate::msjz03::ID.into(),crate::msjz03::definition());
+        m.insert(crate::jz42::ID.into(),crate::jz42::definition());
         m.insert(crate::bq047::ID.into(),crate::bq047::definition());
         m.insert(crate::wm063::ID.into(),crate::wm063::definition());
         m.insert(crate::mswm02::ID.into(),crate::mswm02::definition());
@@ -2591,7 +2600,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert("JZ22".into(), jz22_definition());
         m.insert("JZ31".into(), jz31_definition());
         m.insert("XQ37".into(), xq37_definition());
-        for id in ["JC045", "JC031", "JC090"] {
+        for id in ["JC045", "TK009", "JC031", "JC090"] {
             m.insert(id.into(), death_observer_definition(id).unwrap());
         }
         m.insert("JZ49".into(), jz49_definition());

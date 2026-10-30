@@ -2,9 +2,9 @@
 use crate::{engine::RuleResult,model::*};
 use serde::{Deserialize,Serialize};
 #[derive(Clone,Copy,Debug,PartialEq,Eq,Serialize,Deserialize)]
-pub enum GeneratedKind { Tentacle, Police, Cultist, Walker }
+pub enum GeneratedKind { Tentacle, Police, Cultist, Walker, PendulumPriest }
 impl GeneratedKind {
-    pub(crate) fn definition(self)->&'static str {match self{Self::Tentacle=>"TK010",Self::Police=>"TK003",Self::Cultist=>"TK008",Self::Walker=>"TK001"}}
+    pub(crate) fn definition(self)->&'static str {match self{Self::Tentacle=>"TK010",Self::Police=>"TK003",Self::Cultist=>"TK008",Self::Walker=>"TK001",Self::PendulumPriest=>"TK009"}}
 }
 #[derive(Clone,Debug,PartialEq,Eq,Serialize,Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -22,7 +22,7 @@ impl Game {
                 || !self.mystic_instance_number(&origin.birth_instance).zip(self.mystic_instance_number(&c.id)).is_some_and(|(birth,now)|birth<=now) {
                 return Err("生成物来源身份、出生实例或拥有者损坏".into());
             }
-        }else if matches!(c.definition.as_str(),"TK010"|"TK008"|"TK003"|"TK001") {return Err("触手指示物缺少实际生成身份；不猜测迁移旧快照".into());}
+        }else if matches!(c.definition.as_str(),"TK010"|"TK008"|"TK003"|"TK001"|"TK009") {return Err("触手指示物缺少实际生成身份；不猜测迁移旧快照".into());}
         Ok(())
     }
     /// Called after ordinary departure cleanup, before any physical-zone arrival.
@@ -36,7 +36,7 @@ impl Game {
             self.validate_generated_identity(c)?;
             if !is_generated(c){continue;}
             if !births.insert(&c.generated.as_ref().unwrap().birth_instance){return Err("同一出生身份不能存在两个生成角色实体".into());}
-            let reveal=self.stack.iter().any(|i|i.card.as_ref().is_some_and(|v|std::ptr::eq(v,c))&&i.reveal&&((c.definition=="TK008"&&self.validate_cq11_play(i).is_ok())||(c.definition=="TK001"&&self.validate_bq088_token_play(i).is_ok())||(c.definition=="TK003"&&self.validate_xg19_token_play(i).is_ok())));
+            let reveal=self.stack.iter().any(|i|i.card.as_ref().is_some_and(|v|std::ptr::eq(v,c))&&i.reveal&&((c.definition=="TK009"&&self.msjz03_token_play(i).is_ok())||(c.definition=="TK008"&&self.validate_cq11_play(i).is_ok())||(c.definition=="TK001"&&self.validate_bq088_token_play(i).is_ok())||(c.definition=="TK003"&&self.validate_xg19_token_play(i).is_ok())));
             let retained=reveal||self.regions.iter().any(|r|!r.vacant&&r.cards.iter().any(|v|std::ptr::eq(v,c)))
                 ||self.sealed_cards.iter().any(|s|std::ptr::eq(&s.card,c))
                 ||self.effects.iter().any(|e|matches!(e,Effect::Bury{card} if std::ptr::eq(card,c)));

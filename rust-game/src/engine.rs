@@ -68,6 +68,7 @@ impl Game {
             mystic_contest: None,
             mystic_history: vec![],
             mswm01_grants: vec![],
+            msjz03_zero_scores: vec![],
             modifiers: vec![],
             turn_attribute_modifiers: vec![],
             cq28_defense_reductions: vec![],
@@ -450,8 +451,8 @@ impl Game {
         permanent_result.investigation = permanent_result.investigation.saturating_add(self.effective_marker_count(c, crate::batch4_markers::MarkerKind::PermanentInvestigation));
         permanent_result.combat = permanent_result.combat.saturating_add(self.effective_marker_count(c, crate::batch4_markers::MarkerKind::PermanentCombat))
             .saturating_add(self.cq17_combat_bonus(c, region));
-        if c.definition == "JC045" && !c.face_down
-            && self.board(&c.id).is_some_and(|(_, live)| live.definition == "JC045" && !live.face_down)
+        if matches!(c.definition.as_str(),"JC045"|"TK009") && !c.face_down
+            && self.board(&c.id).is_some_and(|(_, live)| live.definition == c.definition && !live.face_down)
         {
             permanent_result.influence = permanent_result.influence.saturating_add(self.effective_time_markers(c));
         }
@@ -672,6 +673,8 @@ impl Game {
         self.validate_wm063_state()?;
         self.validate_mswm03_state()?;
         self.validate_bq047_state()?;
+        self.validate_msjz03_state()?;
+        self.validate_jz42_state()?;
         self.validate_bq045_state()?;
         self.validate_jz53_state()?;
         self.validate_jc097_state()?;
@@ -741,6 +744,8 @@ impl Game {
         next.validate_wm063_state()?;
         next.validate_mswm03_state()?;
         next.validate_bq047_state()?;
+        next.validate_msjz03_state()?;
+        next.validate_jz42_state()?;
         next.validate_bq045_state()?;
         next.validate_jz53_state()?;
         next.validate_jc097_state()?;
@@ -872,6 +877,7 @@ impl Game {
                 }
                 let id = a.card_id.as_deref().ok_or("请选择角色")?;
                 let (c, play_source) = self.character_play_source(seat, id, a.kind == "conceal")?;
+                self.msjz03_allow_play(seat,&c)?;
                 if c.definition=="XQ35" && a.kind=="deploy" {return Err("白骨仆人不能正面打出".into());}
                 if c.definition=="XQ19"&&a.kind=="deploy"{return Err("熵力化身不能正面打出".into())}
                 if a.kind=="deploy" {self.msbq02_allow_play(seat,&c)?;}
@@ -1129,6 +1135,7 @@ impl Game {
                 self.plan_play_spec(seat, &mut c, &a, &mut spec)?;
                 let source = self.source_snapshot(&c, None);
                 let targets = self.bind_action(seat, &source, &spec, &a)?;
+                if c.definition==crate::jz42::ID&&a.cost_selected.is_none(){return self.jz42_begin(seat,&c,&a);}
                 if c.definition == "JZ36" && a.cost_selected.is_none() { return self.jz36_begin_cost(seat,&c,&a,targets); }
                 if spec.ops.iter().any(|op| {
                     matches!(
@@ -1140,7 +1147,7 @@ impl Game {
                     return Err("请选择合法地区".into());
                 }
                 if a.option.as_deref()!=Some("secret-plan") { self.xg20_check_play(seat,&c)?; }
-                let mut paid = self.pay_printed(seat, &c, true)?;
+                let mut paid = if c.definition==crate::jz42::ID{self.jz42_pay(seat,&c,&a)?}else{self.pay_printed(seat, &c, true)?};
                 paid.extend(self.pay_ability_costs(seat, &source, &spec, &a)?);
                 let c = self.remove_hand(seat, id)?;
                 let c = self.fresh(c);
@@ -1247,6 +1254,7 @@ impl Game {
         self.mystic_contest = None;
         self.mystic_history.clear();
         self.mswm01_grants.clear();
+        self.msjz03_zero_scores.clear();
         self.turn = 0;
         for seat in 0..self.players.len() {
             self.players[seat].hand.clear();
@@ -1432,6 +1440,7 @@ impl Game {
         self.win_contexts.clear();
     }
     pub(crate) fn check_win(&mut self) {
+        if let Some(seat)=(0..self.players.len()).find(|s|self.msjz03_active(*s)&&self.players[*s].destruction_markers>=3){self.finish(self.team(seat));return;}
         let mut scores = [0; 2];
         for p in &self.players {
             scores[self.team(p.seat)] += self.player_score(p.seat);
@@ -1475,7 +1484,7 @@ impl Game {
         self.validate_cq27_play(&item)?;
         self.validate_bq088_play(&item)?;self.validate_bq088_token_play(&item)?;
         self.validate_xg19_play(&item)?;self.validate_xg19_token_play(&item)?;
-        self.validate_cq11_play(&item)?;
+        self.validate_cq11_play(&item)?;self.msjz03_token_play(&item)?;
         self.validate_bq095_play(&item)?;
         self.wm063_play(&item)?;
         self.validate_bq052_play(&item)?;
@@ -2164,7 +2173,9 @@ impl Game {
                 scored.owner = seat;
                 scored.controller = seat;
                 scored = self.fresh(scored);
+                let score_id=scored.id.clone();
                 self.players[seat].score_cards.push(scored);
+                self.msjz03_score(seat,score_id,self.regions[region].destroyed);
                 self.msbq02_observe_score(seat);
                 let destroyed = self.regions[region].destroyed;
                 if destroyed { self.players[seat].destruction_markers += 1; }
@@ -2598,6 +2609,7 @@ impl Game {
                 self.choose_frame(frame, choice, seat, a, selected, option_ids)?
             }
             ChoiceResolution::MSJZ04Opening{seat:s}=>{if seat!=s||a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("起手封印只能由原玩家提交选择".into());}self.msjz04_open_finish(s,&selected)?;},
+            ChoiceResolution::JZ42Payment{draft}=>self.jz42_choose(*draft,seat,&a,&selected)?,
             ChoiceResolution::MSWM03Opening{seat:s}=>{if seat!=s||a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("冷山帮寻牌只能提交原选择".into());}self.mswm03_open_finish(s,&selected)?;},
             ChoiceResolution::MSBQ01Opening{seat:s}=>{if seat!=s||a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("起手封印只能由原玩家提交选择".into());}self.msbq01_open_finish(s,&selected)?;},
             ChoiceResolution::Mulligan => {

@@ -664,6 +664,7 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    JZ42Time(Box<crate::jz42::Payment>),
     JC028Sacrificed(crate::death_observers::CharacterDeathReceipt),
     CQ27Sacrificed(Vec<SourceSnapshot>),
     MSJC16Sealed(Vec<Card>),
@@ -988,6 +989,7 @@ pub enum RemovalCause {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ChoiceResolution {
+    JZ42Payment {draft:Box<crate::jz42::Draft>},
     CoreEntryRegion {frame_id:String,regions:Vec<(usize,String)>},
     MSJZ04Opening {seat:usize},
     MSWM03Opening {seat:usize},
@@ -1057,6 +1059,8 @@ pub struct Game {
     pub first_marker_placements: Vec<crate::marker_placement::MarkerPlacement>,
     #[serde(default,skip_serializing_if="Vec::is_empty")]
     pub mswm01_grants: Vec<ResolutionFrame>,
+    #[serde(default,skip_serializing_if="Vec::is_empty")]
+    pub msjz03_zero_scores: Vec<crate::msjz03::ZeroScore>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub bq049_grants: Vec<crate::bq049::Grant>,
     #[serde(default,skip_serializing_if="Vec::is_empty")]
@@ -1184,6 +1188,8 @@ impl Game {
         self.validate_wm063_state()?;
         self.validate_mswm03_state()?;
         self.validate_bq047_state()?;
+        self.validate_msjz03_state()?;
+        self.validate_jz42_state()?;
         self.validate_jz53_state()?;
         self.validate_jc097_state()?;
         self.validate_jc053_state()?;

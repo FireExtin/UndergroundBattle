@@ -505,7 +505,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if c.definition==crate::bq047::ID || matches!(c.definition.as_str(),"WM026"|"ZHWM026"|"BQ044"|"WM031"|"JC028"|"JC097"|"JZ53"|"CQ27"|"CQ11"|"TK008"|"TK003"|"TK001") || c.definition==crate::bq045::ID || c.definition==crate::bq056::ID || c.definition==crate::bq055::ID || c.definition==crate::bq046::ID || c.definition==crate::bq086::ID || c.definition==crate::cq09::ID || c.definition==crate::cq10::ID || c.definition==crate::bq084::ID || c.definition==crate::bq001::ID || crate::next20_black_wraiths::CARDS.contains(&c.definition.as_str()) || crate::next20_blue_vampires::CARDS.contains(&c.definition.as_str()) || c.definition=="BQ057" || c.definition=="CQ18" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
+            source_region_instance: if c.definition==crate::bq047::ID || matches!(c.definition.as_str(),"WM026"|"ZHWM026"|"BQ044"|"WM031"|"JC028"|"JC097"|"JZ53"|"CQ27"|"CQ11"|"TK008"|"TK003"|"TK001"|"TK009") || c.definition==crate::bq045::ID || c.definition==crate::bq056::ID || c.definition==crate::bq055::ID || c.definition==crate::bq046::ID || c.definition==crate::bq086::ID || c.definition==crate::cq09::ID || c.definition==crate::cq10::ID || c.definition==crate::bq084::ID || c.definition==crate::bq001::ID || crate::next20_black_wraiths::CARDS.contains(&c.definition.as_str()) || crate::next20_blue_vampires::CARDS.contains(&c.definition.as_str()) || c.definition=="BQ057" || c.definition=="CQ18" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (c.definition=="WM031" || c.definition=="WM027" || c.definition=="XG20" || c.definition=="CQ19" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_tattoo::ID || matches!(c.definition.as_str(), "WM063" | "BQ095" | "BQ052" | "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "BQ067" | "BQ065" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JC053" | "JZ41") || rules::definition(&c.definition)
@@ -530,7 +530,7 @@ impl Game {
         filter.matches(card(&c.definition))
     }
     pub(crate) fn effective_cost(&self, actor: usize, c: &Card) -> u32 {
-        card(&c.definition).cost.saturating_sub(self.bq050_reduction(actor,c)).saturating_sub(self.bq055_reduction(actor,c)).saturating_sub(self.wm024_cost_reduction(actor, c)).saturating_sub(self.xg27_curse_reduction(actor, c)).saturating_sub(if matches!(c.definition.as_str(), "JZ33" | "XG14" | "XG15") { 2 * self.destroyed_region_count() } else { 0 }).saturating_sub(
+        card(&c.definition).cost.saturating_sub(if c.definition==crate::jz42::ID{4*self.destroyed_region_count()}else{0}).saturating_sub(self.bq050_reduction(actor,c)).saturating_sub(self.bq055_reduction(actor,c)).saturating_sub(self.wm024_cost_reduction(actor, c)).saturating_sub(self.xg27_curse_reduction(actor, c)).saturating_sub(if matches!(c.definition.as_str(), "JZ33" | "XG14" | "XG15") { 2 * self.destroyed_region_count() } else { 0 }).saturating_sub(
             self.modifiers
                 .iter()
                 .filter(|m| {
@@ -565,6 +565,7 @@ impl Game {
         face_up_play: bool,
     ) -> RuleResult<Vec<PaidCost>> {self.pay_printed_choice(actor,c,face_up_play,false)}
     pub(crate) fn pay_printed_choice(&mut self,actor:usize,c:&Card,face_up_play:bool,honor_rest:bool)->RuleResult<Vec<PaidCost>> {
+        self.msjz03_allow_play(actor,c)?;
         let rest=self.core_zones.iter().find(|z|z.owner==actor&&z.card.as_ref().is_some_and(|core|core.id==c.id)).map_or(0,|z|z.rest);
         let honor=if honor_rest {if !face_up_play||rest==0{return Err("名誉休整支付只适用于有休整标志的核心区派遣".into());}let needed=rest.checked_mul(2).ok_or("休整名誉溢出")?;let before=self.players[actor].honor;if before<needed{return Err("休整名誉不足".into());}Some(PaidCost::CoreRestHonor{before,rest})}else{None};
         let amount = if face_up_play {
@@ -596,6 +597,8 @@ impl Game {
         definition: &str,
         a: &Action,
     ) -> RuleResult<AbilitySpec> {
+        if definition==crate::msjz03::ID{crate::msjz03::action(a)?;}
+        if definition==crate::jz42::ID{crate::jz42::action(a)?;}
         crate::import20_observers::validate_action(definition, a)?;
         crate::import20_contest::validate_action(definition, a)?;
         crate::import20_industry::validate_action(definition,a)?;
@@ -831,6 +834,7 @@ impl Game {
                                 }
                                 rules::TargetPredicate::XQ23ActorAsset => false,
                                 rules::TargetPredicate::XG16CharacterOrAttachment => self.xg16_time_target(source, c),
+                                rules::TargetPredicate::MSJZ03Carrier => source.card.definition==crate::msjz03::ID && self.msjz03_carrier(c),
                                 rules::TargetPredicate::JZ36CharacterOrAttachment => self.jz36_target(source, c),
                                 rules::TargetPredicate::JZ40CharacterOrAttachment => self.jz40_target(source, c),
                                 rules::TargetPredicate::ClockCharacterOrAttachment => self.clock_time_target(source,c),
@@ -940,7 +944,7 @@ impl Game {
         // Canonical granted mobility keeps its shared destination contract,
         // regardless of a recipient's separately pinned native region action.
         slot.zone == Zone::Region && !crate::mobility::canonical_target(slot)
-            && ((source.card.definition == "CQ24" && matches!(slot.attachment_host_condition, Some(AttachmentHostCondition::CQ24Host { .. }))) || source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "JZ53" | "BQ088" | "XG19" | "TK008" | "BQ060" | "BQ065" | "BQ049" | "MSJC16" | "LC16" | "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
+            && ((source.card.definition == "CQ24" && matches!(slot.attachment_host_condition, Some(AttachmentHostCondition::CQ24Host { .. }))) || source.card.definition == "XG14" || matches!(source.card.definition.as_str(), "MSJZ03" | "JZ53" | "BQ088" | "XG19" | "TK008" | "BQ060" | "BQ065" | "BQ049" | "MSJC16" | "LC16" | "JZ36" | "BQ089" | "MSJC11" | "JC033" | "JC065")
                 || (source.card.definition == "JZ34" && slot.predicate == Some(TargetPredicate::JZ34DestroyedRegion))
                 || (source.card.definition == "BQ077" && slot.predicate == Some(TargetPredicate::BQ077WaterRegion))
                 // WM023's own hand-entry action freezes a region UID. A fully
@@ -1734,6 +1738,7 @@ impl Game {
         true
     }
     pub(crate) fn resolve_frame(&mut self, mut frame: ResolutionFrame) -> RuleResult<()> {
+        self.jz42_frame(&frame)?;self.msjz03_frame(&frame)?;
         self.bq047_frame(&frame)?;
         self.wm063_frame(&frame)?;
         self.mswm03_frame(&frame)?;
@@ -2001,6 +2006,8 @@ impl Game {
                 Op::BQ041BloodDemand { .. } => return self.bq041_demand(frame),
                 Op::WM060RevealInfluence => self.wm060_reveal_influence(&frame),
                 Op::WM060CriminalObservation { .. } => {},
+                Op::MSJZ03Time | Op::MSJZ03Generate => self.msjz03_step(&frame)?,
+                Op::JZ42Convert => self.jz42_convert(&frame)?,
                 Op::BQ047Entry => return self.bq047_resolve(frame),
                 Op::MSWM03Resolve => return self.mswm03_resolve(frame),
                 Op::WM063Resolve => return self.wm063_resolve(frame),
@@ -2337,7 +2344,7 @@ impl Game {
                 }
                 Op::JC045AddOneTimeToOriginalSource => {
                     if let Some(live) = self.board_mut(&frame.source.card.id)
-                        .filter(|c| c.definition == "JC045" && !c.face_down)
+                        .filter(|c| matches!(c.definition.as_str(),"JC045"|"TK009") && !c.face_down)
                     {
                         let placement_before = live.time_markers; let placement_id = live.id.clone(); live.time_markers = live.time_markers.saturating_add(1); self.record_board_marker_write(&placement_id, crate::batch4_markers::MarkerKind::Time, placement_before);
                     }
