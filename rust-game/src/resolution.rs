@@ -1350,7 +1350,7 @@ impl Game {
         self.validate_batch3_declaration(&declaration)?;
         self.validate_batch4_declaration(&declaration)?;
         self.validate_xq23_declaration(&declaration)?;
-        if self.cq13_declare(&declaration)? || self.bq047_forced(&declaration)? || self.wm026_forced(&declaration)? || self.wm031_forced(&declaration)? || self.bq045_forced(&declaration)? || self.msbq02_forced(&declaration)? || self.pack_a_forced_declare(&declaration)? || self.omega_forced_declare(&declaration)? || self.plan_forced_declare(&declaration)? || self.batch3_forced_declare(&declaration)? || self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
+        if self.lc04_forced(&declaration)? || self.cq13_declare(&declaration)? || self.bq047_forced(&declaration)? || self.wm026_forced(&declaration)? || self.wm031_forced(&declaration)? || self.bq045_forced(&declaration)? || self.msbq02_forced(&declaration)? || self.pack_a_forced_declare(&declaration)? || self.omega_forced_declare(&declaration)? || self.plan_forced_declare(&declaration)? || self.batch3_forced_declare(&declaration)? || self.batch20_declare_forced(&declaration)? || self.next_blue_gray_declare_forced(&declaration)? { return Ok(()); }
         if self.jc054_declare(declaration.clone())? { return Ok(()); }
         if self.jc041_declare(declaration.clone())? { return Ok(()); }
         if self.jc035_declare(declaration.clone())? { return Ok(()); }
@@ -1747,6 +1747,7 @@ impl Game {
         self.wm063_frame(&frame)?;
         self.mswm03_frame(&frame)?;
         self.validate_tentacle_frame(&frame)?;
+        self.lc04_frame(&frame)?;
         self.cq14_frame(&frame)?;
         self.cq12_frame(&frame)?;
         self.validate_xq19_frame(&frame)?;
@@ -2013,6 +2014,7 @@ impl Game {
                 Op::WM060RevealInfluence => self.wm060_reveal_influence(&frame),
                 Op::WM060CriminalObservation { .. } => {},
                 Op::CQ13Entry{influence} => self.cq13_step(&frame,Some(influence))?,
+                Op::LC04Sacrifices => return self.lc04_offer(frame,crate::lc04::Picks{chosen:vec![]}),
                 Op::CQ14Summon{..} => self.cq14_step(&frame)?,
                 Op::CQ12Omen{..} => self.cq12_step(&frame)?,
                 Op::CQ13Leave => self.cq13_step(&frame,None)?,
@@ -2982,6 +2984,7 @@ impl Game {
                 self.entry_search_complete(&frame, &selected, matches!(choice, FrameChoice::BQ104EmployeeSearch))?;
             }
             FrameChoice::BQ044Core(s)=>return self.bq044_core_choose(*frame,s,chooser,&a,&selected),
+            FrameChoice::LC04(p)=>return self.lc04_choose(*frame,p,chooser,&a,&selected),
             FrameChoice::BQ047Assets{chosen}=>return self.bq047_choose(*frame,chosen,chooser,&a,&selected),
             FrameChoice::BQ044Enemy => return self.bq044_enemy_choose(*frame,chooser,&selected),
             FrameChoice::BQ044Sacrifice { seat } => return self.bq044_finish(*frame,seat,chooser,&selected),

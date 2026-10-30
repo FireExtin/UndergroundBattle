@@ -142,7 +142,7 @@ pub fn catalog() -> &'static Catalog {
                     })
                     .unwrap_or_default();
                 // Preserve old definitions; expose only individually reviewed subtitles.
-                if !["CQ13", "BQ095", "WM026", "ZHWM026", "BQ044", "BQ045", "BQ052", "BQ046", "BQ086", "CQ09", "CQ10", "BQ034", "CQ15", "BQ057", "CQ18", "CQ19", "BQ092", "BQ093", "CQ24", "XG13", "LC16", "BQ082", "BQ031", "BQ036", "XG18", "XG16", "XQ15", "WM058", "WM060", "CQ07", "BQ037", "WM041", "BQ087", "XQ22", "WM035", "JC051", "JC055", "JZ34", "BQ085", "CQ26", "XG27", "XQ39", "JZ27", "JC096", "JC114", "XQ38", "LC06", "LC30", "JZ02", "WM059", "JC094", "WM023", "JC052", "JC037", "JC095", "JC066", "WM034", "BQ091", "JC068", "BQ094", "JZ52", "JC039", "JZ28", "BQ059", "CQ17"]
+                if !["LC04", "CQ13", "BQ095", "WM026", "ZHWM026", "BQ044", "BQ045", "BQ052", "BQ046", "BQ086", "CQ09", "CQ10", "BQ034", "CQ15", "BQ057", "CQ18", "CQ19", "BQ092", "BQ093", "CQ24", "XG13", "LC16", "BQ082", "BQ031", "BQ036", "XG18", "XG16", "XQ15", "WM058", "WM060", "CQ07", "BQ037", "WM041", "BQ087", "XQ22", "WM035", "JC051", "JC055", "JZ34", "BQ085", "CQ26", "XG27", "XQ39", "JZ27", "JC096", "JC114", "XQ38", "LC06", "LC30", "JZ02", "WM059", "JC094", "WM023", "JC052", "JC037", "JC095", "JC066", "WM034", "BQ091", "JC068", "BQ094", "JZ52", "JC039", "JZ28", "BQ059", "CQ17"]
                     .contains(&definition.id.as_str())
                 {
                     definition.subtitle = None;
@@ -252,7 +252,7 @@ pub(crate) fn has_kind(d: &CardDefinition, kind: &str) -> bool {
 /// Snapshot validation admits only this fixed implemented pool. Deck and preset
 /// admission deliberately continue to use supported alone during batch work.
 pub(crate) fn runtime_implemented(d: &CardDefinition) -> bool {
-    if matches!(d.id.as_str(), "CQ12"|"CQ14"|"CQ13"|"MSJZ03"|"JZ42"|"TK009"|"BQ047"|"MSWM03"|"WM063"|"BQ095"|"WM026"|"ZHWM026"|"BQ044"|"WM031"|"WM036"|"WM027"|"XQ13"|"JC053"|"JC028"|"JC097"|"JZ53"|"CQ27" | "BQ088" | "TK001" | "XG19" | "TK003" | "CQ11" | "TK008" | "BQ062" | "BQ060" | "BQ067" | "BQ065" | "MSJZ04" | "BQ049" | "BQ061" | "BQ045" | "BQ052" | "TK010" | "BQ063" | "BQ050" | "BQ051" | "TEST034" | "MSCQ02" | "MSWM02" | "MSWM01" | "MSJC12" | "MSBQ02" | crate::bq056::ID | crate::bq048::ID | crate::bq055::ID | crate::bq046::ID | crate::xq35::ID | crate::bq084::ID | crate::cq10::ID | crate::cq09::ID | crate::bq086::ID) { return true; }
+    if matches!(d.id.as_str(), "LC04"|"CQ12"|"CQ14"|"CQ13"|"MSJZ03"|"JZ42"|"TK009"|"BQ047"|"MSWM03"|"WM063"|"BQ095"|"WM026"|"ZHWM026"|"BQ044"|"WM031"|"WM036"|"WM027"|"XQ13"|"JC053"|"JC028"|"JC097"|"JZ53"|"CQ27" | "BQ088" | "TK001" | "XG19" | "TK003" | "CQ11" | "TK008" | "BQ062" | "BQ060" | "BQ067" | "BQ065" | "MSJZ04" | "BQ049" | "BQ061" | "BQ045" | "BQ052" | "TK010" | "BQ063" | "BQ050" | "BQ051" | "TEST034" | "MSCQ02" | "MSWM02" | "MSWM01" | "MSJC12" | "MSBQ02" | crate::bq056::ID | crate::bq048::ID | crate::bq055::ID | crate::bq046::ID | crate::xq35::ID | crate::bq084::ID | crate::cq10::ID | crate::cq09::ID | crate::bq086::ID) { return true; }
     if crate::next20_black_wraiths::CARDS.contains(&d.id.as_str()) { return true; }
     if d.id==crate::bq001::ID { return true; }
     if d.id==crate::next20_anchor::ID { return true; }

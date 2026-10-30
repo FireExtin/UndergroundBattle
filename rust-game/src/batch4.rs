@@ -115,7 +115,7 @@ pub(crate) fn reward(source: &SourceSnapshot, key: &str) -> Option<AbilitySpec> 
 pub(crate) fn validate_definition(id: &str, d: &Definition) -> RuleResult<()> {
     if let Some(expected) = definition(id) {
         if !same(d, &expected) { return Err("第四批必须保留完整固定定义".into()); }
-    } else if (d.traits.wound > 0 && !(matches!(id,crate::bq086::ID|crate::wm031::ID) && d.traits.wound == 1)) || (d.traits.chaos && !(id=="CQ27" && same(d,&crate::cq27::definition()))) || d.abilities.iter().any(related) || d.modifiers.iter().any(|m| matches!(m, StaticModifier::JZ56ChosenUndeadAura | StaticModifier::XG18RenownAssetPlay | StaticModifier::XG16TimeDefense | StaticModifier::XQ15OwnerVampireSlave | StaticModifier::XG17RenownDefense | StaticModifier::XG15WaterDoubleIcons | StaticModifier::JZ39HostKillAndDemon | StaticModifier::XG12BatAndConditionalMobility | StaticModifier::WM060ConditionalPublic)) {
+    } else if (d.traits.wound > 0 && !(matches!(id,crate::bq086::ID|crate::wm031::ID) && d.traits.wound == 1)) || (d.traits.chaos && !(id=="CQ27" && same(d,&crate::cq27::definition())) && !(id=="LC04" && same(d,&crate::lc04::definition()))) || d.abilities.iter().any(related) || d.modifiers.iter().any(|m| matches!(m, StaticModifier::JZ56ChosenUndeadAura | StaticModifier::XG18RenownAssetPlay | StaticModifier::XG16TimeDefense | StaticModifier::XQ15OwnerVampireSlave | StaticModifier::XG17RenownDefense | StaticModifier::XG15WaterDoubleIcons | StaticModifier::JZ39HostKillAndDemon | StaticModifier::XG12BatAndConditionalMobility | StaticModifier::WM060ConditionalPublic)) {
         return Err("第四批混乱或灾难程序不能移植".into());
     }
     Ok(())
@@ -158,7 +158,7 @@ pub(crate) fn validate_action(id: &str, a: &Action) -> RuleResult<()> {
     if id == "WM060" { return crate::batch4_dahlia::validate_action(a); }
     if id == "XG12" { return crate::batch4_shape::validate_action(a); }
     if id == "JZ39" { return crate::batch4_tattoo::validate_action(a); }
-    if !IMPLEMENTING.contains(&id) { return Ok(()); }
+    if id!="LC04" && !IMPLEMENTING.contains(&id) { return Ok(()); }
     let expected = match a.kind.as_str() {
         "deploy" | "reveal" => Action { card_id: a.card_id.clone(), ..Action::new(&a.kind) },
         "conceal" => Action { card_id: a.card_id.clone(), region: a.region, ..Action::new("conceal") },

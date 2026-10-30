@@ -1428,5 +1428,6 @@
   "TK009": {"url": "/cards/TK009.jpg", "source": "resource/ymsj-fun.github.io/cards/TK009 钟摆祭司.jpg", "sha256": "53fab1195f462cad1c3499705a2dc6bc5d2d116d9a1edd8a991958e0cbb6f707"},
   "CQ13": {"url": "/cards/CQ13.jpg", "source": "resource/ymsj-fun.github.io/cards/CQ13 命定的薇儿丹迪.jpg", "sha256": "393d38a51b63e1fcb59fff63f05e28a5531179f0de3bd63e52b5779e0c7ad968"},
   "CQ12": {"url": "/cards/CQ12.jpg", "source": "resource/ymsj-fun.github.io/cards/CQ12 深渊惧影盖罗涅.jpg", "sha256": "a14fdc90817629bfee0e7865ea26254bd75b9c2765a49e6856d42b29216f720d"},
-  "CQ14": {"url": "/cards/CQ14.jpg", "source": "resource/ymsj-fun.github.io/cards/CQ14 盖罗涅的召令.jpg", "sha256": "61fc824fb7543d22664b7589c39ea8d659ca3af5de626033a42579be3d237422"}
+  "CQ14": {"url": "/cards/CQ14.jpg", "source": "resource/ymsj-fun.github.io/cards/CQ14 盖罗涅的召令.jpg", "sha256": "61fc824fb7543d22664b7589c39ea8d659ca3af5de626033a42579be3d237422"},
+  "LC04": {"url": "/cards/LC04.jpg", "source": "resource/ymsj-fun.github.io/cards/LC04 卡德兰大王.jpg", "sha256": "482c2967d5aa28c4f268b5491d9c2e0611a440d6bce2aa37c8502ce0b6cc020d"}
 }

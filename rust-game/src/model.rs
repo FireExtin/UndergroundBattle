@@ -765,6 +765,7 @@ pub enum DeclareChoice {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum FrameChoice {
+    LC04(crate::lc04::Picks),
     BQ047Assets {chosen:Vec<Vec<String>>},
     WM031Victims(crate::wm031::Victims),
     MSJZ04Pay,

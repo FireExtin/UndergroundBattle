@@ -608,3 +608,6 @@ mod cq14;
 #[cfg(test)] mod cq14_tests;
 mod cq12;
 #[cfg(test)] mod cq12_tests;
+
+mod lc04;
+#[cfg(test)] mod lc04_tests;

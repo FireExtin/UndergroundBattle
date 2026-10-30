@@ -673,7 +673,7 @@ impl Game {
         self.validate_wm063_state()?;
         self.validate_mswm03_state()?;
         self.validate_bq047_state()?;
-        self.validate_msjz03_state()?;self.validate_cq13_state()?;self.validate_cq14_state()?;self.validate_cq12_state()?;self.validate_cq12_payment_state()?;
+        self.validate_msjz03_state()?;self.validate_cq13_state()?;self.validate_cq14_state()?;self.validate_lc04_state()?;self.validate_cq12_state()?;self.validate_cq12_payment_state()?;
         self.validate_jz42_state()?;
         self.validate_bq045_state()?;
         self.validate_jz53_state()?;
@@ -744,7 +744,7 @@ impl Game {
         next.validate_wm063_state()?;
         next.validate_mswm03_state()?;
         next.validate_bq047_state()?;
-        next.validate_msjz03_state()?;next.validate_cq13_state()?;next.validate_cq14_state()?;next.validate_cq12_state()?;next.validate_cq12_payment_state()?;
+        next.validate_msjz03_state()?;next.validate_cq13_state()?;next.validate_cq14_state()?;next.validate_lc04_state()?;next.validate_cq12_state()?;next.validate_cq12_payment_state()?;
         next.validate_jz42_state()?;
         next.validate_bq045_state()?;
         next.validate_jz53_state()?;
