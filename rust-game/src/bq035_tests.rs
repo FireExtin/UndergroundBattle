@@ -899,7 +899,7 @@ fn bq035_every_admitted_human_or_vampire_uses_its_existing_validator_with_real_g
 
 #[test]
 fn bq035_native_import_recipients_cannot_register_or_manually_activate_shared_grants() {
-    for id in ["XG13", "CQ24", "CQ11", "TK008"] {
+    for id in ["XG13", "CQ24", "CQ11", "TK008", "CQ13"] {
         let a = crate::mobility::ability();
         crate::rules::validate_ability(id, &a).unwrap();
         let mut registry = crate::rules::definitions().clone();

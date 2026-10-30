@@ -916,7 +916,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     if card_id==crate::msjc16::ID||crate::msjc16::related(ability){return crate::msjc16::validate_ability(card_id,ability);}
     if card_id==crate::msbq03::ID||crate::msbq03::related(ability){return crate::msbq03::validate_ability(card_id,ability);}
     if card_id==crate::mswm03::ID||crate::mswm03::related(ability){return crate::mswm03::validate_ability(card_id,ability);}
-    if card_id==crate::cq13::ID||crate::cq13::related(ability){return crate::cq13::validate_ability(card_id,ability);}
+    if (card_id==crate::cq13::ID&&!crate::mobility::related_ability(ability))||crate::cq13::related(ability){return crate::cq13::validate_ability(card_id,ability);}
     if card_id==crate::msjz03::ID||crate::msjz03::related(ability){return crate::msjz03::validate_ability(card_id,ability);}
     if card_id==crate::jz42::ID||crate::jz42::related(ability){return crate::jz42::validate_ability(card_id,ability);}
     if card_id==crate::bq047::ID||crate::bq047::related(ability){return crate::bq047::validate_ability(card_id,ability);}
