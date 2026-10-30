@@ -18,7 +18,7 @@ pub struct Headquarters {
     pub cards: Vec<Card>,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub(crate) enum Destination {
     Graveyard(usize),
     Headquarters(String),

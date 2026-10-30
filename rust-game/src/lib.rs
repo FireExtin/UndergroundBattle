@@ -603,3 +603,8 @@ mod wm027;
 #[cfg(test)] mod wm027_tests;
 mod xq13;
 #[cfg(test)] mod xq13_tests;
+
+mod cq14;
+#[cfg(test)] mod cq14_tests;
+mod cq12;
+#[cfg(test)] mod cq12_tests;

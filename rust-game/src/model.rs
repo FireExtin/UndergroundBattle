@@ -664,6 +664,8 @@ pub struct BoundTarget {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum PaidCost {
+    CQ14Grave(Box<crate::cq14::GravePayment>),
+    CQ12Sacrifice(Box<crate::cq12::SacrificePayment>),
     JZ42Time(Box<crate::jz42::Payment>),
     JC028Sacrificed(crate::death_observers::CharacterDeathReceipt),
     CQ27Sacrificed(Vec<SourceSnapshot>),
@@ -989,6 +991,8 @@ pub enum RemovalCause {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum ChoiceResolution {
+    CQ14Draft {draft:Box<crate::cq14::Draft>},
+    CQ12Payment {draft:Box<crate::cq12::CostDraft>},
     JZ42Payment {draft:Box<crate::jz42::Draft>},
     CoreEntryRegion {frame_id:String,regions:Vec<(usize,String)>},
     MSJZ04Opening {seat:usize},
@@ -1188,7 +1192,7 @@ impl Game {
         self.validate_wm063_state()?;
         self.validate_mswm03_state()?;
         self.validate_bq047_state()?;
-        self.validate_msjz03_state()?;self.validate_cq13_state()?;
+        self.validate_msjz03_state()?;self.validate_cq13_state()?;self.validate_cq14_state()?;self.validate_cq12_state()?;self.validate_cq12_payment_state()?;
         self.validate_jz42_state()?;
         self.validate_jz53_state()?;
         self.validate_jc097_state()?;

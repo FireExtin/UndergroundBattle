@@ -673,7 +673,7 @@ impl Game {
         self.validate_wm063_state()?;
         self.validate_mswm03_state()?;
         self.validate_bq047_state()?;
-        self.validate_msjz03_state()?;self.validate_cq13_state()?;
+        self.validate_msjz03_state()?;self.validate_cq13_state()?;self.validate_cq14_state()?;self.validate_cq12_state()?;self.validate_cq12_payment_state()?;
         self.validate_jz42_state()?;
         self.validate_bq045_state()?;
         self.validate_jz53_state()?;
@@ -744,7 +744,7 @@ impl Game {
         next.validate_wm063_state()?;
         next.validate_mswm03_state()?;
         next.validate_bq047_state()?;
-        next.validate_msjz03_state()?;next.validate_cq13_state()?;
+        next.validate_msjz03_state()?;next.validate_cq13_state()?;next.validate_cq14_state()?;next.validate_cq12_state()?;next.validate_cq12_payment_state()?;
         next.validate_jz42_state()?;
         next.validate_bq045_state()?;
         next.validate_jz53_state()?;
@@ -962,7 +962,8 @@ impl Game {
                         return Err("忠诚不足".into());
                     }
                     self.xg20_check_play(seat,&c)?;
-                    let mut paid = self.pay_printed_choice(seat, &c, true,a.option.as_deref()==Some("honor-rest"))?;
+                    if c.definition=="CQ12"&&a.cost_selected.is_none(){return self.cq12_begin_cost(seat,&c,&a);}
+                    let mut paid = if c.definition=="CQ12"{self.cq12_pay(seat,&c,&a)?}else{self.pay_printed_choice(seat, &c, true,a.option.as_deref()==Some("honor-rest"))?};
                     if c.definition == "BQ033" { paid.push(self.pay_bq033_extra(seat, &a)?); }
                     if c.definition=="BQ029" && a.option.as_deref()==Some("pay-extra-1") { paid.push(self.bq029_pay_extra(seat)?); }
                     if c.definition=="CQ24" && a.option.as_deref()==Some("pay-extra-3") { paid.push(self.cq24_pay_extra(seat)?); }
@@ -1051,7 +1052,8 @@ impl Game {
                 let snapshot = self.source_snapshot(c, Some(r));
                 let printed = c.clone();
                 self.xg20_check_play(seat,&printed)?;
-                let mut paid = self.pay_printed(seat, &printed, false)?;
+                if printed.definition=="CQ12"&&a.cost_selected.is_none(){return self.cq12_begin_cost(seat,&printed,&a);}
+                let mut paid = if printed.definition=="CQ12"{self.cq12_pay(seat,&printed,&a)?}else{self.pay_printed(seat, &printed, false)?};
                 if printed.definition == "BQ033" { paid.push(self.pay_bq033_extra(seat, &a)?); }
                 let (_, mut c) = self.remove_board(id).unwrap();
                 c = self.fresh(c);
@@ -1082,6 +1084,8 @@ impl Game {
             }
             "play" => {
                 let id = a.card_id.as_deref().ok_or("请选择事务或附属")?;
+                if let Some(c)=self.players[seat].hand.iter().find(|c|c.id==id&&c.definition=="CQ14").cloned(){return self.cq14_begin(seat,c,false,&a);}
+                if let Some(c)=self.bq095_self_grave_sources(seat).into_iter().find(|c|c.id==id&&c.definition=="CQ14").cloned(){return self.cq14_begin(seat,c,true,&a);}
                 let c = self.players[seat]
                     .hand
                     .iter()
@@ -1161,6 +1165,7 @@ impl Game {
             "activate" => {
                 if a.ability_id.as_deref()==Some(crate::cq27::GRAVE){return self.cq27_begin(seat,&a);}
                 if a.ability_id.as_deref()==Some(crate::xq35::KEY) {return self.xq35_begin(seat,&a);}
+                if a.ability_id.as_deref()==Some(crate::cq12::OMEN){return self.cq12_begin(seat,&a);}
                 if a.ability_id.as_deref()==Some(crate::import20_entropy::HAND){return self.xq19_begin_hand(seat,&a);}
                 if a.ability_id.as_deref().is_some_and(|k|k.starts_with(crate::import20_swords::PREFIX)) { return self.cq15_begin(seat,&a); }
                 if a.ability_id.as_deref()==Some(crate::import20_tax_ban::ASSET) { return self.pete_begin_asset(seat,&a); }
@@ -2609,6 +2614,8 @@ impl Game {
                 self.choose_frame(frame, choice, seat, a, selected, option_ids)?
             }
             ChoiceResolution::MSJZ04Opening{seat:s}=>{if seat!=s||a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("起手封印只能由原玩家提交选择".into());}self.msjz04_open_finish(s,&selected)?;},
+            ChoiceResolution::CQ14Draft{draft}=>self.cq14_choose(*draft,seat,&a,&selected)?,
+            ChoiceResolution::CQ12Payment{draft}=>self.cq12_choose_cost(*draft,seat,&a,&selected)?,
             ChoiceResolution::JZ42Payment{draft}=>self.jz42_choose(*draft,seat,&a,&selected)?,
             ChoiceResolution::MSWM03Opening{seat:s}=>{if seat!=s||a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("冷山帮寻牌只能提交原选择".into());}self.mswm03_open_finish(s,&selected)?;},
             ChoiceResolution::MSBQ01Opening{seat:s}=>{if seat!=s||a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("起手封印只能由原玩家提交选择".into());}self.msbq01_open_finish(s,&selected)?;},
@@ -3240,6 +3247,7 @@ impl Game {
                 candidates.push((Action::new("pass"), "让过".into()));
             }
             candidates.push((Action::new("privilege"), "先手特权（支付1）".into()));
+            for c in self.bq095_self_grave_sources(seat).into_iter().filter(|c|c.definition=="CQ14"){candidates.push((Action{card_id:Some(c.id.clone()),..Action::new("play")},"墓地重打盖罗涅的召令".into()));}
             let board = self
                 .regions
                 .iter()
@@ -3248,6 +3256,7 @@ impl Game {
                 .collect::<Vec<_>>();
             for c in &self.players[seat].hand {
                 let d = card(&c.definition);
+                if c.definition=="CQ12" {for r in self.cq12_regions(seat){candidates.push((Action{card_id:Some(c.id.clone()),ability_id:Some(crate::cq12::OMEN.into()),region:Some(r),..Action::new("activate")},"盖罗涅先兆：占场地区生成邪教徒".into()));}}
                 if c.definition=="XQ19"&&self.can_standard(seat){candidates.push((Action{card_id:Some(c.id.clone()),ability_id:Some(crate::import20_entropy::HAND.into()),..Action::new("activate")},"熵力化身手牌行动0：四时间标志，放置进地区一".into()));}
                 if let Some(hand) = crate::import20_contest::hand_ability(&c.definition).filter(|_| self.can_standard(seat)) {
                     candidates.push((Action { card_id: Some(c.id.clone()), ability_id: Some(hand.key), ..Action::new("activate") }, hand.label));
