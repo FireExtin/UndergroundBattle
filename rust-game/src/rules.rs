@@ -101,6 +101,7 @@ pub enum Cost {
     BQ052SacrificeThree,
     MSJC12ExhaustTrio,
     MSWM01ExhaustSpecter,
+    WM063Discard,
     MSWM02MediaDiscard,
     BQ067Honor,
     BQ046Honor,
@@ -458,6 +459,7 @@ pub enum Op {
     BQ041BloodDemand { observation: Option<Box<crate::batch4_feast::BloodAttachment>> },
     WM060RevealInfluence,
     WM060CriminalObservation { observation: Option<Box<crate::batch4_dahlia::CriminalEntry>> },
+    WM063Resolve,
     WM060RepressTwo,
     XG12Reattach,
     XG12GrantedMobility { proof: Box<crate::batch4_shape::ShapeMobility> },
@@ -900,6 +902,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
     if card_id==crate::bq052::ID||crate::bq052::related(ability){return crate::bq052::validate_ability(card_id,ability);}
     if card_id==crate::msjc16::ID||crate::msjc16::related(ability){return crate::msjc16::validate_ability(card_id,ability);}
     if card_id==crate::msbq03::ID||crate::msbq03::related(ability){return crate::msbq03::validate_ability(card_id,ability);}
+    if card_id==crate::wm063::ID||crate::wm063::related(ability){return crate::wm063::validate_ability(card_id,ability);}
     if card_id==crate::mswm02::ID||crate::mswm02::related(ability){return crate::mswm02::validate_ability(card_id,ability);}
     if card_id==crate::mswm01::ID||crate::mswm01::related(ability) {return crate::mswm01::validate_ability(card_id,ability);}
     if card_id==crate::msjc12::ID||crate::msjc12::related(ability) {return crate::msjc12::validate_ability(card_id,ability);}
@@ -1738,6 +1741,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::msbq02::validate_definition(card_id,definition)?;
         crate::mswm01::validate_definition(card_id,definition)?;
         crate::msjc12::validate_definition(card_id,definition)?;
+        crate::wm063::validate_definition(card_id,definition)?;
         crate::mswm02::validate_definition(card_id,definition)?;
         crate::wm026::validate_definition(card_id,definition)?;
         crate::wm031::validate_definition(card_id,definition)?;
@@ -1980,7 +1984,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
                     "cardId={card_id}: finite target predicates cannot be an attachment host guard"
                 ));
             }
-            let admitted_region = matches!(card_id.as_str(), "BQ095" | "WM027" | "XQ13" | "JC053" | "BQ052" | "XG20" | "CQ19" | "BQ092" | "BQ093" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "BQ067" | "BQ065" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XQ26" | "JC064" | "XG28" | "XQ39" | "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
+            let admitted_region = matches!(card_id.as_str(), "WM063" | "BQ095" | "WM027" | "XQ13" | "JC053" | "BQ052" | "XG20" | "CQ19" | "BQ092" | "BQ093" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "BQ067" | "BQ065" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XQ26" | "JC064" | "XG28" | "XQ39" | "XQ43" | "JC090" | "XQ25" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JC033" | "JC034" | "JZ29" | "JC039");
             if !admitted_region
                 && (host.zone != Zone::Board
                     || host.kind != EntityKind::Character
@@ -2458,6 +2462,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         m.insert(crate::msbq02::ID.into(),crate::msbq02::definition());
         m.insert(crate::mswm01::ID.into(),crate::mswm01::definition());
         m.insert(crate::msjc12::ID.into(),crate::msjc12::definition());
+        m.insert(crate::wm063::ID.into(),crate::wm063::definition());
         m.insert(crate::mswm02::ID.into(),crate::mswm02::definition());
         m.insert(crate::msjc16::ID.into(),crate::msjc16::definition());
         m.insert(crate::msbq03::ID.into(),crate::msbq03::definition());

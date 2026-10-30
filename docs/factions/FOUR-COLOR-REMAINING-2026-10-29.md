@@ -84,3 +84,15 @@ BQ048's missing ready/combat-marker mode is now closed, with a documented BQ048-
 ### MSBQ02 dynamic Chaos entry gap closure, 2026-10-30
 
 The previous three-loss response-region blocker is now implemented with the explicit project timing choice documented in MSBQ02-CHAOS-ENTRY-2026-10-30.md. Actual current Chaos selects random entry or a mandatory one-region late choice on the original paid stack item. Selected Native100/0, related UI193/0, full Native/WASM794commands and scoped Worker32commands/cold reopens pass. Natural762preparation commands are not Worker coverage. No automatic full-society/new-card increment or task-win natural-chain claim; public admission/independent review remain closed. BQ049 neutral task dependency and49+1 unresolved scope are unchanged.
+
+### Current focused inventory at WM063 start, 2026-10-30
+
+This supersedes no earlier evidence and is a dependency grouping, not a recounted complete-card total:
+
+- WM063 has no earlier runtime definition; its three actions and scoped own-society host are now being implemented. MSWM03 still needs the actual black-market search/entry and its own paid criminal action. Neither is counted complete by this WIP.
+- BQ049 task-region reward and BQ043/BQ058/BQ066 task dependencies remain outside this slice while neutral task-region development is paused.
+- BQ047/CQ13/JZ42/MSJZ03/TK009 need their actual clock-group entry/target/timing closure; this note does not declare every member independently rule-blocked.
+- CQ12/CQ14 still require the actual omen locality/linked-character mechanism. MSLC03 city/support-deck/cross-game scope and LC04 source-color conflict are separate remaining items.
+- BQ048, BQ095 and WM026 are already closed and must not be selected again from the older26-entry table. MSBQ02 late-entry choice is closed without implying task-region or49+1 completion.
+
+See WM063-BLACK-MARKET-2026-10-30.md for original text versus the scoped project choice. No paused-color admission or independent review is added.

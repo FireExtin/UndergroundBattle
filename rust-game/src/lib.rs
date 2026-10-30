@@ -536,6 +536,8 @@ mod msbq02;
 mod msjc12;
 mod mswm01;
 #[cfg(test)] mod mswm01_tests;
+mod wm063;
+#[cfg(test)] mod wm063_tests;
 mod mswm02;
 mod msbq03;
 mod msjc16;

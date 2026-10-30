@@ -12402,7 +12402,8 @@
       "abilities": [],
       "costAppearance": "absent"
     },
-    {"id": "BQ095", "name": "圣甲虫药业集团总部", "subtitle": "圣甲虫产业", "kind": "attachment", "cost": 6, "loyalty": ["黑色", "黑色", "黑色"], "color": "黑", "magic": "", "icons": {"permanent": {"investigation": 0, "combat": 0, "influence": 0}, "temporary": {"investigation": 0, "combat": 0, "influence": 0}}, "subtypes": ["设施", "研究"], "unique": true, "text": "结附于本方秘社。进场触发 为本方秘社创建一个名为集团总部的区域。将本方墓地中的所有牌置于集团总部区。本局游戏中，你所拥有的卡牌上注明本方墓地的，改为集团总部区，将被置入本方墓地的，改为置入集团总部区。准备步骤触发 抓两张牌，然后弃一张牌。", "supported": false}
+    {"id": "BQ095", "name": "圣甲虫药业集团总部", "subtitle": "圣甲虫产业", "kind": "attachment", "cost": 6, "loyalty": ["黑色", "黑色", "黑色"], "color": "黑", "magic": "", "icons": {"permanent": {"investigation": 0, "combat": 0, "influence": 0}, "temporary": {"investigation": 0, "combat": 0, "influence": 0}}, "subtypes": ["设施", "研究"], "unique": true, "text": "结附于本方秘社。进场触发 为本方秘社创建一个名为集团总部的区域。将本方墓地中的所有牌置于集团总部区。本局游戏中，你所拥有的卡牌上注明本方墓地的，改为集团总部区，将被置入本方墓地的，改为置入集团总部区。准备步骤触发 抓两张牌，然后弃一张牌。", "supported": false},
+    {"id":"WM063","name":"黑市","kind":"attachment","cost":2,"loyalty":["黑色"],"color":"黑","magic":"","icons":{"permanent":{"investigation":0,"combat":0,"influence":0},"temporary":{"investigation":0,"combat":0,"influence":0}},"subtypes":["设施","罪犯"],"unique":false,"supported":false,"text":"持续 若敌方秘社上有隐秘，则敌方玩家也可以发动黑市的能力。行动2，弃一张事务牌：抓一张牌。行动1，弃一张角色牌：遏制2。行动1，弃一张附属牌：在目标角色上放置一个战斗能力图标标志。"}
   ],
   "decks": [
     {

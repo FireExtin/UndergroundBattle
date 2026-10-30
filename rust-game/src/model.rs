@@ -673,6 +673,7 @@ pub enum PaidCost {
     BQ052Sacrificed(Vec<SourceSnapshot>),
     MSWM01Specter(crate::msjc12::ExhaustedCharacter),
     MSJC12Trio(Vec<crate::msjc12::ExhaustedCharacter>),
+    WM063Discard { card: Card, secrecy: u32 },
     MSWM02Discard { card: Card, subtypes: Vec<String> },
     BQ067Honor { before: u32 },
     BQ046Honor { before: u32 },
@@ -804,6 +805,8 @@ pub enum FrameChoice {
     JZ51EntryRegion { regions: Vec<(usize, String)> },
     WM058Payment,
     BQ041Payment,
+    WM063Player,
+    WM063Repress { seat: usize, regions: Vec<(usize,String,u32)> },
     WM060Repress { regions: Vec<(usize,String,u32)> },
     JZ39EnemySacrifice,
     VampireBlood,
@@ -1174,6 +1177,7 @@ impl Game {
         self.validate_msjc12_state()?;
         self.validate_mswm01_state()?;
         self.validate_mswm02_state()?;
+        self.validate_wm063_state()?;
         self.validate_jz53_state()?;
         self.validate_jc097_state()?;
         self.validate_jc053_state()?;

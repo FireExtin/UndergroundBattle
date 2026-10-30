@@ -669,6 +669,7 @@ impl Game {
         self.validate_msjc12_state()?;
         self.validate_mswm01_state()?;
         self.validate_mswm02_state()?;
+        self.validate_wm063_state()?;
         self.validate_bq045_state()?;
         self.validate_jz53_state()?;
         self.validate_jc097_state()?;
@@ -735,6 +736,7 @@ impl Game {
         next.validate_msjc12_state()?;
         next.validate_mswm01_state()?;
         next.validate_mswm02_state()?;
+        next.validate_wm063_state()?;
         next.validate_bq045_state()?;
         next.validate_jz53_state()?;
         next.validate_jc097_state()?;
@@ -1159,7 +1161,7 @@ impl Game {
                     return self.xg25_begin_sealed_action(seat,&a);
                 }
                 let (region, c) = self.ability_source(id).ok_or("实体引用已失效")?;
-                if (c.controller != seat && c.definition != "XQ22" && !self.wm057_borrow_command(seat,c,&a)) || (c.face_down && !crate::jc041::hidden_action(c, &a) && !(crate::batch4_plans::secret(c) && a.ability_id.as_deref() == Some(crate::batch4_plans::ADVANCE))) {
+                if (c.controller != seat && c.definition != "XQ22" && !self.wm057_borrow_command(seat,c,&a) && !self.wm063_borrow(seat,c)) || (c.face_down && !crate::jc041::hidden_action(c, &a) && !(crate::batch4_plans::secret(c) && a.ability_id.as_deref() == Some(crate::batch4_plans::ADVANCE))) {
                     return Err("只能发动自己操控的正面角色或完整准入的暗藏者能力".into());
                 }
                 crate::next20_red::validate_action(&c.definition, &a)?;
@@ -1471,6 +1473,7 @@ impl Game {
         self.validate_xg19_play(&item)?;self.validate_xg19_token_play(&item)?;
         self.validate_cq11_play(&item)?;
         self.validate_bq095_play(&item)?;
+        self.wm063_play(&item)?;
         self.validate_bq052_play(&item)?;
         self.validate_bq049_play(&item)?;
         self.validate_bq061_play(&item)?;
@@ -3348,7 +3351,7 @@ impl Game {
             }
             for attachment in &self.attachments {
                 let c = &attachment.card;
-                if c.controller != seat
+                if (c.controller != seat && !self.wm063_borrow(seat,c))
                     || !rules::definition(&c.definition)
                         .abilities
                         .iter()
