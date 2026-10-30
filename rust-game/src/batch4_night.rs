@@ -47,7 +47,8 @@ impl Game {
         let n = self.attachments.iter().filter(|a| a.card.definition == "JZ56" && !a.card.face_down
             && a.card.controller == c.controller && self.attachment_host_valid(a)
             && a.card.chosen_subtype.is_some_and(|kind| subtypes.iter().any(|s| s == kind.label()))).count() as u32;
-        (n, if self.players[c.controller].graveyard.len() >= 7 { n } else { 0 })
+        let empowered=self.attachments.iter().filter(|a| a.card.definition=="JZ56" && !a.card.face_down && a.card.controller==c.controller && self.attachment_host_valid(a) && a.card.chosen_subtype.is_some_and(|kind|subtypes.iter().any(|s|s==kind.label())) && self.bq095_reference_cards(&a.card).len()>=7).count() as u32;
+        (n, empowered)
     }
     fn jz56_source(&self, actor: usize, s: &SourceSnapshot, attaching: bool) -> RuleResult<()> {
         let c = &s.card;

@@ -312,7 +312,7 @@ impl Game {
         p.deck
             .iter()
             .chain(&p.hand)
-            .chain(&p.graveyard)
+            .chain(&p.graveyard).chain(self.bq095_headquarters.iter().filter(|z|z.seat==p.seat).flat_map(|z|&z.cards))
             .filter(|c| {
                 catalog::card(&c.definition).kind == "character"
                     && catalog::card(&c.definition).name == s.name
@@ -328,7 +328,7 @@ impl Game {
                 p.deck
                     .iter()
                     .chain(&p.hand)
-                    .chain(&p.graveyard)
+                    .chain(&p.graveyard).chain(self.bq095_headquarters.iter().filter(|z|z.seat==p.seat).flat_map(|z|&z.cards))
                     .find(|c| &c.id == id)
             })
             .map(|c| self.option(c, actor, None, None))

@@ -120,7 +120,7 @@ impl Game {
     fn validate_red_time_catalogue(&self) -> RuleResult<()> {
         for c in self.regions.iter().flat_map(|r| &r.cards).chain(self.regions.iter().map(|r| &r.card))
             .chain(&self.world).chain(self.players.iter().flat_map(|p| p.hand.iter().chain(&p.deck)
-                .chain(&p.assets).chain(&p.graveyard).chain(&p.score_cards).chain(p.society_zone.card.iter())))
+                .chain(&p.assets).chain(&p.graveyard).chain(self.bq095_headquarters.iter().filter(|z|z.seat==p.seat).flat_map(|z|&z.cards)).chain(&p.score_cards).chain(p.society_zone.card.iter())))
             .chain(self.attachments.iter().map(|a| &a.card)).chain(self.sealed_cards.iter().map(|s| &s.card))
             .chain(self.stack.iter().filter_map(|s| s.card.as_ref())) { admitted_card(c)?; }
         for item in &self.stack { if let Some(f) = &item.frame { admitted_source(&f.source)?; } }

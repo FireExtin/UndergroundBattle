@@ -194,9 +194,7 @@ mod tests {
 
 impl Game {
     fn wm033_options(&self, f: &ResolutionFrame) -> Vec<ChoiceOption> {
-        self.players[f.actor]
-            .graveyard
-            .iter()
+        self.bq095_reference_cards(&f.source.card).iter()
             .filter(|c| {
                 // WM034 is a character with the printed 灾难 subtype and qualifies;
                 // a magic-domain icon alone does not make a card a 法术 card.
@@ -295,12 +293,7 @@ impl Game {
         {
             return Err("钟楼怪客只能回收本方墓地中的一个真实合法选项".into());
         }
-        let index = self.players[f.actor]
-            .graveyard
-            .iter()
-            .position(|c| c.id == selected[0])
-            .ok_or("所选牌已离开墓地")?;
-        let card = self.take_grave_observed(f.actor,index);
+        let card = self.bq095_take_reference(&f.source.card,&selected[0])?;
         let card = self.reset_zone_card(card);
         self.players[f.actor].hand.push(card);
         Ok(())

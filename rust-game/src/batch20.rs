@@ -590,12 +590,18 @@ impl Game {
     pub(crate) fn validate_batch20_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
         if crate::import20_tattoo::frame_related(f) { return self.validate_wm064_frame(f); }
         if crate::import20_cultist::frame_related(f) { return self.validate_xg13_frame(f); }
-        if let Some(PlaySource::GraveyardByJZ52(grant)) = &f.source.play_source {
+        if let Some(PlaySource::GraveyardByJZ52(grant)|PlaySource::HeadquartersByJZ52{grant,..}) = &f.source.play_source {
             if f.ability_key != "deploy" || f.actor >= self.players.len() || f.actor != f.source.card.controller
                 || grant.owner >= self.players.len() || f.source.card.face_down || !f.source.valid_character_play()
                 || self.in_play(&grant.id).is_some_and(|(_,c)| c.definition != grant.definition || c.owner != grant.owner) {
                 return Err("墓地出牌缺少有效的事件时死亡领域许可".into());
             }
+        }
+        if let Some(PlaySource::HeadquartersByJZ52{zone,grant})=&f.source.play_source {
+            if !self.bq095_headquarters.iter().any(|z|z.id==*zone && z.seat==grant.owner)
+                || !self.mystic_instance_number(zone).zip(self.mystic_instance_number(&f.source.card.id)).is_some_and(|(z,c)|z<c)
+                || !self.mystic_instance_number(&f.source.card.id).zip(self.mystic_instance_number(&f.frame_id)).is_some_and(|(c,f)|c<f) {return Err("总部出牌缺少实际创建区域或原实例次序".into());}
+            self.mobility_immutable_identity(grant)?;
         }
         if self.validated_cross_card_frame(f)? || !related(f) { return Ok(()); }
         if f.source.card.definition == "BQ094" && f.source.observed_death.is_some() { return self.validate_observer_frame(f, None); }

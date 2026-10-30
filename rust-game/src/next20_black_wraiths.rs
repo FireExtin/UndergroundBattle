@@ -370,14 +370,12 @@ impl Game {
         self.mobility_immutable_identity(&o.dead.card)?;
         Ok(())
     }
-    fn cq25_search_options(&self, actor: usize) -> Vec<ChoiceOption> {
+    fn cq25_search_options(&self, actor: usize, source:&Card) -> Vec<ChoiceOption> {
         let matches = |c: &&Card| {
             catalog::card(&c.definition).name == "伥鬼"
                 && catalog::card(&c.definition).kind == "character"
         };
-        self.players[actor]
-            .graveyard
-            .iter()
+        self.bq095_reference_cards(source).iter()
             .filter(matches)
             .map(|c| self.option(c, actor, None, Some("伥鬼（墓地）")))
             .chain(
@@ -389,8 +387,8 @@ impl Game {
             )
             .collect()
     }
-    fn cq25_search_choices(&self, actor: usize) -> Vec<ChoiceOption> {
-        let mut options = self.cq25_search_options(actor);
+    fn cq25_search_choices(&self, actor: usize, source:&Card) -> Vec<ChoiceOption> {
+        let mut options = self.cq25_search_options(actor,source);
         // Match the current bounded-search kernel: a matching card cannot be
         // silently ignored in a searched deck. Empty-deck search still shuffles.
         if !self.players[actor].deck.iter().any(|c| {
@@ -412,7 +410,7 @@ impl Game {
         }
         // An empty confirmation remains necessary: searching the deck and
         // failing to find still shuffles. Choosing only the graveyard does not.
-        let options = self.cq25_search_choices(f.actor);
+        let options = self.cq25_search_choices(f.actor,&f.source.card);
         self.choice(
             f.actor,
             SEARCH,
@@ -444,7 +442,7 @@ impl Game {
         }
         let id = &selected[0];
         if !self
-            .cq25_search_choices(chooser)
+            .cq25_search_choices(chooser,&f.source.card)
             .iter()
             .any(|o| &o.id == id)
         {
@@ -455,18 +453,14 @@ impl Game {
             return Ok(());
         }
         if !self
-            .cq25_search_options(chooser)
+            .cq25_search_options(chooser,&f.source.card)
             .iter()
             .any(|o| &o.id == id)
         {
             return Err("选择不是本人牌库或墓地里的原伥鬼".into());
         }
-        let (c, deck) = if let Some(i) = self.players[chooser]
-            .graveyard
-            .iter()
-            .position(|c| &c.id == id)
-        {
-            (self.take_grave_observed(chooser,i), false)
+        let (c, deck) = if self.bq095_reference_cards(&f.source.card).iter().any(|c|&c.id==id) {
+            (self.bq095_take_reference(&f.source.card,id)?, false)
         } else {
             let i = self.players[chooser]
                 .deck
@@ -718,7 +712,7 @@ impl Game {
             return Ok(());
         };
         self.cq25_validate_search(f)?;
-        let options = self.cq25_search_choices(f.actor);
+        let options = self.cq25_search_choices(f.actor,&f.source.card);
         if f.cursor != 1
             || !matches!(f.guard, GuardState::Accepted)
             || p.seat != f.actor

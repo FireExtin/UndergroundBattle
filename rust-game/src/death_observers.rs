@@ -214,7 +214,7 @@ impl Game {
             }
         }
         for c in self.players.iter().flat_map(|p| p.hand.iter().chain(&p.deck).chain(&p.assets)
-            .chain(&p.graveyard).chain(&p.score_cards).chain(p.society_zone.card.iter()))
+            .chain(&p.graveyard).chain(self.bq095_headquarters.iter().filter(|z|z.seat==p.seat).flat_map(|z|&z.cards)).chain(&p.score_cards).chain(p.society_zone.card.iter()))
             .chain(self.sealed_cards.iter().map(|s| &s.card))
             .chain(&self.world)
             .chain(self.stack.iter().filter_map(|s| s.card.as_ref())) {

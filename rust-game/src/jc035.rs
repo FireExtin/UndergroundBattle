@@ -122,7 +122,7 @@ impl Game {
     fn jc035_physical_cards(&self) -> impl Iterator<Item = &Card> {
         self.regions.iter().flat_map(|r| std::iter::once(&r.card).chain(&r.cards))
             .chain(self.players.iter().flat_map(|p| p.hand.iter().chain(&p.deck).chain(&p.assets)
-                .chain(&p.graveyard).chain(&p.score_cards).chain(p.society_zone.card.iter())))
+                .chain(&p.graveyard).chain(self.bq095_headquarters.iter().filter(|z|z.seat==p.seat).flat_map(|z|&z.cards)).chain(&p.score_cards).chain(p.society_zone.card.iter())))
             .chain(&self.world).chain(self.attachments.iter().map(|a| &a.card))
             .chain(self.sealed_cards.iter().map(|s| &s.card))
             .chain(self.stack.iter().filter_map(|s| s.card.as_ref()))
@@ -217,7 +217,7 @@ impl Game {
             .filter(|(_,c)|c.definition!="MSJC16"||self.turn==1)
             .filter(|(_, c)| c.definition != "CQ08" || self.cq08_count(c.controller) >= 3)
             .filter(|(_, c)| c.definition != "WM028" || self.team(c.controller) == self.first_team)
-            .filter(|(_, c)| c.definition != "BQ087" || self.players[c.controller].graveyard.iter().any(|grave| grave.owner==c.controller && catalog::catalog().cards.iter().any(|d|d.id==grave.definition && d.kind=="character")))
+            .filter(|(_, c)| c.definition != "BQ087" || self.bq095_reference_cards(c).iter().any(|grave| grave.owner==self.bq095_reference_seat(c) && catalog::catalog().cards.iter().any(|d|d.id==grave.definition && d.kind=="character")))
             .map(|(region, c)| self.source_snapshot(c, region)).collect::<Vec<_>>();
         // Seat ordering between teammates is the existing project contract;
         // each controller explicitly chooses its own simultaneous order.
@@ -414,7 +414,7 @@ impl Game {
         if f.source.card.definition == "BQ079" { return self.bq079_upkeep_start(f); }
         if f.source.card.definition == "BQ087" {
             let regions=self.regions.iter().enumerate().filter(|(_,r)|!r.vacant).map(|(i,_)|i).collect::<Vec<_>>();
-            if !regions.is_empty() { let region=regions[self.random_below(regions.len())]; self.world_graveyard_entry(f.actor,region,&f.targets[0].id)?; }
+            if !regions.is_empty() { let region=regions[self.random_below(regions.len())]; self.own_graveyard_entry(&f.source.card,f.actor,region,&f.targets[0].id)?; }
             return Ok(());
         }
         if f.source.card.definition == "BQ085" { return self.bq085_upkeep_start(f.clone()); }

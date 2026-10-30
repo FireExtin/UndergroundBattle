@@ -11,10 +11,19 @@ impl Game {
         self.regions.iter().flat_map(|r| &r.cards).find(|c|
             c.definition == "JZ52" && !c.face_down && c.controller == actor)
     }
+    fn jz52_play_grant(&self,actor:usize,c:&Card)->Option<&Card> {
+        self.regions.iter().flat_map(|r|&r.cards).find(|g|g.definition=="JZ52" && !g.face_down && g.controller==actor && c.owner==self.bq095_reference_seat(g) && self.bq095_reference_cards(g).iter().any(|v|v.id==c.id))
+    }
+    pub(crate) fn grave_character_candidates(&self,actor:usize)->Vec<&Card> {
+        let mut all=self.bq095_self_grave_sources(actor);
+        for grant in self.regions.iter().flat_map(|r|&r.cards).filter(|g|g.definition=="JZ52"&&!g.face_down&&g.controller==actor) {
+            for c in self.bq095_reference_cards(grant) {if !all.iter().any(|v|v.id==c.id){all.push(c);}}
+        }
+        all
+    }
     pub(crate) fn can_play_grave_character(&self, actor: usize, c: &Card) -> bool {
-        c.owner == actor && card(&c.definition).kind == "character"
-            && ((rules::definition(&c.definition).graveyard_face_up && self.bq095_reference_cards(c).iter().any(|v|v.id==c.id))
-                || (card(&c.definition).magic_icon == rules::MagicIcon::Death && self.jz52_grant(actor).is_some_and(|s|self.bq095_reference_cards(s).iter().any(|v|v.id==c.id))))
+        card(&c.definition).kind=="character" && ((c.owner==actor && rules::definition(&c.definition).graveyard_face_up && self.bq095_reference_cards(c).iter().any(|v|v.id==c.id))
+            || (card(&c.definition).magic_icon==rules::MagicIcon::Death && self.jz52_play_grant(actor,c).is_some()))
     }
     pub(crate) fn character_play_source(
         &self,
@@ -37,7 +46,7 @@ impl Game {
             if concealed { return Err("欧米伽仅许可资产中的声望角色正面打出".into()); }
             return self.omega_asset_play(actor, c).ok_or("资产没有当前本方欧米伽声望出牌许可".into());
         }
-        let c = self.bq095_self_grave_sources(actor).into_iter()
+        let c = self.grave_character_candidates(actor).into_iter()
             .find(|c| c.id == id)
             .ok_or("出牌来源引用已失效")?;
         if concealed
@@ -46,9 +55,9 @@ impl Game {
         {
             return Err("此墓地牌没有当前正面出牌许可，不能秘密派遣或建立资产".into());
         }
-        let source = if rules::definition(&c.definition).graveyard_face_up { PlaySource::Graveyard }
-            else { PlaySource::GraveyardByJZ52(Box::new(self.jz52_grant(actor).unwrap().clone())) };
-        Ok((c.clone(), source))
+        let source = if c.owner==actor && rules::definition(&c.definition).graveyard_face_up && self.bq095_reference_cards(c).iter().any(|v|v.id==c.id) { PlaySource::Graveyard }
+            else {let grant=self.jz52_play_grant(actor,c).ok_or("原墓地出牌许可失效")?.clone();match self.bq095_own_reference(&grant) {crate::bq095::Destination::Headquarters(zone)=>PlaySource::HeadquartersByJZ52{zone,grant:Box::new(grant)},_=>PlaySource::GraveyardByJZ52(Box::new(grant))}};
+        let mut c=c.clone();c.controller=actor;Ok((c, source))
     }
     pub(crate) fn take_character_play_source(
         &mut self,
@@ -73,6 +82,10 @@ impl Game {
                 self.bq095_take_reference(&c,id)
             },
             PlaySource::GraveyardByJZ52(grant) => self.bq095_take_reference(&grant,id),
+            PlaySource::HeadquartersByJZ52{zone,grant} => {
+                if grant.controller!=actor || self.bq095_own_reference(&grant)!=crate::bq095::Destination::Headquarters(zone) {return Err("总部出牌原许可区域失效".into());}
+                let mut c=self.bq095_take_reference(&grant,id)?;c.controller=actor;Ok(c)
+            },
         }
     }
 }
@@ -96,6 +109,7 @@ impl SourceSnapshot {
                 && !grant.id.is_empty() && grant.id != self.card.id && grant.controller == self.card.controller
                 && self.card.owner == self.card.controller && card(&self.card.definition).kind == "character"
                 && card(&self.card.definition).magic_icon == rules::MagicIcon::Death,
+            Some(PlaySource::HeadquartersByJZ52{zone,grant}) => grant.definition=="JZ52" && !grant.face_down && !grant.id.is_empty() && grant.id!=self.card.id && grant.controller==self.card.controller && grant.owner==self.card.owner && card(&self.card.definition).kind=="character" && card(&self.card.definition).magic_icon==rules::MagicIcon::Death && zone.strip_prefix('i').and_then(|v|v.parse::<u64>().ok()).is_some_and(|n|n>0) && zone!=&grant.id && zone!=&self.card.id,
             None => false,
         }
     }

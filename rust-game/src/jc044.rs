@@ -96,7 +96,7 @@ impl Game {
             return Err("JC044冻结角色来源、行动者或原地区无效".into());
         }
         let cards = self.players.iter().flat_map(|p| p.hand.iter().chain(&p.deck).chain(&p.assets)
-            .chain(&p.graveyard).chain(&p.score_cards).chain(p.society_zone.card.iter()));
+            .chain(&p.graveyard).chain(self.bq095_headquarters.iter().filter(|z|z.seat==p.seat).flat_map(|z|&z.cards)).chain(&p.score_cards).chain(p.society_zone.card.iter()));
         if self.regions.iter().flat_map(|r| std::iter::once(&r.card).chain(&r.cards))
             .chain(cards).chain(&self.world).chain(self.attachments.iter().map(|a| &a.card)).chain(self.sealed_cards.iter().map(|s| &s.card))
             .any(|c| c.id == s.card.id && (c.definition != s.card.definition || c.owner != s.card.owner)) {

@@ -1270,7 +1270,7 @@ impl Game {
         let specs = rules::definition(&source.card.definition).abilities.iter()
             .filter(|s| s.event == Some(event) && !(granted_raid && s.key.starts_with("raid-"))).cloned().collect::<Vec<_>>();
         for mut spec in specs {
-            if source.card.definition==crate::jc097::ID && spec.key==crate::jc097::KEY { spec=self.jc097_reveal_ability(actor); }
+            if source.card.definition==crate::jc097::ID && spec.key==crate::jc097::KEY { spec=self.jc097_reveal_ability(&source.card); }
             if source.card.definition == "WM024" && spec.key == crate::import20_vampires::RAID {
                 spec = self.wm024_reveal_ability(&source);
             }

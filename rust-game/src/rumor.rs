@@ -312,7 +312,7 @@ impl Game {
                     if c.owner >= self.players.len() {
                         return Err("入墓收据拥有者无效".into());
                     }
-                    if !self.players[c.owner].graveyard.iter().any(|live| live == c) {
+                    if !self.bq095_destination_cards(c.owner).iter().any(|live| live == c) {
                         return Err("传闻批次实际入墓收据不符".into());
                     }
                     c

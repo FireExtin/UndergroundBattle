@@ -940,7 +940,7 @@ impl Game {
             if p.hand
                 .iter()
                 .chain(&p.deck)
-                .chain(&p.graveyard)
+                .chain(&p.graveyard).chain(self.bq095_headquarters.iter().filter(|z|z.seat==p.seat).flat_map(|z|&z.cards))
                 .chain(&p.assets)
                 .chain(&p.score_cards)
                 .any(|c| (c.permanent_combat_markers != 0 || c.permanent_investigation_markers != 0))

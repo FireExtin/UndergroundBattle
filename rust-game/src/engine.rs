@@ -3286,8 +3286,8 @@ impl Game {
                     } } }
                 }
                 }
-                for c in self.bq095_self_grave_sources(seat) {
-                    if c.definition == "JZ51" { candidates.push((Action {card_id:Some(c.id.clone()),ability_id:Some(crate::batch4_wendigo::GRAVE.into()),..Action::new("activate")},"温迪戈墓地行动：封印三张无名尸体".into())); }
+                for c in self.grave_character_candidates(seat) {
+                    if c.definition == "JZ51" && c.owner==seat { candidates.push((Action {card_id:Some(c.id.clone()),ability_id:Some(crate::batch4_wendigo::GRAVE.into()),..Action::new("activate")},"温迪戈墓地行动：封印三张无名尸体".into())); }
                     if card(&c.definition).kind != "character"
                         || !self.can_play_grave_character(seat, c)
                     {
@@ -3364,7 +3364,7 @@ impl Game {
             let regions=if self.msbq02_chaos(c){vec![None]}else{(0..self.regions.len()).map(Some).collect::<Vec<_>>()};
             for region in regions{let label=format!("派遣核心 {} → {}",card(&c.definition).name,region.map_or("随机地区".into(),|r|format!("地区{}",r+1)));let a=Action{card_id:Some(c.id.clone()),region,..Action::new("deploy")};candidates.push((a.clone(),label.clone()));if z.rest>0{let mut a=a;a.option=Some("honor-rest".into());candidates.push((a,format!("{label}（以名誉支付全部休整）")));}}
         }}
-        let extra=candidates.iter().filter(|(a,_)|a.kind=="deploy" && a.card_id.as_ref().is_some_and(|id|self.players[seat].hand.iter().chain(&self.players[seat].graveyard).any(|c|c.id==*id && c.definition=="BQ029"))).map(|(a,label)|{let mut a=a.clone();a.option=Some("pay-extra-1".into());(a,format!("{label}（额外支付1）"))}).collect::<Vec<_>>();candidates.extend(extra);
+        let extra=candidates.iter().filter(|(a,_)|a.kind=="deploy" && a.card_id.as_ref().is_some_and(|id|self.players[seat].hand.iter().chain(self.grave_character_candidates(seat)).any(|c|c.id==*id && c.definition=="BQ029"))).map(|(a,label)|{let mut a=a.clone();a.option=Some("pay-extra-1".into());(a,format!("{label}（额外支付1）"))}).collect::<Vec<_>>();candidates.extend(extra);
         candidates.extend(self.cq27_actions(seat));
         candidates.extend(self.xq35_actions(seat));
         candidates.extend(self.xg25_sealed_actions(seat));

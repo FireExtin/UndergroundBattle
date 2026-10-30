@@ -146,9 +146,7 @@ impl Game {
             Zone::Region => (0..self.regions.len())
                 .map(|r| format!("region:{r}"))
                 .collect(),
-            Zone::Graveyard => self.players[actor]
-                .graveyard
-                .iter()
+            Zone::Graveyard => self.bq095_reference_cards(&source.card).iter()
                 .map(|c| c.id.clone())
                 .collect(),
             _ => self
@@ -192,9 +190,7 @@ impl Game {
                     id: id.clone(),
                     label: self.public_target(d.actor, &s, slot, &id).label,
                     card: if slot.zone == Zone::Graveyard {
-                        self.players[d.actor]
-                            .graveyard
-                            .iter()
+                        self.bq095_reference_cards(&s.card).iter()
                             .find(|c| c.id == id)
                             .map(|c| self.card_view(c, d.actor, None, None))
                     } else {
@@ -432,12 +428,7 @@ impl Game {
                     .strip_prefix("region:")
                     .and_then(|n| n.parse::<usize>().ok())
                     .ok_or("缺少原地区")?;
-                let i = self.players[f.actor]
-                    .graveyard
-                    .iter()
-                    .position(|c| c.id == t.id)
-                    .ok_or("原角色已不在墓地")?;
-                let c = self.take_grave_observed(f.actor,i);
+                let c = self.bq095_take_reference(&f.source.card,&t.id)?;
                 let mut c = self.reset_zone_card(c);
                 c.controller = f.actor;
                 let id = c.id.clone();

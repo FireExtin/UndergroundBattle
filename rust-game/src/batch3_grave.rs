@@ -32,7 +32,7 @@ impl Game {
     pub(crate) fn validate_jz25_origin(&self, source: &SourceSnapshot) -> RuleResult<()> {
         let c = &source.card;
         if c.id.strip_prefix('i').and_then(|s| s.parse::<u64>().ok()).is_none_or(|n| n == 0 || n > self.sequence)
-            || self.players.iter().any(|p| p.hand.iter().chain(&p.deck).chain(&p.graveyard).chain(&p.assets).chain(&p.score_cards).chain(p.society_zone.card.iter()).any(|other| other.id == c.id))
+            || self.players.iter().any(|p| p.hand.iter().chain(&p.deck).chain(&p.graveyard).chain(self.bq095_headquarters.iter().filter(|z|z.seat==p.seat).flat_map(|z|&z.cards)).chain(&p.assets).chain(&p.score_cards).chain(p.society_zone.card.iter()).any(|other| other.id == c.id))
             || self.sealed_cards.iter().any(|s| s.card.id == c.id)
             || self.attachments.iter().any(|a| a.card.id == c.id)
             || self.world.iter().any(|other| other.id == c.id)

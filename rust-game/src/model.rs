@@ -649,6 +649,7 @@ pub enum PlaySource {
     Hand,
     Graveyard,
     GraveyardByJZ52(Box<Card>),
+    HeadquartersByJZ52 { zone:String, grant:Box<Card> },
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct BoundTarget {

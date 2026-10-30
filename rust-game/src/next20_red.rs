@@ -341,7 +341,7 @@ impl Game {
     }
     fn jz32_options(&self, f: &ResolutionFrame) -> Vec<ChoiceOption> {
         if self.original_region(&f.source).is_none() { return vec![]; }
-        self.players[f.actor].graveyard.iter().filter(|c| c.definition == "JC048").map(|c| self.option(c, f.actor, None, None)).collect()
+        self.bq095_reference_cards(&f.source.card).iter().filter(|c| c.definition == "JC048").map(|c| self.option(c, f.actor, None, None)).collect()
     }
     pub(crate) fn jz32_search(&mut self, f: ResolutionFrame) -> RuleResult<()> {
         let options = self.jz32_options(&f); if options.is_empty() { return Ok(()); }
@@ -351,8 +351,8 @@ impl Game {
     pub(crate) fn jz32_finish(&mut self, f: &ResolutionFrame, selected: &[String]) -> RuleResult<()> {
         let Some(r) = self.original_region(&f.source) else { return Ok(()); };
         let id = selected.first().ok_or("请选择诅咒沙漏")?;
-        let pos = self.players[f.actor].graveyard.iter().position(|c| c.id == *id && c.definition == "JC048").ok_or("沙漏已离墓")?;
-        let c = self.take_grave_observed(f.actor,pos); self.red_attach(f.actor, c, self.regions[r].card.id.clone()); Ok(())
+        if !self.bq095_reference_cards(&f.source.card).iter().any(|c| c.id == *id && c.definition == "JC048") {return Err("沙漏已离墓".into());}
+        let c = self.bq095_take_reference(&f.source.card,id)?; self.red_attach(f.actor, c, self.regions[r].card.id.clone()); Ok(())
     }
     fn jz34_sacrifice_options(&self, f: &ResolutionFrame) -> Vec<ChoiceOption> {
         self.original_region(&f.source).into_iter().flat_map(|r| self.regions[r].cards.iter().filter(|c|

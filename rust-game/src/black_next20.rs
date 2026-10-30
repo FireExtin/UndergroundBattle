@@ -256,7 +256,7 @@ impl Game {
                 .subtypes
                 .iter()
                 .any(|s| s == "水域");
-        let grave = c.definition == "CQ26" && self.players[c.controller].graveyard.len() >= 7;
+        let grave = c.definition == "CQ26" && self.bq095_reference_cards(c).len() >= 7;
         (
             Icons {
                 combat: u32::from(water || grave),
@@ -307,10 +307,8 @@ impl Game {
                     })
                     .map(move |c| (r, c))
             })
-            .filter(|_| {
-                cards
-                    .iter()
-                    .any(|g| catalog::card(&g.definition).kind == "character")
+            .filter(|(_,source)| {
+                cards.iter().any(|g|catalog::card(&g.definition).kind=="character" && self.bq095_own_reference(source)==self.bq095_destination(g.owner))
             })
             .map(|(r, c)| self.source_snapshot(c, Some(r)))
             .collect::<Vec<_>>();
@@ -350,9 +348,7 @@ impl Game {
                     .map(move |c| (Some(r), c))
             })
             .chain(
-                self.players
-                    .iter()
-                    .flat_map(|p| p.graveyard.iter())
+                self.players.iter().enumerate().flat_map(|(seat,_)|self.bq095_self_grave_sources(seat))
                     .filter(|c| c.definition == "XG27")
                     .map(|c| (None, c)),
             )
@@ -411,15 +407,11 @@ impl Game {
     }
     pub(crate) fn black_next20_trigger_available(&self, d: &Declaration) -> bool {
         match (d.source.card.definition.as_str(), d.ability.event) {
-            ("BQ077", Some(Event::DeckToGraveyardObserved)) => self.players[d.actor]
-                .graveyard
-                .iter()
+            ("BQ077", Some(Event::DeckToGraveyardObserved)) => self.bq095_reference_cards(&d.source.card).iter()
                 .any(|c| c.id == d.source.card.id),
             ("XG27", Some(Event::BlackCharacterDeathObserved)) => {
                 self.resources(d.actor) >= 1
-                    && self.players[d.actor]
-                        .graveyard
-                        .iter()
+                    && self.bq095_reference_cards(&d.source.card).iter()
                         .any(|c| c.id == d.source.card.id)
             }
             _ => true,
@@ -490,7 +482,7 @@ impl Game {
                                 || !o
                                     .cards
                                     .iter()
-                                    .any(|c| catalog::card(&c.definition).kind == "character")))
+                                    .any(|c| catalog::card(&c.definition).kind == "character" && self.bq095_reference_at(&s.card,&o.event_id)==self.bq095_destination_at(c.owner,&o.event_id))))
                     {
                         return Err("牌库入墓观察的批次、角色或实际来源不符".into());
                     }
@@ -722,7 +714,7 @@ impl Game {
                 Zone::Graveyard => {
                     if target.public.kind != "character"
                         || target.public.region.is_some()
-                        || target.public.owner.as_deref() != Some(player_id(f.actor).as_str())
+                        || target.public.owner.as_deref() != Some(player_id(self.bq095_frozen_reference_seat(&f.source.card,&f.frame_id)).as_str())
                     {
                         return Err("黑色墓地恢复须绑定本人角色".into());
                     }
@@ -757,7 +749,7 @@ impl Game {
         else {
             return Ok(());
         };
-        self.black_grave_entry(f.actor, &f.source.card.id, r, false, false)
+        self.black_grave_entry(&f.source.card,f.actor, &f.source.card.id, r, false, false)
     }
     pub(crate) fn black_death_recovery(
         &mut self,
@@ -787,25 +779,22 @@ impl Game {
             return Ok(());
         };
         if let Some(id) = target {
-            self.black_grave_entry(f.actor, id, region, hidden, !hidden)?;
+            self.black_grave_entry(&f.source.card,f.actor, id, region, hidden, !hidden)?;
         }
         Ok(())
     }
     fn black_grave_entry(
         &mut self,
+        source:&Card,
         actor: usize,
         id: &str,
         region: usize,
         hidden: bool,
         exhausted: bool,
     ) -> RuleResult<()> {
-        let Some(index) = self.players[actor].graveyard.iter().position(|c| {
-            c.id == id && c.owner == actor && catalog::card(&c.definition).kind == "character"
-        }) else {
-            return Ok(());
-        };
-        let c = self.take_grave_observed(actor,index);
-        let mut c = self.reset_zone_card(c);
+        if !self.bq095_reference_cards(source).iter().any(|c|c.id==id && catalog::card(&c.definition).kind=="character") {return Ok(());}
+        let c=self.bq095_take_reference(source,id)?;
+        let mut c=self.reset_zone_card(c);c.controller=actor;
         c.face_down = hidden;
         c.exhausted = exhausted;
         self.apply_hidden_entry_slow(&mut c);
@@ -819,22 +808,18 @@ impl Game {
     }
     pub(crate) fn xq39_grave_to_top(&mut self, f: &ResolutionFrame) -> RuleResult<()> {
         let id = &f.targets.first().ok_or("方碑印记缺少墓地角色")?.id;
-        if let Some(index) = self.players[f.actor].graveyard.iter().position(|c| {
-            c.id == *id && c.owner == f.actor && catalog::card(&c.definition).kind == "character"
-        }) {
-            let c = self.take_grave_observed(f.actor,index);
+        if self.bq095_reference_cards(&f.source.card).iter().any(|c|c.id==*id && catalog::card(&c.definition).kind=="character") {
+            let c=self.bq095_take_reference(&f.source.card,id)?;
             let c = self.reset_zone_card(c);
             self.players[f.actor].deck.insert(0, c);
         }
         Ok(())
     }
     pub(crate) fn bq085_upkeep_start(&mut self, f: ResolutionFrame) -> RuleResult<()> {
-        if self.players[f.actor].graveyard.len() < 2 {
+        if self.bq095_reference_cards(&f.source.card).len() < 2 {
             self.remove_dead(&f.source.card.id, RemovalCause::Sacrifice);
         } else {
-            let options = self.players[f.actor]
-                .graveyard
-                .iter()
+            let options = self.bq095_reference_cards(&f.source.card).iter()
                 .map(|c| self.option(c, f.actor, None, None))
                 .collect();
             self.choice(
@@ -862,29 +847,20 @@ impl Game {
             || selected[0] == selected[1]
             || selected
                 .iter()
-                .any(|id| !self.players[f.actor].graveyard.iter().any(|c| c.id == *id))
+                .any(|id| !self.bq095_reference_cards(&f.source.card).iter().any(|c| c.id == *id))
         {
             return Err("骸堆准备必须选择两张不同的本人墓地牌".into());
         }
         for id in selected {
-            let i = self.players[f.actor]
-                .graveyard
-                .iter()
-                .position(|c| c.id == *id)
-                .unwrap();
-            let c = self.take_grave_observed(f.actor,i);
+            let c=self.bq095_take_reference(&f.source.card,id)?;
             let c = self.reset_zone_card(c);
             self.players[f.actor].deck.push(c);
         }
         Ok(())
     }
     pub(crate) fn validate_bq085_upkeep(&self, p: &Pending, f: &ResolutionFrame) -> RuleResult<()> {
-        let options = self
-            .players
-            .get(f.actor)
-            .ok_or("骸堆席位无效")?
-            .graveyard
-            .iter()
+        self.players.get(f.actor).ok_or("骸堆席位无效")?;
+        let options = self.bq095_reference_cards(&f.source.card).iter()
             .map(|c| self.option(c, f.actor, None, None))
             .collect::<Vec<_>>();
         if f.source.card.definition != "BQ085"

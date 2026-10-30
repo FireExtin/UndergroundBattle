@@ -419,7 +419,7 @@ impl Game {
                         return Err("黑色扩展原子程序不能暂停为其他选择".into());
                     }
                     self.bq078_return_actor(f)?;
-                    let options = self.bq078_corpse_options(f.actor)?;
+                    let options = self.bq078_corpse_options(f.actor,&f.source.card)?;
                     if self.players[f.actor].eliminated
                         || options.is_empty()
                         || p.seat != f.actor
@@ -455,11 +455,11 @@ impl Game {
         }
         Ok(f.actor)
     }
-    fn bq078_corpse_options(&self, actor: usize) -> RuleResult<Vec<ChoiceOption>> {
-        let p = self.players.get(actor).ok_or("BQ078回收行动者无效")?;
+    fn bq078_corpse_options(&self, actor: usize, source:&Card) -> RuleResult<Vec<ChoiceOption>> {
+        self.players.get(actor).ok_or("BQ078回收行动者无效")?;
         let mut options = vec![];
         let mut instances = BTreeSet::new();
-        for c in &p.graveyard {
+        for c in self.bq095_reference_cards(source) {
             // Validate every inspected graveyard definition before filtering or
             // projecting it. A corrupt non-candidate must also return an error,
             // never reach catalog::card's trusted-runtime panic path.
@@ -486,7 +486,7 @@ impl Game {
         if self.players[actor].eliminated {
             return Ok(());
         }
-        let options = self.bq078_corpse_options(actor)?;
+        let options = self.bq078_corpse_options(actor,&f.source.card)?;
         if options.is_empty() {
             return Ok(());
         }
@@ -519,16 +519,11 @@ impl Game {
         {
             return Err("BQ078回收必须由冻结行动者选择一张无名尸体".into());
         }
-        let options = self.bq078_corpse_options(actor)?;
+        let options = self.bq078_corpse_options(actor,&f.source.card)?;
         if !options.iter().any(|o| o.id == selected[0]) {
             return Err("BQ078回收的本方墓地实例或牌名已失效".into());
         }
-        let i = self.players[actor]
-            .graveyard
-            .iter()
-            .position(|c| c.id == selected[0])
-            .ok_or("BQ078回收的本方墓地实例或牌名已失效")?;
-        let c = self.take_grave_observed(actor,i);
+        let c = self.bq095_take_reference(&f.source.card,&selected[0])?;
         let c = self.reset_zone_card(c);
         self.note(format!(
             "{} 将墓地中的无名尸体置于其手中",

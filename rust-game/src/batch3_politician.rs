@@ -31,7 +31,7 @@ impl Game{
             || (f.cursor==0 && !matches!(f.guard,GuardState::Unchecked)) || (f.cursor==1 && !matches!(f.guard,GuardState::Accepted))
             || !same(&f.steps,&vec![Step{context:f.actor,op:d.abilities[0].ops[0].clone()}])
             || !matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if f.money_units(0)==2 && ids.iter().all(|id|!id.is_empty() && *id!=c.id) && ids.iter().collect::<BTreeSet<_>>().len()==ids.len() && !self.players.iter().enumerate().any(|(seat,p)|seat!=f.actor && p.assets.iter().any(|asset|ids.contains(&asset.id))))
-            || self.players.iter().any(|p|p.hand.iter().chain(&p.deck).chain(&p.graveyard).chain(&p.assets).chain(&p.score_cards).any(|other|other.id==c.id)){
+            || self.players.iter().any(|p|p.hand.iter().chain(&p.deck).chain(&p.graveyard).chain(self.bq095_headquarters.iter().filter(|z|z.seat==p.seat).flat_map(|z|&z.cards)).chain(&p.assets).chain(&p.score_cards).any(|other|other.id==c.id)){
             return Err("州议员须保留任意玩家实际支付2、原公开来源和一次执行程序".into());
         }
         self.mobility_immutable_identity(c)

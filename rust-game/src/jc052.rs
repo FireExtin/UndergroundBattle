@@ -185,7 +185,7 @@ impl Game {
         // A departed source need not exist now. If its UID still names an entity,
         // printed definition and owner are immutable; current control may change.
         let owner_cards = self.players.iter().flat_map(|p| {
-            p.hand.iter().chain(&p.deck).chain(&p.assets).chain(&p.graveyard)
+            p.hand.iter().chain(&p.deck).chain(&p.assets).chain(&p.graveyard).chain(self.bq095_headquarters.iter().filter(|z|z.seat==p.seat).flat_map(|z|&z.cards))
                 .chain(&p.score_cards).chain(p.society_zone.card.iter())
         });
         let contradicts_source = self.regions.iter()

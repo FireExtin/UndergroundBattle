@@ -87,22 +87,21 @@ pub(crate) fn inspection_target()->TargetSlotSpec{
     t.predicate=Some(TargetPredicate::WM057HiddenOrSecretPlan);t
 }
 impl Game{
-    pub(crate) fn bq081_grave_options(&self,actor:usize)->Vec<ChoiceOption>{
-        self.players[actor].graveyard.iter().filter(|c|c.owner==actor&&!c.face_down&&catalog::card(&c.definition).kind=="character")
+    pub(crate) fn bq081_grave_options(&self,actor:usize,source:&Card)->Vec<ChoiceOption>{
+        self.bq095_reference_cards(source).iter().filter(|c|c.owner==self.bq095_reference_seat(source)&&!c.face_down&&catalog::card(&c.definition).kind=="character")
             .map(|c|self.option(c,actor,None,Some("graveyard"))).collect()
     }
     pub(crate) fn bq081_entry_start(&mut self,f:ResolutionFrame)->RuleResult<()>{
         self.validate_import20_broker_frame(&f)?;
-        let options=self.bq081_grave_options(f.actor);if options.is_empty(){return Ok(());}
+        let options=self.bq081_grave_options(f.actor,&f.source.card);if options.is_empty(){return Ok(());}
         self.choice(f.actor,GRAVE,GRAVE_TITLE.into(),options,1,1,None,
             ChoiceResolution::Frame{frame:Box::new(f),choice:FrameChoice::BQ081GraveCharacter});Ok(())
     }
     pub(crate) fn bq081_entry_complete(&mut self,f:&ResolutionFrame,actor:usize,selected:&[String])->RuleResult<()>{
         self.validate_import20_broker_frame(f)?;
         if actor!=f.actor||f.cursor!=1||selected.len()!=1
-            ||!self.bq081_grave_options(actor).iter().any(|o|o.id==selected[0]){return Err("凋零食腐怪须选择本人墓地的一张角色".into());}
-        let index=self.players[actor].graveyard.iter().position(|c|c.id==selected[0]).ok_or("原墓地角色已失效")?;
-        let c=self.take_grave_observed(actor,index);let name=catalog::card(&c.definition).name.clone();let c=self.reset_zone_card(c);
+            ||!self.bq081_grave_options(actor,&f.source.card).iter().any(|o|o.id==selected[0]){return Err("凋零食腐怪须选择本人墓地的一张角色".into());}
+        let c=self.bq095_take_reference(&f.source.card,&selected[0])?;let name=catalog::card(&c.definition).name.clone();let c=self.reset_zone_card(c);
         self.players[actor].deck.push(c);self.note(format!("{} 将墓地的 {} 置于牌库底",self.players[actor].name,name));
         self.remove_dead(&f.targets[0].id,RemovalCause::Destroy);Ok(())
     }
@@ -247,7 +246,7 @@ impl Game{
             ChoiceResolution::Frame{frame:f,choice}if frame_related(f)=>{
                 self.validate_import20_broker_frame(f)?;
                 let (kind,title,options,min,max)=match choice{
-                    FrameChoice::BQ081GraveCharacter if f.ability_key==ENTRY&&f.cursor==1=>(GRAVE,GRAVE_TITLE,self.bq081_grave_options(f.actor),1,1),
+                    FrameChoice::BQ081GraveCharacter if f.ability_key==ENTRY&&f.cursor==1=>(GRAVE,GRAVE_TITLE,self.bq081_grave_options(f.actor,&f.source.card),1,1),
                     FrameChoice::WM057Opponent if f.ability_key==WIN&&f.cursor==2=>(OPPONENT,OPPONENT_TITLE,self.wm057_opponents(f.actor),1,1),
                     FrameChoice::WM057InspectMay if f.ability_key==WIN&&f.cursor==3=>(INSPECT,INSPECT_TITLE,self.wm057_peek_options(f),0,1),
                     FrameChoice::WM057Inspection{inspected:c}if f.ability_key==WIN&&f.cursor==3=>{

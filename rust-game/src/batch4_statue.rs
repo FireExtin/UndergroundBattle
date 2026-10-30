@@ -205,7 +205,7 @@ impl Game {
                 (*seat,"investigation",format!("预测 {n}"),options,n,n,Some(n as u32))
             },
             (Op::BQ078ReturnNamelessCorpse,FrameChoice::BQ078CorpseReturn)=>{
-                let options=self.players[f.actor].graveyard.iter().filter(|c|catalog::card(&c.definition).name=="无名尸体").map(|c|self.option(c,f.actor,None,None)).collect::<Vec<_>>();
+                let options=self.bq095_reference_cards(&f.source.card).iter().filter(|c|catalog::card(&c.definition).name=="无名尸体").map(|c|self.option(c,f.actor,None,None)).collect::<Vec<_>>();
                 (f.actor,"bq078_corpse_return","将你墓地中的一张无名尸体置于你的手中".into(),options,1,1,None)
             },
             _=>return Err("额外死亡续体必须属于原程序的实际待选步骤".into()),

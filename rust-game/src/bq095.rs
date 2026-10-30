@@ -203,11 +203,29 @@ impl Game {
         self.bq095_headquarters.iter().find(|z|z.seat==source.owner && self.mystic_instance_number(&z.id).zip(self.mystic_instance_number(frame_id)).is_some_and(|(z,f)|z<f))
             .map_or(source.controller,|z|z.seat)
     }
+    pub(crate) fn bq095_destination_at(&self,seat:usize,event:&str)->Destination {
+        self.bq095_headquarters.iter().find(|z|z.seat==seat && self.mystic_instance_number(&z.id).zip(self.mystic_instance_number(event)).is_some_and(|(z,e)|z<e))
+            .map_or(Destination::Graveyard(seat),|z|Destination::Headquarters(z.id.clone()))
+    }
+    pub(crate) fn bq095_reference_at(&self,source:&Card,event:&str)->Destination {
+        match self.bq095_destination_at(source.owner,event) {Destination::Headquarters(id)=>Destination::Headquarters(id),_=>Destination::Graveyard(source.controller)}
+    }
     /// Enumerate intrinsic own-grave activations. This does not grant a generic
     /// grave action access to HQ and is not used for another card's permission.
     pub(crate) fn bq095_self_grave_sources(&self,seat:usize)->Vec<&Card> {
         self.players[seat].graveyard.iter().chain(self.bq095_headquarters.iter().filter(|z|z.seat==seat).flat_map(|z|&z.cards))
             .filter(|c|c.owner==seat && self.bq095_reference_cards(c).iter().any(|v|v.id==c.id)).collect()
+    }
+    /// Actual destination receipts (discard/sacrifice) follow the replacement;
+    /// this is deliberately separate from printed own-grave effect references.
+    pub(crate) fn bq095_destination_cards(&self,seat:usize)->&[Card] {
+        self.bq095_headquarters.iter().find(|z|z.seat==seat).map_or(self.players[seat].graveyard.as_slice(),|z|z.cards.as_slice())
+    }
+    pub(crate) fn bq095_take_destination(&mut self,seat:usize,id:&str)->RuleResult<Card> {
+        if let Some(z)=self.bq095_headquarters.iter().position(|z|z.seat==seat) {
+            let i=self.bq095_headquarters[z].cards.iter().position(|c|c.id==id).ok_or("实际总部去向实体已离开")?;
+            let zone=self.bq095_headquarters[z].id.clone();let c=self.bq095_headquarters[z].cards.remove(i);self.jz53_observe_departure(&c,seat,Some(zone));Ok(c)
+        } else {let i=self.players[seat].graveyard.iter().position(|c|c.id==id).ok_or("实际墓地去向实体已离开")?;Ok(self.take_grave_observed(seat,i))}
     }
     pub(crate) fn bq095_commit_destination(&mut self,card:Card) {
         if let Some(z)=self.bq095_headquarters.iter_mut().find(|z|z.seat==card.owner) {
