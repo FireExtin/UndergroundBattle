@@ -25,7 +25,8 @@ impl Trace {
         let command = RoomCommand { command_id: format!("review-{}-{}",self.name,self.steps.len()),
             expected_version: self.room.revision, action };
         let expected = self.room.transition(seat,Some(command.clone()),0).unwrap();
-        assert_eq!(expected.outcome,"accepted","{}: {:?}",self.name,expected.error_message);
+        if expected.outcome!="accepted" {if let Ok(path)=std::env::var("ROOM_TRACE_FAILURE_OUT"){std::fs::write(path,serde_json::to_vec(&json!({"state":state,"seat":seat,"command":command,"response":expected})).unwrap()).unwrap();}}
+        assert_eq!(expected.outcome,"accepted","{}: {:?}",self.name,(&command.action,expected.error_message));
         self.room = RoomEnvelope::from_persisted(&expected.state).unwrap();
         self.steps.push(json!({"state":state,"seat":seat,"command":command,"serverNowMs":"0",
             "expected":expected,"views":(0..4).map(|seat|self.room.view(seat,0)).collect::<Vec<_>>()}));

@@ -133,12 +133,12 @@ impl Game {
         self.effects.extend(observations.into_iter().map(|declaration|Effect::Declare{declaration}));
         for id in batch.hand {
             let c = self.reset_zone_card(cards.remove(&id).ok_or("撤回对象已失效")?);
-            self.players[c.owner].hand.push(c);
+            if !self.generated_disappears(&c) { self.players[c.owner].hand.push(c); }
         }
         for (owner, order) in batch.orders.into_iter().enumerate() {
             for id in order.unwrap() {
                 let c = self.reset_zone_card(cards.remove(&id).ok_or("回底对象重复或已失效")?);
-                self.players[owner].deck.push(c);
+                if !self.generated_disappears(&c) { self.players[owner].deck.push(c); }
             }
         }
         Ok(())
