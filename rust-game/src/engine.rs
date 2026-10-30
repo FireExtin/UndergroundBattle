@@ -670,6 +670,7 @@ impl Game {
         self.validate_mswm01_state()?;
         self.validate_mswm02_state()?;
         self.validate_wm063_state()?;
+        self.validate_mswm03_state()?;
         self.validate_bq045_state()?;
         self.validate_jz53_state()?;
         self.validate_jc097_state()?;
@@ -737,6 +738,7 @@ impl Game {
         next.validate_mswm01_state()?;
         next.validate_mswm02_state()?;
         next.validate_wm063_state()?;
+        next.validate_mswm03_state()?;
         next.validate_bq045_state()?;
         next.validate_jz53_state()?;
         next.validate_jc097_state()?;
@@ -1311,7 +1313,7 @@ impl Game {
                 .map(crate::society::definition)
                 .transpose()?
                 .map_or(6, |s| s.starting_hand);
-            if !self.msjz04_defer_hand(seat) && !self.msbq01_defer_hand(seat) {self.draw(seat, starting_hand)?;}
+            if !self.msjz04_defer_hand(seat) && !self.msbq01_defer_hand(seat) && !self.mswm03_defer_hand(seat) {self.draw(seat, starting_hand)?;}
             self.effects.push_back(Effect::Mulligan { seat });
         }
         self.begin_window(Window::Prepare);
@@ -1933,6 +1935,7 @@ impl Game {
             Effect::Declare { declaration } => self.declare_trigger(declaration)?,
             Effect::Frame { frame } => self.resolve_frame(*frame)?,
             Effect::Draw { seat, count } => self.draw(seat, count)?,
+            Effect::MSWM03Opening{seat}=>self.mswm03_open(seat)?,
             Effect::MSBQ01Opening{seat}=>self.msbq01_open(seat)?,
             Effect::MSJZ04Opening{seat}=>self.msjz04_open(seat)?,
             Effect::Mulligan { seat } => {
@@ -2593,6 +2596,7 @@ impl Game {
                 self.choose_frame(frame, choice, seat, a, selected, option_ids)?
             }
             ChoiceResolution::MSJZ04Opening{seat:s}=>{if seat!=s||a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("起手封印只能由原玩家提交选择".into());}self.msjz04_open_finish(s,&selected)?;},
+            ChoiceResolution::MSWM03Opening{seat:s}=>{if seat!=s||a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("冷山帮寻牌只能提交原选择".into());}self.mswm03_open_finish(s,&selected)?;},
             ChoiceResolution::MSBQ01Opening{seat:s}=>{if seat!=s||a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("起手封印只能由原玩家提交选择".into());}self.msbq01_open_finish(s,&selected)?;},
             ChoiceResolution::Mulligan => {
                 let mut held = vec![];

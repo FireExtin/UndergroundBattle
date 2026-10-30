@@ -49,6 +49,7 @@ pub enum SocietyDeckConstraint {
     RedNeutralOrPrintedDisasterTimeFate,
     MinimumColor { color: String, count: usize },
     GreenNeutralOrPrintedHumanCombat,
+    ColdMountainOffColorMaximum,
     ClockmakersOffColorMaximum,
     GrayNeutralOrNoMagic,
 }
@@ -118,6 +119,11 @@ pub(crate) fn validate_construction(
             SocietyDeckConstraint::Shoggoth => {
                 if society.card.id!="MSBQ02"||entries.iter().any(|e|cards.iter().find(|c|c.id==e.card_id).is_none_or(|c|!matches!(c.color.as_str(),"灰"|"红"|"中立"))) {return Err("修格斯构筑仅允许灰、红、中立牌".into());}
                 let commands:usize=entries.iter().filter(|e|cards.iter().any(|c|c.id==e.card_id&&c.subtypes.iter().any(|s|s=="命令"))).map(|e|e.count).sum();if commands<12{return Err("修格斯牌组须至少12张命令".into());}
+            },
+            SocietyDeckConstraint::ColdMountainOffColorMaximum => {
+                if society.card.id!="MSWM03"{return Err("冷山帮构筑条件不能移植".into());}
+                let off:usize=entries.iter().filter(|e|cards.iter().any(|c|c.id==e.card_id&&!matches!(c.color.as_str(),"黑"|"中立"))).map(|e|e.count).sum();
+                if off>12{return Err(format!("冷山帮非黑且非中立牌不能超过12张，当前{off}张"));}
             },
             SocietyDeckConstraint::ClockmakersOffColorMaximum => {
                 if society.card.id != "MSJC13" { return Err("计时者构筑限制不能移植".into()); }
@@ -487,6 +493,7 @@ pub(crate) fn definitions() -> Vec<SocietyDefinition> {
         societies.push(crate::msbq03::society());
         societies.push(crate::mscq02::society());
         societies.push(crate::msjc16::society());
+        societies.push(crate::mswm03::society());
         societies
     }
     #[cfg(feature = "society-fixtures")]
@@ -558,7 +565,7 @@ mod tests {
                     .iter()
                     .map(|s| s.card.id.as_str())
                     .collect::<Vec<_>>(),
-                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC13", "MSJC14", "MSBQ02", "MSJZ04", "MSBQ01", "MSJC12", "MSWM01", "MSWM02", "MSBQ03", "MSCQ02", "MSJC16"]
+                vec!["MSJC09", "MSJC01", "MSJC07", "MSJC06", "MSJC08", "MSJC11", "MSJC02", "MSJC03", "MSJC04", "MSJC05", "MSJC13", "MSJC14", "MSBQ02", "MSJZ04", "MSBQ01", "MSJC12", "MSWM01", "MSWM02", "MSBQ03", "MSCQ02", "MSJC16", "MSWM03"]
             );
         }
         assert_eq!(

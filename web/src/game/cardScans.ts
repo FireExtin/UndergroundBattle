@@ -1,6 +1,7 @@
 // Original scans for admitted cards and separately reviewed card-face candidates.
 // Artwork is not a rules registry and does not admit a card to the playable pool.
 const scans: Record<string, string> = {
+  "MSWM03": "/cards/MSWM03.jpg",
   "WM063": "/cards/WM063.jpg",
   "BQ095": "/cards/BQ095.jpg",
   "WM026": "/cards/WM026.jpg",

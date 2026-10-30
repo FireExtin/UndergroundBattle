@@ -511,6 +511,7 @@ pub struct WinContext {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum Effect {
     MSJZ04Opening {seat:usize},
+    MSWM03Opening {seat:usize},
     MSBQ01Opening {seat:usize},
     BQ044CoreResume {frame:Box<ResolutionFrame>,state:crate::bq044_core::State},
     CoreReturn {departure:Box<crate::core_zone::Departure>},
@@ -673,6 +674,7 @@ pub enum PaidCost {
     BQ052Sacrificed(Vec<SourceSnapshot>),
     MSWM01Specter(crate::msjc12::ExhaustedCharacter),
     MSJC12Trio(Vec<crate::msjc12::ExhaustedCharacter>),
+    MSWM03Payment(Box<crate::mswm03::Payment>),
     WM063Discard { card: Card, secrecy: u32 },
     MSWM02Discard { card: Card, subtypes: Vec<String> },
     BQ067Honor { before: u32 },
@@ -987,6 +989,7 @@ pub enum RemovalCause {
 pub enum ChoiceResolution {
     CoreEntryRegion {frame_id:String,regions:Vec<(usize,String)>},
     MSJZ04Opening {seat:usize},
+    MSWM03Opening {seat:usize},
     MSBQ01Opening {seat:usize},
     MSJC16Payment { draft: Box<crate::msjc16::PaymentDraft> },
     CoreReturn {departure:Box<crate::core_zone::Departure>},
@@ -1178,6 +1181,7 @@ impl Game {
         self.validate_mswm01_state()?;
         self.validate_mswm02_state()?;
         self.validate_wm063_state()?;
+        self.validate_mswm03_state()?;
         self.validate_jz53_state()?;
         self.validate_jc097_state()?;
         self.validate_jc053_state()?;

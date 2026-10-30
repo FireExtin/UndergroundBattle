@@ -193,6 +193,8 @@ impl Game {
                         })
                         .map(|(_, c)| Some(vec![c.id.clone()]))
                         .collect()
+                } else if ability.costs.iter().any(|c|matches!(c,Cost::MSWM03Payment)){
+                    self.mswm03_cost_candidates(actor).into_iter().map(Some).collect()
                 } else if ability.costs.iter().any(|c|matches!(c,Cost::WM063Discard)){
                     self.players[actor].hand.iter().filter(|c|crate::wm063::cost_card(&ability.key,c)).map(|c|Some(vec![c.id.clone()])).collect()
                 } else if ability.costs.iter().any(|c|matches!(c,Cost::MSWM02MediaDiscard)){
@@ -283,7 +285,12 @@ impl Game {
                                         t.id
                                     ))
                                     .unwrap_or_default(),
-                                if ability.costs.iter().any(|c|matches!(c,Cost::BQ052SacrificeThree|Cost::TK008SacrificeThree)) {
+                                if ability.costs.iter().any(|c|matches!(c,Cost::MSWM03Payment)) {
+                                    let ids=cost.as_ref().unwrap();
+                                    let hand=self.players[actor].hand.iter().find(|c|c.id==ids[0]).unwrap();
+                                    let (r,criminal)=self.board(&ids[1]).unwrap();
+                                    format!("（费用：弃{} [{}]；横置{}·地区{} [{}]）",card(&hand.definition).name,hand.id,card(&criminal.definition).name,r+1,criminal.id)
+                                } else if ability.costs.iter().any(|c|matches!(c,Cost::BQ052SacrificeThree|Cost::TK008SacrificeThree)) {
                                     format!("（费用：牺牲{}）",cost.iter().flatten().filter_map(|id|self.board(id).map(|(r,c)|format!("{}·地区{} [{}]",card(&c.definition).name,r+1,id))).collect::<Vec<_>>().join("、"))
                                 } else if ability.costs.iter().any(|c|matches!(c,Cost::MSJC12ExhaustTrio|Cost::MSWM01ExhaustSpecter|Cost::BQ045ExhaustTentacle)) {
                                     format!("（费用：横置{}）",cost.iter().flatten().filter_map(|id|self.board(id).map(|(r,c)|format!("{}·地区{} [{}]",card(&c.definition).name,r+1,id))).collect::<Vec<_>>().join("、"))
@@ -299,7 +306,7 @@ impl Game {
                                         .filter(|_| ability
                                             .costs
                                             .iter()
-                                            .any(|c| matches!(c, Cost::DiscardSelectedHandCard|Cost::MSWM02MediaDiscard|Cost::WM063Discard)))
+                                            .any(|c| matches!(c, Cost::DiscardSelectedHandCard|Cost::MSWM02MediaDiscard|Cost::WM063Discard|Cost::MSWM03Payment)))
                                         .map(|c| format!(
                                             "（费用：弃掉{} [{}]）",
                                             card(&c.definition).name,
@@ -1030,6 +1037,7 @@ impl Game {
             match cost {
                 Cost::CQ15ReturnSword(g) => paid.push(self.cq15_return_cost(actor,source,g)?),
                 Cost::MSJC16SealSeven => paid.push(self.msjc16_pay(actor,source,a)?),
+                Cost::MSWM03Payment => paid.push(self.mswm03_pay(actor,source,spec,a)?),
                 Cost::WM063Discard => paid.push(self.wm063_pay(actor,source,spec,a)?),
                 Cost::MSWM02MediaDiscard => paid.push(self.mswm02_pay(actor,source,spec,a)?),
                 Cost::BQ045ExhaustTentacle => paid.push(self.bq045_pay(actor,source,spec,a)?),
@@ -1727,6 +1735,7 @@ impl Game {
     }
     pub(crate) fn resolve_frame(&mut self, mut frame: ResolutionFrame) -> RuleResult<()> {
         self.wm063_frame(&frame)?;
+        self.mswm03_frame(&frame)?;
         self.validate_tentacle_frame(&frame)?;
         self.validate_xq19_frame(&frame)?;
         self.validate_cq28_frame(&frame)?;
@@ -1991,6 +2000,7 @@ impl Game {
                 Op::BQ041BloodDemand { .. } => return self.bq041_demand(frame),
                 Op::WM060RevealInfluence => self.wm060_reveal_influence(&frame),
                 Op::WM060CriminalObservation { .. } => {},
+                Op::MSWM03Resolve => return self.mswm03_resolve(frame),
                 Op::WM063Resolve => return self.wm063_resolve(frame),
                 Op::WM060RepressTwo => return self.wm060_repress_start(frame),
                 Op::XG12Reattach => self.reattach_source(&frame.source.card.id, &frame.targets[0].id),
