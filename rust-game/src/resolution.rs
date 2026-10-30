@@ -1830,6 +1830,7 @@ impl Game {
                 Op::BQ045Shield|Op::BQ045Honor=>self.bq045_step(&frame)?,
                 Op::BQ048InvokeCore if self.selected_core_source(frame.actor).is_ok_and(|s|s.card.definition==crate::bq044::ID)=>return self.bq044_core_start(frame),
                 Op::BQ048InvokeCore if self.selected_core_source(frame.actor).is_ok_and(|s|s.card.definition==crate::bq045::ID)=>return self.bq045_core_start(frame),
+                Op::BQ048ReadyCore=>self.bq048_ready(&frame)?,
                 Op::BQ048InvokeCore=>self.bq048_invoke(&frame)?,
                 Op::MSJZ04Release{..}=>return self.msjz04_release(frame),
                 Op::BQ049Sacrifice=>return self.bq049_sacrifice(frame),

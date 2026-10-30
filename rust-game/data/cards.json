@@ -11284,7 +11284,7 @@
         "record": "BQ048",
         "image": "resource/ymsj-fun.github.io/cards/BQ048 位格压迫.jpg",
         "imageSha256": "4c4092c719d9073706e47096a0f375ddf0dab4fe3293b191fdc81b2127641467",
-        "executionScope": "Core-invocation and core/tentacle-region damage modes; ready/marker mode not implemented"
+        "executionScope": "Three printed modes; BQ048-only project ruling allows ready/combat marker on owned face-up field or parked core; existing zone changes clear markers"
       }
     },
     {

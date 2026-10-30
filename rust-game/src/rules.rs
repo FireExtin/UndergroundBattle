@@ -365,6 +365,7 @@ pub enum Op {
     BQ056Lock {entry:Option<Box<crate::bq056::Entry>>},
     BQ056Repress,
     BQ048InvokeCore,
+    BQ048ReadyCore,
     BQ063Sweep { hide: bool },
     BQ063InvokeCore,
     BQ063Repress,

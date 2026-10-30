@@ -1,5 +1,4 @@
-//! Closed BQ048 slice: printed core invocation and region damage.
-//! Ready/marker interaction with an off-board core remains unresolved.
+//! Closed BQ048: three printed modes; the named-core ready mode has a scoped project ruling.
 //! This is a paid command spell producer, never a free core player action.
 use crate::{engine::RuleResult,model::*,rules::*};
 pub(crate) const ID:&str="BQ048";
@@ -8,18 +7,18 @@ fn same<T:serde::Serialize>(a:&T,b:&T)->bool{serde_json::to_value(a).unwrap()==s
 fn damage_target()->TargetSlotSpec {let mut t=target(Zone::Board,EntityKind::Character,Relation::Any,Range::Anywhere);t.predicate=Some(TargetPredicate::BQ048CoreOrTentacleRegion);t}
 pub(crate) fn definition()->Definition {
  let mut a=ability(KEY,"位格压迫：选择模式",Timing::Fast,vec![],vec![],vec![],None);
- a.play_only=true;a.modes=vec![Mode{key:"core".into(),label:"发动一次核心能力".into(),targets:vec![],ops:vec![Op::BQ048InvokeCore]},Mode{key:"damage".into(),label:"对本方核心或触手角色所在地的目标角色造成1点伤害".into(),targets:vec![damage_target()],ops:vec![Op::DamageTarget{slot:0,amount:1}]}];with_abilities(vec![a])
+ a.play_only=true;a.modes=vec![Mode{key:"core".into(),label:"发动一次核心能力".into(),targets:vec![],ops:vec![Op::BQ048InvokeCore]},Mode{key:"damage".into(),label:"对本方核心或触手角色所在地的目标角色造成1点伤害".into(),targets:vec![damage_target()],ops:vec![Op::DamageTarget{slot:0,amount:1}]},Mode{key:"ready".into(),label:"重置本方核心并放置一个战斗能力图标标志".into(),targets:vec![],ops:vec![Op::BQ048ReadyCore]}];with_abilities(vec![a])
 }
 fn selected(index:usize)->AbilitySpec{let mut a=definition().abilities.remove(0);a.ops=a.modes[index].ops.clone();a.targets=a.modes[index].targets.clone();a.modes.clear();a}
-pub(crate) fn related(a:&AbilitySpec)->bool{a.key.starts_with("bq048-")||a.targets.iter().chain(a.modes.iter().flat_map(|m|&m.targets)).any(|t|t.predicate==Some(TargetPredicate::BQ048CoreOrTentacleRegion))||a.ops.iter().any(|o|matches!(o,Op::BQ048InvokeCore))||a.modes.iter().flat_map(|m|&m.ops).any(|o|matches!(o,Op::BQ048InvokeCore))}
-pub(crate) fn validate_ability(id:&str,a:&AbilitySpec)->RuleResult<()>{if id!=ID||(!same(a,&definition().abilities[0])&&!same(a,&selected(0))&&!same(a,&selected(1))){return Err("BQ048须保留原快速命令已实现的模式程序".into());}Ok(())}
+pub(crate) fn related(a:&AbilitySpec)->bool{a.key.starts_with("bq048-")||a.targets.iter().chain(a.modes.iter().flat_map(|m|&m.targets)).any(|t|t.predicate==Some(TargetPredicate::BQ048CoreOrTentacleRegion))||a.ops.iter().any(|o|matches!(o,Op::BQ048InvokeCore|Op::BQ048ReadyCore))||a.modes.iter().flat_map(|m|&m.ops).any(|o|matches!(o,Op::BQ048InvokeCore|Op::BQ048ReadyCore))}
+pub(crate) fn validate_ability(id:&str,a:&AbilitySpec)->RuleResult<()>{if id!=ID||(!same(a,&definition().abilities[0])&&!same(a,&selected(0))&&!same(a,&selected(1))&&!same(a,&selected(2))){return Err("BQ048须保留原快速命令已实现的模式程序".into());}Ok(())}
 pub(crate) fn validate_definition(id:&str,d:&Definition)->RuleResult<()>{if (id==ID||d.abilities.iter().any(related))&&(id!=ID||!same(d,&definition())){return Err("BQ048命令模式不得改写或移植".into());}Ok(())}
 pub(crate) fn validate_action(id:&str,a:&Action)->RuleResult<()>{if id!=ID{return Ok(());}
  if a.kind=="asset"&&*a==(Action{card_id:a.card_id.clone(),..Action::new("asset")}){return Ok(());}
  let mode=a.option.as_deref().ok_or("BQ048须明确选择模式")?;
- if !matches!(mode,"core"|"damage")||*a!=(Action{card_id:a.card_id.clone(),ability_id:a.ability_id.clone(),option:a.option.clone(),target_id:if mode=="damage"{a.target_id.clone()}else{None},..Action::new("play")})||a.ability_id.as_deref().is_some_and(|k|k!=KEY)||mode=="damage"&&a.target_id.is_none(){return Err("BQ048模式或目标载荷无效；ready尚未接入".into());}Ok(())
+ if !matches!(mode,"core"|"damage"|"ready")||*a!=(Action{card_id:a.card_id.clone(),ability_id:a.ability_id.clone(),option:a.option.clone(),target_id:if mode=="damage"{a.target_id.clone()}else{None},..Action::new("play")})||a.ability_id.as_deref().is_some_and(|k|k!=KEY)||mode=="damage"&&a.target_id.is_none(){return Err("BQ048模式或目标载荷无效".into());}Ok(())
 }
-fn frame_related(f:&ResolutionFrame)->bool{f.source.card.definition==ID||f.targets.iter().any(|t|t.spec.predicate==Some(TargetPredicate::BQ048CoreOrTentacleRegion))||f.ability_key.starts_with("bq048-")||f.steps.iter().any(|s|matches!(s.op,Op::BQ048InvokeCore))}
+fn frame_related(f:&ResolutionFrame)->bool{f.source.card.definition==ID||f.targets.iter().any(|t|t.spec.predicate==Some(TargetPredicate::BQ048CoreOrTentacleRegion))||f.ability_key.starts_with("bq048-")||f.steps.iter().any(|s|matches!(s.op,Op::BQ048InvokeCore|Op::BQ048ReadyCore))}
 impl Game {
  pub(crate) fn bq048_region_target(&self,actor:usize,source:&SourceSnapshot,target_id:&str)->bool {
   if source.card.definition!=ID{return false;}
@@ -29,7 +28,7 @@ impl Game {
  pub(crate) fn validate_bq048_frame(&self,f:&ResolutionFrame)->RuleResult<()> {
   if !frame_related(f){return Ok(());}let c=&f.source.card;
   let damage=matches!(f.steps.as_slice(),[Step{op:Op::DamageTarget{slot:0,amount:1},..}]);
-  let expected=if damage{Op::DamageTarget{slot:0,amount:1}}else{Op::BQ048InvokeCore};
+  let expected=if damage{Op::DamageTarget{slot:0,amount:1}}else if matches!(f.steps.as_slice(),[Step{op:Op::BQ048ReadyCore,..}]){Op::BQ048ReadyCore}else{Op::BQ048InvokeCore};
   let targets_valid=if damage{matches!(f.targets.as_slice(),[t]if same(&t.spec,&damage_target())&&self.mystic_instance_valid(&t.id)&&t.public.instance_id==t.id&&t.region_instance.is_none()&&t.public.valid&&t.public.status=="valid"&&t.public.invalid_reason.is_none())}else{f.targets.is_empty()};
   if c.definition!=ID||c.face_down||c.owner>=self.players.len()||c.controller!=f.actor||f.actor>=self.players.len()||!self.mystic_instance_valid(&c.id)||!self.mystic_instance_valid(&f.frame_id)
    ||f.source.region.is_some()||f.source.source_region_instance.is_some()||f.source.play_source.is_some()||f.source.attachment_host_instance.is_some()||f.source.death_echo.is_some()||f.source.observed_death.is_some()||f.source.observed_exposure.is_some()||f.source.observed_mobility_grant.is_some()
@@ -47,6 +46,20 @@ impl Game {
   for item in &self.stack{self.validate_bq048_play(item)?;}
   for e in &self.effects{if let Effect::Frame{frame}=e{self.validate_bq048_frame(frame)?;}}
   if self.pending.as_ref().is_some_and(|p|matches!(&p.resolution,ChoiceResolution::Frame{frame,choice}if frame_related(frame)&&!matches!(choice,FrameChoice::BQ045Core(_)|FrameChoice::BQ044Core(_)))){return Err("BQ048单次发动不能伪装其他帧待选".into());}Ok(())
+ }
+ pub(crate) fn bq048_ready(&mut self,f:&ResolutionFrame)->RuleResult<()> {
+  self.validate_bq048_frame(f)?;
+  if f.cursor!=1||!matches!(f.steps.as_slice(),[Step{op:Op::BQ048ReadyCore,..}]){return Err("核心重置须由原已付命令程序结算".into());}
+  let Ok(source)=self.selected_core_source(f.actor) else{return Ok(());};
+  if source.region.is_some(){
+   let c=self.board_mut(&source.card.id).ok_or("本方核心已离场")?;c.exhausted=false;
+   self.place_board_markers(&source.card.id,crate::batch4_markers::MarkerKind::PermanentCombat,1);
+  }else{
+   // Explicit BQ048-only off-board exception; fresh()/zone departures still clear markers.
+   let c=self.core_zones.iter_mut().find(|z|z.owner==f.actor).and_then(|z|z.card.as_mut()).ok_or("核心区对象已离开")?;
+   c.exhausted=false;c.permanent_combat_markers=c.permanent_combat_markers.saturating_add(1);
+  }
+  Ok(())
  }
  pub(crate) fn bq048_invoke(&mut self,f:&ResolutionFrame)->RuleResult<()> {
   self.validate_bq048_frame(f)?;

@@ -2745,7 +2745,7 @@ impl Game {
             chosen_subtype: if !asset && !c.face_down && kind == Some("attachment") { c.chosen_subtype.map(|kind| kind.label().into()) } else { None },
             permanent_defense_markers: (!asset && (region.is_some() || kind == Some("attachment")) && c.permanent_defense_markers > 0).then_some(c.permanent_defense_markers),
             permanent_investigation_markers: (!asset && !c.face_down && (region.is_some() || kind == Some("attachment")) && c.permanent_investigation_markers > 0).then_some(c.permanent_investigation_markers),
-            permanent_combat_markers: (!asset && (region.is_some() || kind == Some("attachment")) && c.permanent_combat_markers > 0).then_some(c.permanent_combat_markers),
+            permanent_combat_markers: (!asset && (region.is_some() || kind == Some("attachment") || kind == Some("core")) && c.permanent_combat_markers > 0).then_some(c.permanent_combat_markers),
             current_public: (!asset && !c.face_down && region.is_some()).then(|| self.current_public(c, c.controller)),
             current_domains: if hidden || asset || c.face_down || region.is_none() {
                 None
