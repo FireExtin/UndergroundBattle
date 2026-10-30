@@ -1193,7 +1193,7 @@ impl Game {
         self.validate_wm063_state()?;
         self.validate_mswm03_state()?;
         self.validate_bq047_state()?;
-        self.validate_msjz03_state()?;self.validate_cq13_state()?;self.validate_cq14_state()?;self.validate_cq12_state()?;self.validate_cq12_payment_state()?;
+        self.validate_msjz03_state()?;self.validate_cq13_state()?;self.validate_cq14_state()?;self.validate_lc04_state()?;self.validate_cq12_state()?;self.validate_cq12_payment_state()?;
         self.validate_jz42_state()?;
         self.validate_jz53_state()?;
         self.validate_jc097_state()?;
