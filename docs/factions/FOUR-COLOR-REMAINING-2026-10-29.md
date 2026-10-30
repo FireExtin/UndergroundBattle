@@ -98,3 +98,7 @@ This supersedes no earlier evidence and is a dependency grouping, not a recounte
 See WM063-BLACK-MARKET-2026-10-30.md for original text versus the scoped project choice. No paused-color admission or independent review is added.
 
 WM063 closure supersedes its start/WIP status above: the actual private50-card natural attachment/draw chain, all three actions, personal enemy borrowing, typed costs, original target checks, Game/Room restoration, UI and full332-command Worker replay now pass. See WM063-BLACK-MARKET-2026-10-30.md. Closed complete+1, independent approvals0, supported:false. MSWM03's start search and criminal action remain the next actual missing mechanism; no paused neutral/dual scope is enabled.
+
+### MSWM03 closure, 2026-10-30
+
+MSWM03's previous missing opening search and paid Criminal action are now closed: original-art black society, actual offcolor copy cap, private pre-hand search/reveal/shuffle, exact two-entity payment and response-safe hiding. Native52selected and UI224pass; source-bound Native/WASM/Worker3scenarios488commands pass including the full478-command natural chain (1opening,162pre-market preparation,315following) and10explicit prepared commands. See MSWM03-COLD-MOUNTAIN-2026-10-30.md. Closed complete+1, independent approvals0, supported:false; WM063 not counted again. No new neutral/dual scope, full-library or browser-play claim. Remaining task-region, clock and omen dependencies above are unchanged.
