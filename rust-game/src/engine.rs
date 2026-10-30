@@ -673,7 +673,7 @@ impl Game {
         self.validate_wm063_state()?;
         self.validate_mswm03_state()?;
         self.validate_bq047_state()?;
-        self.validate_msjz03_state()?;
+        self.validate_msjz03_state()?;self.validate_cq13_state()?;
         self.validate_jz42_state()?;
         self.validate_bq045_state()?;
         self.validate_jz53_state()?;
@@ -744,7 +744,7 @@ impl Game {
         next.validate_wm063_state()?;
         next.validate_mswm03_state()?;
         next.validate_bq047_state()?;
-        next.validate_msjz03_state()?;
+        next.validate_msjz03_state()?;next.validate_cq13_state()?;
         next.validate_jz42_state()?;
         next.validate_bq045_state()?;
         next.validate_jz53_state()?;
@@ -1481,7 +1481,7 @@ impl Game {
         self.validate_tentacle_play(&item)?;
         self.validate_core_play(&item)?;
         self.validate_bq048_play(&item)?;
-        self.validate_cq27_play(&item)?;
+        self.validate_cq27_play(&item)?;self.validate_cq13_play(&item)?;
         self.validate_bq088_play(&item)?;self.validate_bq088_token_play(&item)?;
         self.validate_xg19_play(&item)?;self.validate_xg19_token_play(&item)?;
         self.validate_cq11_play(&item)?;self.msjz03_token_play(&item)?;

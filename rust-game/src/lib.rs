@@ -538,6 +538,8 @@ mod mswm01;
 #[cfg(test)] mod mswm01_tests;
 mod jz42;
 #[cfg(test)] mod jz42_tests;
+mod cq13;
+#[cfg(test)] mod cq13_tests;
 mod msjz03;
 #[cfg(test)] mod msjz03_tests;
 mod bq047;

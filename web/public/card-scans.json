@@ -1425,5 +1425,6 @@
   "BQ047": {"url": "/cards/BQ047.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ047 灭世魔.jpg", "sha256": "14880ec17c29501d6b10eca7edded6b3c287ca1713acc5eda5482472aff65a29"},
   "MSJZ03": {"url": "/cards/MSJZ03.jpg", "source": "resource/ymsj-fun.github.io/cards/MSJZ03 末日钟.jpg", "sha256": "56051dc91558ed994570aee388aefa0d2f34e8b4b8e813ddc96ee923aaf3a5f2"},
   "JZ42": {"url": "/cards/JZ42.jpg", "source": "resource/ymsj-fun.github.io/cards/JZ42 末日钟降临.jpg", "sha256": "a1e754694aa8b45153a678f49fbfa7139d3bdaa0be55d88da7216ca88efb90f2"},
-  "TK009": {"url": "/cards/TK009.jpg", "source": "resource/ymsj-fun.github.io/cards/TK009 钟摆祭司.jpg", "sha256": "53fab1195f462cad1c3499705a2dc6bc5d2d116d9a1edd8a991958e0cbb6f707"}
+  "TK009": {"url": "/cards/TK009.jpg", "source": "resource/ymsj-fun.github.io/cards/TK009 钟摆祭司.jpg", "sha256": "53fab1195f462cad1c3499705a2dc6bc5d2d116d9a1edd8a991958e0cbb6f707"},
+  "CQ13": {"url": "/cards/CQ13.jpg", "source": "resource/ymsj-fun.github.io/cards/CQ13 命定的薇儿丹迪.jpg", "sha256": "393d38a51b63e1fcb59fff63f05e28a5531179f0de3bd63e52b5779e0c7ad968"}
 }

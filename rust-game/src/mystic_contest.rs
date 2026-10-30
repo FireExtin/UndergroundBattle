@@ -419,6 +419,7 @@ impl Game {
             self.mystic_contest = None;
         }
         self.pack_a_mystic_after(&state.frame, &outcome)?;
+        self.cq13_after(&state.frame,&outcome)?;
         self.resolve_frame(*state.frame)
     }
     pub(crate) fn mystic_finish_nested(&mut self, id: &str) -> RuleResult<()> {

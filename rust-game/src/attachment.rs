@@ -241,7 +241,7 @@ impl Game {
     pub(crate) fn leave_in_play_observed(&mut self,id:&str,observations:Option<Vec<Declaration>>)->Option<(Option<usize>,Card)>{
         let observations=observations.unwrap_or_else(||self.capture_cq18_departure(id));
         // Freeze the last controller before host departure removes control grants.
-        let warden = self.in_play(id).filter(|(_, c)| c.definition == "BQ053" && !c.face_down)
+        let warden = self.in_play(id).filter(|(_, c)| matches!(c.definition.as_str(),"BQ053"|"CQ13") && !c.face_down)
             .map(|(r, c)| self.source_snapshot(c, r));
         if self.in_play(id).is_some() {
             self.host_leaves(id);

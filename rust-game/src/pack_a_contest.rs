@@ -13,6 +13,7 @@ pub(crate) const POISON: &str = "pack-a-bq082-enter";
 fn same<T: Serialize>(a: &T, b: &T) -> bool { serde_json::to_value(a).unwrap() == serde_json::to_value(b).unwrap() }
 
 pub(crate) fn admitted_start(id: &str, key: &str, bonus: u32) -> bool {
+    if id=="CQ13"&&key==crate::cq13::CONTEST&&bonus==0{return true;}
     if id==crate::bq062::ID{return key==crate::bq062::KEY&&bonus==0;}
     if id==crate::bq060::ID{return key==crate::bq060::KEY&&bonus==0;}
     if id==crate::mswm02::ID{return key==crate::mswm02::CONTEST&&bonus==0;}
@@ -170,6 +171,7 @@ impl Game {
         Ok(true)
     }
     pub(crate) fn validate_pack_a_frame(&self, f: &ResolutionFrame) -> RuleResult<()> {
+        if f.source.card.definition=="CQ13"||f.ability_key.starts_with("cq13-"){return self.cq13_frame(f);}
         if crate::bq062::frame_related(f){return self.validate_bq062_frame(f);}
         if crate::bq060::frame_related(f){return self.validate_bq060_frame(f);}
         if f.source.card.definition==crate::test034::ID{return self.test034_frame(f);}
