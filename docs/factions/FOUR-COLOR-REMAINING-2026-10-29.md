@@ -106,3 +106,8 @@ MSWM03's previous missing opening search and paid Criminal action are now closed
 ### BQ047 / MSJZ03 group WIP, 2026-10-30
 
 BQ047 now has source-bound forced entry/rumor/kill1/hidden+3 and conditional four-asset selection with Game/Room recovery. Selected Native59,UI223,and same-source495-command Native/WASM/Worker checks pass. Actual natural entry463commands includes454preparation;the clock-condition branch is explicitly prepared. MSJZ03 now has original identity and forbidden initial construction only;passives/actions/JZ42conversion remain actual engineering. Both complete-card increments0,independent approvals0,admissionclosed. CQ13/JZ42/TK009 not declared implemented. See BQ047-DOOM-ENTRY-2026-10-30.md for exact scope and prior failures.
+
+
+### Clock conversion closure, 2026-10-30
+
+Supersedes only the earlier BQ047/MSJZ03 identity-only group WIP: JZ42 real paid conversion, MSJZ03 passives/two actions, TK009 generated lifecycle and BQ047 actual-clock conditional branch are closed. BQ047 +1, JZ42 +1, MSJZ03 +1 closed implementations; TK009 is supporting token, no formal-card increment. CQ13 is unchanged, not implicitly completed. Tested source9663ec513d1b3c164447d23882d045a11bc20e27:114 disjoint selected Native tests,227 UI tests,default WASM/Web build,1538-command Native/WASM parity; Worker only175-command conversion suffix with175 cold reopens (1363 preparation commands excluded). See DOOM-CLOCK-CONVERSION-2026-10-30.md for project rulings, genuine replacement red-test history and exact scopes. Independent approvals0, supported:false; no browser play/push/review retry/Library retry/deployment.
