@@ -76,3 +76,7 @@ BQ095 2026-10-30 WIP3 supersedes the earlier no-catalog/no-dispatch note: closed
 ### BQ095 closure, 2026-10-30
 
 Supersedes the earlier BQ095 WIP inventory only: own-grave consumer routing/bindings, self-zone plays, natural50-card mill→HQ entry→prepare draw/discard→redeploy, and same-source recovery are now implemented. Tested source9e48517844968cbc69f4d38d2fb740b92b77a0d3: Native library3075pass/0fail/1originalignore, separate integration72pass, applicable UI199pass, WASM+Worker8scenarios/984commands (938natural including760preparation,46explicit prepared),984Worker cold reopens. BQ095 closed complete+1, independent review0, public supported:false. See BQ095-CONSUMER-INTEGRATION-2026-10-30.md for scope exclusions and preserved failures. No public batch/browser-play claim; prior review/upload/push restrictions remain.
+
+### BQ048 closure, 2026-10-30
+
+BQ048's missing ready/combat-marker mode is now closed, with a documented BQ048-only project choice for parked cores (not an official ruling or generic core-zone access). Existing fresh-entity marker clearing remains. All three modes pass current Native/WASM/UI/Worker checks; see BQ048-READY-CLOSURE-2026-10-30.md. Increment one closed complete card, zero independent approvals, supported:false. MSBQ02 three-loss response-region completion and BQ049 neutral task dependency remain separate unfinished work; do not infer their completion from BQ048.
