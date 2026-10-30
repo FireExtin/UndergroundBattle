@@ -42,7 +42,7 @@ impl Game {
         self.mobility_immutable_identity(c)
     }
     fn bq061_options(&self, f:&ResolutionFrame)->Vec<ChoiceOption> {
-        self.players[f.actor].graveyard.iter().filter(|c|catalog::catalog().cards.iter().find(|d|d.id==c.definition)
+        self.bq095_reference_cards(&f.source.card).iter().filter(|c|catalog::catalog().cards.iter().find(|d|d.id==c.definition)
             .is_some_and(|d|d.subtypes.iter().any(|s|matches!(s.as_str(),"计划"|"任务"|"命令"))))
             .map(|c|self.option(c,f.actor,None,None)).collect()
     }
@@ -59,8 +59,7 @@ impl Game {
         if f.cursor!=1 || seat!=f.actor || self.players[f.actor].eliminated || selected.len()!=1
             || *a!=(Action{choice_id:a.choice_id.clone(),selected:Some(selected.to_vec()),..Action::new("choose")})
             || !self.bq061_options(f).iter().any(|o|o.id==selected[0]) {return Err("钻研故纸堆须选择自己墓地中的一张合法牌".into());}
-        let index=self.players[f.actor].graveyard.iter().position(|c|c.id==selected[0]).ok_or("原墓地牌已离开")?;
-        let c=self.take_grave_observed(f.actor,index);let c=self.reset_zone_card(c);self.players[f.actor].hand.push(c);Ok(())
+        let c=self.bq095_take_reference(&f.source.card,&selected[0])?;let c=self.reset_zone_card(c);self.players[f.actor].hand.push(c);Ok(())
     }
     pub(crate) fn validate_bq061_play(&self,i:&StackItem)->RuleResult<()> {
         if i.card.as_ref().is_some_and(|c|c.definition==ID)||i.frame.as_ref().is_some_and(frame_related) {

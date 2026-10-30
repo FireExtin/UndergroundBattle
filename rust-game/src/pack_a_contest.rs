@@ -101,9 +101,9 @@ pub(crate) fn validate_choice_action(p: &Pending, a: &Action) -> RuleResult<()> 
 
 impl Game {
     pub(crate) fn pack_a_grave_target(&self, actor: usize, source: &SourceSnapshot, c: &Card) -> bool {
-        source.card.definition == "BQ082" && c.owner == actor && !c.face_down
+        source.card.definition == "BQ082" && c.owner == self.bq095_reference_seat(&source.card) && !c.face_down
             && catalog::card(&c.definition).kind == "character"
-            && self.players.get(actor).is_some_and(|p| p.graveyard.iter().any(|live| live == c))
+            && self.bq095_reference_cards(&source.card).iter().any(|live| live == c)
     }
     fn pack_a_source(&self, actor: usize, s: &SourceSnapshot) -> RuleResult<()> {
         let c = &s.card;
@@ -256,7 +256,7 @@ impl Game {
             if spec.zone == Zone::Player {
                 let seat = t.id.strip_prefix('p').and_then(|s| s.parse::<usize>().ok()).filter(|s| *s < self.players.len()).ok_or("隐秘触发玩家目标无效")?;
                 if t.id != player_id(seat) || t.public.kind != "player" || t.public.controller.as_deref() != Some(t.id.as_str()) || t.public.owner.is_some() { return Err("隐秘触发玩家目标必须绑定原玩家".into()); }
-            } else if spec.zone != Zone::Graveyard || t.public.kind != "character" || t.public.owner != Some(player_id(f.actor)) {
+            } else if spec.zone != Zone::Graveyard || t.public.kind != "character" || t.public.owner != Some(player_id(self.bq095_frozen_reference_seat(&f.source.card,&f.frame_id))) {
                 return Err("毒药专家只绑定本人墓地的原角色牌".into());
             }
         }
@@ -296,8 +296,7 @@ impl Game {
         if f.ability_key == POISON && outcome.winner_team == Some(self.team(f.actor)) {
             let Some(region) = self.original_region(&f.source) else { return Ok(()); };
             let Some(target) = f.targets.first().filter(|t| self.valid_bound_target(f.actor,&f.source,t)) else { return Ok(()); };
-            let Some(index) = self.players[f.actor].graveyard.iter().position(|c| c.id == target.id) else { return Ok(()); };
-            let c = self.take_grave_observed(f.actor,index); let mut c = self.reset_zone_card(c); c.exhausted = true;
+            let c = self.bq095_take_reference(&f.source.card,&target.id)?; let mut c = self.reset_zone_card(c); c.controller=f.actor; c.exhausted = true;
             let id = c.id.clone(); let definition = c.definition.clone();
             self.regions[region].cards.push(c);
             self.enter_triggers(f.actor,&definition,&id,false);

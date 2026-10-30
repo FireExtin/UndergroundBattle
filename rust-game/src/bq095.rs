@@ -188,6 +188,27 @@ impl Game {
             Destination::Graveyard(seat)=>&self.players[seat].graveyard,
         }
     }
+    /// Only explicit own-grave slots are rewritten. Any/enemy/all-grave slots
+    /// remain physical, even when they happen to select an owned card.
+    pub(crate) fn bq095_own_grave_slot(spec:&crate::rules::TargetSlotSpec)->bool {
+        spec.zone==crate::rules::Zone::Graveyard && (spec.relation==crate::rules::Relation::OwnedByActor || spec.predicate==Some(crate::rules::TargetPredicate::MSJC16Death))
+    }
+    pub(crate) fn bq095_target_graves<'a>(&'a self,source:&Card,spec:&crate::rules::TargetSlotSpec)->Vec<&'a Card> {
+        if Self::bq095_own_grave_slot(spec) {self.bq095_reference_cards(source).iter().collect()}
+        else {self.players.iter().flat_map(|p|&p.graveyard).collect()}
+    }
+    /// Public target receipts predate any later migration. Migration allocates
+    /// fresh card IDs, so the old target cancels instead of retargeting the HQ.
+    pub(crate) fn bq095_frozen_reference_seat(&self,source:&Card,frame_id:&str)->usize {
+        self.bq095_headquarters.iter().find(|z|z.seat==source.owner && self.mystic_instance_number(&z.id).zip(self.mystic_instance_number(frame_id)).is_some_and(|(z,f)|z<f))
+            .map_or(source.controller,|z|z.seat)
+    }
+    /// Enumerate intrinsic own-grave activations. This does not grant a generic
+    /// grave action access to HQ and is not used for another card's permission.
+    pub(crate) fn bq095_self_grave_sources(&self,seat:usize)->Vec<&Card> {
+        self.players[seat].graveyard.iter().chain(self.bq095_headquarters.iter().filter(|z|z.seat==seat).flat_map(|z|&z.cards))
+            .filter(|c|c.owner==seat && self.bq095_reference_cards(c).iter().any(|v|v.id==c.id)).collect()
+    }
     pub(crate) fn bq095_commit_destination(&mut self,card:Card) {
         if let Some(z)=self.bq095_headquarters.iter_mut().find(|z|z.seat==card.owner) {
             z.cards.push(card);

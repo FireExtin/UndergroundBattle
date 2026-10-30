@@ -43,8 +43,8 @@ impl Game {
     }
     pub(crate) fn batch3_own_grave_character(&self, actor: usize, source: &SourceSnapshot, c: &Card) -> bool {
         matches!(source.card.definition.as_str(), "XG28" | "BQ089" | "BQ087")
-            && self.players.get(actor).is_some_and(|p| p.graveyard.iter().any(|live| live == c))
-            && c.owner == actor && !c.face_down
+            && self.bq095_reference_cards(&source.card).iter().any(|live| live == c)
+            && c.owner == self.bq095_reference_seat(&source.card) && !c.face_down
             && catalog::card(&c.definition).kind == "character"
             && (source.card.definition != "BQ089" || catalog::card(&c.definition).cost <=
                 if self.players[actor].society_zone.secrecy > 0 { 5 } else { 3 })
@@ -121,7 +121,7 @@ impl Game {
                     if t.id!=format!("society:p{}",f.actor) || t.public.kind!="society" || t.public.owner!=Some(player_id(f.actor)) || t.public.controller!=Some(player_id(f.actor)) || t.public.region.is_some() || t.region_instance.is_some() || f.chosen_region.is_some() { return Err("通缉令须绑定本方秘社区域".into()); }
                 }
                 Zone::Graveyard => {
-                    if t.public.kind != "character" || t.public.owner != Some(player_id(f.actor)) || t.public.region.is_some()
+                    if t.public.kind != "character" || t.public.owner != Some(player_id(self.bq095_frozen_reference_seat(&f.source.card,&f.frame_id))) || t.public.region.is_some()
                         || t.region_instance.is_some() || t.public.controller.as_deref().is_none_or(|id| !self.players.iter().any(|p| player_id(p.seat) == id)) {
                         return Err("墓地角色公开绑定不符".into());
                     }
@@ -157,8 +157,8 @@ impl Game {
         Ok(())
     }
     pub(crate) fn xg28_return(&mut self, f: &ResolutionFrame) -> RuleResult<()> {
-        if let Some(index) = self.players[f.actor].graveyard.iter().position(|c| c.id == f.targets[0].id) {
-            let c = self.take_grave_observed(f.actor,index);
+        if self.bq095_reference_cards(&f.source.card).iter().any(|c| c.id == f.targets[0].id) {
+            let c = self.bq095_take_reference(&f.source.card,&f.targets[0].id)?;
             let c = self.reset_zone_card(c); self.players[f.actor].hand.push(c);
         }
         if self.players[f.actor].society_zone.secrecy > 0 {
@@ -167,6 +167,6 @@ impl Game {
         Ok(())
     }
     pub(crate) fn bq089_reanimate(&mut self, f: &ResolutionFrame) -> RuleResult<()> {
-        self.world_graveyard_entry(f.actor, f.chosen_region.ok_or("改造手术缺少目标地区")?, &f.targets[0].id)
+        self.own_graveyard_entry(&f.source.card,f.actor, f.chosen_region.ok_or("改造手术缺少目标地区")?, &f.targets[0].id)
     }
 }

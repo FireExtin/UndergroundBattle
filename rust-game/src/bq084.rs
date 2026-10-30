@@ -26,7 +26,7 @@ pub(crate) fn validate_choice(p:&Pending,a:&Action)->RuleResult<()>{
 }
 impl Game{
  pub(crate) fn bq084_grave_target(&self,actor:usize,source:&SourceSnapshot,c:&Card)->bool{
-  source.card.definition==ID&&self.players.get(actor).is_some_and(|p|p.graveyard.iter().any(|v|v==c))&&c.owner==actor&&!c.face_down&&catalog::card(&c.definition).kind=="character"
+  source.card.definition==ID&&self.bq095_reference_cards(&source.card).iter().any(|v|v==c)&&c.owner==self.bq095_reference_seat(&source.card)&&!c.face_down&&catalog::card(&c.definition).kind=="character"
  }
  fn bq084_source(&self,actor:usize,s:&SourceSnapshot)->RuleResult<()>{
   let c=&s.card;
@@ -46,7 +46,7 @@ impl Game{
     ||!same(&f.steps,&vec![Step{context:f.actor,op:Op::BQ084AnchorEntry}])||f.targets.len()!=1{return Err("战栗凶灵原程序、效果阶段或无费用触发被改写".into());}
   let t=&f.targets[0];
   if !same(&t.spec,&a.targets[0])||!self.mystic_instance_valid(&t.id)||t.public.instance_id!=t.id||t.region_instance.is_some()||t.public.kind!="character"
-    ||t.public.owner!=Some(player_id(f.actor))||t.public.controller!=Some(player_id(f.actor))||t.public.region.is_some()||!t.public.valid||t.public.status!="valid"||t.public.invalid_reason.is_some(){return Err("战栗凶灵必须保留原本人墓地角色绑定".into());}Ok(())
+    ||t.public.owner!=Some(player_id(self.bq095_frozen_reference_seat(&f.source.card,&f.frame_id)))||t.public.controller!=Some(player_id(self.bq095_frozen_reference_seat(&f.source.card,&f.frame_id)))||t.public.region.is_some()||!t.public.valid||t.public.status!="valid"||t.public.invalid_reason.is_some(){return Err("战栗凶灵必须保留原本人墓地角色绑定".into());}Ok(())
  }
  fn bq084_options(&self,actor:usize)->Vec<ChoiceOption>{
   self.bq033_anchor_options(actor).iter().filter_map(|id|self.sealed_cards.iter().find(|s|s.card.id==*id)).map(|s|self.option(&s.card,actor,None,None)).collect()
@@ -65,7 +65,7 @@ impl Game{
    self.bq033_pay_anchor(f.actor,id)?;
    let r=f.source.region.unwrap();
    if self.region_live(r)&&Some(&self.regions[r].card.id)==f.source.source_region_instance.as_ref()
-    &&self.players[f.actor].graveyard.iter().any(|c|c.id==f.targets[0].id){self.world_graveyard_entry(f.actor,r,&f.targets[0].id)?;}
+    &&self.bq095_reference_cards(&f.source.card).iter().any(|c|c.id==f.targets[0].id){self.own_graveyard_entry(&f.source.card,f.actor,r,&f.targets[0].id)?;}
   }
   self.resolve_frame(f)
  }

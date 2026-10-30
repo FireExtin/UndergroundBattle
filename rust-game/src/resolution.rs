@@ -333,9 +333,7 @@ impl Game {
             .map(|(s, i)| (None, &self.players[s].assets[i]))
             .or_else(|| self.in_play(id))
             .or_else(|| {
-                self.players
-                    .iter()
-                    .flat_map(|p| p.graveyard.iter())
+                self.bq095_target_graves(&source.card,spec).into_iter()
                     .find(|c| c.id == id)
                     .map(|c| (None, c))
             });
@@ -416,10 +414,7 @@ impl Game {
         if (target.spec.zone == Zone::AttachmentOrAsset
             && self.asset_location(&target.id).is_some())
             || self.in_play(&target.id).is_some()
-            || self
-                .players
-                .iter()
-                .any(|p| p.graveyard.iter().any(|c| c.id == target.id))
+            || self.bq095_target_graves(&frame.source.card,&target.spec).iter().any(|c|c.id==target.id)
         {
             let current = self.public_target(frame.actor, &frame.source, &target.spec, &target.id);
             summary.owner = current.owner;
@@ -444,10 +439,7 @@ impl Game {
                 }
                 Zone::Board => self.in_play(&target.id).is_some(),
                 Zone::Society => self.society_host_seat(&target.id).is_some(),
-                Zone::Graveyard => self
-                    .players
-                    .iter()
-                    .any(|p| p.graveyard.iter().any(|c| c.id == target.id)),
+                Zone::Graveyard => self.bq095_target_graves(&frame.source.card,&target.spec).iter().any(|c|c.id==target.id),
                 Zone::Region => target.id.strip_prefix("region:")
                     .and_then(|r| r.parse::<usize>().ok())
                     .and_then(|r| self.regions.get(r))
@@ -738,9 +730,7 @@ impl Game {
                 let located = if spec.zone == Zone::Board {
                     self.in_play(id)
                 } else {
-                    self.players
-                        .iter()
-                        .flat_map(|p| p.graveyard.iter())
+                    self.bq095_target_graves(&source.card,spec).into_iter()
                         .find(|c| c.id == id)
                         .map(|c| (None, c))
                 };
@@ -756,7 +746,7 @@ impl Game {
                     let relation = match spec.relation {
                         Relation::Any => true,
                         Relation::ControlledByActor => c.controller == actor,
-                        Relation::OwnedByActor => c.owner == actor,
+                        Relation::OwnedByActor => c.owner == if Self::bq095_own_grave_slot(spec) {self.bq095_reference_seat(&source.card)} else {actor},
                         Relation::FriendlyTeam => !self.is_enemy(actor, c),
                         Relation::EnemyTeam => self.is_enemy(actor, c),
                     };
@@ -793,7 +783,7 @@ impl Game {
                                 TargetPredicate::XQ21MarkedCarrier => self.xq21_target(source, c),
                                 TargetPredicate::XQ20MarkerCarrier => self.xq20_target(source, c),
                                 TargetPredicate::XG17PersonalPlan => source.card.definition == "XG17" && crate::batch4_plans::is_plan(c) && self.attachments.iter().any(|a| a.card.id == c.id && a.host_id == format!("society:p{actor}") && self.attachment_host_valid(a)),
-                                TargetPredicate::MSJC16Death => self.players[actor].graveyard.iter().any(|v|v.id==c.id)&&d.magic_icon==MagicIcon::Death,
+                                TargetPredicate::MSJC16Death => self.bq095_reference_cards(&source.card).iter().any(|v|v.id==c.id)&&d.magic_icon==MagicIcon::Death,
                                 TargetPredicate::BQ088Industry => source.card.definition=="BQ088" && self.bq088_host(actor,c),
                                 TargetPredicate::MSBQ03Industry => self.msbq03_industry(actor,source,c),
                                 TargetPredicate::BQ086Corpse => self.bq086_corpse(actor,source,c),
@@ -890,10 +880,7 @@ impl Game {
                 .into_iter()
                 .map(|(r, c)| self.option(c, actor, r, None))
                 .collect(),
-            Zone::Graveyard => self
-                .players
-                .iter()
-                .flat_map(|p| p.graveyard.iter())
+            Zone::Graveyard => self.bq095_target_graves(&source.card,spec).into_iter()
                 .map(|c| self.option(c, actor, None, None))
                 .collect(),
             Zone::Player => self
@@ -1683,7 +1670,8 @@ impl Game {
         }
         None
     }
-    fn take_entity(&mut self, id: &str) -> Option<Card> {
+    fn take_entity(&mut self, id: &str, frame:&ResolutionFrame) -> Option<Card> {
+        if frame.targets.iter().any(|t|t.id==id && Self::bq095_own_grave_slot(&t.spec)) {return self.bq095_take_reference(&frame.source.card,id).ok();}
         if let Some((_, c)) = self.leave_in_play(id) {
             return Some(c);
         }
@@ -2416,7 +2404,7 @@ impl Game {
                         continue;
                     }
                     if let Some(id) = Self::frame_entity(&frame, entity) {
-                        if let Some(c) = self.take_entity(id) {
+                        if let Some(c) = self.take_entity(id,&frame) {
                             if !matches!(destination, Destination::HiddenInChosenRegion) && self.generated_disappears(&c) { continue; }
                             let mut c = self.reset_zone_card(c);
                             let owner = c.owner;

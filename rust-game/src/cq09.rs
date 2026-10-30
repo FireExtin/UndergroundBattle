@@ -45,7 +45,7 @@ impl Game{
   u32::from(origin.card.definition==ID&&key==REVEAL&&actor==seat&&(vampire||d.subtypes.iter().any(|s|s=="法师"||s=="魔宠")))*3
  }
  pub(crate) fn cq09_grave_target(&self,actor:usize,source:&SourceSnapshot,c:&Card)->bool{
-  let d=catalog::card(&c.definition);source.card.definition==ID&&c.owner==actor&&!c.face_down&&d.kind=="character"&&d.cost<=3&&d.subtypes.iter().any(|s|matches!(s.as_str(),"吸血鬼"|"法师"|"魔宠"))&&self.players.get(actor).is_some_and(|p|p.graveyard.iter().any(|v|v==c))
+  let d=catalog::card(&c.definition);source.card.definition==ID&&c.owner==self.bq095_reference_seat(&source.card)&&!c.face_down&&d.kind=="character"&&d.cost<=3&&d.subtypes.iter().any(|s|matches!(s.as_str(),"吸血鬼"|"法师"|"魔宠"))&&self.bq095_reference_cards(&source.card).iter().any(|v|v==c)
  }
  fn cq09_win(&self,actor:usize)->Option<String>{self.mystic_history.iter().find(|o|o.turn==self.turn&&o.winner_team==Some(self.team(actor))&&o.participants.contains(&actor)).map(|o|o.contest_id.clone())}
  pub(crate) fn cq09_end_available(&self)->bool{self.regions.iter().filter(|r|!r.vacant).flat_map(|r|&r.cards).any(|c|c.definition==ID&&!c.face_down&&!self.players[c.controller].eliminated&&self.cq09_win(c.controller).is_some())}
@@ -66,9 +66,9 @@ impl Game{
   let mut a=definition().abilities.into_iter().find(|a|a.key==f.ability_key).ok_or("CQ09帧能力不存在")?;
   if f.ability_key==END{let ops=f.steps.iter().map(|s|s.op.clone()).collect::<Vec<_>>();self.cq09_observation(f.actor,&f.source,&ops)?;a.ops=ops;}
   if !self.mystic_instance_valid(&f.frame_id)||f.frame_id==f.source.card.id||f.cursor>1||f.cursor==0&&!matches!(f.guard,GuardState::Unchecked)||f.cursor==1&&!matches!(f.guard,GuardState::Accepted)||!f.already_paid.is_empty()||!f.resource_payments.is_empty()||f.chosen_region.is_some()||!same(&f.steps,&a.ops.iter().map(|op|Step{context:f.actor,op:op.clone()}).collect::<Vec<_>>())||f.targets.len()!=a.targets.len(){return Err("CQ09原程序、响应阶段或费用被改写".into());}
-  if let Some(t)=f.targets.first(){if !same(&t.spec,&a.targets[0])||!self.mystic_instance_valid(&t.id)||t.public.instance_id!=t.id||t.public.kind!="character"||t.public.owner!=Some(player_id(f.actor))||t.public.controller!=Some(player_id(f.actor))||t.public.region.is_some()||t.region_instance.is_some()||!t.public.valid||t.public.status!="valid"||t.public.invalid_reason.is_some(){return Err("CQ09原个人墓地角色目标被改写".into());}}Ok(())
+  if let Some(t)=f.targets.first(){if !same(&t.spec,&a.targets[0])||!self.mystic_instance_valid(&t.id)||t.public.instance_id!=t.id||t.public.kind!="character"||t.public.owner!=Some(player_id(self.bq095_frozen_reference_seat(&f.source.card,&f.frame_id)))||t.public.controller!=Some(player_id(self.bq095_frozen_reference_seat(&f.source.card,&f.frame_id)))||t.public.region.is_some()||t.region_instance.is_some()||!t.public.valid||t.public.status!="valid"||t.public.invalid_reason.is_some(){return Err("CQ09原个人墓地角色目标被改写".into());}}Ok(())
  }
- pub(crate) fn cq09_return(&mut self,f:&ResolutionFrame)->RuleResult<()>{self.validate_cq09_frame(f)?;if f.cursor!=1||f.ability_key!=END{return Err("CQ09复归只能沿原结束帧".into());}let r=f.source.region.unwrap();if self.region_live(r)&&f.source.source_region_instance.as_ref()==Some(&self.regions[r].card.id)&&self.players[f.actor].graveyard.iter().any(|c|c.id==f.targets[0].id){self.world_graveyard_entry(f.actor,r,&f.targets[0].id)?;}Ok(())}
+ pub(crate) fn cq09_return(&mut self,f:&ResolutionFrame)->RuleResult<()>{self.validate_cq09_frame(f)?;if f.cursor!=1||f.ability_key!=END{return Err("CQ09复归只能沿原结束帧".into());}let r=f.source.region.unwrap();if self.region_live(r)&&f.source.source_region_instance.as_ref()==Some(&self.regions[r].card.id)&&self.bq095_reference_cards(&f.source.card).iter().any(|c|c.id==f.targets[0].id){self.own_graveyard_entry(&f.source.card,f.actor,r,&f.targets[0].id)?;}Ok(())}
  pub(crate) fn validate_cq09_state(&self)->RuleResult<()>{
   let mut frames=BTreeSet::new();let mut events=BTreeSet::new();
   let mut remember=|s:&SourceSnapshot,ops:&[Op]|->RuleResult<()>{if let [Op::CQ09EndReturn{observation:Some(o)}]=ops{if !events.insert(s.card.id.clone()){return Err("CQ09原结束观察重复消费".into());}}Ok(())};

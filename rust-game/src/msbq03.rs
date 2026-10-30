@@ -43,7 +43,7 @@ impl Game{
  fn msbq03_options(&self,f:&ResolutionFrame,search:bool)->Vec<ChoiceOption>{
   let p=&self.players[f.actor];if p.eliminated{return vec![];}
   if search{p.deck.iter().filter(|c|catalog::card(&c.definition).subtitle.as_deref()==Some(INDUSTRY)).map(|c|self.option(c,f.actor,None,None)).collect()}
-  else{p.graveyard.iter().filter(|c|catalog::card(&c.definition).name=="无名尸体").map(|c|self.option(c,f.actor,None,None)).collect()}
+  else{self.bq095_reference_cards(&f.source.card).iter().filter(|c|catalog::card(&c.definition).name=="无名尸体").map(|c|self.option(c,f.actor,None,None)).collect()}
  }
  pub(crate) fn msbq03_resolve(&mut self,f:ResolutionFrame,search:bool)->RuleResult<()>{
   self.msbq03_frame(&f)?;if f.cursor!=1||search!=(f.ability_key==SEARCH){return Err("圣甲虫选择须消费原步骤".into());}
@@ -54,7 +54,7 @@ impl Game{
  pub(crate) fn msbq03_finish(&mut self,f:&ResolutionFrame,search:bool,seat:usize,a:&Action,ids:&[String])->RuleResult<()>{
   self.msbq03_frame(f)?;if seat!=f.actor||f.cursor!=1||search!=(f.ability_key==SEARCH)||*a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")})||ids.len()!=1||!self.msbq03_options(f,search).iter().any(|o|o.id==ids[0]){return Err("圣甲虫须选择原区域的一张实际牌".into());}
   if search{let i=self.players[seat].deck.iter().position(|c|c.id==ids[0]).ok_or("检索牌不在牌库")?;let c=self.players[seat].deck.remove(i);let c=self.fresh(c);self.note(format!("{} 展示检索的 {}",self.players[seat].name,catalog::card(&c.definition).name));self.players[seat].hand.push(c);self.shuffle_player(seat);}
-  else{if !self.valid_bound_target(seat,&f.source,&f.targets[0])||!self.seal_host_valid(&f.targets[0].id){return Err("原产业目标已失效".into());}let i=self.players[seat].graveyard.iter().position(|c|c.id==ids[0]).ok_or("尸体不在墓地")?;let c=self.take_grave_observed(seat,i);self.seal_card_on_valid_host(c,seat,&f.targets[0].id);}Ok(())
+  else{if !self.valid_bound_target(seat,&f.source,&f.targets[0])||!self.seal_host_valid(&f.targets[0].id){return Err("原产业目标已失效".into());}let c=self.bq095_take_reference(&f.source.card,&ids[0])?;self.seal_card_on_valid_host(c,seat,&f.targets[0].id);}Ok(())
  }
  pub(crate) fn validate_msbq03_state(&self)->RuleResult<()>{
   let mut frames=BTreeSet::new();let mut check=|f:&ResolutionFrame|->RuleResult<()>{self.msbq03_frame(f)?;if ours(f)&&!frames.insert(f.frame_id.clone()){return Err("圣甲虫原帧不能重复存在".into());}Ok(())};

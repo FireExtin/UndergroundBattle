@@ -159,6 +159,12 @@ impl Game {
         );
         true
     }
+    pub(crate) fn own_graveyard_entry(&mut self, source:&Card, actor:usize, region:usize, id:&str)->RuleResult<()> {
+        if !self.region_live(region) || !self.bq095_reference_cards(source).iter().any(|c|c.id==id && card(&c.definition).kind=="character") {return Err("原本方区域角色或进场地区已失效".into());}
+        let c=self.bq095_take_reference(source,id)?;let mut c=self.reset_zone_card(c);c.controller=actor;
+        let id=c.id.clone();let definition=c.definition.clone();self.regions[region].cards.push(c);
+        self.enter_triggers(actor,&definition,&id,false);Ok(())
+    }
     pub(crate) fn world_graveyard_entry(
         &mut self,
         seat: usize,

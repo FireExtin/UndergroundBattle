@@ -36,7 +36,7 @@ impl Game {
         if *a!=(Action{card_id:a.card_id.clone(),ability_id:Some(KEY.into()),cost_selected:a.cost_selected.clone(),..Action::new("activate")}) {
             return Err("白骨仆人墓地行动只接受来源和一张封印费用".into());
         }
-        let c=self.players[actor].graveyard.iter().find(|c|Some(c.id.as_str())==a.card_id.as_deref() && c.definition==ID)
+        let c=self.bq095_self_grave_sources(actor).into_iter().find(|c|Some(c.id.as_str())==a.card_id.as_deref() && c.definition==ID)
             .ok_or("白骨仆人必须在本人墓地")?;
         let source=self.source_snapshot(c,None); let spec=definition().abilities.remove(0);
         self.check_timing(actor,&spec)?;
@@ -47,21 +47,20 @@ impl Game {
     pub(crate) fn xq35_pay(&mut self,actor:usize,source:&SourceSnapshot,a:&Action)->RuleResult<PaidCost> {
         let selected=a.cost_selected.as_deref().ok_or("请选择另一张墓地角色作为费用")?;
         if source.card.definition!=ID || source.card.owner!=actor || source.card.controller!=actor || selected.len()!=1
-            || selected[0]==source.card.id || !self.players[actor].graveyard.iter().any(|c|same(c,&source.card)) {
+            || selected[0]==source.card.id || !self.bq095_reference_cards(&source.card).iter().any(|c|same(c,&source.card)) {
             return Err("白骨仆人须封印本人墓地另一张真实角色".into());
         }
         let host=format!("society:p{actor}");
         if !self.seal_host_valid(&host) {return Err("本方秘社封印载体无效".into());}
-        let i=self.players[actor].graveyard.iter().position(|c|c.id==selected[0] && c.owner==actor && catalog::card(&c.definition).kind=="character")
-            .ok_or("封印费用不是本人墓地角色")?;
-        let card=self.take_grave_observed(actor,i);
+        if !self.bq095_reference_cards(&source.card).iter().any(|c|c.id==selected[0] && c.owner==actor && catalog::card(&c.definition).kind=="character") {return Err("封印费用不是本人墓地角色".into());}
+        let card=self.bq095_take_reference(&source.card,&selected[0])?;
         self.seal_card_on_valid_host(card.clone(),actor,&host);
         Ok(PaidCost::XQ35Sealed(Payment{turn:self.turn,host,card}))
     }
     pub(crate) fn xq35_actions(&self,actor:usize)->Vec<(Action,String)> {
         let mut out=vec![];
-        for source in self.players[actor].graveyard.iter().filter(|c|c.definition==ID) {
-            for c in self.players[actor].graveyard.iter().filter(|c|c.id!=source.id && catalog::card(&c.definition).kind=="character") {
+        for source in self.bq095_self_grave_sources(actor).into_iter().filter(|c|c.definition==ID) {
+            for c in self.bq095_reference_cards(source).iter().filter(|c|c.id!=source.id && catalog::card(&c.definition).kind=="character") {
                 out.push((Action{card_id:Some(source.id.clone()),ability_id:Some(KEY.into()),cost_selected:Some(vec![c.id.clone()]),..Action::new("activate")},
                     format!("白骨仆人：支付1，封印{}，横置回到地区一",catalog::card(&c.definition).name)));
             }
@@ -96,8 +95,8 @@ impl Game {
         self.validate_xq35_frame(f)?;
         // A departed source or unavailable first region does not refund costs.
         if !self.region_live(0) {return Ok(());}
-        let Some(i)=self.players[f.actor].graveyard.iter().position(|c|c.id==f.source.card.id && same(c,&f.source.card)) else {return Ok(());};
-        let c=self.take_grave_observed(f.actor,i);
+        if !self.bq095_reference_cards(&f.source.card).iter().any(|c|c.id==f.source.card.id && same(c,&f.source.card)) {return Ok(());}
+        let c=self.bq095_take_reference(&f.source.card,&f.source.card.id)?;
         let mut c=self.reset_zone_card(c); c.exhausted=true;
         let id=c.id.clone(); self.regions[0].cards.push(c);
         self.enter_triggers(f.actor,ID,&id,false); Ok(())
