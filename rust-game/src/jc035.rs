@@ -44,7 +44,7 @@ fn same<T: Serialize>(a: &T, b: &T) -> bool {
 }
 fn uses(ops: &[Op]) -> bool {
     ops.iter().any(|op| match op {
-        Op::WM026Prepare { .. } | Op::CQ27Prepare { .. } | Op::MSJC16Prepare { .. } | Op::BQ052Prepare { .. } | Op::WM028Prepare { .. } | Op::LC16PrepareSearch { .. } | Op::XG16PrepareTime { .. } | Op::Batch3Prepare { .. } | Op::JC035PreparedInfluence { .. } | Op::Batch20Prepare { .. } | Op::BQ085Prepare { .. } | Op::JC055PrepareTime { .. } | Op::CQ08Prepare { .. } | Op::CQ10Prepare { .. } => true,
+        Op::BQ095Prepare { .. } | Op::WM026Prepare { .. } | Op::CQ27Prepare { .. } | Op::MSJC16Prepare { .. } | Op::BQ052Prepare { .. } | Op::WM028Prepare { .. } | Op::LC16PrepareSearch { .. } | Op::XG16PrepareTime { .. } | Op::Batch3Prepare { .. } | Op::JC035PreparedInfluence { .. } | Op::Batch20Prepare { .. } | Op::BQ085Prepare { .. } | Op::JC055PrepareTime { .. } | Op::CQ08Prepare { .. } | Op::CQ10Prepare { .. } => true,
         Op::ForEachLivingPlayer(body) | Op::ForEachLivingPlayerFromActor(body) => uses(body),
         Op::IfTargetExhausted { exhausted, ready, .. } =>
             uses(std::slice::from_ref(exhausted)) || uses(std::slice::from_ref(ready)),
@@ -75,14 +75,14 @@ pub(crate) fn definition() -> Definition {
         ..Default::default()
     }
 }
-pub(crate) fn preparation_card(id: &str) -> bool { matches!(id, "ZHWM026" | "CQ27" | "MSJC16" | "BQ052" | "WM028" | "LC16" | "XG16" | "BQ079" | "BQ087" | "JC064" | "XG28" | "JC035" | "JC048" | "WM034" | "BQ091" | "JC068" | "BQ085" | "JC055" | "CQ08" | "CQ10") }
+pub(crate) fn preparation_card(id: &str) -> bool { matches!(id, "BQ095" | "ZHWM026" | "CQ27" | "MSJC16" | "BQ052" | "WM028" | "LC16" | "XG16" | "BQ079" | "BQ087" | "JC064" | "XG28" | "JC035" | "JC048" | "WM034" | "BQ091" | "JC068" | "BQ085" | "JC055" | "CQ08" | "CQ10") }
 pub(crate) fn preparation_forced(id: &str) -> bool { matches!(id, "WM028" | "BQ079" | "BQ087" | "JC064" | "JC048" | "WM034" | "JC068" | "BQ085") }
 pub(crate) fn preparation_frame(f: &ResolutionFrame) -> bool { f.ability_key == KEY || f.ability_key.starts_with("batch20-prepare-") || f.steps.iter().any(|s| uses(std::slice::from_ref(&s.op))) }
 fn event(ops: &[Op]) -> Option<&str> { match ops {
-    [Op::WM026Prepare { event_id }] | [Op::CQ27Prepare { event_id }] | [Op::MSJC16Prepare { event_id }] | [Op::BQ052Prepare { event_id }] | [Op::WM028Prepare { event_id }] | [Op::LC16PrepareSearch { event_id }] | [Op::XG16PrepareTime { event_id }] | [Op::Batch3Prepare { event_id }] | [Op::JC035PreparedInfluence { event_id }] | [Op::Batch20Prepare { event_id }] | [Op::BQ085Prepare { event_id }] | [Op::JC055PrepareTime { event_id }] | [Op::CQ08Prepare { event_id }] | [Op::CQ10Prepare { event_id }] => event_id.as_deref(), _ => None,
+    [Op::BQ095Prepare { event_id }] | [Op::WM026Prepare { event_id }] | [Op::CQ27Prepare { event_id }] | [Op::MSJC16Prepare { event_id }] | [Op::BQ052Prepare { event_id }] | [Op::WM028Prepare { event_id }] | [Op::LC16PrepareSearch { event_id }] | [Op::XG16PrepareTime { event_id }] | [Op::Batch3Prepare { event_id }] | [Op::JC035PreparedInfluence { event_id }] | [Op::Batch20Prepare { event_id }] | [Op::BQ085Prepare { event_id }] | [Op::JC055PrepareTime { event_id }] | [Op::CQ08Prepare { event_id }] | [Op::CQ10Prepare { event_id }] => event_id.as_deref(), _ => None,
 }}
 fn program(id: &str, event_id: Option<String>) -> RuleResult<AbilitySpec> {
-    let mut a = if id == "ZHWM026" {crate::wm026::definition(true).abilities[0].clone()} else if id == "JC035" { definition().abilities[1].clone() }
+    let mut a = if id == "BQ095" {crate::bq095::definition().abilities[2].clone()} else if id == "ZHWM026" {crate::wm026::definition(true).abilities[0].clone()} else if id == "JC035" { definition().abilities[1].clone() }
         else if id == "JC055" { crate::next20_red::definition(id).unwrap().abilities[0].clone() }
         else if id == "MSJC16" { crate::msjc16::definition().abilities[0].clone() }
         else if id == "BQ052" { crate::bq052::definition().abilities[1].clone() }
@@ -91,7 +91,7 @@ fn program(id: &str, event_id: Option<String>) -> RuleResult<AbilitySpec> {
         else if id == "CQ08" { crate::next20_blue_gray::definition(id).unwrap().abilities[1].clone() }
         else { crate::batch20::definition(id).or_else(|| crate::black_next20::definition(id)).or_else(|| crate::batch3::definition(id)).or_else(|| crate::batch4::definition(id)).or_else(|| crate::import20_observers::definition(id)).and_then(|d| d.abilities.into_iter().find(|a| a.event == Some(Event::Prepare)))
             .ok_or("非准入准备来源")? };
-    a.ops = if id == "ZHWM026" {vec![Op::WM026Prepare{event_id}]} else if id == "CQ27" {vec![Op::CQ27Prepare{event_id}]} else if id == "MSJC16" {vec![Op::MSJC16Prepare{event_id}]} else if id == "BQ052" { vec![Op::BQ052Prepare { event_id }] } else if id == "WM028" { vec![Op::WM028Prepare { event_id }] } else if id == "LC16" { vec![Op::LC16PrepareSearch { event_id }] } else if id == "XG16" { vec![Op::XG16PrepareTime { event_id }] } else if matches!(id, "XG28" | "JC064" | "BQ087" | "BQ079") { vec![Op::Batch3Prepare { event_id }] } else if id == "JC035" { vec![Op::JC035PreparedInfluence { event_id }] } else if id == "BQ085" { vec![Op::BQ085Prepare { event_id }] } else if id == "JC055" { vec![Op::JC055PrepareTime { event_id }] } else if id == "CQ10" { vec![Op::CQ10Prepare { event_id }] } else if id == "CQ08" { vec![Op::CQ08Prepare { event_id }] } else { vec![Op::Batch20Prepare { event_id }] };
+    a.ops = if id == "BQ095" {vec![Op::BQ095Prepare{event_id}]} else if id == "ZHWM026" {vec![Op::WM026Prepare{event_id}]} else if id == "CQ27" {vec![Op::CQ27Prepare{event_id}]} else if id == "MSJC16" {vec![Op::MSJC16Prepare{event_id}]} else if id == "BQ052" { vec![Op::BQ052Prepare { event_id }] } else if id == "WM028" { vec![Op::WM028Prepare { event_id }] } else if id == "LC16" { vec![Op::LC16PrepareSearch { event_id }] } else if id == "XG16" { vec![Op::XG16PrepareTime { event_id }] } else if matches!(id, "XG28" | "JC064" | "BQ087" | "BQ079") { vec![Op::Batch3Prepare { event_id }] } else if id == "JC035" { vec![Op::JC035PreparedInfluence { event_id }] } else if id == "BQ085" { vec![Op::BQ085Prepare { event_id }] } else if id == "JC055" { vec![Op::JC055PrepareTime { event_id }] } else if id == "CQ10" { vec![Op::CQ10Prepare { event_id }] } else if id == "CQ08" { vec![Op::CQ08Prepare { event_id }] } else { vec![Op::Batch20Prepare { event_id }] };
     Ok(a)
 }
 pub(crate) fn validate_ability(id: &str, a: &AbilitySpec) -> RuleResult<()> {
@@ -136,7 +136,7 @@ impl Game {
                 && (crate::wm026::printed_id(&c.definition) != crate::wm026::printed_id(&s.card.definition) || c.owner != s.card.owner || (c.face_down && s.card.definition != "JC055"))) {
             return Err("JC035冻结来源、拥有者或操控席位不符".into());
         }
-        if prepared && s.card.definition=="MSJC16" {if s.region.is_some()||s.source_region_instance.is_some()||s.attachment_host_instance.is_some(){return Err("颂亡者准备来源只能原秘社".into());}} else if prepared && matches!(s.card.definition.as_str(), "BQ052" | "JC068" | "WM028") {
+        if prepared && s.card.definition=="MSJC16" {if s.region.is_some()||s.source_region_instance.is_some()||s.attachment_host_instance.is_some(){return Err("颂亡者准备来源只能原秘社".into());}} else if prepared && matches!(s.card.definition.as_str(), "BQ095" | "BQ052" | "JC068" | "WM028") {
             let host = s.attachment_host_instance.as_deref().ok_or("秘社准备来源缺少宿主")?;
             if host != format!("society:p{actor}") || s.region.is_some() || s.source_region_instance.is_some() {
                 return Err("秘社准备触发不得伪装地区宿主".into());
@@ -405,6 +405,7 @@ impl Game {
         if f.source.card.definition=="MSJC16" {return self.mill_cards_with_cause(f.actor,3,Some(f));}
         if f.source.card.definition == "ZHWM026" {return self.wm026_prepare_resolve(f);}
         if f.source.card.definition == "CQ27" {return self.cq27_prepare(f);}
+        if f.source.card.definition == "BQ095" {self.effects.push_front(Effect::Discard{seat:f.actor,amount:1,redraw:false,optional:false});self.effects.push_front(Effect::Draw{seat:f.actor,count:2});return Ok(());}
         if f.source.card.definition == "BQ052" { return self.bq052_generate(f.actor); }
         if f.source.card.definition == "LC16" { return self.lc16_search_start(f); }
         if f.source.card.definition == "CQ10" { return self.cq10_prepare(f); }

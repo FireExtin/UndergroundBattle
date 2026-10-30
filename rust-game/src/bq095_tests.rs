@@ -2,9 +2,7 @@
 use crate::{bq095::{Destination as D, Headquarters}, model::Card, unit_support::game};
 
 fn source(g: &mut crate::model::Game, owner: usize, controller: usize) -> Card {
-    // BQ095 intentionally has no live catalog/dispatch entry at this stage.
-    let mut c = g.make_card("BQ091", owner);
-    c.definition = "BQ095".into();
+    let mut c = g.make_card("BQ095", owner);
     c.controller = controller;
     c
 }
@@ -208,4 +206,43 @@ fn bq095_prepared_room_discard_duplicate_and_cold_restore_keep_one_destination()
     let result=room.transition(0,Some(command.clone()),0).unwrap();let restored=RoomEnvelope::from_persisted(&result.state).unwrap();
     assert!(restored.game.players[0].graveyard.is_empty());assert_eq!(restored.game.bq095_headquarters[0].cards.len(),1);
     let duplicate=restored.transition(0,Some(command),0).unwrap();assert_eq!(duplicate.state,result.state);assert!(!duplicate.changed&&duplicate.journal.is_empty());
+}
+
+#[test]
+fn bq095_real_paid_attachment_entry_then_preparation_draw_two_discard_one() {
+    use crate::{model::*,unit_support::*};let mut g=game();
+    g.players[0].society_zone.card=Some(g.make_card("MSBQ03",0));fund(&mut g,0,"JC084",6);
+    let corpse=g.make_card("JC125",0);g.players[0].graveyard.push(corpse);let id=held(&mut g,"BQ095",0);
+    let action=g.legal_actions(0).into_iter().find(|a|a.action.kind=="play"&&a.action.card_id.as_ref()==Some(&id)).expect("paid society attachment action").action;
+    act(&mut g,0,action);
+    for _ in 0..40 {if g.pending.is_some(){choose(&mut g,vec!["accept".into()]);}else if !g.stack.is_empty(){pass(&mut g);}else if !g.effects.is_empty(){g.drive().unwrap();}else{break;}}
+    assert_eq!(g.bq095_headquarters.len(),1);assert_eq!(g.bq095_headquarters[0].cards.len(),1);assert!(g.players[0].graveyard.is_empty());
+    let source=g.attachments.iter().find(|a|a.card.definition=="BQ095").unwrap().card.id.clone();
+    let before=g.players[0].hand.len();g.turn+=1;g.begin_window(Window::Prepare);g.drive().unwrap();
+    choose(&mut g,vec![source]);
+    for _ in 0..32 {if g.pending.is_some(){break;}if !g.stack.is_empty(){pass(&mut g);}else{g.drive().unwrap();}}
+    assert_eq!(g.players[0].hand.len(),before+2);assert_eq!(g.pending.as_ref().unwrap().choice.kind,"discard");
+    let discard=g.pending.as_ref().unwrap().choice.options[0].id.clone();choose(&mut g,vec![discard]);
+    assert_eq!(g.players[0].hand.len(),before+1);assert_eq!(g.bq095_headquarters[0].cards.len(),2);assert!(g.players[0].graveyard.is_empty());restore(&mut g);
+}
+
+#[test]
+fn bq095_actual_attachment_and_entry_frames_reject_wrong_or_missing_source() {
+    use crate::{model::*,unit_support::*};let mut g=game();g.players[0].society_zone.card=Some(g.make_card("MSBQ03",0));fund(&mut g,0,"JC084",6);let id=held(&mut g,"BQ095",0);
+    let a=g.legal_actions(0).into_iter().find(|a|a.action.kind=="play"&&a.action.card_id.as_ref()==Some(&id)).unwrap().action;act(&mut g,0,a);
+    let rejects=|bad:&Game|{assert!(Game::from_persisted(&serde_json::to_string(bad).unwrap()).is_err());let room=crate::room::RoomEnvelope::from_game(bad.clone());assert!(crate::room::RoomEnvelope::from_persisted(&serde_json::to_string(&room).unwrap()).is_err());};
+    for case in 0..3 {let mut bad=g.clone();let item=bad.stack.last_mut().unwrap();match case {0=>item.frame=None,1=>item.frame.as_mut().unwrap().source.card.definition="JC001".into(),_=>item.frame.as_mut().unwrap().targets[0].id="society:p2".into()};rejects(&bad);}
+    for _ in 0..32 {if g.pending.is_some(){break;}pass(&mut g);}choose(&mut g,vec!["accept".into()]);
+    assert_eq!(g.stack.last().unwrap().frame.as_ref().unwrap().ability_key,"bq095-entry");
+    for case in 0..3 {let mut bad=g.clone();let f=bad.stack.last_mut().unwrap().frame.as_mut().unwrap();match case {0=>f.source.attachment_host_instance=Some("society:p2".into()),1=>f.source.card.definition="JC001".into(),_=>f.steps.clear()};rejects(&bad);}
+    restore(&mut g);
+}
+
+#[test]
+fn bq095_accepted_entry_survives_source_departure_and_retains_original_society() {
+    use crate::{model::*,unit_support::*};let mut g=game();g.players[0].society_zone.card=Some(g.make_card("MSBQ03",0));fund(&mut g,0,"JC084",6);let id=held(&mut g,"BQ095",0);
+    let a=g.legal_actions(0).into_iter().find(|a|a.action.kind=="play"&&a.action.card_id.as_ref()==Some(&id)).unwrap().action;act(&mut g,0,a);
+    for _ in 0..32 {if g.pending.is_some(){break;}pass(&mut g);}choose(&mut g,vec!["accept".into()]);
+    let live=g.attachments.iter().find(|a|a.card.definition=="BQ095").unwrap().card.id.clone();g.remove_dead(&live,RemovalCause::Destroy);restore(&mut g);
+    while !g.stack.is_empty(){pass(&mut g);}assert_eq!(g.bq095_headquarters.len(),1);assert_eq!(g.bq095_headquarters[0].seat,0);assert!(g.attachments.iter().all(|a|a.card.definition!="BQ095"));restore(&mut g);
 }

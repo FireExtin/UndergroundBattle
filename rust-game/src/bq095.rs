@@ -3,7 +3,7 @@
 //! Entry dispatch, repeated creation and whole-engine consumers must be wired
 //! before this module can be used by the live rules interpreter.
 #![allow(dead_code)]
-use crate::{engine::RuleResult, model::{Card, Game}};
+use crate::{engine::RuleResult, model::*};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 
@@ -219,6 +219,87 @@ impl Game {
                 self.mobility_immutable_identity(c)?;
             }
         }
+        self.validate_bq095_carriers()?;
+        Ok(())
+    }
+}
+
+use crate::rules::*;
+fn same<T:Serialize>(a:&T,b:&T)->bool {serde_json::to_value(a).unwrap()==serde_json::to_value(b).unwrap()}
+pub(crate) fn definition()->Definition {
+    let host=target(Zone::Society,EntityKind::Any,Relation::ControlledByActor,Range::Anywhere);
+    let mut attach=ability("attach","结附于本方秘社",Timing::Standard,vec![],vec![host.clone()],vec![],None);attach.play_only=true;
+    let enter=ability("bq095-entry","创建集团总部",Timing::Fast,vec![],vec![],vec![Op::BQ095Entry],Some(Event::Enter));
+    let prepare=ability("bq095-prepare","准备：抓两张牌然后弃一张",Timing::Fast,vec![],vec![],vec![Op::BQ095Prepare{event_id:None}],Some(Event::Prepare));
+    let mut d=with_abilities(vec![attach,enter,prepare]);d.attachment=Some(AttachmentSpec{controls_host:false,host_subtype_change:SubtypeChange::None,host,host_icons:crate::model::Icons::default(),host_temporary_icons:None,host_barrier:false,host_defense_bonus:0,host_leaves:HostLeaveDestination::OwnerGraveyard});d
+}
+pub(crate) fn related(a:&AbilitySpec)->bool {a.key.starts_with("bq095-")||a.ops.iter().any(|op|matches!(op,Op::BQ095Entry|Op::BQ095Prepare{..}))}
+pub(crate) fn validate_ability(id:&str,a:&AbilitySpec)->RuleResult<()> {
+    if id!=ID{return Err("总部规则不可移植".into());}
+    if a.key=="bq095-prepare" {return crate::jc035::validate_ability(id,a);}
+    if !definition().abilities.iter().any(|v|same(v,a)){return Err("总部固定能力损坏".into());}Ok(())
+}
+pub(crate) fn validate_definition(id:&str,d:&Definition)->RuleResult<()> {
+    if (id==ID||d.abilities.iter().any(related))&&(id!=ID||!same(d,&definition())){return Err("总部完整卡文定义损坏".into());}Ok(())
+}
+impl Game {
+    pub(crate) fn bq095_entry(&mut self,f:&crate::model::ResolutionFrame)->RuleResult<()> {
+        self.validate_bq095_entry_frame(f)?;
+        let s=&f.source;
+        if s.card.definition!=ID||s.card.face_down||f.actor!=s.card.controller||s.play_source.is_some()
+            ||f.ability_key!="bq095-entry"||f.cursor!=1||!matches!(f.guard,crate::model::GuardState::Accepted)
+            ||!f.targets.is_empty()||!f.already_paid.is_empty()||!f.resource_payments.is_empty()
+            ||!same(&f.steps,&vec![crate::model::Step{context:f.actor,op:Op::BQ095Entry}]) {
+            return Err("总部进场须沿原触发帧".into());
+        }
+        if self.players[f.actor].eliminated{return Ok(());}
+        let host=s.attachment_host_instance.as_deref().ok_or("总部进场缺原秘社宿主")?;
+        self.bq095_create_or_reuse(&s.card,host)?;Ok(())
+    }
+}
+
+impl Game {
+    pub(crate) fn validate_bq095_play(&self,item:&StackItem)->RuleResult<()> {
+        if !item.card.as_ref().is_some_and(|c|c.definition==ID)&&!item.frame.as_ref().is_some_and(|f|f.source.card.definition==ID&&f.ability_key=="attach"){return Ok(());}
+        let f=item.frame.as_ref().ok_or("BQ095结附事务不能缺原帧")?;let s=&f.source;let c=&s.card;
+        self.validate_resource_frame(f)?;
+        let [t]=f.targets.as_slice()else{return Err("BQ095须有唯一原本方秘社目标".into());};
+        if c.definition!=ID||f.actor>=self.players.len()||c.owner>=self.players.len()||c.controller!=f.actor||c.face_down||s.region.is_some()||s.source_region_instance.is_some()||s.attachment_host_instance.is_some()||s.play_source.is_some()||s.death_echo.is_some()||s.observed_death.is_some()||s.observed_exposure.is_some()||s.observed_mobility_grant.is_some()
+            ||f.ability_key!="attach"||f.cursor!=0||!matches!(f.guard,GuardState::Unchecked)||!f.steps.is_empty()||f.chosen_region.is_some()||!self.mystic_instance_valid(&c.id)||!self.mystic_instance_valid(&f.frame_id)
+            ||t.id!=format!("society:p{}",f.actor)||!same(&t.spec,&definition().abilities[0].targets[0])||t.public.instance_id!=t.id||t.public.kind!="society"||t.region_instance.is_some()||!t.public.valid||t.public.status!="valid"||t.public.invalid_reason.is_some()
+            ||!matches!(f.already_paid.as_slice(),[PaidCost::Assets(ids)] if f.money_units(0)<=6&&ids.iter().collect::<BTreeSet<_>>().len()==ids.len()&&ids.iter().all(|id|self.mystic_instance_valid(id)))
+            ||item.id!=f.frame_id||item.controller!=f.actor||item.target.as_deref()!=Some(t.id.as_str())||item.reveal||item.deploy_region.is_some()||item.card.as_ref().is_none_or(|c|!self.pack_a_transaction_matches(f,c)){return Err("BQ095结附实际事务、原宿主或程序损坏".into());}
+        self.mobility_immutable_identity(c)
+    }
+}
+
+impl Game {
+    fn bq095_entry_source(&self,s:&SourceSnapshot,actor:usize)->RuleResult<()> {
+        if actor>=self.players.len()||s.card.owner>=self.players.len()||s.card.controller!=actor||s.card.definition!=ID||s.card.face_down
+            ||!self.mystic_instance_valid(&s.card.id)||s.region.is_some()||s.source_region_instance.is_some()||s.play_source.is_some()
+            ||s.attachment_host_instance.as_deref()!=Some(format!("society:p{actor}").as_str())
+            ||s.observed_death.is_some()||s.death_echo.is_some()||s.observed_exposure.is_some()||s.observed_mobility_grant.is_some() {
+            return Err("总部触发原来源或秘社宿主损坏".into());
+        }
+        self.mobility_immutable_identity(&s.card)
+    }
+    fn validate_bq095_entry_frame(&self,f:&ResolutionFrame)->RuleResult<()> {
+        if f.ability_key!="bq095-entry"&&!f.steps.iter().any(|s|matches!(s.op,Op::BQ095Entry)){return Ok(());}
+        self.bq095_entry_source(&f.source,f.actor)?;
+        if f.ability_key!="bq095-entry"||f.cursor>1||f.cursor==0&&!matches!(f.guard,GuardState::Unchecked)||f.cursor==1&&!matches!(f.guard,GuardState::Accepted)
+            ||!f.targets.is_empty()||!f.already_paid.is_empty()||!f.resource_payments.is_empty()||f.chosen_region.is_some()
+            ||!self.mystic_instance_number(&f.source.card.id).zip(self.mystic_instance_number(&f.frame_id)).is_some_and(|(s,f)|s<f)
+            ||!same(&f.steps,&vec![Step{context:f.actor,op:Op::BQ095Entry}]) {return Err("总部原进场帧损坏".into());}Ok(())
+    }
+    fn bq095_entry_declaration(&self,d:&Declaration)->RuleResult<()> {
+        if d.ability.key!="bq095-entry"&&!d.ability.ops.iter().any(|o|matches!(o,Op::BQ095Entry)){return Ok(());}
+        validate_ability(&d.source.card.definition,&d.ability)?;self.bq095_entry_source(&d.source,d.actor)
+    }
+    fn validate_bq095_carriers(&self)->RuleResult<()> {
+        for item in &self.stack {self.validate_bq095_play(item)?;if let Some(f)=&item.frame {self.validate_bq095_entry_frame(f)?;
+            if f.ability_key=="bq095-entry"&&(item.id!=f.frame_id||item.controller!=f.actor||item.card.is_some()||item.reveal||item.target.is_some()||item.deploy_region.is_some()||f.cursor!=0){return Err("总部响应外壳损坏".into());}}}
+        for e in &self.effects {match e {Effect::Declare{declaration:d}=>self.bq095_entry_declaration(d)?,Effect::Frame{frame:f}=>self.validate_bq095_entry_frame(f)?,_=>()}}
+        if let Some(p)=&self.pending {match &p.resolution {ChoiceResolution::Declare{declaration:d,..}=>self.bq095_entry_declaration(d)?,ChoiceResolution::Frame{frame:f,..}=>{self.validate_bq095_entry_frame(f)?;if f.ability_key=="bq095-entry"{return Err("总部单步进场不能伪造执行待选".into());}},_=>()}}
         Ok(())
     }
 }

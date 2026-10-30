@@ -1466,6 +1466,7 @@ impl Game {
         self.validate_bq088_play(&item)?;self.validate_bq088_token_play(&item)?;
         self.validate_xg19_play(&item)?;self.validate_xg19_token_play(&item)?;
         self.validate_cq11_play(&item)?;
+        self.validate_bq095_play(&item)?;
         self.validate_bq052_play(&item)?;
         self.validate_bq049_play(&item)?;
         self.validate_bq061_play(&item)?;

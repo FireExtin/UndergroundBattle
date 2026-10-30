@@ -1418,5 +1418,6 @@
   "XQ13": {"url": "/cards/XQ13.jpg", "source": "resource/ymsj-fun.github.io/cards/XQ13 焚血之道.jpg", "sha256": "07656ef4e3406cc371ce5202fb88c64b68aec32cdc22e0adf660de41e23c836a"},
   "WM027": {"url": "/cards/WM027.jpg", "source": "resource/ymsj-fun.github.io/cards/WM027 阴影之道.jpg", "sha256": "f7a2fcfe47a2f412029229df4a01e89a8c3db7bb67fb5deeb3b78230d09fcfa0"},
   "WM036": {"url": "/cards/WM036.jpg", "source": "resource/ymsj-fun.github.io/cards/WM036 烬归烬.jpg", "sha256": "afe11bd32b191576058e6f2f6c8369f606dc58731c82133037ef2cb2c1f11395"},
-  "WM031": {"url": "/cards/WM031.jpg", "source": "resource/ymsj-fun.github.io/cards/WM031 凌虐恶魔.jpg", "sha256": "3a879800f043f5d7fe336c2dc900e912623dec76e16932630dd63fa59f5d94f2"}
+  "WM031": {"url": "/cards/WM031.jpg", "source": "resource/ymsj-fun.github.io/cards/WM031 凌虐恶魔.jpg", "sha256": "3a879800f043f5d7fe336c2dc900e912623dec76e16932630dd63fa59f5d94f2"},
+  "BQ095": {"url": "/cards/BQ095.jpg", "source": "resource/ymsj-fun.github.io/cards/BQ095 圣甲虫药业集团总部.jpg", "sha256": "42f82a8ceb0d3513c0861995026f2891ae64d20699c3c49d44aa5a4120a749cc"}
 }

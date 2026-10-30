@@ -21,3 +21,11 @@ Still engineering work, not a rule/permission blocker: actual attachment/entry/p
 Complete cards added in this slice0. BQ095 is still absent from the playable catalog; no admission is opened. No independent-review retry, Library401 retry, push, main merge or deploy. Native components are not browser play. Local evidence and recovery bundle only.
 
 Fixed-source run06 passed14/14,0fail/ignored. Same-source related run06 passed39/39 across batch3_ghoul_tests, jz53_tests, generated_tests and wm026_tests;53 distinct selected Native tests total, not full library. Default WASM build06 is running at this checkpoint; compilation alone will not establish a BQ095 cross-end natural chain.
+
+## WIP2: real attachment and triggers
+
+The following supersedes this document's earlier no-catalog/no-dispatch statement. BQ095 now has a closed319th catalog record (`supported:false`, public count236 unchanged), exact original art/index mapping, a real paid society-attachment action, optional entry trigger creating/reusing headquarters, and preparation draw2→mandatory discard1 using the existing preparation queue. The card remains incomplete because global own-grave reference consumers and headquarters extraction are not all wired. This is not a whole-card completion or natural construction chain claim.
+
+Run07 failed compilation due to a missing enum import (0 executed); run08 passed15. Run09 executed17:16pass/1failed because the test called the board-character-only `return_hand` helper on an attachment, so no departure occurred. Run10 uses the actual attachment destruction path and passed17/17,0fail/ignored. It also verifies corrupt actual attach frames, missing/foreign frame sources, wrong society target/host, and accepted entry resolving after its source leaves. The paid-play fixture explicitly prepares resources and society; it is not natural deck setup or browser play.
+
+WIP1 WASM06 build passed but is superseded for the new entry code; WIP2 WASM/UI/Worker validation remains NOT_RUN at this checkpoint. No earlier14+39 count is advertised as the final WIP2 result. Complete-card increment remains0. The next required work is the owner-bound printed-reference/extraction layer and its consumers, followed by complete natural/cross-end evidence.
