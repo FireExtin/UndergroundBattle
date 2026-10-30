@@ -149,8 +149,8 @@ function PlayerMat({ player, view, catalog, definitions, candidateHints, selecte
   const societyAttachments = view.attachments?.filter(item => item.hostId === societyZone?.id) || [];
   const ownTeam = view.players.find(item => item.id === view.you)?.team ?? 0;
   const renderCard = (card: Card) => <CardTile key={card.instanceId} card={card} definition={definitions.get(card.cardId || '')} viewerId={view.you} compact owner={view.players.find(item => item.id === card.owner)} controller={view.players.find(item => item.id === card.controller)} sameNameTag={tagFor(card)} selected={selectedCard === card.instanceId || selectedTarget === card.instanceId} targeted={targetIds.has(card.instanceId)} actionable={candidateHints.has(card.instanceId)} actionHint={candidateHints.get(card.instanceId)} onSelect={() => onCard(card.instanceId)} onPreview={() => onPreview(card.instanceId)} onPreviewEnd={() => onPreview(null)} />;
-  const renderPile = (kind: 'graveyard' | 'scoreCards', label: string) => {
-    const cards = view[kind].filter(card => card.owner === player.id);
+  const renderPile = (kind: 'graveyard' | 'scoreCards' | 'headquarters', label: string) => {
+    const cards = kind === 'headquarters' ? (view.headquarters?.find(zone => zone.playerId === player.id)?.cards || []) : view[kind].filter(card => card.owner === player.id);
     const hasTargets = picking && cards.some(card => targetIds.has(card.instanceId));
     return <details open={hasTargets || undefined} className={`hg-public-zones hg-table-pile hg-${kind}-pile${hasTargets ? ' hg-pile-targeted' : ''}`} data-pile-owner={player.id} data-pile-kind={kind} data-pile-targeted={hasTargets}>
       <summary aria-label={`查看${player.name}的${label}，${cards.length}张`}><span className="hg-pile-card" aria-hidden="true"><b>{kind === 'scoreCards' ? player.score : cards.length}</b><i>{kind === 'scoreCards' ? '分' : '张'}</i></span><span>{label}</span></summary>
@@ -160,7 +160,7 @@ function PlayerMat({ player, view, catalog, definitions, candidateHints, selecte
   return <section className={`hg-player-mat hg-team-${player.team}${mine ? ' hg-player-you' : ''}`} data-player-zone={player.id} data-team={player.team} data-side={player.team === ownTeam ? 'mine' : 'opponent'} aria-label={`${player.name}的玩家区`}>
     <div className="hg-player-strip"><span className="hg-piece-avatar" aria-hidden="true">{player.seat + 1}</span>{targetIds.has(player.id) ? <button type="button" className="hg-player-target" data-player-target={player.id} aria-pressed={selectedTarget === player.id} onClick={() => onCard(player.id)}>选择玩家{player.name}</button> : <strong>{player.name}{mine ? ' · 你' : player.team === ownTeam ? ' · 队友' : ' · 对方'}</strong>}<small>席位 {player.seat + 1} · {player.deckName || catalog?.decks.find(deck => deck.id === player.deckId)?.name || '秘社'}{mine && view.yourDeck ? ` · 原始 ${view.yourDeck.cards.reduce((total, card) => total + card.count, 0)} 张` : ''}{player.eliminated ? ' · 已出局' : ''}</small>{(player.honor ?? 0) > 0 && <span aria-label={`${player.name}名誉点 ${player.honor}`}>名誉 {player.honor}</span>}<span className="hg-mat-resource" data-step-resources={stepResources}>费用 <b>{readyAssets + stepResources}</b>{stepResources > 0 ? <span> · 资产 {readyAssets} / {assets.length} · 本步骤费用 +{stepResources}</span> : <> / {assets.length}</>}</span></div>
     <div className="hg-seat-zones">
-      <div className="hg-personal-piles"><div className="hg-table-pile hg-deck-pile" aria-label={`${player.name}的牌库，${player.deckCount}张`}><span className="hg-pile-card hg-card-back" aria-hidden="true"><span>◈</span><b>{player.deckCount}</b></span><span>牌库</span>{mine && view.privateDeckTop && <button type="button" className="hg-small-read" onClick={onReadDeckTop}>检视顶牌</button>}</div>{renderPile('graveyard', '墓地')}{renderPile('scoreCards', '计分')}</div>
+      <div className="hg-personal-piles"><div className="hg-table-pile hg-deck-pile" aria-label={`${player.name}的牌库，${player.deckCount}张`}><span className="hg-pile-card hg-card-back" aria-hidden="true"><span>◈</span><b>{player.deckCount}</b></span><span>牌库</span>{mine && view.privateDeckTop && <button type="button" className="hg-small-read" onClick={onReadDeckTop}>检视顶牌</button>}</div>{renderPile('graveyard', '墓地')}{view.headquarters?.some(zone => zone.playerId === player.id) && renderPile('headquarters', '集团总部')}{renderPile('scoreCards', '计分')}</div>
       <div className="hg-mat-assets" aria-label={`${player.name}的资产`}><span className="hg-mat-zone-label">资产 · 费用与忠诚</span><div className="hg-assets" style={{ '--hg-card-count': Math.max(1, assets.length) } as CSSProperties}>{assets.map(renderCard)}{!assets.length && <span className="hg-table-empty">尚无资产</span>}</div></div>
       <section className="hg-society-zone" aria-label={`${player.name}的秘社区`} data-society-zone={societyZone?.id} data-society-player={player.id}>
         <strong>秘社区</strong>
@@ -261,17 +261,18 @@ function TableSurface({ recoveryNotices, view, catalog, busy, uncertain = false,
     return card ? [card] : [];
   });
   const coreCards = (view.coreZones || []).flatMap(zone => zone.card ? [zone.card] : []);
-  const allCards = [...view.hand, ...view.assets, ...view.graveyard, ...view.scoreCards, ...(view.revealedHands || []).flatMap(hand => hand.cards), ...view.regions.flatMap(region => region.characters), ...attachments, ...sealedCards, ...societyCards, ...coreCards].map(item => visibleCard(item, view.you));
+  const headquartersCards = (view.headquarters || []).flatMap(zone => zone.cards);
+  const allCards = [...headquartersCards, ...view.hand, ...view.assets, ...view.graveyard, ...view.scoreCards, ...(view.revealedHands || []).flatMap(hand => hand.cards), ...view.regions.flatMap(region => region.characters), ...attachments, ...sealedCards, ...societyCards, ...coreCards].map(item => visibleCard(item, view.you));
   const presentedIds = new Set([...allCards.map(card => card.instanceId), ...view.players.map(player => player.id), ...activeRegions.map(region => region.id), ...(view.societyZones || []).map(zone => zone.id)]);
   // Same-name tags cover table pieces only; revealed hands remain text readers.
-  const sameNames = sameNameTags([...view.hand, ...view.assets, ...view.graveyard, ...view.scoreCards, ...view.regions.flatMap(region => region.characters), ...attachments, ...societyCards]);
+  const sameNames = sameNameTags([...headquartersCards, ...view.hand, ...view.assets, ...view.graveyard, ...view.scoreCards, ...view.regions.flatMap(region => region.characters), ...attachments, ...societyCards]);
   const tagFor = (item: Card) => sameNames.get(item.instanceId);
   const zoneOf = (item: Card) => {
     const within = (cards: Card[]) => cards.some(candidate => candidate.instanceId === item.instanceId);
     const home = view.regions.find(candidate => within(candidate.characters));
     const mounted = attachments.find(candidate => candidate.instanceId === item.instanceId);
     return home ? regionLabel(home.index, view.regions) : mounted ? `附属${mounted.region !== undefined ? ` · ${regionLabel(mounted.region, view.regions)}` : ''}`
-      : within(view.hand) ? '你的手牌' : within(view.assets) ? '资产区' : within(view.graveyard) ? '墓地' : within(view.scoreCards) ? '计分区' : within(societyCards) ? '秘社区' : within(coreCards) ? '核心区' : undefined;
+      : within(headquartersCards) ? '集团总部' : within(view.hand) ? '你的手牌' : within(view.assets) ? '资产区' : within(view.graveyard) ? '墓地' : within(view.scoreCards) ? '计分区' : within(societyCards) ? '秘社区' : within(coreCards) ? '核心区' : undefined;
   };
   const playerName = (id: string) => view.players.find(player => player.id === id)?.name || '玩家';
   // Shown only when it adds a distinction the tile cannot: differing control or a same-name instance.

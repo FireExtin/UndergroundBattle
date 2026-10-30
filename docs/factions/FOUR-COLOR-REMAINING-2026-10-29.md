@@ -68,3 +68,6 @@ WM026 is now a complete closed blue-card mechanism, including actual natural sac
 ## BQ095 persistent-zone WIP 2026-10-30
 
 The repeat-headquarters question now has a scoped project ruling: reuse the society's lasting zone and retain its cards. The original card is black and does not require a paused neutral-card input. Persistent Game/Room zone, public projection, owner destination routing and owned BQ079 arrival observation are implemented as a WIP; migration uniqueness red test is retained. Actual BQ095 entry/prepare and the complete source-aware printed-reference consumers remain engineering work, not a new rule blocker. Complete-card increment0; no catalog/admission entry. See `BQ095-PERSISTENT-ZONE-WIP-2026-10-30.md`.
+
+
+BQ095 2026-10-30 WIP3 supersedes the earlier no-catalog/no-dispatch note: closed319th record, real paid attachment/entry/prepare, owner-bound BQ079/JZ53 departure integration and public HQ UI are implemented. Native85 selected/UI196 and two prepared16-command WASM/Worker scenarios pass; whole-card count remains0 because other printed-own-grave consumers and natural construction remain unfinished. See BQ095-PERSISTENT-ZONE-WIP-2026-10-30.md. No neutral dependency or new rule decision is being claimed as the remaining blocker.

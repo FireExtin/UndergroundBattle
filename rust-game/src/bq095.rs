@@ -172,12 +172,15 @@ impl Game {
     /// Resolve owned printed "own graveyard" independently of generic/enemy
     /// graveyard access. The supplied source is the original frozen card.
     pub(crate) fn bq095_own_reference(&self, source:&Card) -> Destination {
-        self.bq095_headquarters.iter().find(|z|z.seat==source.owner)
+        self.bq095_headquarters.iter().find(|z|z.seat==source.owner && (crate::catalog::catalog().cards.iter().any(|d|d.id==source.definition&&d.kind!="region")||crate::catalog::catalog().societies.iter().any(|d|d.card.id==source.definition)))
             .map_or(Destination::Graveyard(source.controller),|z|z.own_printed_reference(source))
     }
     pub(crate) fn bq095_destination(&self,seat:usize)->Destination {
         self.bq095_headquarters.iter().find(|z|z.seat==seat)
             .map_or(Destination::Graveyard(seat),|z|Destination::Headquarters(z.id.clone()))
+    }
+    pub(crate) fn bq095_reference_seat(&self,source:&Card)->usize {
+        match self.bq095_own_reference(source) {Destination::Graveyard(seat)=>seat,Destination::Headquarters(id)=>self.bq095_headquarters.iter().find(|z|z.id==id).unwrap().seat}
     }
     pub(crate) fn bq095_reference_cards(&self,source:&Card)->&[Card] {
         match self.bq095_own_reference(source) {
@@ -193,7 +196,7 @@ impl Game {
     pub(crate) fn bq095_views(&self,viewer:usize)->Vec<HeadquartersView> {
         self.bq095_headquarters.iter().map(|z|HeadquartersView {
             id:z.id.clone(),player_id:crate::model::player_id(z.seat),name:"集团总部".into(),
-            cards:z.cards.iter().map(|c|self.card_view(c,viewer,None,Some("headquarters"))).collect(),
+            cards:z.cards.iter().map(|c|self.card_view(c,viewer,None,None)).collect(),
         }).collect()
     }
     pub(crate) fn validate_bq095_state(&self)->RuleResult<()> {
@@ -301,5 +304,18 @@ impl Game {
         for e in &self.effects {match e {Effect::Declare{declaration:d}=>self.bq095_entry_declaration(d)?,Effect::Frame{frame:f}=>self.validate_bq095_entry_frame(f)?,_=>()}}
         if let Some(p)=&self.pending {match &p.resolution {ChoiceResolution::Declare{declaration:d,..}=>self.bq095_entry_declaration(d)?,ChoiceResolution::Frame{frame:f,..}=>{self.validate_bq095_entry_frame(f)?;if f.ability_key=="bq095-entry"{return Err("总部单步进场不能伪造执行待选".into());}},_=>()}}
         Ok(())
+    }
+}
+
+impl Game {
+    pub(crate) fn bq095_take_reference(&mut self,source:&Card,id:&str)->RuleResult<Card> {
+        match self.bq095_own_reference(source) {
+            Destination::Graveyard(seat)=>{let i=self.players[seat].graveyard.iter().position(|c|c.id==id).ok_or("原本方墓地实体已离开")?;Ok(self.take_grave_observed(seat,i))},
+            Destination::Headquarters(zone)=>{
+                let z=self.bq095_headquarters.iter_mut().find(|z|z.id==zone).ok_or("原总部已不存在")?;
+                let i=z.cards.iter().position(|c|c.id==id).ok_or("原总部实体已离开")?;let c=z.cards.remove(i);let seat=z.seat;
+                self.jz53_observe_departure(&c,seat,Some(zone));Ok(c)
+            }
+        }
     }
 }

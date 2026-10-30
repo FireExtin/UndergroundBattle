@@ -29,7 +29,7 @@ impl Game {
         let observes=catalog::card(&c.definition).name=="无名尸体" && !self.players[owner].eliminated;
         let sources=if observes{frozen.map(<[SourceSnapshot]>::to_vec).unwrap_or_else(||self.bq079_sources())}else{vec![]};
         let destination=self.bq095_destination(owner);
-        let sources=sources.into_iter().filter(|s|s.card.controller==owner && self.bq095_own_reference(&s.card)==destination).collect::<Vec<_>>();
+        let sources=sources.into_iter().filter(|s|self.bq095_own_reference(&s.card)==destination).collect::<Vec<_>>();
         if sources.is_empty(){self.bq095_commit_destination(c);return;}
         let observation=CorpseGraveObservation{event_id:self.id(),turn:self.turn,arrived:c.clone()};
         self.bq095_commit_destination(c);
@@ -55,7 +55,7 @@ impl Game {
         let c=&o.arrived;
         if s.card.definition!="BQ079" || s.card.face_down || s.card.controller!=actor || actor>=self.players.len()
             || s.play_source.is_some() || s.region.is_none() || s.source_region_instance.is_none()
-            || c.id.is_empty() || c.owner!=actor || c.controller!=actor || c.face_down || c.exhausted || c.damage!=0 || c.wounds!=0 || c.shield!=0 || c.lock_markers!=0 || c.time_markers!=0 || (c.permanent_combat_markers != 0 || c.permanent_investigation_markers != 0) || c.permanent_defense_markers!=0 || c.named_character.is_some()
+            || c.id.is_empty() || c.owner!=self.bq095_reference_seat(&s.card) || c.controller!=c.owner || c.face_down || c.exhausted || c.damage!=0 || c.wounds!=0 || c.shield!=0 || c.lock_markers!=0 || c.time_markers!=0 || (c.permanent_combat_markers != 0 || c.permanent_investigation_markers != 0) || c.permanent_defense_markers!=0 || c.named_character.is_some()
             || !catalog::catalog().cards.iter().any(|d|d.id==c.definition && d.name=="无名尸体")
             || o.turn!=self.turn || o.event_id==c.id || o.event_id==s.card.id
             || o.event_id.strip_prefix('i').and_then(|v|v.parse::<u64>().ok()).is_none_or(|n|n==0 || n>self.sequence)
@@ -79,20 +79,19 @@ impl Game {
         Ok(())
     }
     pub(crate) fn bq079_upkeep_start(&mut self,f:&ResolutionFrame)->RuleResult<()> {
-        if self.players[f.actor].graveyard.is_empty(){self.remove_dead(&f.source.card.id,RemovalCause::Sacrifice);}
-        else{let options=self.players[f.actor].graveyard.iter().map(|c|self.option(c,f.actor,None,None)).collect();self.choice(f.actor,"batch3-bq079-bottom",UPKEEP.into(),options,1,1,None,ChoiceResolution::Frame{frame:Box::new(f.clone()),choice:FrameChoice::BQ079Upkeep});}Ok(())
+        if self.bq095_reference_cards(&f.source.card).is_empty(){self.remove_dead(&f.source.card.id,RemovalCause::Sacrifice);}
+        else{let options=self.bq095_reference_cards(&f.source.card).iter().map(|c|self.option(c,f.actor,None,None)).collect();self.choice(f.actor,"batch3-bq079-bottom",UPKEEP.into(),options,1,1,None,ChoiceResolution::Frame{frame:Box::new(f.clone()),choice:FrameChoice::BQ079Upkeep});}Ok(())
     }
     pub(crate) fn validate_bq079_pending(&self,p:&Pending,f:&ResolutionFrame)->RuleResult<()> {
         self.validate_jc035_frame(f)?;
-        let options=self.players[f.actor].graveyard.iter().map(|c|self.option(c,f.actor,None,None)).collect::<Vec<_>>();
+        let options=self.bq095_reference_cards(&f.source.card).iter().map(|c|self.option(c,f.actor,None,None)).collect::<Vec<_>>();
         if f.source.card.definition!="BQ079" || f.cursor!=1 || !matches!(f.guard,GuardState::Accepted) || options.is_empty() || p.seat!=f.actor || p.choice.player_id!=player_id(f.actor) || p.choice.id.is_empty()
             || p.choice.kind!="batch3-bq079-bottom" || p.choice.title!=UPKEEP || p.choice.min!=Some(1) || p.choice.max!=Some(1) || p.choice.allow_decline!=Some(false) || p.choice.amount.is_some() || !p.choice.preview_cards.is_empty() || !same(&options,&p.choice.options){return Err("食尸鬼强制准备待选与原来源或墓地不符".into());}Ok(())
     }
     pub(crate) fn bq079_upkeep_complete(&mut self,f:&ResolutionFrame,chooser:usize,a:&Action,selected:&[String])->RuleResult<()> {
         self.validate_jc035_frame(f)?;
         if chooser!=f.actor || f.source.card.definition!="BQ079" || f.cursor!=1 || selected.len()!=1 || *a!=(Action{choice_id:a.choice_id.clone(),selected:a.selected.clone(),..Action::new("choose")}){return Err("食尸鬼准备确认包含非准入载荷".into());}
-        let i=self.players[f.actor].graveyard.iter().position(|c|c.id==selected[0]).ok_or("食尸鬼须选择本方墓地一张牌")?;
-        let c=self.take_grave_observed(f.actor,i);let c=self.reset_zone_card(c);self.players[f.actor].deck.push(c);Ok(())
+        let c=self.bq095_take_reference(&f.source.card,&selected[0])?;let c=self.reset_zone_card(c);self.players[f.actor].deck.push(c);Ok(())
     }
     pub(crate) fn validate_bq079_trigger_pending(&self,p:&Pending,d:&Declaration,stage:&DeclareChoice)->RuleResult<()> {
         self.validate_batch3_declaration(d)?;

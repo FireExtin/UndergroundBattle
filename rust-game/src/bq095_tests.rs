@@ -246,3 +246,62 @@ fn bq095_accepted_entry_survives_source_departure_and_retains_original_society()
     let live=g.attachments.iter().find(|a|a.card.definition=="BQ095").unwrap().card.id.clone();g.remove_dead(&live,RemovalCause::Destroy);restore(&mut g);
     while !g.stack.is_empty(){pass(&mut g);}assert_eq!(g.bq095_headquarters.len(),1);assert_eq!(g.bq095_headquarters[0].seat,0);assert!(g.attachments.iter().all(|a|a.card.definition!="BQ095"));restore(&mut g);
 }
+
+#[test]
+fn bq095_owned_reference_take_emits_only_matching_jz53_departure_and_restores() {
+    use crate::{model::*,unit_support::*};let mut g=game();let s=source(&mut g,0,0);let corpse=g.make_card("JC125",0);g.players[0].graveyard.push(corpse);g.bq095_create_or_reuse(&s,"society:p0").unwrap();
+    let owned=field(&mut g,"JZ53",0);let borrowed=field(&mut g,"JZ53",2);g.board_mut(&borrowed).unwrap().controller=0;
+    let source=g.board(&owned).unwrap().1.clone();let id=g.bq095_headquarters[0].cards[0].id.clone();let c=g.bq095_take_reference(&source,&id).unwrap();let c=g.reset_zone_card(c);g.players[0].hand.push(c);
+    let events=g.effects.iter().filter_map(|e|if let Effect::Declare{declaration:d}=e {if d.ability.event==Some(crate::rules::Event::JZ53GraveDeparture){Some(d)}else{None}}else{None}).collect::<Vec<_>>();
+    assert_eq!(events.len(),1);assert_eq!(events[0].source.card.id,owned);
+    let crate::rules::Op::JZ53Generate{departure:Some(d)}=&events[0].ability.ops[0]else{panic!()};assert_eq!(d.headquarters.as_deref(),Some(g.bq095_headquarters[0].id.as_str()));
+    restore(&mut g);let room=crate::room::RoomEnvelope::from_game(g);assert!(crate::room::RoomEnvelope::from_persisted(&serde_json::to_string(&room).unwrap()).is_ok());
+}
+
+#[test]
+fn bq095_bq079_prepare_selects_actual_headquarters_card_then_bottoms_it() {
+    use crate::{model::*,unit_support::*};let mut g=game();let s=source(&mut g,0,0);let c=g.make_card("JC125",0);g.players[0].graveyard.push(c);g.bq095_create_or_reuse(&s,"society:p0").unwrap();let id=g.bq095_headquarters[0].cards[0].id.clone();let ghoul=field(&mut g,"BQ079",0);
+    g.turn+=1;g.begin_window(Window::Prepare);g.drive().unwrap();choose(&mut g,vec![ghoul.clone()]);for _ in 0..32{if g.pending.is_some(){break;}pass(&mut g);}
+    assert_eq!(g.pending.as_ref().unwrap().choice.kind,"batch3-bq079-bottom");assert!(g.pending.as_ref().unwrap().choice.options.iter().any(|o|o.id==id));choose(&mut g,vec![id.clone()]);
+    assert!(g.bq095_headquarters[0].cards.is_empty());assert!(g.board(&ghoul).is_some());assert_eq!(g.players[0].deck.last().unwrap().definition,"JC125");assert_ne!(g.players[0].deck.last().unwrap().id,id);restore(&mut g);
+}
+
+#[test]
+fn bq095_owned_ghoul_under_enemy_control_still_observes_owners_headquarters() {
+    use crate::{model::*,unit_support::*};let mut g=game();let s=source(&mut g,0,0);g.bq095_create_or_reuse(&s,"society:p0").unwrap();
+    let ghoul=field(&mut g,"BQ079",0);g.board_mut(&ghoul).unwrap().controller=2;
+    let corpse=held(&mut g,"XQ46",0);g.discard_hand_card(0,&corpse).unwrap();
+    let events=g.effects.iter().filter_map(|e|if let Effect::Declare{declaration:d}=e{Some(d)}else{None}).collect::<Vec<_>>();assert_eq!(events.len(),1);assert_eq!(events[0].actor,2);
+    for _ in 0..32{if g.pending.is_some(){choose(&mut g,vec!["accept".into()]);}else if !g.stack.is_empty(){pass(&mut g);}else if !g.effects.is_empty(){g.drive().unwrap();}else{break;}}
+    assert_eq!(g.board(&ghoul).unwrap().1.permanent_combat_markers,1);restore(&mut g);
+}
+
+#[test]
+fn bq095_world_regions_are_not_player_owned_cards_for_printed_reference_rewrite() {
+    let mut g=game();let s=source(&mut g,0,0);g.bq095_create_or_reuse(&s,"society:p0").unwrap();
+    let region=&g.regions[0].card;assert_eq!(g.bq095_own_reference(region),D::Graveyard(region.controller));
+}
+
+#[test]
+fn bq095_prepared_real_room_entry_and_prepare_export() {
+    use crate::{model::*,unit_support::*,abi112_review_play_tests::Trace};
+    let mut g=game();g.players[0].society_zone.card=Some(g.make_card("MSBQ03",0));fund(&mut g,0,"JC084",6);let c=g.make_card("JC125",0);g.players[0].graveyard.push(c);let id=held(&mut g,"BQ095",0);
+    let a=g.legal_actions(0).into_iter().find(|a|a.action.kind=="play"&&a.action.card_id.as_ref()==Some(&id)).unwrap().action;
+    let mut t=Trace::new_preserving_rng(g,"bq095-prepared-paid-entry".into(),971);t.action(0,a);t.until_pending();t.choose(vec!["accept".into()]);
+    for _ in 0..40 {if t.room.game.stack.is_empty()&&t.room.game.pending.is_none()&&t.room.pacing.window.is_none(){break;}t.pass();}
+    assert_eq!(t.room.game.bq095_headquarters.len(),1);assert_eq!(t.room.game.bq095_headquarters[0].cards.len(),1);
+    let mut g=t.room.game.clone();let source=g.attachments.iter().find(|a|a.card.definition=="BQ095").unwrap().card.id.clone();let hand=g.players[0].hand.len();g.turn+=1;g.begin_window(Window::Prepare);g.drive().unwrap();
+    let mut p=Trace::new_preserving_rng(g,"bq095-prepared-prepare-draw-discard".into(),972);p.choose(vec![source]);p.until_pending();assert_eq!(p.room.game.players[0].hand.len(),hand+2);assert_eq!(p.room.game.pending.as_ref().unwrap().choice.kind,"discard");let id=p.room.game.pending.as_ref().unwrap().choice.options[0].id.clone();p.choose(vec![id]);assert_eq!(p.room.game.players[0].hand.len(),hand+1);assert_eq!(p.room.game.bq095_headquarters[0].cards.len(),2);
+    let mut cases=vec![t.value(),p.value()];for c in &mut cases {c["preparedNativeLayout"]=true.into();for s in c["steps"].as_array_mut().unwrap(){let r=crate::room::RoomEnvelope::from_persisted(s["expected"]["state"].as_str().unwrap()).unwrap();let dup=r.transition(s["seat"].as_u64().unwrap()as usize,Some(serde_json::from_value(s["command"].clone()).unwrap()),0).unwrap();assert_eq!(dup.state,s["expected"]["state"]);assert!(!dup.changed&&dup.journal.is_empty());s["duplicate"]=serde_json::to_value(dup).unwrap();}}
+    use sha2::{Digest,Sha256};let mut bindings=crate::bq052_tests::source_bindings();for(n,b)in[("rust-game/src/bq095.rs",include_bytes!("bq095.rs").as_slice()),("rust-game/src/bq095_tests.rs",include_bytes!("bq095_tests.rs").as_slice()),("rust-game/src/jc035.rs",include_bytes!("jc035.rs").as_slice()),("rust-game/src/jz53.rs",include_bytes!("jz53.rs").as_slice()),("rust-game/src/batch3_ghoul.rs",include_bytes!("batch3_ghoul.rs").as_slice())]{bindings["files"][n]=format!("{:x}",Sha256::digest(b)).into();}
+    let out=serde_json::json!({"catalog":crate::catalog::catalog(),"sourceBindings":bindings,"cases":cases});if let Ok(path)=std::env::var("BQ095_NATIVE_OUT"){std::fs::write(path,serde_json::to_vec(&out).unwrap()).unwrap();}
+}
+
+#[test]
+fn bq095_changed_control_prepare_keeps_owner_zone_and_controller_choice() {
+    use crate::{model::*,unit_support::*};let mut g=game();let s=source(&mut g,0,0);let c=g.make_card("JC125",0);g.players[0].graveyard.push(c);g.bq095_create_or_reuse(&s,"society:p0").unwrap();let id=g.bq095_headquarters[0].cards[0].id.clone();
+    let ghoul=field(&mut g,"BQ079",0);g.board_mut(&ghoul).unwrap().controller=2;let dancer=field(&mut g,"JZ53",0);g.board_mut(&dancer).unwrap().controller=2;
+    g.turn+=1;g.begin_window(Window::Prepare);g.drive().unwrap();assert_eq!(g.pending.as_ref().unwrap().seat,2);choose(&mut g,vec![ghoul]);for _ in 0..32{if g.pending.is_some(){break;}pass(&mut g);}
+    assert_eq!(g.pending.as_ref().unwrap().seat,2);choose(&mut g,vec![id]);assert!(g.bq095_headquarters[0].cards.is_empty());let bottom=g.players[2].deck.last().unwrap();assert_eq!(bottom.definition,"JC125");assert_eq!(bottom.owner,0);
+    restore(&mut g);assert_eq!(g.pending.as_ref().unwrap().seat,2);let room=crate::room::RoomEnvelope::from_game(g);assert!(crate::room::RoomEnvelope::from_persisted(&serde_json::to_string(&room).unwrap()).is_ok());
+}
