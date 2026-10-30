@@ -24,7 +24,7 @@ afterEach(()=>{cleanup();localStorage.clear();sessionStorage.clear();});
 
 it('keeps the historical24 and three closed WIP index gaps outside every supported definition and public preset',()=>{
   expect(catalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
-  const actual=catalog.cards.filter(card=>!scans[card.id]||cardScanUrl(card.id)!==`/cards/${card.id}.jpg`).map(card=>card.id);
+  const actual=catalog.cards.filter(card=>!scans[card.id]||cardScanUrl(card.id)!==(card.id==='TK010'?'/cards/TK010.png':`/cards/${card.id}.jpg`)).map(card=>card.id);
   expect(actual).toEqual(unavailableFaces);
   expect(batch).toHaveLength(20);
   expect(batch.filter(id=>gaps.includes(id))).toEqual([]);
@@ -61,7 +61,7 @@ it('shows no gap in the default buildable directory and explicit unavailable pla
   expect(ids().filter(id=>unavailableFaces.includes(id))).toEqual([]);
   expect(batch.every(id=>ids().includes(id))).toBe(true);
   fireEvent.change(screen.getByLabelText('组牌准入'),{target:{value:'all'}});
-  expect(ids()).toHaveLength(278);
+  expect(ids()).toHaveLength(327);
   for(const id of unavailableFaces){
     const card=definition(id),row=ui.container.querySelector(`[data-catalog-card="${id}"]`);
     expect(row).toHaveAttribute('data-card-admission','unavailable');

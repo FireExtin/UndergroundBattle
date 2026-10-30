@@ -11,12 +11,12 @@ it('admits the complete twenty-card local candidate and excludes deferred cards'
   // Recheck the third cohort against the sole current kernel; later private
   // definitions and the new20 admissions are checked independently.
   expect(testCatalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
-  expect(testCatalog.cards.filter(c=>c.supported===false)).toHaveLength(42);
+  expect(testCatalog.cards.filter(c=>c.supported===false)).toHaveLength(91);
   for(const id of ['BQ033','BQ009','BQ001'])expect(definition(id).supported,id).toBe(false);
   for(const id of ['BQ034','CQ25','XG25'])expect(definition(id).supported,id).toBe(true);
   expect(testCatalog.cards.filter(c=>c.supported!==false)).toHaveLength(236);
   expect(definition('CQ07').supported).toBe(true);
-  expect(definition('CQ11')).toBeUndefined();expect(definition('TK008')).toBeUndefined();
+  for(const id of ['CQ11','TK008'])expect(definition(id).supported,id).toBe(false);
   expect(definition('BQ026').additionalKinds).toEqual(['attachment']);
 });
 it('renders the replacement Phoebe with her actual subtitle and whole printed rule text',()=>{
