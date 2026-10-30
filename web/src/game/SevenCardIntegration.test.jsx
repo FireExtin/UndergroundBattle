@@ -27,7 +27,7 @@ it.each(['JZ30', 'BQ028', 'BQ040', 'WM059', 'BQ078', 'JZ44', 'JZ45', 'XQ18'])('r
 it('uses the current candidate and retains the reviewed XQ18', () => {
   expect(catalog.engineVersion).toBe('rust-v0.2.113-bq001-anchor-source-wip');
   expect(catalog.cardPoolVersion).toBe('limited-v2.104-bq001-anchor-source-wip');
-  expect(catalog.cards).toHaveLength(278);
+  expect(catalog.cards).toHaveLength(327);
   for(const id of ['BQ033','BQ009','BQ001'])expect(definitions.get(id).supported,id).toBe(false);
   for(const id of ['BQ034','CQ25','XG25'])expect(definitions.get(id).supported,id).toBe(true);
   expect(catalog.cards.filter(card => card.supported)).toHaveLength(236);

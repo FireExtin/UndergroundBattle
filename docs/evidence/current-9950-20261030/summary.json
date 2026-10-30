@@ -1,0 +1,153 @@
+{
+  "baseline": "960fc49b4900c16cb67e703e4afc7df621f9c9d2",
+  "branch": "wip/9950-validation-960fc49b-20261030",
+  "evidenceRoot": "/home/ddd/Documents/Codex/2026-10-30/task-3/validation",
+  "runtime": {
+    "source": "960fc49b4900c16cb67e703e4afc7df621f9c9d2",
+    "node": "v24.22.1",
+    "rustc": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "wasm_bindgen": "wasm-bindgen 0.2.104",
+    "zig": "0.15.2",
+    "wasm_sha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452",
+    "web_build_exit": 0,
+    "sites_dry_run_exit": 0,
+    "system_configuration_changed": false
+  },
+  "native": {
+    "sha": "960fc49b4900c16cb67e703e4afc7df621f9c9d2",
+    "command": [
+      "node",
+      "tools/build-storage.mjs",
+      "--",
+      "cargo",
+      "test",
+      "--locked",
+      "--workspace",
+      "--no-fail-fast",
+      "--",
+      "--nocapture",
+      "--test-threads=1"
+    ],
+    "start": "2026-10-30T14:21:16.760161+00:00",
+    "status": "completed",
+    "witnesses": {
+      "SENTINEL_WORKER_WITNESS": "/home/ddd/Documents/Codex/2026-10-30/task-3/validation/sentinel-worker.json",
+      "SENTINEL_PLATFORM_WITNESS": "/home/ddd/Documents/Codex/2026-10-30/task-3/validation/sentinel-platform.json"
+    },
+    "exit_code": 0,
+    "seconds": 1729.1882503570014,
+    "end": "2026-10-30T14:50:05.948522+00:00",
+    "totals": {
+      "passed": 3243,
+      "failed": 0,
+      "ignored": 1
+    },
+    "ignored_tests": [
+      "test bq001_natural_room_tests::bq001_candidate_natural_supply_anchor_forecast_contest_and_dream_payment ... ignored, Internal candidate catalog variant only; mainline admission remains closed"
+    ],
+    "log_sha256": "4be8d84ba8b79bbd495be0984ba854c435977b29dc867efe287be6b9bcf2359a",
+    "witness_hashes": {
+      "sentinel-worker.json": "02d11f883b04c190e9654d2fa0f758078b5f4b191e1e79171ebf37335f0e2c07",
+      "sentinel-platform.json": "2a76a95cb093d87aa8a93b1581fc613ee9cf65e84e62c4f85cc932d2005a4315"
+    }
+  },
+  "ui": {
+    "files": 209,
+    "passedFiles": 209,
+    "passed": 1929,
+    "failed": 0,
+    "skipped": 0,
+    "run": {
+      "command": [
+        "npm",
+        "--prefix",
+        "web",
+        "test",
+        "--",
+        "--maxWorkers=1",
+        "--reporter=default",
+        "--reporter=json",
+        "--outputFile=/home/ddd/Documents/Codex/2026-10-30/task-3/validation/ui-final.json"
+      ],
+      "source_head": "960fc49b4900c16cb67e703e4afc7df621f9c9d2",
+      "patch_sha256": "ec89fdfe75240539afe842ad9b5f7b8641ed0f4010f468065da3f70ec8094b11",
+      "start": "2026-10-30T15:18:08.311684+00:00",
+      "status": "completed",
+      "exit_code": 0,
+      "seconds": 216.70424536800056,
+      "end": "2026-10-30T15:21:45.016058+00:00"
+    }
+  },
+  "firstUi": {
+    "files": 209,
+    "passedFiles": 205,
+    "failedFiles": 4,
+    "passed": 1917,
+    "failed": 12,
+    "exit": 1
+  },
+  "affectedUi": {
+    "files": 4,
+    "passed": 34,
+    "failed": 0
+  },
+  "sourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+  "rustInputCount": 460,
+  "rustInputsUnchangedAfterTestMetadataFix": true,
+  "fixturePackets": 102,
+  "uiSuffixes": [
+    {
+      "input": "CQ13_NATURAL_OUT",
+      "scope": "Contiguous suffix of fresh Native commands; original preparation retained in raw evidence, no opaque state edited. Construction step indices refer to original trace.",
+      "originalRawSha256": "5ad6bf80e04196b502ab8b8d6b0aa2ddbaa11e0b55f5d033dc5c4bdc0265b4cb",
+      "ranges": [
+        {
+          "name": "cq13-natural-clock-entry-blink",
+          "originalCommands": 2284,
+          "firstRetainedCommand": 2124,
+          "retainedCommands": 160
+        }
+      ]
+    },
+    {
+      "input": "LC04_NATIVE_OUT",
+      "scope": "Contiguous suffix of fresh Native commands; original preparation retained in raw evidence, no opaque state edited. Construction step indices refer to original trace.",
+      "originalRawSha256": "df117d7408fb9fcdb0a82bf5b6639852515b95bdcbc28cb0a33a7bca23b8c63d",
+      "ranges": [
+        {
+          "name": "lc04-natural-fifty",
+          "originalCommands": 917,
+          "firstRetainedCommand": 902,
+          "retainedCommands": 15
+        },
+        {
+          "name": "lc04-four-categories-explicit",
+          "originalCommands": 29,
+          "firstRetainedCommand": 0,
+          "retainedCommands": 29
+        }
+      ]
+    }
+  ],
+  "scope": {
+    "independentReview": false,
+    "browserPlay": false,
+    "published": false,
+    "fullSitesSuite": false,
+    "fullBroadNativeWasmReplay": false
+  },
+  "logHashes": {
+    "toolchain-install.log": "79c5255240500c3b00043f2ed94fe989b9eb7d0759b764bb5d5c2b03d842feeb",
+    "wasm-bindgen-install.log": "4fc22e65daeb838d174728c9b2595a2faa08117d985f3c6920861b8de0cec6f6",
+    "wasm-bindgen-install-02.log": "bf303062a3c7f0e903a63a4b316b3fa83f24ad0155b5f45cfa24cfb5562b0aa6",
+    "web-build.log": "f06398c15eb9b452364ee896f5c52b5c39de6f5fb60e1cab282349d9b414ef9d",
+    "wasm-build.log": "2e3bad53a61ab2a894fb55a51c8ee6027856d6a86b34a5ebf9ab73257e6628c1",
+    "sites-build.log": "081c2daa8c9ba82af5b923f3a6d948105bf1c52057a36d984319f9f0b4dcc2cd",
+    "native-full.log": "4be8d84ba8b79bbd495be0984ba854c435977b29dc867efe287be6b9bcf2359a",
+    "ui-full.log": "b1b5cc07fc59d080ee9bb6984d7580a4cb205537d3ca969dade10ec9268420c7",
+    "ui-final.log": "494a5497194f8544f161799374b9cdb784b7dc15eb3ec8f1c203b1c2657733ab",
+    "ui-affected.log": "b49a1a32b6555cab5227f706ea22feabb9f77e2d63dc29e5af14404150fd2199",
+    "oracle-pack-jc035-red.log": "69ce3c20868985b6f1beb0c054f69d074b45f376bf5f546937fb484bebfa393a",
+    "ui-final-fixture-hashes.json": "48726b971dd87aa28aebc6952d7f34970bb800450bc7da72cb688736968ed60b"
+  }
+}
