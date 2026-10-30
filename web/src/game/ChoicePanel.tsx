@@ -61,7 +61,7 @@ function ChoicePanelContent({ choice, action, definitions, busy, onSubmit, onRea
   const ordering = choice.kind === 'order' || choice.kind === 'investigation';
   const triggerOrder = choice.kind === 'jc054-trigger-order' || choice.kind === 'jc035-preparation-order';
   const damage = choice.kind === 'damage';
-  const timePayment = choice.kind === 'jc055-time-payment';
+  const timePayment = choice.kind === 'jc055-time-payment' || choice.kind === 'jz42-time';
   // Existing kernels title declarations as `${printedName}：${abilityLabel}`.
   // Read only this room's catalog for display; never infer actions from card text.
   const triggerSources = choice.kind === 'trigger'
