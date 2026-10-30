@@ -1211,6 +1211,7 @@ impl Game {
     pub(crate) fn start_validated_decks(&mut self,decks:Vec<crate::deck::DeckDraft>)->RuleResult<()> {
         if decks.len()!=self.players.len(){return Err("开局牌组与座位数量不符".into());}
         self.core_zones.clear();
+        self.wm026_pending.clear();
         self.bq049_grants.clear();self.bq067_grants.clear();
         self.status = "playing".into();
         self.modifiers.clear();

@@ -19,3 +19,7 @@ At this checkpoint `wm026-natural-08` is running after correcting those test com
 The raw source is also corrected from “准备步骤强制触发” to the actual printed “准备步骤触发”; the original image has no 强制 word. Project interpretation: mist has absent printed cost display and numeric-zero comparison, is not independently constructible/playable, and resets to the original physical face on departure. This is a scoped current-engine choice, not an official ruling or a rule generalized from TK010.
 
 At this checkpoint default WASM build is running, web build passed, and source-bound WASM comparison/UI/Worker tests remain pending. No whole-card completion claim until applicable cross-end closure. Newly added art copies and indexes preserve exact original bytes. Prior failures and checkpoint bundles are not overwritten.
+
+## Restart cleanup and final Native identity (2026-10-30 UTC)
+
+A final initialization check found that resetting the stack at game start also needs to clear the serialized WM026 pending list. The cleanup and a Game/Room restart test are now present. `wm026-final-native-13` passed 11/11; `wm026-related-13` passed 57/57 on that same frozen production source (68 distinct tests, not a full library). Fresh raw exports are `native-13.json` and `natural-13.json` under `/workspace/wm026-validation`. WASM build 01 is superseded by build 02 for this source change; only build 02 can support the final cross-end comparison. UI/Worker are still pending here.
