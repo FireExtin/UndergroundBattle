@@ -1,5 +1,7 @@
 # 9950 Sites validation WIP checkpoint
 
+Final outcome is recorded in [the completed validation report](CURRENT-9950-SITES-REGRESSION-2026-10-30.md). The snapshot below is preserved.
+
 Recorded 2026-10-30T17:37:07.793234+00:00. Base commit `f3fe505f9fb8e4d38e7623d4fddca03287307209`. This checkpoint is **not complete acceptance** and is not a release.
 
 The existing serial run began 2026-10-30T15:40:13.630950+00:00, execution session 84724. At this snapshot, 92/114 planned files have completed: 86 passed and 6 failed. Active file: `test034-integration.test.mjs`. Remaining files, including active: 22. Original run continues without restart.

@@ -14,7 +14,7 @@ const names=['bq034-natural-entry-counter','bq034-natural-shown-feed','cq25-xg25
 const key=()=>crypto.randomUUID();
 async function harness(t,worker,seed){
  const persist=mkdtempSync(join(tmpdir(),'next20-public-d1-')),directory=dirname(worker);
- const options=convertV4MiniflareOptions({name:'next20-public',resourcePersistencePath:persist,modulesRoot:worker,modules:[
+ const options=convertV4MiniflareOptions({name:'next20-public',resourcePersistencePath:persist,modulesRoot:directory,modules:[
   {type:'ESModule',path:worker},...readdirSync(directory).filter(n=>n.endsWith('.wasm')).map(n=>({type:'CompiledWasm',path:join(directory,n)}))],
   compatibilityDate:'2026-10-02',cf:false,d1Databases:{DB:'next20-public'},bindings:{LOCAL_TEST_CLOCK_MS:'0',LOCAL_TEST_SEED:String(seed)}});
  let mf=new Miniflare(options),db;

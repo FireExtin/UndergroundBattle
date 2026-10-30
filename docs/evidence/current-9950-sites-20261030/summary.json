@@ -1,0 +1,3048 @@
+{
+  "status": "complete applicable Sites coverage, consolidated successful file results; not one monolithic clean run",
+  "utc": "2026-10-30T18:27:26.255016+00:00",
+  "initialSourceCommit": "f3fe505f9fb8e4d38e7623d4fddca03287307209",
+  "testRepairCheckpoint": "3f81c0d4c19fd3aa3c57863de155d67b7d8a3b98",
+  "finalUncommittedTestChange": "next20 harness modulesRoot uses directory, not worker filename",
+  "testPatchFromInitialSha256": "28e51e76cf5f67ae764e0e63ea89c12bc235ed041fd1fab451e9d66459e96340",
+  "runtimeUnchanged": true,
+  "rustInputCount": 460,
+  "sourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+  "wasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452",
+  "productionWorkerSha256": "a9c3cde3dd66d302ecf738871520b988403af688df0054c9514f998f57ef1b94",
+  "files": 114,
+  "repositoryTestFiles": 115,
+  "stats": {
+    "tests": 820,
+    "pass": 820,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "countSemantics": "Node test cases; number of individual internal assert calls is not instrumented. Do not call 820 an internal assertion count.",
+  "excluded": {
+    "batch4-abi95-normal-game.test.mjs": "Unfocused automated full-duel chooser, excluded from technical replay scope; parent owns personal browser match."
+  },
+  "attempts": [
+    {
+      "record": "sites-run.json",
+      "sha256": "ffca2dc1b5df466d066fb6c58a8f241fb94ac8516a4ab13041d09f0481fab9f0",
+      "status": "running",
+      "source": "f3fe505f9fb8e4d38e7623d4fddca03287307209",
+      "start": "2026-10-30T15:40:13.630950+00:00",
+      "end": null,
+      "completedFiles": 96
+    },
+    {
+      "record": "sites-continuation.json",
+      "sha256": "496f711427c649eaefaf60d2ce80840be534782a8ba22a129d472190c6d11359",
+      "status": "completed",
+      "source": "3f81c0d4c19fd3aa3c57863de155d67b7d8a3b98",
+      "start": "2026-10-30T17:56:11.641460+00:00",
+      "end": "2026-10-30T18:24:13.216678+00:00",
+      "completedFiles": 18
+    },
+    {
+      "record": "sites-rerun.json",
+      "sha256": "a11940b5e663ce9cb2f3ce8750106435236eeb99713a8221bc0e5cef11499c46",
+      "status": "completed",
+      "source": "3f81c0d4c19fd3aa3c57863de155d67b7d8a3b98",
+      "start": "2026-10-30T18:24:28.618163+00:00",
+      "end": "2026-10-30T18:24:50.035418+00:00",
+      "completedFiles": 6
+    },
+    {
+      "record": "next20-final.json",
+      "sha256": "239947e3fb4ea2f779197d1dc6352e628cf523e4b1a1759b07e8f8bab7fc16f2",
+      "status": "completed",
+      "source": "3f81c0d4c19fd3aa3c57863de155d67b7d8a3b98",
+      "start": "2026-10-30T18:25:13.172347+00:00",
+      "end": "2026-10-30T18:26:05.425160+00:00",
+      "completedFiles": 1
+    }
+  ],
+  "interruption": {
+    "utc": "2026-10-30T17:56:11.624217+00:00",
+    "status": "interrupted; tool session unknown and task processes absent",
+    "originalSession": 84724,
+    "completedFiles": 96,
+    "interruptedFile": "wm026-integration.test.mjs",
+    "lastProgress": {
+      "commands": 800,
+      "total": 888
+    },
+    "cause": "unknown; no exit status or test failure emitted",
+    "remainingFiles": [
+      "wm026-integration.test.mjs",
+      "wm027-integration.test.mjs",
+      "wm031-integration.test.mjs",
+      "wm036-integration.test.mjs",
+      "wm062-integration.test.mjs",
+      "wm063-integration.test.mjs",
+      "xg19-integration.test.mjs",
+      "xq13-integration.test.mjs",
+      "xq18-carrier.test.mjs",
+      "xq23-current-owner-integration.test.mjs",
+      "xq23-entry.test.mjs",
+      "xq23-integration.test.mjs",
+      "xq23-p2-integration.test.mjs",
+      "xq24-container-restore.test.mjs",
+      "xq24-integration.test.mjs",
+      "xq27.test.mjs",
+      "xq35-integration.test.mjs",
+      "xq37.test.mjs"
+    ]
+  },
+  "hangRecovery": {
+    "utc": "2026-10-30T17:32:12.180836+00:00",
+    "reason": "all five next20 tests ended (4 failed startup, 1 passed), leaked startup resources prevented process exit",
+    "target": 297101,
+    "descendants": []
+  },
+  "newWasmParity": {
+    "packetReceipts": 17,
+    "commandComparisons": 2178,
+    "viewComparisons": 6078,
+    "duplicateComparisons": 1720,
+    "boundary": "17 packet receipts, 16 with command comparisons; XQ24 invalid packet counted zero commands and is verified by its Sites restore tests. Comparisons can overlap previously checked traces, not unique whole-library coverage.",
+    "packets": [
+      {
+        "log": "pack-batch3-cleanup.log",
+        "input": "/home/ddd/Documents/Codex/2026-10-30/task-3/validation-sites/BATCH3_ABI94_CLEANUP_SMOKE_OUT.json",
+        "destination": "rust-game-wasm/tests/current112/batch3-cleanup.json.gz",
+        "sha256": "a2881904189c1147542755008456d1abeb9d8abd3a9d1557c48f9e527b6e8e56",
+        "commands": 1,
+        "views": 4,
+        "duplicates": 0,
+        "currentSourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+        "currentWasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452"
+      },
+      {
+        "log": "pack-batch3-cq07.log",
+        "input": "/home/ddd/Documents/Codex/2026-10-30/task-3/validation-sites/BATCH3_CQ07_SMOKE_OUT.json",
+        "destination": "rust-game-wasm/tests/current112/batch3-cq07.json.gz",
+        "sha256": "e129676a9dc3f1b28adb9b9dffcb6923fe3acd7887adfd14886065f5a50b281f",
+        "commands": 10,
+        "views": 40,
+        "duplicates": 0,
+        "currentSourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+        "currentWasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452"
+      },
+      {
+        "log": "pack-batch3-inspections.log",
+        "input": "/home/ddd/Documents/Codex/2026-10-30/task-3/validation-sites/BATCH3_ABI94_SMOKE_OUT.json",
+        "destination": "rust-game-wasm/tests/current112/batch3-inspections.json.gz",
+        "sha256": "cc92305fcfcafba2fd82fcab140ab5091d5c313d320feefedacd53866ed1508f",
+        "commands": 12,
+        "views": 48,
+        "duplicates": 0,
+        "currentSourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+        "currentWasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452"
+      },
+      {
+        "log": "pack-bq030-sites.log",
+        "input": "/home/ddd/Documents/Codex/2026-10-30/task-3/UndergroundBattle/sites/test/fixtures/bq030-native-v0113.json",
+        "destination": "rust-game-wasm/tests/current112/bq030-sites.json.gz",
+        "sha256": "192533529ab98e5381375eaefb4da5dd425033059ebdb78d1b502b04154b19c4",
+        "commands": 40,
+        "views": 160,
+        "duplicates": 0,
+        "currentSourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+        "currentWasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452"
+      },
+      {
+        "log": "pack-bq034-natural-entry-counter.log",
+        "input": "/home/ddd/Documents/Codex/2026-10-30/task-3/validation-sites/bq034-natural-entry-counter-packet.json",
+        "destination": "rust-game-wasm/tests/current112/bq034-natural-entry-counter.json.gz",
+        "sha256": "4f3f595e89a61715414ec012c77d41858aee5af56078ac54ea3b91438d6064fc",
+        "commands": 386,
+        "views": 772,
+        "duplicates": 386,
+        "currentSourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+        "currentWasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452"
+      },
+      {
+        "log": "pack-bq034-natural-shown-feed.log",
+        "input": "/home/ddd/Documents/Codex/2026-10-30/task-3/validation-sites/bq034-natural-shown-feed-packet.json",
+        "destination": "rust-game-wasm/tests/current112/bq034-natural-shown-feed.json.gz",
+        "sha256": "2406401cdae6b87049631045f0503080143bb5e089265e19ae9167e42823808b",
+        "commands": 332,
+        "views": 664,
+        "duplicates": 332,
+        "currentSourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+        "currentWasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452"
+      },
+      {
+        "log": "pack-bq034-natural-two-unique-sacrifice.log",
+        "input": "/home/ddd/Documents/Codex/2026-10-30/task-3/validation-sites/bq034-natural-two-unique-sacrifice-packet.json",
+        "destination": "rust-game-wasm/tests/current112/bq034-natural-two-unique-sacrifice.json.gz",
+        "sha256": "cac0492ae5486b20a5fcd6044a2dfcd4dcf6501f3342382958cb09ced1b6b346",
+        "commands": 229,
+        "views": 458,
+        "duplicates": 229,
+        "currentSourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+        "currentWasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452"
+      },
+      {
+        "log": "pack-cq-pair.log",
+        "input": "validation-sites/CQ_PAIR-worker.json",
+        "destination": "rust-game-wasm/tests/current113/cq-pair.json.gz",
+        "sha256": "ccbbf82de4bfed6efca5ac2f010eade7b40d2baab1b9b083b26d3597cc0a62f3",
+        "commands": 32,
+        "views": 128,
+        "duplicates": 32,
+        "currentSourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+        "currentWasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452"
+      },
+      {
+        "log": "pack-cq13.log",
+        "input": "/home/ddd/Documents/Codex/2026-10-30/task-3/validation-sites/CQ13_NATURAL_OUT-worker.json",
+        "destination": "rust-game-wasm/tests/current113/cq13.json.gz",
+        "sha256": "3dd76ac0c0898e071cc04a25bb3e21a71e7e6adf525662883c291e5a17471ab4",
+        "commands": 329,
+        "views": 1316,
+        "duplicates": 329,
+        "currentSourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+        "currentWasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452"
+      },
+      {
+        "log": "pack-cq25-xg25-natural-seal-move-search.log",
+        "input": "/home/ddd/Documents/Codex/2026-10-30/task-3/validation-sites/cq25-xg25-natural-seal-move-search-packet.json",
+        "destination": "rust-game-wasm/tests/current112/cq25-xg25-natural-seal-move-search.json.gz",
+        "sha256": "eac340e6bb9dac76cc67158e5d38c8c9dbbcf40b64b77e7adf713f903be51380",
+        "commands": 357,
+        "views": 714,
+        "duplicates": 357,
+        "currentSourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+        "currentWasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452"
+      },
+      {
+        "log": "pack-jc052-worker.log",
+        "input": "/home/ddd/Documents/Codex/2026-10-30/task-3/validation-sites/jc052-worker.json",
+        "destination": "rust-game-wasm/tests/current112/jc052-worker.json.gz",
+        "sha256": "325b4240ada8fc0053ace154326913fad6d2644aeff90c59da93aa59e5318be8",
+        "commands": 4,
+        "views": 16,
+        "duplicates": 0,
+        "currentSourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+        "currentWasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452"
+      },
+      {
+        "log": "pack-jz56-platform.log",
+        "input": "/home/ddd/Documents/Codex/2026-10-30/task-3/validation/fresh-native/outputs/BATCH4_ABI95_NATIVE_OUT.json",
+        "destination": "rust-game-wasm/tests/current112/jz56-platform.json.gz",
+        "sha256": "30a68354ac9b84eab9338d9cf6e410d8ef07ddab08829ed5224be430482bdb99",
+        "commands": 200,
+        "views": 800,
+        "duplicates": 0,
+        "currentSourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+        "currentWasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452"
+      },
+      {
+        "log": "pack-lc04.log",
+        "input": "/home/ddd/Documents/Codex/2026-10-30/task-3/validation-sites/LC04_NATIVE_OUT-worker.json",
+        "destination": "rust-game-wasm/tests/current113/lc04.json.gz",
+        "sha256": "323faaf9005d4989ae361634e953b55f47ae25875f1e2b0ace34efb8f7f7c4f4",
+        "commands": 44,
+        "views": 176,
+        "duplicates": 44,
+        "currentSourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+        "currentWasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452"
+      },
+      {
+        "log": "pack-sentinel.log",
+        "inputSha256": "3ba467bccc1f38d4323d8498e5eee54b2c20c8ebf16390039444643b7c37b9fa",
+        "currentSourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+        "currentWasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452",
+        "scenarios": 3,
+        "commands": 11,
+        "views": 56,
+        "duplicates": 11,
+        "scope": "Author fresh Native/current WASM comparisons; not browser or public admission acceptance"
+      },
+      {
+        "log": "pack-shared-rewards.log",
+        "input": "/home/ddd/Documents/Codex/2026-10-30/task-3/validation/fresh-native/outputs/ABI112_REWARD_NATIVE_OUT.json",
+        "destination": "rust-game-wasm/tests/current112/shared-rewards.json.gz",
+        "sha256": "a203a048b74a2c5e7188302018f18b2ec17a930ce4258f505f7c851a99d592e6",
+        "commands": 20,
+        "views": 80,
+        "duplicates": 0,
+        "currentSourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+        "currentWasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452"
+      },
+      {
+        "log": "pack-win-flow.log",
+        "input": "/home/ddd/Documents/Codex/2026-10-30/task-3/UndergroundBattle/sites/test/fixtures/win-flow-native-v0113.json",
+        "destination": "rust-game-wasm/tests/current112/win-flow.json.gz",
+        "sha256": "063f5337b70ee14003fad23a467070196438f0c8e7011d3c98b211fbf09041d9",
+        "commands": 171,
+        "views": 646,
+        "duplicates": 0,
+        "currentSourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+        "currentWasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452"
+      },
+      {
+        "log": "pack-xq24-invalid.log",
+        "input": "/home/ddd/Documents/Codex/2026-10-30/task-3/validation/fresh-native/xq24-container-invalid.json",
+        "destination": "rust-game-wasm/tests/current112/xq24-invalid.json.gz",
+        "sha256": "4dd3822e7c0a0e5705179f6dfde8cd9923a91f68e742344b00f7c574e8ea7d9d",
+        "commands": 0,
+        "views": 0,
+        "duplicates": 0,
+        "currentSourceManifestSha256": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+        "currentWasmSha256": "6f3f190b47871ff6a1d4a1be6fadbd50fdf5b3884e0cf1747e18c437bedef452"
+      }
+    ]
+  },
+  "fixtureCount": 116,
+  "fixtureInventorySha256": "e088d84ca5222730762377cafb34202d4662a25c69dd4e318b1a1c01b1fdebcf",
+  "diagnosticsSha256": "e06ded2b7b82dc61142f1f1e3e37648a91654d29dda082de36684f1d8a7c9e26",
+  "artifactsInventorySha256": "850406e4605ae367ecb3f316b5b827d667f72377583d6297ca0f2b53aafa2d22",
+  "results": [
+    {
+      "file": "current-kernel-http.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/current-kernel-http.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.7281102720007766,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "f182da48cde9dbf0eb2dc1b930d2f05d47661a34be33e1469b8f7175302b5b51",
+      "attemptRecord": "sites-run.json",
+      "log": "current-kernel-http.test.mjs.tap",
+      "testSourceSha256": "7b2ec3390f396ca8c68605e19fd0d494a77bb0a63b29b5cf0d2ff2615ed71af4"
+    },
+    {
+      "file": "assassin-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/assassin-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.8906947870018485,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "6c3575ccd234489b0e1c49740e772dfe2ace4399c7c2027bafc4041d8f598045",
+      "attemptRecord": "sites-run.json",
+      "log": "assassin-integration.test.mjs.tap",
+      "testSourceSha256": "de98cc15908067520846f41018f8731535b85a929b3fb319c96ce2522e29395c"
+    },
+    {
+      "file": "batch20-review-normal-current.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/batch20-review-normal-current.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 18.281802615001652,
+      "stats": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "af3aae1fbe9d1425772d0b1a306cb99fc05fb27a74d074c9bb0b82b787af8aea",
+      "attemptRecord": "sites-run.json",
+      "log": "batch20-review-normal-current.test.mjs.tap",
+      "testSourceSha256": "92dda42e196a5c562018b13111d0ad95117f690a5c6fb049e898d431f8208660"
+    },
+    {
+      "file": "batch3-abi94-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/batch3-abi94-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 4.466592180000589,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "eeb04106363ec0d7d1d085b1726e0ab47db0ee8cbcb57f09f7fe4aa374b49533",
+      "attemptRecord": "sites-run.json",
+      "log": "batch3-abi94-integration.test.mjs.tap",
+      "testSourceSha256": "842da82304d666ab90c0821b334da830211f8cfe8b2aeab75606f15ddc514454"
+    },
+    {
+      "file": "batch4-abi95-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/batch4-abi95-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 32.81901489399752,
+      "stats": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "58ac930d7415d5ac85d6a0f21c8213b9044bbbc08c75634134a221a6884afbad",
+      "attemptRecord": "sites-run.json",
+      "log": "batch4-abi95-integration.test.mjs.tap",
+      "testSourceSha256": "356fcc3e125cd5d2450cab55304ad76f8b265f80f59a481009f8f54d32866267"
+    },
+    {
+      "file": "batch4-abi95-retirement.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/batch4-abi95-retirement.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.9034827239993319,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "102c9611c2118f5e6c241513fd2f1b95a3866df258bdf0daff609ff5f6fc42cb",
+      "attemptRecord": "sites-run.json",
+      "log": "batch4-abi95-retirement.test.mjs.tap",
+      "testSourceSha256": "9fb76138e788dbe80ee8538c1a2d026896c5ad60385aabc6f5e8659a1b9556ec"
+    },
+    {
+      "file": "bounded-entry-search.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bounded-entry-search.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 4.011066647999542,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "0fbe60033b7efc223df6a9f76262a2f0bed5a15353fe81e863ce45ee7fe6f33a",
+      "attemptRecord": "sites-run.json",
+      "log": "bounded-entry-search.test.mjs.tap",
+      "testSourceSha256": "abc1779c3dd333c156a6c0deb3aefa5bc14547b83cf507f4437637b61afbc539"
+    },
+    {
+      "file": "bq035-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq035-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 31.536071341000934,
+      "stats": {
+        "tests": 13,
+        "pass": 13,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "e7daa4794fa85fb5501102c1117c06cf2a4196a796988e372408ae297a14005f",
+      "attemptRecord": "sites-run.json",
+      "log": "bq035-integration.test.mjs.tap",
+      "testSourceSha256": "20203fcf19135cdfdcc930cd9d776f30f0eb6d6b8f7f789eaed9389003695547"
+    },
+    {
+      "file": "bq044-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq044-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 335.68949739699747,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "7f8a757811e126c6663b71597d60c245f429e09a134502142cd052e2601bf277",
+      "attemptRecord": "sites-run.json",
+      "log": "bq044-integration.test.mjs.tap",
+      "testSourceSha256": "08bc4887081b86d1b5ecc99dc5aad6801cf87bc3628e87d8a05da3d231536125"
+    },
+    {
+      "file": "bq045-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq045-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 124.07699213700107,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "5e978ba50ff9124935e4ffbf8360cc268950a7398aa775002eb57e323c80eae8",
+      "attemptRecord": "sites-run.json",
+      "log": "bq045-integration.test.mjs.tap",
+      "testSourceSha256": "deabcadbf2c59365fd271260ae38724bc2087e18bf3543d11fa9951f0239768f"
+    },
+    {
+      "file": "bq047-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq047-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 302.6598555620003,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "539a50a0a20686b96cc93eec813ce5e08160698067851b9f58f2121546ecb513",
+      "attemptRecord": "sites-run.json",
+      "log": "bq047-integration.test.mjs.tap",
+      "testSourceSha256": "a6437b29afff3401b48d179cb3a0a035c0a21ac304cb5c68254946b4b8185023"
+    },
+    {
+      "file": "bq048-closure-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq048-closure-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 24.173696298999857,
+      "stats": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "2db4a09008ec60a3d7205c188fc80a125e622b78bf019bf6da65afc70ac77fd3",
+      "attemptRecord": "sites-run.json",
+      "log": "bq048-closure-integration.test.mjs.tap",
+      "testSourceSha256": "bfeda5788807a3685e9462c409f2b81fac4945e8f06e1fe97fbc02213bac1b47"
+    },
+    {
+      "file": "bq049-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq049-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 17.43268610800078,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "bbb9c4ea0eb696ed8a005936161f01c03e71754e7eeeef5c612e9df1504c06b4",
+      "attemptRecord": "sites-run.json",
+      "log": "bq049-integration.test.mjs.tap",
+      "testSourceSha256": "7e7b54511118207ba770fe297401754fe248282a915559254ee3cb93d952fd9e"
+    },
+    {
+      "file": "bq052-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq052-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 509.9943562219996,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "5a700961ca2b0d88009b9ae328ec89d1581d1a71ac3869eca61760fc7fd25d04",
+      "attemptRecord": "sites-run.json",
+      "log": "bq052-integration.test.mjs.tap",
+      "testSourceSha256": "07074f49a60489effdb7853e9d8b3595e80d8d2921c32bea6710f4c420803a30"
+    },
+    {
+      "file": "bq060-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq060-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 11.547557327001414,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "ab8ba99237308d93b65b83465f9246d31c772746412a741bc20a9e2af0370d71",
+      "attemptRecord": "sites-run.json",
+      "log": "bq060-integration.test.mjs.tap",
+      "testSourceSha256": "5970a427da217fedfcaa7b988ed512fccf9eccc743df2afc6d50290930da9e04"
+    },
+    {
+      "file": "bq061-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq061-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 8.408257852999668,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "3ebfcc0bfd684358831007ed95c759a1709fd3b6accff701cef238ec537000b9",
+      "attemptRecord": "sites-run.json",
+      "log": "bq061-integration.test.mjs.tap",
+      "testSourceSha256": "3338205f1777ade9768890adff62b9184b36bcbf8d8bc3c8efb0e8f1e976342d"
+    },
+    {
+      "file": "bq062-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq062-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 18.429963808001048,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "bb6751ccf87b7e9b04f1ff23348d682d77ac4e22078d4ca5046d394bfade37e4",
+      "attemptRecord": "sites-run.json",
+      "log": "bq062-integration.test.mjs.tap",
+      "testSourceSha256": "c50faefacc9cd8edbf06e01be8bf565d0a2b80b728964fb70ec561fb04f63626"
+    },
+    {
+      "file": "bq063-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq063-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 189.01907091999965,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "1f46e7d80e0b5857bb4ad093732aeea5cf69e2114e351726a4d02ad16d66879e",
+      "attemptRecord": "sites-run.json",
+      "log": "bq063-integration.test.mjs.tap",
+      "testSourceSha256": "3366a24cc4092afe687c495d83b5148524b353c94a8d6a61833b8c2c9dd61e31"
+    },
+    {
+      "file": "bq065-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq065-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 21.61621426900092,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "a7659c4374ae54816724b8b6e54302f065478719246d16df63e343be896722aa",
+      "attemptRecord": "sites-run.json",
+      "log": "bq065-integration.test.mjs.tap",
+      "testSourceSha256": "26fd20ad4bb056a3f42521920a01c4aafcc4f50b05cbf0d3f2d403c83401c7bd"
+    },
+    {
+      "file": "bq067-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq067-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 110.58073926299767,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "189249b6ad9b0a702e28f7c5af10549dde7a38c2b529146a449b7cd85ad3bdd9",
+      "attemptRecord": "sites-run.json",
+      "log": "bq067-integration.test.mjs.tap",
+      "testSourceSha256": "6d3f3982a6e7d27a7c60f3f1ad3a4cc9433fbd5c30e33fb8102a6fe56c059b47"
+    },
+    {
+      "file": "bq084-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq084-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 9.939624991999153,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "a79879a92070ad104f5e7b564874ba2b27a1b168a237045dd1027484c8ae04e6",
+      "attemptRecord": "sites-run.json",
+      "log": "bq084-integration.test.mjs.tap",
+      "testSourceSha256": "0a24ec17bfe15a1c2014fe12b4965f6cbc1a45596adcf96e653b62143d41971b"
+    },
+    {
+      "file": "bq086-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq086-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 15.6927206750006,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "5ef82ffa2f4beac8679c32f0af614224eef7c017d817910ee08b166ebad91773",
+      "attemptRecord": "sites-run.json",
+      "log": "bq086-integration.test.mjs.tap",
+      "testSourceSha256": "083ee772d1d1520d745901dbd0522bc2fc7f1445eb251bcb7dae97ef3f8feb17"
+    },
+    {
+      "file": "bq088-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq088-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 12.669880743000249,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "558792686e6e358f1d14be69101003fc606ebf783c88807b01ff09a37108c076",
+      "attemptRecord": "sites-run.json",
+      "log": "bq088-integration.test.mjs.tap",
+      "testSourceSha256": "0f908a39caaa5249f020f2d5ed7c26a13b1ccd13af3eca692fc2b30a08e4df6d"
+    },
+    {
+      "file": "bq095-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq095-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 958.6306826530017,
+      "stats": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "8cb8ddb97ff84b56a9386e56fe9a0f8530270c6cc07a841c5f532cecbe630128",
+      "attemptRecord": "sites-run.json",
+      "log": "bq095-integration.test.mjs.tap",
+      "testSourceSha256": "cb7260dead8139046784747b208022747c8aaedd028dcd24fd29d669dcd5ad2e"
+    },
+    {
+      "file": "control-pair-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/control-pair-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.890551880998828,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "4c0623ddd888a2baec205bee674d354ecd82ec2f24f3c961185dda83ddb9e892",
+      "attemptRecord": "sites-run.json",
+      "log": "control-pair-integration.test.mjs.tap",
+      "testSourceSha256": "222cf79230e8f96d9f48d5ebc27f029d24f7dc8cd1ea02aa902d52d96ae6a509"
+    },
+    {
+      "file": "core-candidate-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/core-candidate-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 370.8627999630007,
+      "stats": {
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "a8250bda7662891511a829634d2a8208d76f61c975677a66e40a924e3a2cae30",
+      "attemptRecord": "sites-run.json",
+      "log": "core-candidate-integration.test.mjs.tap",
+      "testSourceSha256": "50bc4fcc3188816f2d79926e3f777cc4a91e82ac7c5e33d4a05920cd8408d5a4"
+    },
+    {
+      "file": "cq-pair-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/cq-pair-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 15.852571467999951,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "93fe0d91c7a2fafda6d1a0eecda21bf8206c30456a16e978831ba9e01f0af722",
+      "attemptRecord": "sites-rerun.json",
+      "log": "cq-pair-integration.test.mjs.rerun.tap",
+      "testSourceSha256": "0462c10dc6cf91ed98c0c30449d3d6463ce210cc803e24af68fe604056a2646d"
+    },
+    {
+      "file": "cq09-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/cq09-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 140.8105168639995,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "fbd0da64359e1ebb8fd288df0e987d822da7999ca01f3f7576ea10a49481498e",
+      "attemptRecord": "sites-run.json",
+      "log": "cq09-integration.test.mjs.tap",
+      "testSourceSha256": "afe7d0295b323f72448e535c63cd7d4ad84307a7a2c2a63dd3ec839bb316a7a9"
+    },
+    {
+      "file": "cq10-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/cq10-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 13.835163908999675,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "3eada44a162057da839c52db73f5a20be7147208a57866b5cc83292be1c368af",
+      "attemptRecord": "sites-run.json",
+      "log": "cq10-integration.test.mjs.tap",
+      "testSourceSha256": "3fc1a537d1ed8b7b729c6c9cd919306286d937fa6cdc5908e1f12c6d93922c6b"
+    },
+    {
+      "file": "cq11-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/cq11-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 87.15553453400207,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "a9fbcfa0a7fa17a53e7fb18e6ab79dfbcf929555b10dde20b238a2ccf931e095",
+      "attemptRecord": "sites-run.json",
+      "log": "cq11-integration.test.mjs.tap",
+      "testSourceSha256": "14f19ff1882b86f472510c44c2b804160d668bd6157549327f745b069ee3dd33"
+    },
+    {
+      "file": "cq13-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/cq13-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 388.39327512399905,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "635cefdb25d795987d15415e7da203798624c86ff4dac674b69d5ac1fd9e8c5a",
+      "attemptRecord": "sites-run.json",
+      "log": "cq13-integration.test.mjs.tap",
+      "testSourceSha256": "0aa0340add0a2eddc66b833b52ef9c19045d372a73ce2498438736cd9d562a7b"
+    },
+    {
+      "file": "cq27-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/cq27-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 79.02511667900035,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "7a18aa508d1236c3ab25a78e393d07e4efcd042e6227d7bd94e754239bfbe73b",
+      "attemptRecord": "sites-run.json",
+      "log": "cq27-integration.test.mjs.tap",
+      "testSourceSha256": "47a2faba8f53e4c116b00039902c55f32435d0c9e7921a95620c32c42913f6e7"
+    },
+    {
+      "file": "deck-seal-search.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/deck-seal-search.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 4.647328066002956,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "1a93b9fb5b3f412710dd40390e06682be2d4b3cd7a960dc7d68710ca0b477f35",
+      "attemptRecord": "sites-run.json",
+      "log": "deck-seal-search.test.mjs.tap",
+      "testSourceSha256": "8751a998d910b54e3b7e5d3059604a0f0c61d02b95360adb1a3924f5e94a713e"
+    },
+    {
+      "file": "doom-clock-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/doom-clock-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 126.18524041099954,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "cee0d7a4212130881701e843b93b7e59d50431f74216a8e90929c78edeb1b82a",
+      "attemptRecord": "sites-run.json",
+      "log": "doom-clock-integration.test.mjs.tap",
+      "testSourceSha256": "40188ec1afe2de9edf831ce5444c9bbf7f445b80b1ce56b7bfc29d5cf9902e0f"
+    },
+    {
+      "file": "fire-scholar-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/fire-scholar-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.903767716998118,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "17c2b5a987873ed0f0ff7abae524ff22b694175b487bbc27193b3d04d2ba1b40",
+      "attemptRecord": "sites-run.json",
+      "log": "fire-scholar-integration.test.mjs.tap",
+      "testSourceSha256": "1a5fe54e516dd36d0891e61c9e93ba278498c4abebdd4a7a03a3858b9fecf775"
+    },
+    {
+      "file": "gray-lock.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/gray-lock.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 3.8161698170006275,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "3b5b5d235e00aaaa6e40c6dced2e1781bb062c7eacf772b003933a774a643e09",
+      "attemptRecord": "sites-run.json",
+      "log": "gray-lock.test.mjs.tap",
+      "testSourceSha256": "0269185290a473a1699b873927882df44c84e0bade4c87f8d539de0d88b5a055"
+    },
+    {
+      "file": "integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 2.3796049660013523,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "3d9dd63f8e95ec895657df260cb0c8762626b9933f492571198ddfd7db1d297f",
+      "attemptRecord": "sites-rerun.json",
+      "log": "integration.test.mjs.rerun.tap",
+      "testSourceSha256": "d9152e02b218ec89a1555c3e9e4ad3c8a01e579d60ba2197c472deafa8be10e7"
+    },
+    {
+      "file": "jc028-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc028-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 11.682574364000175,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "526c3b5f1dc7770faa394b9014dd90aa11d2f47a543c954f4e618ceb7f9c1dd2",
+      "attemptRecord": "sites-run.json",
+      "log": "jc028-integration.test.mjs.tap",
+      "testSourceSha256": "554ecd43517ee4c32b111399f033ce4e9fbe6d79fdf7f159ad981a1bd5513b6c"
+    },
+    {
+      "file": "jc035-entry.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc035-entry.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.0541439400003583,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "944c95c16514f734d16a9893647efecc26967075583cbf742c17d61626f78409",
+      "attemptRecord": "sites-rerun.json",
+      "log": "jc035-entry.test.mjs.rerun.tap",
+      "testSourceSha256": "dd83229fdc0eaaba428059a43b9d0138639e58a6680f8fefa5b0a8a5dea07a12"
+    },
+    {
+      "file": "jc035-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc035-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 120.21144421799909,
+      "stats": {
+        "tests": 74,
+        "pass": 74,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "ccbb030f34af57e7c0aa590640ba247095ed5d48cf794fb93c5dadb761e915d1",
+      "attemptRecord": "sites-run.json",
+      "log": "jc035-integration.test.mjs.tap",
+      "testSourceSha256": "669a6b70fc481ab355d246e162f2688b62216302d44c101ec5f2c200abb31a4a"
+    },
+    {
+      "file": "jc037-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc037-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 10.886104620996775,
+      "stats": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "7a38f96cf3dfa77dde22f7d8ddfa1a22ccafce7906c445111460559f45d92b8f",
+      "attemptRecord": "sites-run.json",
+      "log": "jc037-integration.test.mjs.tap",
+      "testSourceSha256": "0a6365bc69e7f36235b17275b53e74ed72ba20d1757733ff021b378e37bf3fa2"
+    },
+    {
+      "file": "jc041-entry.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc041-entry.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.0614315649982018,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "06607b4505df48ca5e59c292c98f4c823755d95df51d4049954514fc3500a1fe",
+      "attemptRecord": "sites-run.json",
+      "log": "jc041-entry.test.mjs.tap",
+      "testSourceSha256": "78417d627e9faefaf15042cc0081ec1c0ad29ada711238808945e544f36ffacb"
+    },
+    {
+      "file": "jc041-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc041-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 100.25081033000242,
+      "stats": {
+        "tests": 45,
+        "pass": 45,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "cf9e54d77e0baa1e7531bcc00398811952515da92244f6f214505e0a69893eac",
+      "attemptRecord": "sites-run.json",
+      "log": "jc041-integration.test.mjs.tap",
+      "testSourceSha256": "00b91693b1d46e0be9427907fdd3e875d9974da3434455bcec295865751b372b"
+    },
+    {
+      "file": "jc044-entry.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc044-entry.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.0685235999990255,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "e0e9cc16aa89c7f46f2b3e852007873ee9799f4e0472d79eb84539c0999d6e41",
+      "attemptRecord": "sites-run.json",
+      "log": "jc044-entry.test.mjs.tap",
+      "testSourceSha256": "6547563abb71add79660e1ff8d75dd8b152576345ee8fd17f7559e426d3f0492"
+    },
+    {
+      "file": "jc044-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc044-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 85.51783411600263,
+      "stats": {
+        "tests": 50,
+        "pass": 50,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "40f3082ec26c533b26a339fa7767d4c44101ecc0fe7d0e447be3eedc1a699ab0",
+      "attemptRecord": "sites-run.json",
+      "log": "jc044-integration.test.mjs.tap",
+      "testSourceSha256": "9288a2e13093d1e0368d102c6cfb2ce7951678b52db099c1c37c66802160b4b0"
+    },
+    {
+      "file": "jc046-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc046-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 59.872568981998484,
+      "stats": {
+        "tests": 38,
+        "pass": 38,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "4524499e523dc62a7957bd1a1cb21ef5788b9ea204e57bd48948240e48cdcd0e",
+      "attemptRecord": "sites-run.json",
+      "log": "jc046-integration.test.mjs.tap",
+      "testSourceSha256": "a61b63d77a214b3364224d5752aa135836e11ca02d9fb165df2eeb6c253cdfb0"
+    },
+    {
+      "file": "jc050.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc050.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.0643365460018686,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "51f49de2ec4f94b09970066fd8edbac1538525f0cf42d827cda808b2e3ab2daa",
+      "attemptRecord": "sites-run.json",
+      "log": "jc050.test.mjs.tap",
+      "testSourceSha256": "fcbede72cc0fd7582c408c73b496fcc83970dff3616e1e597274ff317b65b7d6"
+    },
+    {
+      "file": "jc052-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc052-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 3.292425584000739,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "af5c015bfd37acb586990cb3cf3d1e5139468bbeefa71ee8e72aca005e38d5fb",
+      "attemptRecord": "sites-run.json",
+      "log": "jc052-integration.test.mjs.tap",
+      "testSourceSha256": "1854fd1b164318a1508a16ef1f707ca917133c6e6007d9fad61d502f4cb3188e"
+    },
+    {
+      "file": "jc053-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc053-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 14.228269696999632,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "6f64bab12609c571eb6ac6263e84617114188f20af07fef4abba2debb82959fb",
+      "attemptRecord": "sites-run.json",
+      "log": "jc053-integration.test.mjs.tap",
+      "testSourceSha256": "b885fdfe62441cd3182a84fe28c9eac6daa47f77ff8c353b33f9a6f2684f96eb"
+    },
+    {
+      "file": "jc054-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc054-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 23.607348150002508,
+      "stats": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "fd9778237e94d1b9881d6e8956b868958f040b02d10ea3241ac8f706d77621c6",
+      "attemptRecord": "sites-run.json",
+      "log": "jc054-integration.test.mjs.tap",
+      "testSourceSha256": "fb899edee63e283c1a688dc7756e8824e0141a1ed46ba41e87b329975263f91c"
+    },
+    {
+      "file": "jc057-entry.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc057-entry.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.0314090899992152,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "eba0c5ef3c18acb24b4869995df6d3c559af1f3e09563543e47d0092b3bb604a",
+      "attemptRecord": "sites-run.json",
+      "log": "jc057-entry.test.mjs.tap",
+      "testSourceSha256": "9c64066d0fe509f0a2d177ce55f1a9bcf61f2d22d42df7b0299bd87285395189"
+    },
+    {
+      "file": "jc057-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc057-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 78.82909008000206,
+      "stats": {
+        "tests": 37,
+        "pass": 37,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "ab272c05fdb9494e261bef29ee65a46fd0a93b3293d7df388a55814892ff2dfa",
+      "attemptRecord": "sites-run.json",
+      "log": "jc057-integration.test.mjs.tap",
+      "testSourceSha256": "cfc7cbd0ad1fca1c9f48c3b5dcd9be85801c3dcc181995e49cf3e7621929299b"
+    },
+    {
+      "file": "jc060-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc060-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 16.777681288000167,
+      "stats": {
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "03c074eb4440f40b88ecce5b7e03c03e11a471439c55f5d0a8203408b4040f42",
+      "attemptRecord": "sites-run.json",
+      "log": "jc060-integration.test.mjs.tap",
+      "testSourceSha256": "62152c46402860cbaec569015732e27cc2c9b2c70a8daf7c5bd0d9389393edce"
+    },
+    {
+      "file": "jc066-entry.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc066-entry.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.062600166998891,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "17cd08990bab26b364129047a74fb0a1a3be1445d48fb2183ede91aa3c6e1104",
+      "attemptRecord": "sites-run.json",
+      "log": "jc066-entry.test.mjs.tap",
+      "testSourceSha256": "c022ad8d70255f5e8f40e5f9c7c0ae80745e7c04aa28df2a65b28738b2811688"
+    },
+    {
+      "file": "jc066-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc066-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 188.58573552099915,
+      "stats": {
+        "tests": 106,
+        "pass": 106,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "1591b34f847185a28de65241ba08a0720953a29411ae15090b5db84e8de09091",
+      "attemptRecord": "sites-run.json",
+      "log": "jc066-integration.test.mjs.tap",
+      "testSourceSha256": "81a3a106f8d66e256cd998840d43d3596504a0aba714f9a13a9cce194bdf909a"
+    },
+    {
+      "file": "jc095-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc095-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 21.010493384001165,
+      "stats": {
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "564dacd3ecd8b8af5792f10d498a211205c0883c4f787b1d5c1973e12f158fa8",
+      "attemptRecord": "sites-run.json",
+      "log": "jc095-integration.test.mjs.tap",
+      "testSourceSha256": "87455228984d663d01cabc477e217f56e1a8ea16aa7c6e6ffc2335da34e079ca"
+    },
+    {
+      "file": "jc097-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc097-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 5.824796248998609,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "e04ad9454ab6fe924fa800ea714ac186af4055044d15cc6da0b45f9468011af8",
+      "attemptRecord": "sites-run.json",
+      "log": "jc097-integration.test.mjs.tap",
+      "testSourceSha256": "47587ddf8a89ba993432890475df6a5e4f658fcc67016955783076ee33596b82"
+    },
+    {
+      "file": "jz22.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jz22.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 5.190451643000415,
+      "stats": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "2fc5bd34e59b32f00b4fbd83296d5a85cbc306b5f8aaf474afcb90854ff2b692",
+      "attemptRecord": "sites-run.json",
+      "log": "jz22.test.mjs.tap",
+      "testSourceSha256": "35f0fb1ee29604bb4addba3d390342018f1d3234eefd68bb60bbae14edbea290"
+    },
+    {
+      "file": "jz46-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jz46-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 31.061813399002858,
+      "stats": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "1a249daaa5ec63491f1f5a3d6de1c1811e11687e34f1c15a51280fd410b12c05",
+      "attemptRecord": "sites-run.json",
+      "log": "jz46-integration.test.mjs.tap",
+      "testSourceSha256": "a739137e668477bbd1081e40895ee0c11d14e6c49573dd4c9d1b6efd2b368103"
+    },
+    {
+      "file": "jz53-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jz53-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 12.436441411002306,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "c09de3e6d7e8fa91215c2c5adb718105aa50aa5cf223aa967352347f983f3a0c",
+      "attemptRecord": "sites-run.json",
+      "log": "jz53-integration.test.mjs.tap",
+      "testSourceSha256": "ebee9bbe4a5139ff73f609314f1612a5b5bd7b96ea9f01c9356f4ec808c896ce"
+    },
+    {
+      "file": "kernel-binding.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/kernel-binding.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.11752513900137274,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "b7b027e325afb07d794c3275bb69ec9592688865797e4deeb9d5a391ebc98dd0",
+      "attemptRecord": "sites-rerun.json",
+      "log": "kernel-binding.test.mjs.rerun.tap",
+      "testSourceSha256": "2e0495dd08f0acbf346a2347729947f7595fce4540d963a643853340e41c195f"
+    },
+    {
+      "file": "kernel-routing.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/kernel-routing.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.18580360600026324,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "df36fdd228317e00e6707164a21fae1daa909bfb82e6af9caa184377b50044ad",
+      "attemptRecord": "sites-rerun.json",
+      "log": "kernel-routing.test.mjs.rerun.tap",
+      "testSourceSha256": "449badc08d31af834dc5ecb3e47e91bf0ca01b02b0e37ea41ed799384645c5e6"
+    },
+    {
+      "file": "lc04-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/lc04-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 19.974754701001075,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "6a27ce646ca385816c2311c3f39796b52b99f917978a3c91aa4a1acef6e2d18c",
+      "attemptRecord": "sites-run.json",
+      "log": "lc04-integration.test.mjs.tap",
+      "testSourceSha256": "7ba8fe9706c5e54249de62694bb9879fc548e1fc442aec481b13bff7de30ff10"
+    },
+    {
+      "file": "msbq01-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msbq01-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 199.67510672399658,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "776207e763aed2abba4890d0aa4ed83abe43a9c34f4dcc7d63fbf3a4bc17419f",
+      "attemptRecord": "sites-run.json",
+      "log": "msbq01-integration.test.mjs.tap",
+      "testSourceSha256": "67dc79bc0479d45c93203247ccd9b567250b33d004cadd8aacad03ecd9cb1187"
+    },
+    {
+      "file": "msbq02-entry-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msbq02-entry-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 15.45797422999749,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "878e5bf3d23d3a24a93633c3e3d508dbf7dbe95a78570a88925c36d6b921ca12",
+      "attemptRecord": "sites-run.json",
+      "log": "msbq02-entry-integration.test.mjs.tap",
+      "testSourceSha256": "969d016d833e6d09ea3969ac21d6cce0f3b3fcf0687974fc28b629b8cbdb4728"
+    },
+    {
+      "file": "msbq03-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msbq03-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 315.8359417270003,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "eb3aefc300c54bf90a815cf637ae43265f9de7b55e87399020943d092b270ef1",
+      "attemptRecord": "sites-run.json",
+      "log": "msbq03-integration.test.mjs.tap",
+      "testSourceSha256": "665258f48f1c991774f7a9d7a1c0b2fcecdbaa72eeb0a5b8bac30d52e9053f20"
+    },
+    {
+      "file": "mscq02-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/mscq02-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 139.85268273700058,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "b1fd9eab97dd0a2f9525b529f2524f0efae90df6346b06aa947a3417501cb143",
+      "attemptRecord": "sites-run.json",
+      "log": "mscq02-integration.test.mjs.tap",
+      "testSourceSha256": "ee1f915e6281844f24a11702e8edf09096c175c071a6d85a9c91458742ceaa0d"
+    },
+    {
+      "file": "msjc0405-entry.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msjc0405-entry.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.869660764998116,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "1114311cfb284fef71ea3a2993808442743f9caf03409150fc42e3f895c658e2",
+      "attemptRecord": "sites-run.json",
+      "log": "msjc0405-entry.test.mjs.tap",
+      "testSourceSha256": "c1f0b605e7a266a310e64079023b67bbbd5cf71e5aba03270f538eefcfa0c969"
+    },
+    {
+      "file": "msjc0405-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msjc0405-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 20.83670140200047,
+      "stats": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "7246bd9e3efe2ee96591b4dd83682cca58b092153453ba89d1727322dca05043",
+      "attemptRecord": "sites-run.json",
+      "log": "msjc0405-integration.test.mjs.tap",
+      "testSourceSha256": "4e4093f0059629c70ce01b563fb4911955a7718b71c6ebb3137d76e94ad4a717"
+    },
+    {
+      "file": "msjc09-society-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msjc09-society-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 11.588457024998206,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "a6b22523f2f113424d3876815815918d94358dc8263cd13c68c6263fa1eee3aa",
+      "attemptRecord": "sites-run.json",
+      "log": "msjc09-society-integration.test.mjs.tap",
+      "testSourceSha256": "6be24ddac6f8fd95f55c69504788a0499107e7ed8a295353fb652e1e58509402"
+    },
+    {
+      "file": "msjc12-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msjc12-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 17.609553553000296,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "15190355a26d0b31505082a14fdae0fe1866fcd0b217b1ade8db3f2a67626a45",
+      "attemptRecord": "sites-run.json",
+      "log": "msjc12-integration.test.mjs.tap",
+      "testSourceSha256": "45a5ba810af41ada1c7e0139c5651355a55b583aa0b5a3fdc409bb59e85ec033"
+    },
+    {
+      "file": "msjc16-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msjc16-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 13.804259208998701,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "a845db60a1e0f28ae7c137763d324942ca8a792529036caa8bdfec80dfec0354",
+      "attemptRecord": "sites-run.json",
+      "log": "msjc16-integration.test.mjs.tap",
+      "testSourceSha256": "30c1859282a01759721e7b986e32f361ff72768e9b3feefa8af6d454434ccef9"
+    },
+    {
+      "file": "msjz04-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msjz04-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 20.250124967999,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "ab5eddd79094925d19ef7964e5b34fda08e4c95db0e9d01ff1cdee65bfffa436",
+      "attemptRecord": "sites-run.json",
+      "log": "msjz04-integration.test.mjs.tap",
+      "testSourceSha256": "e3c3c2b6af4a62cfab613892507b35aa3bac05e131a20f86aa1bb708a99c0a76"
+    },
+    {
+      "file": "mswm01-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/mswm01-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 178.13929982899936,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "32c1b0b7ab1b968ae606275272ade847b8852afc77a316f0a23a981bea461e2e",
+      "attemptRecord": "sites-run.json",
+      "log": "mswm01-integration.test.mjs.tap",
+      "testSourceSha256": "28f76a8c2241c4243d90bb726cc927291c80cdfd35b39cf09eb70dfebe46649f"
+    },
+    {
+      "file": "mswm02-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/mswm02-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 187.5141615700013,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "3b2a2cbd323b2adf92ef6c3f81af894d675a2be24757d38fde5cbecbd9ae1855",
+      "attemptRecord": "sites-run.json",
+      "log": "mswm02-integration.test.mjs.tap",
+      "testSourceSha256": "3715a6e3dec673fa8de8496ecb986f3151cf6b4bdfa525a8ec1831ed361a0fb7"
+    },
+    {
+      "file": "mswm03-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/mswm03-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 321.4729113859976,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "eca55a4237b732cbafd32f91045af2f85b1cdf73a9d2b772217a509417584742",
+      "attemptRecord": "sites-run.json",
+      "log": "mswm03-integration.test.mjs.tap",
+      "testSourceSha256": "61b0c142a20b13cd9dba5cf27c645a3fc7a75c8585f42f6ede81deb8fca24710"
+    },
+    {
+      "file": "next20-candidate.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/next20-candidate.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 8.748440147999645,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "4ef46bf8d7172b9a4f89e5b4c1b03833270542c54ac56670f9badacc4d64afbb",
+      "attemptRecord": "sites-run.json",
+      "log": "next20-candidate.test.mjs.tap",
+      "testSourceSha256": "5e3657f5bb670d0eaaf5a479f1cbbdf2088421e5b5f1e51702c53cb7b3f8617b"
+    },
+    {
+      "file": "next20-natural.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/next20-natural.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 52.25256762100253,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "1b69abdf0a1386bc1ba937147397d3a7a185f9d4bfe9ea5730bcfa411ab3e328",
+      "attemptRecord": "next20-final.json",
+      "log": "next20-natural.test.mjs.final.tap",
+      "testSourceSha256": "dc35f0368e141261ddb01fb880c8a5afeba1fda6ae1d3e9ab7bf925f6227eb1b"
+    },
+    {
+      "file": "pass-history-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/pass-history-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 34.138466956999764,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "0b22dc3b3dd989ca18e66b6e256a87c78cd87357fb408a63ac5b96943d972468",
+      "attemptRecord": "sites-run.json",
+      "log": "pass-history-integration.test.mjs.tap",
+      "testSourceSha256": "db0a0616cfd9031593d86cca52efd9b0693c0ce8f87802df5fda2e3208cfee5b"
+    },
+    {
+      "file": "pass-history.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/pass-history.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.05281586899945978,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "3e8abb7cc0c32b52dc304f2f2e886b3cd1a994f80b24a47571d8a4c9a7b2b373",
+      "attemptRecord": "sites-run.json",
+      "log": "pass-history.test.mjs.tap",
+      "testSourceSha256": "7ca57b6a09276144cfc432c1e68f3b4da1d0ca30271a504f0e8e5b7e528edc20"
+    },
+    {
+      "file": "pause-resume-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/pause-resume-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 4.03146802899937,
+      "stats": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "54872ea092cba1501ffb939a9a38f7517268642f69f12a55a4c1d3b02fbdad26",
+      "attemptRecord": "sites-run.json",
+      "log": "pause-resume-integration.test.mjs.tap",
+      "testSourceSha256": "85d0aa06877dcfeb2bcfc278ba86b5e935bb0568d5487ecf3e894286b6f429cc"
+    },
+    {
+      "file": "previous-native72-rejection.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/previous-native72-rejection.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.8919825640005001,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "f4bb31936335d3a9ac309f96bf48722191036e28adb4818a8e5f1a644642e009",
+      "attemptRecord": "sites-run.json",
+      "log": "previous-native72-rejection.test.mjs.tap",
+      "testSourceSha256": "ae60e5d599ffdd3cd3fe899c357b0052517a454c9f58e1bfc2f80bb669bad18a"
+    },
+    {
+      "file": "previous-native73-rejection.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/previous-native73-rejection.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.9044527160003781,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "7fbfc2b597d221d4851811a984061b96fa99dbe0ecb308baa5c75480f3916dfa",
+      "attemptRecord": "sites-run.json",
+      "log": "previous-native73-rejection.test.mjs.tap",
+      "testSourceSha256": "2e811398094dcf233262ec122ce7a988c744f416f18eb1216b2b4d74c907a6f3"
+    },
+    {
+      "file": "rescue-forecast-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/rescue-forecast-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.926310195998667,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "e9ac7b1b167f7e52e116bdb0b00ad29b6a8e7265d84fda325112331d846349a8",
+      "attemptRecord": "sites-run.json",
+      "log": "rescue-forecast-integration.test.mjs.tap",
+      "testSourceSha256": "2fce8b04b1dbaecf8bf7fe9925f6d7b887776d236fa4be128506971acb6356df"
+    },
+    {
+      "file": "response-preview-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/response-preview-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 6.265878611000517,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "e91e75315a71566f4417b3a7790da1a113f031bea2838e5e8c20cbb727ae2e36",
+      "attemptRecord": "sites-run.json",
+      "log": "response-preview-integration.test.mjs.tap",
+      "testSourceSha256": "42b6fdd49f7294c14d673c87ff5d0888fd819b252c1a9728938943286f17335e"
+    },
+    {
+      "file": "sealed-restart-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/sealed-restart-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.2962801510002464,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "49123e87226853bd2e9837625dcd81a94ad6a0bca10c41227094b5aff6059966",
+      "attemptRecord": "sites-run.json",
+      "log": "sealed-restart-integration.test.mjs.tap",
+      "testSourceSha256": "be50dba6c34e896635a0747564ef4399cb71f69a58029d4b5fffb788b869b694"
+    },
+    {
+      "file": "sentinel-local-worker.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/sentinel-local-worker.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 6.291591479999624,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "235b81aeba62a7ca5ac892e29792d7fb46f5f83dff82376aa8af8cfb89569658",
+      "attemptRecord": "sites-run.json",
+      "log": "sentinel-local-worker.test.mjs.tap",
+      "testSourceSha256": "d2c9b34e73ccbe5aefcd9e7c081709f680b313add75e2f407237cff0f76e3d8a"
+    },
+    {
+      "file": "session-host.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/session-host.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.06207505900238175,
+      "stats": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "e4261c41b5a94245fe6691283b6d37f781a24b65f54e7f7c22b8cb7342a3df87",
+      "attemptRecord": "sites-run.json",
+      "log": "session-host.test.mjs.tap",
+      "testSourceSha256": "fe8e583fe9d9dd50a8d2b38321fdd7402cf170bbca3c6d798dba1471128afaf6"
+    },
+    {
+      "file": "session-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/session-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 2.879355814999144,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "874003aba8f4591470f768e9718b27bc9d16f8bc07323a2e5cfa3305dd5638d4",
+      "attemptRecord": "sites-run.json",
+      "log": "session-integration.test.mjs.tap",
+      "testSourceSha256": "383f9019a08b3c96890f61cb289d39c13cfb61eea413bc15a9949a14ad7ae46f"
+    },
+    {
+      "file": "seven-card-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/seven-card-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 3.2924152439991303,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "69bdbe70ad6e82f7b49bbf4b68fb4b1daa428cd75325af27e97e239a3859bf1a",
+      "attemptRecord": "sites-run.json",
+      "log": "seven-card-integration.test.mjs.tap",
+      "testSourceSha256": "7e98e14c311f1b25c072738f07c0e7644b5d69fc059a212b9a3f1ec7a092adf8"
+    },
+    {
+      "file": "shared-keyword-rewards-current.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/shared-keyword-rewards-current.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 4.156270863000827,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "093cce9478e3df55325c2970510ab6bcf83fe22d8cfaf5fb06e618d17f6dbfd4",
+      "attemptRecord": "sites-run.json",
+      "log": "shared-keyword-rewards-current.test.mjs.tap",
+      "testSourceSha256": "920c863039671b6c0221b1e2a88298cfbfc8c0f69749d9b309d889171f87baad"
+    },
+    {
+      "file": "storage-retry.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/storage-retry.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.0282446650016936,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "ea0681fdb18dfd060b85a80802ee750a123b4121a09e78e66eebde2f46ca927a",
+      "attemptRecord": "sites-run.json",
+      "log": "storage-retry.test.mjs.tap",
+      "testSourceSha256": "11a56abf8704de3fa524ac4d6ae8b805a09e3ab4f0eb8c5709049e49c2aca0e8"
+    },
+    {
+      "file": "test034-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/test034-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 261.5669611880003,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "c19c2646901b301a21b47e276482742729d761f5ebf777e15347f856b2d2ff99",
+      "attemptRecord": "sites-run.json",
+      "log": "test034-integration.test.mjs.tap",
+      "testSourceSha256": "406ea216336f1963f323b1aa222be31305f6a96971058bddfff2d74815e241c8"
+    },
+    {
+      "file": "three-color-death.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/three-color-death.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 3.771298460000253,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "cb6c0983b1ebcc6dd075fcc47bdef52ea33d7749324b7faf51c54768d4ae3c5c",
+      "attemptRecord": "sites-run.json",
+      "log": "three-color-death.test.mjs.tap",
+      "testSourceSha256": "250b7b2846edaa3f9e1f07cad2fa07da8194eb1649ff7b7d29bc889148a92bb0"
+    },
+    {
+      "file": "two-card-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/two-card-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.8987043580018508,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "364a3e7017cfd3742a16f20cb79ef9fa2c9c2b8621b1a2c8289a62ae98ac51d1",
+      "attemptRecord": "sites-run.json",
+      "log": "two-card-integration.test.mjs.tap",
+      "testSourceSha256": "336ab46a3fb885668e2719858702869e01aae10196b2e05377a02b4c392e6fc3"
+    },
+    {
+      "file": "win-flow-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/win-flow-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 30.23238294800103,
+      "stats": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "a48f3e412332007c4fdbc0e6f4330c893bba1c912deebe1aea523f5271cb8048",
+      "attemptRecord": "sites-run.json",
+      "log": "win-flow-integration.test.mjs.tap",
+      "testSourceSha256": "f3b497aa77bbe46ec35926996fbd346d7d2f3bd8d0813f8dc8035bc63f2da016"
+    },
+    {
+      "file": "wm026-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/wm026-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1096.2834094520003,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "626c4c809e5841e0151de6b7170b08845b7c968ae68b6389b4a3a2977cb846b2",
+      "attemptRecord": "sites-continuation.json",
+      "log": "wm026-integration.test.mjs.continuation.tap",
+      "testSourceSha256": "eca2e5568e5f528e33e12782956ce9659b7cb759512cea632963a86dbdb60cda"
+    },
+    {
+      "file": "wm027-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/wm027-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 14.26172848799979,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "20831e620c43190d1d4dbf4b6dd2c2bdfc05729ec80b0394cb2e234011859e48",
+      "attemptRecord": "sites-continuation.json",
+      "log": "wm027-integration.test.mjs.continuation.tap",
+      "testSourceSha256": "07a92381b6f4f6fd9f1dc68edc8a8408118a5c1ab1c5f1e28fa16df0c1d8a315"
+    },
+    {
+      "file": "wm031-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/wm031-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 95.0042740300014,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "039bca347d2e265e5e2186ad3b5a3a8640f101f7a2c8c154ae704f48100d7015",
+      "attemptRecord": "sites-continuation.json",
+      "log": "wm031-integration.test.mjs.continuation.tap",
+      "testSourceSha256": "a29ab569f4359839fb66d7e5e10c8920412d1c769052759b8fec507cc91f1e62"
+    },
+    {
+      "file": "wm036-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/wm036-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 89.96940599200025,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "5ef52cf093366dfe75fed36b894596bf2cbc6cc602c687f7c821052c31f597ad",
+      "attemptRecord": "sites-continuation.json",
+      "log": "wm036-integration.test.mjs.continuation.tap",
+      "testSourceSha256": "fe30041c69aac4c52ee020d1e75fd62057ea3f185627d3f7c90857987fed0747"
+    },
+    {
+      "file": "wm062-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/wm062-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 25.57313567500023,
+      "stats": {
+        "tests": 17,
+        "pass": 17,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "bee04a68e93770f74fa6ec992f8a7194260f4558d5ee1a21e3d17cf0dce452de",
+      "attemptRecord": "sites-continuation.json",
+      "log": "wm062-integration.test.mjs.continuation.tap",
+      "testSourceSha256": "84f597da572cdebff907c100c4cca9e0aa1a13dcacd7aa66b891f7dd3dc7bfe6"
+    },
+    {
+      "file": "wm063-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/wm063-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 184.52092792299663,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "210a7c2eef13188b32e88c7d3e2ae171baa4f6ce03b15f670a27577d229a0cfa",
+      "attemptRecord": "sites-continuation.json",
+      "log": "wm063-integration.test.mjs.continuation.tap",
+      "testSourceSha256": "040fee1651386d660befc082ccb12084813493ba6aa44e523c7450068c3969fd"
+    },
+    {
+      "file": "xg19-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/xg19-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 12.553773005001858,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "46b5a0183b45b416ff218b43b96d9e4ef442a940a4cb7e31804ae55d07517d65",
+      "attemptRecord": "sites-continuation.json",
+      "log": "xg19-integration.test.mjs.continuation.tap",
+      "testSourceSha256": "27acc5a3602a5646b8ca12d8ad8da53df324b5e335d108397533ee5cdd6485bf"
+    },
+    {
+      "file": "xq13-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/xq13-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 6.379903495002509,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "888ceb3bfc4542e61a600a3040b23172bbf9fc7f96696d51e74ec9b64d72ebce",
+      "attemptRecord": "sites-continuation.json",
+      "log": "xq13-integration.test.mjs.continuation.tap",
+      "testSourceSha256": "e56accd9848a8b7b398a424d212b30448787307938ce6423d1ef6696cbd8d945"
+    },
+    {
+      "file": "xq18-carrier.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/xq18-carrier.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 3.0850616119969345,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "0f4e9e8a0bc0f3ab05d2ba92e5f40dda479be29ee0ce723426959130ab419f88",
+      "attemptRecord": "sites-continuation.json",
+      "log": "xq18-carrier.test.mjs.continuation.tap",
+      "testSourceSha256": "7f09580529b7f3d7c22159867beeb1a9ca7e334e38627a3d67aa5c5291f810ca"
+    },
+    {
+      "file": "xq23-current-owner-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/xq23-current-owner-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 24.594926810001198,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "55796134c5e64e9358af0d0b1f6af477654059e362d8b934bb3e11c6933af400",
+      "attemptRecord": "sites-continuation.json",
+      "log": "xq23-current-owner-integration.test.mjs.continuation.tap",
+      "testSourceSha256": "9f4432339da642c3dfab89404389c739b89f96af49d357cbe9063f5fac9ab5da"
+    },
+    {
+      "file": "xq23-entry.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/xq23-entry.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.1432052939999267,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "0d9ee3c30e824daef6bda38b1e1910a8dc48a13e0319c1af6dc7c3f1423a9716",
+      "attemptRecord": "sites-continuation.json",
+      "log": "xq23-entry.test.mjs.continuation.tap",
+      "testSourceSha256": "955357a01ccf7e55bade59ec470f2b2d8b74651373857ca61ecffab6b096e7af"
+    },
+    {
+      "file": "xq23-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/xq23-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 62.037948596000206,
+      "stats": {
+        "tests": 40,
+        "pass": 40,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "a321afd16ddfa4a50f8446e2848a2369628c9e979c458581a30e8736925acbcc",
+      "attemptRecord": "sites-continuation.json",
+      "log": "xq23-integration.test.mjs.continuation.tap",
+      "testSourceSha256": "fb8aa9798446e08afe10fe0e4bf4c08abd0bdf89dad19d709af9f17bb25d1440"
+    },
+    {
+      "file": "xq23-p2-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/xq23-p2-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 25.63276013599898,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "38a13a83b357663273115a76a7385dad90c17829bdf50e6aabc28422922bb9ea",
+      "attemptRecord": "sites-continuation.json",
+      "log": "xq23-p2-integration.test.mjs.continuation.tap",
+      "testSourceSha256": "4e96e80aa0c8db0e720363df18b926992f761a9627a8a27b831ada8fbbbe03c4"
+    },
+    {
+      "file": "xq24-container-restore.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/xq24-container-restore.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.9723121850001917,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "4a63b7d50da9e9a8076607d7a63138c526ff300d9d38196b8e67e2c9dcda4fa8",
+      "attemptRecord": "sites-continuation.json",
+      "log": "xq24-container-restore.test.mjs.continuation.tap",
+      "testSourceSha256": "d7be56ddcce173fb87af87d8d4e39bdc2016c0617bc9b728ee9c477f406b5f5d"
+    },
+    {
+      "file": "xq24-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/xq24-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 28.12121384599959,
+      "stats": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "4d21546795bf17eb80c6c26775aa10578af52d06da9759296ba5984b4794a63d",
+      "attemptRecord": "sites-continuation.json",
+      "log": "xq24-integration.test.mjs.continuation.tap",
+      "testSourceSha256": "b1d0b8ab6968d6efa240a5d026f2cee0c5d5b04af5aa24f0e57d69c5f9a29cc1"
+    },
+    {
+      "file": "xq27.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/xq27.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.0921266389996163,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "1f5c0b8e6f3cd908949bbe172e57c199134c3372edf5e5870e3141e8a97d9f1f",
+      "attemptRecord": "sites-continuation.json",
+      "log": "xq27.test.mjs.continuation.tap",
+      "testSourceSha256": "9236fe10b44eb39fd16d9c851996b49967b7cc33c69510b94b1c5c6501060fd6"
+    },
+    {
+      "file": "xq35-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/xq35-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 6.92642877599792,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "99c229f545466490d937481cb1874b67a3af9c4a5a91fe64e43b6d0ce8492d46",
+      "attemptRecord": "sites-continuation.json",
+      "log": "xq35-integration.test.mjs.continuation.tap",
+      "testSourceSha256": "ac2711a4c70b1b19af09ef71c0a0baa4479158d6bb433e39242c45009347f178"
+    },
+    {
+      "file": "xq37.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/xq37.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 2.418440510002256,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "b95e9abc45bc494a43933b8b87af595fe6297c35a889ef969ce492bd262c1014",
+      "attemptRecord": "sites-continuation.json",
+      "log": "xq37.test.mjs.continuation.tap",
+      "testSourceSha256": "2b69c995e9613a3ec0b632ff14f33aa05878b985fee762af2f10f89d6f9cea89"
+    }
+  ],
+  "remaining": [
+    "independent review absent; prior denial not retried",
+    "personal browser match belongs to parent",
+    "no merge or deployment",
+    "BQ001 internal-catalog Native test remains ignored",
+    "no distinct CQ13-with-BQ035 mobility cross-platform trace; Native all-recipient result and CQ13 own Worker trace have separate scope"
+  ]
+}
