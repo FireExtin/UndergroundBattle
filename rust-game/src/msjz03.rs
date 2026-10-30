@@ -1,11 +1,11 @@
-//! Closed clock conversion target and printed actions; validation remains WIP.
+//! Closed clock conversion target, continuous rules and printed actions.
 //! Never an initial society; no public admission implied.
 use crate::{catalog,society::{SocietyDefinition,SocietyDeckConstraint}};
 pub(crate) const ID:&str="MSJZ03";
 pub(crate) fn society()->SocietyDefinition{
  let mut card:catalog::CardDefinition=serde_json::from_value(serde_json::json!({"id":ID,"name":"末日钟","kind":"society","subtypes":["圣物","永恒意志"],"color":"红","society":"末日钟","unique":true,"supported":false,"text":"不能作为初始秘社牌。持续：不能打出或付费翻面非灾难类别的牌。持续：不能获得分数；若计分区有三个或更多毁灭标志，赢得游戏。行动横置：目标角色、附属或地区放置时间标志，然后该地区时间至少四则毁灭。行动横置、弃一张牌：目标地区生成钟摆祭司角色指示物。"})).unwrap();
  card.abilities=definition().abilities.iter().map(|a|catalog::AbilitySummary{key:a.key.clone(),label:a.label.clone(),timing:"standard".into(),costs:a.costs.clone(),triggered:false}).collect();
- SocietyDefinition{card,subtitle:"熵之子".into(),printed_cost:None,starting_hand:0,deck_constraints:vec![SocietyDeckConstraint::NotStartingSociety],unresolved_abilities:[("clock-group-wip".into(),"工程验证未完成：自然转换、两项行动和跨端恢复；不是待用户裁定".into())].into_iter().collect()}
+ SocietyDefinition{card,subtitle:"熵之子".into(),printed_cost:None,starting_hand:0,deck_constraints:vec![SocietyDeckConstraint::NotStartingSociety],unresolved_abilities:Default::default()}
 }
 
 use crate::{engine::RuleResult,model::*};
