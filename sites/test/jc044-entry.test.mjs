@@ -23,9 +23,9 @@ for(const societyId of ['MSJC04'])test(`JC044 in ${societyId} enters with a name
     return {status:response.status,body:await response.json()};
   };
   const catalog=(await api('/api/catalog')).body;assert.equal(catalog.engineVersion,'rust-v0.2.113-bq001-anchor-source-wip');
-  assert.equal(catalog.cards.length,278);
+  assert.equal(catalog.cards.length,327);
   for(const id of ['BQ033','BQ009','BQ001'])assert.equal(catalog.cards.find(card=>card.id===id).supported,false);
-  assert.equal(catalog.cards.filter(card=>card.supported).length,236);assert.equal(catalog.societies.length,12);
+  assert.equal(catalog.cards.filter(card=>card.supported).length,236);assert.equal(catalog.societies.length,23);
   const draft=(id,count=25)=>{
     const society=catalog.societies.find(c=>c.id===id);let left=count-3;const cards=[{cardId:'JC044',count:3}];
     for(const card of catalog.cards.filter(c=>c.supported&&c.id!=='JC044'&&c.color===society.color&&['character','spell','attachment'].includes(c.kind))) {

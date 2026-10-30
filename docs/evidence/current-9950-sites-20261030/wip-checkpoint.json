@@ -1,0 +1,1966 @@
+{
+  "utc": "2026-10-30T17:37:07.793234+00:00",
+  "status": "WIP; applicable Sites run unfinished, repairs await targeted rerun",
+  "baseCommit": "f3fe505f9fb8e4d38e7623d4fddca03287307209",
+  "sourceManifest": "8712556ccd5052f2424ec694f249bab35c2872467acbb9042a6007dae0674411",
+  "plannedFiles": 114,
+  "completedFiles": 92,
+  "passedFiles": 86,
+  "failedFiles": [
+    "cq-pair-integration.test.mjs",
+    "integration.test.mjs",
+    "jc035-entry.test.mjs",
+    "kernel-binding.test.mjs",
+    "kernel-routing.test.mjs",
+    "next20-natural.test.mjs"
+  ],
+  "active": {
+    "file": "test034-integration.test.mjs",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=tap",
+      "test/test034-integration.test.mjs"
+    ],
+    "index": 92
+  },
+  "initialResults": [
+    {
+      "file": "current-kernel-http.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/current-kernel-http.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.7281102720007766,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "f182da48cde9dbf0eb2dc1b930d2f05d47661a34be33e1469b8f7175302b5b51"
+    },
+    {
+      "file": "assassin-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/assassin-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.8906947870018485,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "6c3575ccd234489b0e1c49740e772dfe2ace4399c7c2027bafc4041d8f598045"
+    },
+    {
+      "file": "batch20-review-normal-current.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/batch20-review-normal-current.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 18.281802615001652,
+      "stats": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "af3aae1fbe9d1425772d0b1a306cb99fc05fb27a74d074c9bb0b82b787af8aea"
+    },
+    {
+      "file": "batch3-abi94-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/batch3-abi94-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 4.466592180000589,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "eeb04106363ec0d7d1d085b1726e0ab47db0ee8cbcb57f09f7fe4aa374b49533"
+    },
+    {
+      "file": "batch4-abi95-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/batch4-abi95-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 32.81901489399752,
+      "stats": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "58ac930d7415d5ac85d6a0f21c8213b9044bbbc08c75634134a221a6884afbad"
+    },
+    {
+      "file": "batch4-abi95-retirement.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/batch4-abi95-retirement.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.9034827239993319,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "102c9611c2118f5e6c241513fd2f1b95a3866df258bdf0daff609ff5f6fc42cb"
+    },
+    {
+      "file": "bounded-entry-search.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bounded-entry-search.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 4.011066647999542,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "0fbe60033b7efc223df6a9f76262a2f0bed5a15353fe81e863ce45ee7fe6f33a"
+    },
+    {
+      "file": "bq035-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq035-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 31.536071341000934,
+      "stats": {
+        "tests": 13,
+        "pass": 13,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "e7daa4794fa85fb5501102c1117c06cf2a4196a796988e372408ae297a14005f"
+    },
+    {
+      "file": "bq044-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq044-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 335.68949739699747,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "7f8a757811e126c6663b71597d60c245f429e09a134502142cd052e2601bf277"
+    },
+    {
+      "file": "bq045-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq045-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 124.07699213700107,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "5e978ba50ff9124935e4ffbf8360cc268950a7398aa775002eb57e323c80eae8"
+    },
+    {
+      "file": "bq047-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq047-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 302.6598555620003,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "539a50a0a20686b96cc93eec813ce5e08160698067851b9f58f2121546ecb513"
+    },
+    {
+      "file": "bq048-closure-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq048-closure-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 24.173696298999857,
+      "stats": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "2db4a09008ec60a3d7205c188fc80a125e622b78bf019bf6da65afc70ac77fd3"
+    },
+    {
+      "file": "bq049-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq049-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 17.43268610800078,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "bbb9c4ea0eb696ed8a005936161f01c03e71754e7eeeef5c612e9df1504c06b4"
+    },
+    {
+      "file": "bq052-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq052-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 509.9943562219996,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "5a700961ca2b0d88009b9ae328ec89d1581d1a71ac3869eca61760fc7fd25d04"
+    },
+    {
+      "file": "bq060-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq060-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 11.547557327001414,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "ab8ba99237308d93b65b83465f9246d31c772746412a741bc20a9e2af0370d71"
+    },
+    {
+      "file": "bq061-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq061-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 8.408257852999668,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "3ebfcc0bfd684358831007ed95c759a1709fd3b6accff701cef238ec537000b9"
+    },
+    {
+      "file": "bq062-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq062-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 18.429963808001048,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "bb6751ccf87b7e9b04f1ff23348d682d77ac4e22078d4ca5046d394bfade37e4"
+    },
+    {
+      "file": "bq063-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq063-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 189.01907091999965,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "1f46e7d80e0b5857bb4ad093732aeea5cf69e2114e351726a4d02ad16d66879e"
+    },
+    {
+      "file": "bq065-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq065-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 21.61621426900092,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "a7659c4374ae54816724b8b6e54302f065478719246d16df63e343be896722aa"
+    },
+    {
+      "file": "bq067-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq067-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 110.58073926299767,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "189249b6ad9b0a702e28f7c5af10549dde7a38c2b529146a449b7cd85ad3bdd9"
+    },
+    {
+      "file": "bq084-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq084-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 9.939624991999153,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "a79879a92070ad104f5e7b564874ba2b27a1b168a237045dd1027484c8ae04e6"
+    },
+    {
+      "file": "bq086-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq086-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 15.6927206750006,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "5ef82ffa2f4beac8679c32f0af614224eef7c017d817910ee08b166ebad91773"
+    },
+    {
+      "file": "bq088-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq088-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 12.669880743000249,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "558792686e6e358f1d14be69101003fc606ebf783c88807b01ff09a37108c076"
+    },
+    {
+      "file": "bq095-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/bq095-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 958.6306826530017,
+      "stats": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "8cb8ddb97ff84b56a9386e56fe9a0f8530270c6cc07a841c5f532cecbe630128"
+    },
+    {
+      "file": "control-pair-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/control-pair-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.890551880998828,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "4c0623ddd888a2baec205bee674d354ecd82ec2f24f3c961185dda83ddb9e892"
+    },
+    {
+      "file": "core-candidate-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/core-candidate-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 370.8627999630007,
+      "stats": {
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "a8250bda7662891511a829634d2a8208d76f61c975677a66e40a924e3a2cae30"
+    },
+    {
+      "file": "cq-pair-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/cq-pair-integration.test.mjs"
+      ],
+      "exit": 1,
+      "seconds": 2.218032503998984,
+      "stats": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "7d00ad392bf0fc38622da7c2c6e4a8b44f20875f4c9bc1d4df2d16eb9e0c7f62"
+    },
+    {
+      "file": "cq09-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/cq09-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 140.8105168639995,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "fbd0da64359e1ebb8fd288df0e987d822da7999ca01f3f7576ea10a49481498e"
+    },
+    {
+      "file": "cq10-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/cq10-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 13.835163908999675,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "3eada44a162057da839c52db73f5a20be7147208a57866b5cc83292be1c368af"
+    },
+    {
+      "file": "cq11-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/cq11-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 87.15553453400207,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "a9fbcfa0a7fa17a53e7fb18e6ab79dfbcf929555b10dde20b238a2ccf931e095"
+    },
+    {
+      "file": "cq13-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/cq13-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 388.39327512399905,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "635cefdb25d795987d15415e7da203798624c86ff4dac674b69d5ac1fd9e8c5a"
+    },
+    {
+      "file": "cq27-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/cq27-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 79.02511667900035,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "7a18aa508d1236c3ab25a78e393d07e4efcd042e6227d7bd94e754239bfbe73b"
+    },
+    {
+      "file": "deck-seal-search.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/deck-seal-search.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 4.647328066002956,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "1a93b9fb5b3f412710dd40390e06682be2d4b3cd7a960dc7d68710ca0b477f35"
+    },
+    {
+      "file": "doom-clock-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/doom-clock-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 126.18524041099954,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "cee0d7a4212130881701e843b93b7e59d50431f74216a8e90929c78edeb1b82a"
+    },
+    {
+      "file": "fire-scholar-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/fire-scholar-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.903767716998118,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "17c2b5a987873ed0f0ff7abae524ff22b694175b487bbc27193b3d04d2ba1b40"
+    },
+    {
+      "file": "gray-lock.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/gray-lock.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 3.8161698170006275,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "3b5b5d235e00aaaa6e40c6dced2e1781bb062c7eacf772b003933a774a643e09"
+    },
+    {
+      "file": "integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/integration.test.mjs"
+      ],
+      "exit": 1,
+      "seconds": 1.467351936000341,
+      "stats": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "076ac61a0efe198b3fbaf2defe39a71120ee14c58e79769991bce10301f0a728"
+    },
+    {
+      "file": "jc028-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc028-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 11.682574364000175,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "526c3b5f1dc7770faa394b9014dd90aa11d2f47a543c954f4e618ceb7f9c1dd2"
+    },
+    {
+      "file": "jc035-entry.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc035-entry.test.mjs"
+      ],
+      "exit": 1,
+      "seconds": 0.52608216599765,
+      "stats": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "15f5f2e8dae2b35041aa0ddb3cda41da058da5c114ecb308360eb84b844c2ca4"
+    },
+    {
+      "file": "jc035-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc035-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 120.21144421799909,
+      "stats": {
+        "tests": 74,
+        "pass": 74,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "ccbb030f34af57e7c0aa590640ba247095ed5d48cf794fb93c5dadb761e915d1"
+    },
+    {
+      "file": "jc037-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc037-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 10.886104620996775,
+      "stats": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "7a38f96cf3dfa77dde22f7d8ddfa1a22ccafce7906c445111460559f45d92b8f"
+    },
+    {
+      "file": "jc041-entry.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc041-entry.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.0614315649982018,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "06607b4505df48ca5e59c292c98f4c823755d95df51d4049954514fc3500a1fe"
+    },
+    {
+      "file": "jc041-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc041-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 100.25081033000242,
+      "stats": {
+        "tests": 45,
+        "pass": 45,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "cf9e54d77e0baa1e7531bcc00398811952515da92244f6f214505e0a69893eac"
+    },
+    {
+      "file": "jc044-entry.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc044-entry.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.0685235999990255,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "e0e9cc16aa89c7f46f2b3e852007873ee9799f4e0472d79eb84539c0999d6e41"
+    },
+    {
+      "file": "jc044-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc044-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 85.51783411600263,
+      "stats": {
+        "tests": 50,
+        "pass": 50,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "40f3082ec26c533b26a339fa7767d4c44101ecc0fe7d0e447be3eedc1a699ab0"
+    },
+    {
+      "file": "jc046-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc046-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 59.872568981998484,
+      "stats": {
+        "tests": 38,
+        "pass": 38,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "4524499e523dc62a7957bd1a1cb21ef5788b9ea204e57bd48948240e48cdcd0e"
+    },
+    {
+      "file": "jc050.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc050.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.0643365460018686,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "51f49de2ec4f94b09970066fd8edbac1538525f0cf42d827cda808b2e3ab2daa"
+    },
+    {
+      "file": "jc052-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc052-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 3.292425584000739,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "af5c015bfd37acb586990cb3cf3d1e5139468bbeefa71ee8e72aca005e38d5fb"
+    },
+    {
+      "file": "jc053-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc053-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 14.228269696999632,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "6f64bab12609c571eb6ac6263e84617114188f20af07fef4abba2debb82959fb"
+    },
+    {
+      "file": "jc054-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc054-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 23.607348150002508,
+      "stats": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "fd9778237e94d1b9881d6e8956b868958f040b02d10ea3241ac8f706d77621c6"
+    },
+    {
+      "file": "jc057-entry.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc057-entry.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.0314090899992152,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "eba0c5ef3c18acb24b4869995df6d3c559af1f3e09563543e47d0092b3bb604a"
+    },
+    {
+      "file": "jc057-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc057-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 78.82909008000206,
+      "stats": {
+        "tests": 37,
+        "pass": 37,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "ab272c05fdb9494e261bef29ee65a46fd0a93b3293d7df388a55814892ff2dfa"
+    },
+    {
+      "file": "jc060-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc060-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 16.777681288000167,
+      "stats": {
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "03c074eb4440f40b88ecce5b7e03c03e11a471439c55f5d0a8203408b4040f42"
+    },
+    {
+      "file": "jc066-entry.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc066-entry.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.062600166998891,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "17cd08990bab26b364129047a74fb0a1a3be1445d48fb2183ede91aa3c6e1104"
+    },
+    {
+      "file": "jc066-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc066-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 188.58573552099915,
+      "stats": {
+        "tests": 106,
+        "pass": 106,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "1591b34f847185a28de65241ba08a0720953a29411ae15090b5db84e8de09091"
+    },
+    {
+      "file": "jc095-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc095-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 21.010493384001165,
+      "stats": {
+        "tests": 11,
+        "pass": 11,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "564dacd3ecd8b8af5792f10d498a211205c0883c4f787b1d5c1973e12f158fa8"
+    },
+    {
+      "file": "jc097-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jc097-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 5.824796248998609,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "e04ad9454ab6fe924fa800ea714ac186af4055044d15cc6da0b45f9468011af8"
+    },
+    {
+      "file": "jz22.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jz22.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 5.190451643000415,
+      "stats": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "2fc5bd34e59b32f00b4fbd83296d5a85cbc306b5f8aaf474afcb90854ff2b692"
+    },
+    {
+      "file": "jz46-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jz46-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 31.061813399002858,
+      "stats": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "1a249daaa5ec63491f1f5a3d6de1c1811e11687e34f1c15a51280fd410b12c05"
+    },
+    {
+      "file": "jz53-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/jz53-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 12.436441411002306,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "c09de3e6d7e8fa91215c2c5adb718105aa50aa5cf223aa967352347f983f3a0c"
+    },
+    {
+      "file": "kernel-binding.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/kernel-binding.test.mjs"
+      ],
+      "exit": 1,
+      "seconds": 0.1123535750011797,
+      "stats": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "61c73cf67015cab53a1af286e4674a3b5fd1aaebf9d3f82cfeeae5d97acdf5ee"
+    },
+    {
+      "file": "kernel-routing.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/kernel-routing.test.mjs"
+      ],
+      "exit": 1,
+      "seconds": 0.15091458599999896,
+      "stats": {
+        "tests": 3,
+        "pass": 2,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "6b927a02513e918ea9e774cdd921a759ec07e4972ed11c69b43646b3e6a3e889"
+    },
+    {
+      "file": "lc04-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/lc04-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 19.974754701001075,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "6a27ce646ca385816c2311c3f39796b52b99f917978a3c91aa4a1acef6e2d18c"
+    },
+    {
+      "file": "msbq01-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msbq01-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 199.67510672399658,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "776207e763aed2abba4890d0aa4ed83abe43a9c34f4dcc7d63fbf3a4bc17419f"
+    },
+    {
+      "file": "msbq02-entry-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msbq02-entry-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 15.45797422999749,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "878e5bf3d23d3a24a93633c3e3d508dbf7dbe95a78570a88925c36d6b921ca12"
+    },
+    {
+      "file": "msbq03-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msbq03-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 315.8359417270003,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "eb3aefc300c54bf90a815cf637ae43265f9de7b55e87399020943d092b270ef1"
+    },
+    {
+      "file": "mscq02-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/mscq02-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 139.85268273700058,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "b1fd9eab97dd0a2f9525b529f2524f0efae90df6346b06aa947a3417501cb143"
+    },
+    {
+      "file": "msjc0405-entry.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msjc0405-entry.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.869660764998116,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "1114311cfb284fef71ea3a2993808442743f9caf03409150fc42e3f895c658e2"
+    },
+    {
+      "file": "msjc0405-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msjc0405-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 20.83670140200047,
+      "stats": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "7246bd9e3efe2ee96591b4dd83682cca58b092153453ba89d1727322dca05043"
+    },
+    {
+      "file": "msjc09-society-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msjc09-society-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 11.588457024998206,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "a6b22523f2f113424d3876815815918d94358dc8263cd13c68c6263fa1eee3aa"
+    },
+    {
+      "file": "msjc12-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msjc12-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 17.609553553000296,
+      "stats": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "15190355a26d0b31505082a14fdae0fe1866fcd0b217b1ade8db3f2a67626a45"
+    },
+    {
+      "file": "msjc16-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msjc16-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 13.804259208998701,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "a845db60a1e0f28ae7c137763d324942ca8a792529036caa8bdfec80dfec0354"
+    },
+    {
+      "file": "msjz04-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/msjz04-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 20.250124967999,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "ab5eddd79094925d19ef7964e5b34fda08e4c95db0e9d01ff1cdee65bfffa436"
+    },
+    {
+      "file": "mswm01-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/mswm01-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 178.13929982899936,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "32c1b0b7ab1b968ae606275272ade847b8852afc77a316f0a23a981bea461e2e"
+    },
+    {
+      "file": "mswm02-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/mswm02-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 187.5141615700013,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "3b2a2cbd323b2adf92ef6c3f81af894d675a2be24757d38fde5cbecbd9ae1855"
+    },
+    {
+      "file": "mswm03-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/mswm03-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 321.4729113859976,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "eca55a4237b732cbafd32f91045af2f85b1cdf73a9d2b772217a509417584742"
+    },
+    {
+      "file": "next20-candidate.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/next20-candidate.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 8.748440147999645,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "4ef46bf8d7172b9a4f89e5b4c1b03833270542c54ac56670f9badacc4d64afbb"
+    },
+    {
+      "file": "next20-natural.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/next20-natural.test.mjs"
+      ],
+      "exit": 1,
+      "seconds": 465.17037013499794,
+      "stats": {
+        "tests": 5,
+        "pass": 1,
+        "fail": 4,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "073db57bb548399f05af3e5976f2cb1f6c281b429bdc8a857be0a493b011ab5a"
+    },
+    {
+      "file": "pass-history-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/pass-history-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 34.138466956999764,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "0b22dc3b3dd989ca18e66b6e256a87c78cd87357fb408a63ac5b96943d972468"
+    },
+    {
+      "file": "pass-history.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/pass-history.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.05281586899945978,
+      "stats": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "3e8abb7cc0c32b52dc304f2f2e886b3cd1a994f80b24a47571d8a4c9a7b2b373"
+    },
+    {
+      "file": "pause-resume-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/pause-resume-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 4.03146802899937,
+      "stats": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "54872ea092cba1501ffb939a9a38f7517268642f69f12a55a4c1d3b02fbdad26"
+    },
+    {
+      "file": "previous-native72-rejection.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/previous-native72-rejection.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.8919825640005001,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "f4bb31936335d3a9ac309f96bf48722191036e28adb4818a8e5f1a644642e009"
+    },
+    {
+      "file": "previous-native73-rejection.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/previous-native73-rejection.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.9044527160003781,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "7fbfc2b597d221d4851811a984061b96fa99dbe0ecb308baa5c75480f3916dfa"
+    },
+    {
+      "file": "rescue-forecast-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/rescue-forecast-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.926310195998667,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "e9ac7b1b167f7e52e116bdb0b00ad29b6a8e7265d84fda325112331d846349a8"
+    },
+    {
+      "file": "response-preview-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/response-preview-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 6.265878611000517,
+      "stats": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "e91e75315a71566f4417b3a7790da1a113f031bea2838e5e8c20cbb727ae2e36"
+    },
+    {
+      "file": "sealed-restart-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/sealed-restart-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.2962801510002464,
+      "stats": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "49123e87226853bd2e9837625dcd81a94ad6a0bca10c41227094b5aff6059966"
+    },
+    {
+      "file": "sentinel-local-worker.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/sentinel-local-worker.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 6.291591479999624,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "235b81aeba62a7ca5ac892e29792d7fb46f5f83dff82376aa8af8cfb89569658"
+    },
+    {
+      "file": "session-host.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/session-host.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 0.06207505900238175,
+      "stats": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "e4261c41b5a94245fe6691283b6d37f781a24b65f54e7f7c22b8cb7342a3df87"
+    },
+    {
+      "file": "session-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/session-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 2.879355814999144,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "874003aba8f4591470f768e9718b27bc9d16f8bc07323a2e5cfa3305dd5638d4"
+    },
+    {
+      "file": "seven-card-integration.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/seven-card-integration.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 3.2924152439991303,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "69bdbe70ad6e82f7b49bbf4b68fb4b1daa428cd75325af27e97e239a3859bf1a"
+    },
+    {
+      "file": "shared-keyword-rewards-current.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/shared-keyword-rewards-current.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 4.156270863000827,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "093cce9478e3df55325c2970510ab6bcf83fe22d8cfaf5fb06e618d17f6dbfd4"
+    },
+    {
+      "file": "storage-retry.test.mjs",
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "test/storage-retry.test.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.0282446650016936,
+      "stats": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "ea0681fdb18dfd060b85a80802ee750a123b4121a09e78e66eebde2f46ca927a"
+    }
+  ],
+  "scope": "114 applicable repository Sites test files of 115, one process per file, serial; initial current-kernel HTTP/D1 entry first, no file repeated.",
+  "excluded": {
+    "batch4-abi95-normal-game.test.mjs": "Unfocused scripted automatic full duel; personal natural match reserved for parent browser. Deterministic mechanism replays remain included."
+  }
+}

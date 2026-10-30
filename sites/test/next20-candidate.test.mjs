@@ -97,7 +97,7 @@ test('public closed next20: real HTTP create/join rejection, original receipts a
     return {status:r.status,body:await r.json()};
   };
   const catalog=(await api('/api/catalog')).body;
-  assert.equal(catalog.cards.length,278);assert.equal(catalog.cards.filter(c=>c.supported).length,236);
+  assert.equal(catalog.cards.length,327);assert.equal(catalog.cards.filter(c=>c.supported).length,236);
   const draft=()=>({id:'next20-public',name:'Public control',description:'local synthetic entry',societyId:null,
     cards:structuredClone(catalog.decks.find(d=>d.id==='watchers').cards),rulesVersion:catalog.rulesVersion,
     cardPoolVersion:catalog.cardPoolVersion,engineVersion:catalog.engineVersion,updatedAt:'2026-10-25T00:00:00Z'});

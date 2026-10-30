@@ -14,11 +14,12 @@ const names=['bq034-natural-entry-counter','bq034-natural-shown-feed','cq25-xg25
 const key=()=>crypto.randomUUID();
 async function harness(t,worker,seed){
  const persist=mkdtempSync(join(tmpdir(),'next20-public-d1-')),directory=dirname(worker);
- const options=convertV4MiniflareOptions({name:'next20-public',resourcePersistencePath:persist,modules:[
+ const options=convertV4MiniflareOptions({name:'next20-public',resourcePersistencePath:persist,modulesRoot:worker,modules:[
   {type:'ESModule',path:worker},...readdirSync(directory).filter(n=>n.endsWith('.wasm')).map(n=>({type:'CompiledWasm',path:join(directory,n)}))],
   compatibilityDate:'2026-10-02',cf:false,d1Databases:{DB:'next20-public'},bindings:{LOCAL_TEST_CLOCK_MS:'0',LOCAL_TEST_SEED:String(seed)}});
- let mf=new Miniflare(options),db=await mf.getD1Database('DB');
- t.after(async()=>{await mf.dispose();rmSync(persist,{recursive:true,force:true});});
+ let mf=new Miniflare(options),db;
+ t.after(async()=>{try{await mf.dispose();}finally{rmSync(persist,{recursive:true,force:true});}});
+ db=await mf.getD1Database('DB');
  for(const file of readdirSync('drizzle').filter(n=>n.endsWith('.sql'))){for(const sql of readFileSync('drizzle/'+file,'utf8').split('--> statement-breakpoint').filter(v=>v.trim()))await db.prepare(sql).run();}
  return {db:()=>db,store:()=>new RoomStore(db),reopen:async()=>{await mf.dispose();mf=new Miniflare(options);db=await mf.getD1Database('DB');},
   api:async(path,body,session)=>{const r=await mf.dispatchFetch('http://localhost'+path,{method:body?'POST':'GET',headers:{...(body?{'Content-Type':'application/json'}:{}),...(session?{Authorization:'Bearer '+session.token}:{})},...(body?{body:JSON.stringify(body)}:{})});return{status:r.status,body:r.status===204?null:await r.json()};}};

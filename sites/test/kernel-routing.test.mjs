@@ -10,7 +10,7 @@ current.initSync({ module: currentBytes });
 const latest = JSON.parse(current.catalog());
 const isUnsupported = error => error.status === 410 && error.code === 'unsupported_room_version' && /新建牌桌/.test(error.message);
 
-test('current ABI111 keeps the source bytes, reviewed prior definitions and exact new-room flow', () => {
+test('current ABI113 keeps the source bytes, reviewed prior definitions and exact new-room flow', () => {
   const abiRoot = existsSync(new URL('../../rust-game-wasm/Cargo.toml', import.meta.url))
     ? new URL('../../rust-game-wasm/', import.meta.url)
     : new URL('../rust-game-wasm/', import.meta.url);
@@ -33,7 +33,12 @@ test('current ABI111 keeps the source bytes, reviewed prior definitions and exac
     delete ruleTraits.renown;
     return { ...card, ruleTraits };
   }));
-  assert.deepEqual(latest.societies.filter(s => !['MSJC04', 'MSJC05', 'MSJC13', 'MSJC14'].includes(s.id)), prior.societies);
+  const priorSocietyIds = new Set(prior.societies.map(s => s.id));
+  assert.deepEqual(latest.societies.filter(s => priorSocietyIds.has(s.id)), prior.societies);
+  const closedSocietyIds = ['MSBQ02', 'MSJZ04', 'MSBQ01', 'MSJC12', 'MSWM01', 'MSWM02', 'MSBQ03', 'MSCQ02', 'MSJC16', 'MSWM03', 'MSJZ03'];
+  assert.deepEqual(latest.societies.filter(s => !priorSocietyIds.has(s.id)).map(s => s.id),
+    ['MSJC04', 'MSJC05', 'MSJC13', 'MSJC14', ...closedSocietyIds]);
+  for (const id of closedSocietyIds) assert.equal(latest.societies.find(s => s.id === id)?.supported, false);
   assert.deepEqual(latest.societies.filter(s => ['MSJC04', 'MSJC05', 'MSJC13', 'MSJC14'].includes(s.id)).map(s => s.id), ['MSJC04', 'MSJC05', 'MSJC13', 'MSJC14']);
   for (const field of ['decks', 'world', 'deckBuildRules']) assert.deepEqual(latest[field], prior[field]);
   const routed = routeKernels(current);
