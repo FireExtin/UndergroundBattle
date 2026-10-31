@@ -18,6 +18,7 @@ mod bq045;
 mod bq045_tests;
 mod bq046;
 mod bq048;
+mod bq058;
 mod bq056;
 #[cfg(test)]
 mod bq056_tests;
@@ -611,3 +612,6 @@ mod cq12;
 
 mod lc04;
 #[cfg(test)] mod lc04_tests;
+
+#[cfg(test)]
+mod bq058_tests;

@@ -28,6 +28,7 @@ pub enum Event {
     MSBQ01BloodLeft,
     MSBQ02TaskScored,
     MSBQ02RedPlayed,
+    BQ058RegionWon,
     OwnCoreEnter,
     BQ086Death,
     CQ09EndStep,
@@ -376,6 +377,8 @@ pub enum Op {
     MSBQ02Loss { played:Option<Box<crate::model::SourceSnapshot>>,event:Option<String> },
     BQ051Sweep,
     BQ056Lock {entry:Option<Box<crate::bq056::Entry>>},
+    BQ058Evacuate { win: Option<Box<crate::bq058::Win>> },
+    BQ058Move { proof: Box<crate::bq058::Grant> },
     BQ056Repress,
     BQ048InvokeCore,
     BQ048ReadyCore,
@@ -809,6 +812,7 @@ pub struct Traits {
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum StaticModifier {
+    BQ058CoreSupport,
     BQ056LockedEnemyInvestigation,
     BQ067CoreDefense,
     BQ052TentacleInfluence,
@@ -908,6 +912,7 @@ pub(crate) fn validate_ability(card_id: &str, ability: &AbilitySpec) -> Result<(
                 d.id == card_id && crate::catalog::has_kind(d, "character")) { Ok(()) }
             else { Err("只允许完整的声望/威名原地区奖励程序".into()) };
     }
+    if crate::bq058::related(ability) {return crate::bq058::validate_ability(card_id,ability);}
     if crate::bq056::related(ability) {return crate::bq056::validate_ability(card_id,ability);}
     if card_id==crate::test034::ID||ability.key==crate::import20_contest::TEST034_HAND{return crate::test034::validate_ability(card_id,ability);}
     if card_id==crate::mscq02::ID||crate::mscq02::related(ability){return crate::mscq02::validate_ability(card_id,ability);}
@@ -1756,6 +1761,7 @@ pub(crate) fn validate_definitions(definitions: &BTreeMap<String, Definition>) -
         crate::bq055::validate_definition(card_id,definition)?;
         crate::wm027::validate_definition(card_id,definition)?;
         crate::xq13::validate_definition(card_id,definition)?;
+        crate::bq058::validate_definition(card_id,definition)?;
         crate::bq056::validate_definition(card_id,definition)?;
         crate::bq048::validate_definition(card_id,definition)?;
         crate::bq_commands::validate_definition(card_id,definition)?;
@@ -2486,6 +2492,7 @@ pub fn definitions() -> &'static BTreeMap<String, Definition> {
         use PlayerRef::{Actor, Context};
         let mut m = BTreeMap::new();
         for id in crate::next20_black_wraiths::CARDS { m.insert((*id).into(), crate::next20_black_wraiths::definition(id).unwrap()); }
+        m.insert(crate::bq058::ID.into(),crate::bq058::definition());
         m.insert(crate::bq056::ID.into(),crate::bq056::definition());
         m.insert(crate::bq048::ID.into(),crate::bq048::definition());
         m.insert(crate::msbq02::ID.into(),crate::msbq02::definition());

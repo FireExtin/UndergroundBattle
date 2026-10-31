@@ -1,0 +1,166 @@
+{
+  "baseCommit": "071b4b7619bd49e00278f5941cce385c6ef04aff",
+  "branch": "wip/9950-validation-960fc49b-20261030",
+  "scope": "BQ058 non-task partial WIP; supported false; no task cards added",
+  "identity": {
+    "rulesVersion": "hegemony-pdf-v1",
+    "cardPoolVersion": "limited-v2.105-bq058-nontask-wip",
+    "engineVersion": "rust-v0.2.114-bq058-nontask-wip"
+  },
+  "catalog": {
+    "definitions": 328,
+    "supported": 236
+  },
+  "sourceManifestSha256": "0e8f183a813eab266c2b9921d8c8d9a322614d66682071862b2d0ed437168d70",
+  "sourceInputs": 462,
+  "changedPreviousInputs": [
+    "rust-game/data/cards.json",
+    "rust-game/src/catalog.rs",
+    "rust-game/src/engine.rs",
+    "rust-game/src/lib.rs",
+    "rust-game/src/mobility.rs",
+    "rust-game/src/model.rs",
+    "rust-game/src/resolution.rs",
+    "rust-game/src/rules.rs",
+    "rust-game/src/unit_support.rs"
+  ],
+  "native": {
+    "newTests": 13,
+    "adjacentTests": 46,
+    "uniquePassed": 59,
+    "failed": 0,
+    "ignored": 0,
+    "command": "BQ058_NATIVE_OUT=<task>/validation/bq058-native.json node tools/build-storage.mjs -- cargo test --locked -p hegemony-server --lib bq058 -- --nocapture",
+    "adjacentSelection": [
+      "batch3_bats_tests::batch3_bq026_printed_public_mobility_and_equipment_restriction_are_live_and_not_just_catalog_words",
+      "batch4_omega_tests::batch4_omega_conditional_mobility_requires_personal_sun_and_frozen_observation",
+      "batch4_omega_tests::batch4_omega_real_conditional_mobility_moves_once_with_original_sun_receipt",
+      "batch4_shape_tests::batch4_shape_exact_print_complete_program_and_granted_mobility_cannot_be_static_transplants",
+      "batch4_shape_tests::batch4_shape_mobility_frozen_grant_survives_secrecy_and_attachment_loss_and_moves_once",
+      "batch4_shape_tests::batch4_shape_mobility_still_available_after_moving_cannot_capture_twice_in_the_same_turn",
+      "batch4_shape_tests::batch4_shape_mobility_uses_existing_adjacency_and_martial_law_targets",
+      "batch4_shape_tests::batch4_shape_multiple_grants_create_one_mobility_capture_and_departed_recipient_cannot_move_a_replacement",
+      "bq035_tests::bq035_converted_wm023_own_action_keeps_exact_region_uid_and_rejects_mobility_spec_transplant",
+      "bq035_tests::bq035_glory_replacement_fizzles_but_mobility_keeps_its_existing_slot_contract",
+      "bq035_tests::bq035_granted_mobility_decline_does_not_requeue_on_repeated_events_or_reattach",
+      "bq035_tests::bq035_natural_granted_mobility_is_optional_adjacent_and_preserves_uid_and_blood",
+      "bq035_tests::bq035_wm023_paid_conversion_blood_knight_mobility_resolves_after_pause_restore",
+      "bq046_tests::bq046_core_component_forecasts_three_from_board_and_core_zone_without_honor",
+      "bq046_tests::bq046_core_zone_cannot_asset_or_conceal_but_hand_has_ordinary_permissions",
+      "bq046_tests::bq046_core_zone_corruption_and_public_view_are_explicit",
+      "bq046_tests::bq046_return_choice_for_death_hand_bottom_preserves_original_destination",
+      "bq046_tests::bq046_return_waiting_corruption_and_core_play_missing_frame_rejected",
+      "bq049_tests::bq049_mobility_grants_existing_own_core_and_tentacles_only",
+      "bq049_tests::bq049_real_mobility_destination_response_and_expiry",
+      "control_tests::control_real_mobility_keeps_instance_and_attribute_modifier",
+      "engine::tests::mobility_adjacent_only_and_preserves_entity",
+      "engine::tests::mobility_first_team_resolves_before_rear_team_and_responses_resolve_lifo",
+      "exposure_tests::exposure_condition_mobility_capture_survives_response_marker_removal",
+      "gray_expansion_tests::gray_expansion_helicopter_natural_mobility_ready_adjacent_preserves_identity_and_no_entry_retrigger",
+      "jc061_tests::jc061_natural_mobility_retriggers_in_destination_and_ready_required",
+      "win_flow_tests::win_flow_corrupted_contexts_reject_in_game_and_room_loaders",
+      "win_flow_tests::win_flow_duplicate_and_stale_awards_cannot_capture_a_replacement",
+      "win_flow_tests::win_flow_inner_score_terminal_clears_outer_context_and_restart_is_fresh",
+      "win_flow_tests::win_flow_nested_capture_skips_replacement_in_saved_contest",
+      "win_flow_tests::win_flow_nested_paid_reveals_resume_outer_win_then_original_action",
+      "win_flow_tests::win_flow_paid_reveal_restores_other_steps_and_skips_only_captured_contest",
+      "win_flow_tests::win_flow_paid_xq37_and_jz22_entries_resume_both_action_steps",
+      "win_flow_tests::win_flow_privilege_offers_renown_once_and_acceptance_can_win",
+      "win_flow_tests::win_flow_privilege_reaching_threshold_skips_old_region_renown",
+      "win_flow_tests::world_empty_all_vacant_fixture_has_no_forced_empty_choice_or_new_terminal_rule",
+      "win_flow_tests::world_empty_contests_keep_original_positions_and_skip_empty_slots",
+      "win_flow_tests::world_empty_corrupt_slot_and_saved_before_window_rejected_by_both_loaders",
+      "win_flow_tests::world_empty_duel_preserves_three_positions_and_any_live_region_mobility",
+      "win_flow_tests::world_empty_jc050_choice_and_won_graveyard_entry_exclude_original_empty_slot",
+      "win_flow_tests::world_empty_nested_wins_preserve_contexts_and_owner_return_positions",
+      "win_flow_tests::world_empty_rejects_deploy_conceal_targets_and_cross_gap_mobility",
+      "win_flow_tests::world_empty_stale_effects_and_influence_do_not_revive_or_rescore_slot",
+      "win_flow_tests::world_empty_ten_region_conservation_last_refill_then_vacancy",
+      "win_flow_tests::world_empty_terminal_score_and_restart_remove_then_rebuild_slot",
+      "win_flow_tests::world_empty_win_leaves_original_slot_empty_and_preserves_other_regions"
+    ],
+    "adjacentExecution": "same freshly compiled hegemony-server libtest binary, each selected test --exact; no export/native bulk test"
+  },
+  "wasmBuild": {
+    "command": "bash rust-game-wasm/build.sh",
+    "exit": 0,
+    "releaseBuildSeconds": 117
+  },
+  "nativeWasm": {
+    "scope": "three prepared layouts, normal Room commands; not natural/browser play; task search absent",
+    "cases": 3,
+    "commands": 23,
+    "views": 104,
+    "engine": "rust-v0.2.114-bq058-nontask-wip",
+    "wasmSha256": "936cf47200f66fa6354419324e52bbbe875625ee74b73cd1b9ff3636da27f967"
+  },
+  "nativePacketSha256": "9ea6954f8c246f7e4a5835b2ff57019f922e0008320fc8ffddafb530a7f69919",
+  "comparisonScriptSha256": "40a6141aea38b5edc975ac8430d7d8f607994a4eb4841c63e7aeaa26e75484bc",
+  "logs": {
+    "bq058-red.log": {
+      "sha256": "eeb5ae33b79ba9ed4bd1c82cc4ec98b256ae25c44effa8ccc677c46e487e0cad",
+      "location": "task validation/bq058-red.log"
+    },
+    "bq058-check.log": {
+      "sha256": "a3b61bdea1046c9e3d8d139dd4fcceee380b4988f1fa984dc2afb46faca51f94",
+      "location": "task validation/bq058-check.log"
+    },
+    "bq058-green-1.log": {
+      "sha256": "74a00cc4ee0c00f9d5ae8ab2ac33b24ec39fcf817f45c7e6789968a451b830b5",
+      "location": "task validation/bq058-green-1.log"
+    },
+    "bq058-green-2.log": {
+      "sha256": "b0ad18ba685bc31461304926e148d81fc0a48e2b27714060b0201aca1c9b02b5",
+      "location": "task validation/bq058-green-2.log"
+    },
+    "bq058-green-final.log": {
+      "sha256": "2897e00db4bf22a1e68b20943baef2c28190f6aec24e4938110330ffc35658d0",
+      "location": "task validation/bq058-green-final.log"
+    },
+    "bq058-adjacent.log": {
+      "sha256": "9d0ea8557b38d996a0467b4775238f35e05ca1ec2a0a921446edb654ae0fe703",
+      "location": "task validation/bq058-adjacent.log"
+    },
+    "bq058-wasm-build.log": {
+      "sha256": "7aba40e58d872d1cf3e190d0cec122b02ab8161b45685cc5ae7affafc815f853",
+      "location": "task validation/bq058-wasm-build.log"
+    },
+    "bq058-wasm-compare.log": {
+      "sha256": "5f3826fa00a163d6c2aa98ad4bb48ee8dbfb5ea67c6f7dbe059d35cbeb15a9eb",
+      "location": "task validation/bq058-wasm-compare.log"
+    }
+  },
+  "redGreen": {
+    "missingCatalog": {
+      "passed": 0,
+      "failed": 1,
+      "exit": 101
+    },
+    "firstImplementation": {
+      "passed": 5,
+      "failed": 5,
+      "exit": 101,
+      "reason": "return preparation ran before BQ058 responsive trigger resolved"
+    },
+    "same10AfterBarrier": {
+      "passed": 10,
+      "failed": 0
+    },
+    "final13": {
+      "passed": 13,
+      "failed": 0
+    }
+  },
+  "notRun": [
+    "full workspace Native",
+    "full UI",
+    "Sites/Worker",
+    "UI art/interaction acceptance",
+    "natural browser play",
+    "independent review",
+    "publish"
+  ],
+  "wholeCardComplete": false,
+  "taskSearchImplemented": false,
+  "newIndependentApprovals": 0
+}

@@ -773,6 +773,7 @@ pub enum FrameChoice {
     BQ065Shield {card_id:String},
     MSJZ04Release,
     BQ045Core(crate::bq045::CoreChoice),
+    BQ058Destination,
     BQ056Opponent,
     BQ056Repress {seat:usize,regions:Vec<(usize,String,u32)>},
     BQ063Forecast {seat:usize, invocation:usize, core:Box<SourceSnapshot>},
@@ -1221,6 +1222,7 @@ impl Game {
         self.validate_bq062_state()?;self.validate_bq060_state()?;self.validate_bq067_state()?;self.validate_bq049_state()?;
         self.validate_bq061_state()?;
         self.validate_bq063_state()?;
+        self.validate_bq058_state()?;
         self.validate_bq056_state()?;
         self.validate_bq044_state()?;
         self.validate_bq044_core_state()?;

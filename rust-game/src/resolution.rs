@@ -505,7 +505,7 @@ impl Game {
                 snapshot
             },
             region,
-            source_region_instance: if c.definition==crate::bq047::ID || matches!(c.definition.as_str(),"LC04"|"CQ12"|"CQ13"|"WM026"|"ZHWM026"|"BQ044"|"WM031"|"JC028"|"JC097"|"JZ53"|"CQ27"|"CQ11"|"TK008"|"TK003"|"TK001"|"TK009") || c.definition==crate::bq045::ID || c.definition==crate::bq056::ID || c.definition==crate::bq055::ID || c.definition==crate::bq046::ID || c.definition==crate::bq086::ID || c.definition==crate::cq09::ID || c.definition==crate::cq10::ID || c.definition==crate::bq084::ID || c.definition==crate::bq001::ID || crate::next20_black_wraiths::CARDS.contains(&c.definition.as_str()) || crate::next20_blue_vampires::CARDS.contains(&c.definition.as_str()) || c.definition=="BQ057" || c.definition=="CQ18" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
+            source_region_instance: if c.definition==crate::bq047::ID || matches!(c.definition.as_str(),"LC04"|"CQ12"|"CQ13"|"WM026"|"ZHWM026"|"BQ044"|"WM031"|"JC028"|"JC097"|"JZ53"|"CQ27"|"CQ11"|"TK008"|"TK003"|"TK001"|"TK009") || c.definition==crate::bq045::ID || c.definition==crate::bq058::ID || c.definition==crate::bq056::ID || c.definition==crate::bq055::ID || c.definition==crate::bq046::ID || c.definition==crate::bq086::ID || c.definition==crate::cq09::ID || c.definition==crate::cq10::ID || c.definition==crate::bq084::ID || c.definition==crate::bq001::ID || crate::next20_black_wraiths::CARDS.contains(&c.definition.as_str()) || crate::next20_blue_vampires::CARDS.contains(&c.definition.as_str()) || c.definition=="BQ057" || c.definition=="CQ18" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_carmen::ID || c.definition == crate::import20_tattoo::ID || c.definition == crate::import20_cultist::ID || crate::import20_broker::CARDS.contains(&c.definition.as_str()) || crate::import20_vampires::CARDS.contains(&c.definition.as_str()) || crate::import20_observers::CARDS.contains(&c.definition.as_str()) || crate::batch4_vampires::CARDS.contains(&c.definition.as_str()) || crate::batch3::IMPLEMENTING.contains(&c.definition.as_str()) || crate::batch4::IMPLEMENTING.contains(&c.definition.as_str()) || crate::pack_a_contest::CARDS.contains(&c.definition.as_str()) || matches!(c.definition.as_str(), "BQ077" | "BQ085" | "CQ26" | "XG27" | "JC032" | "JZ24" | "JZ31" | "BQ104" | "XQ48" | "JZ43" | "JZ22" | "XQ37" | "JZ44" | "JZ45" | "XQ24" | "WM059" | "BQ078" | "XQ18" | "JZ30" | "BQ028" | "BQ030" | "JC061" | "JC087" | "JC094" | "WM056" | "WM023" | "JC052" | "JC046" | "JC054" | "JC095" | "BQ035" | "JZ46" | "JC057" | "JC044" | "JC066" | "JC041" | "XQ23" | "JC035" | "JC043" | "BQ054" | "JC048" | "WM034" | "BQ091" | "BQ094" | "BQ080" | "JZ57" | "CQ16" | "JC038" | "JC067" | "JZ33" | "JZ52" | "JC040" | "JZ23" | "JZ28" | "XG10" | "CQ08" | "BQ059" | "CQ17" | "JC051" | "JC055" | "JZ32" | "JZ34" | "JZ41" | "WM039" | "WM040") {
                 region.and_then(|r| self.regions.get(r)).filter(|r| !r.vacant).map(|r| r.card.id.clone())
             } else { None },
             attachment_host_instance: (c.definition=="WM031" || c.definition=="WM027" || c.definition=="XG20" || c.definition=="CQ19" || crate::import20_industry::CARDS.contains(&c.definition.as_str()) || c.definition == crate::import20_tattoo::ID || matches!(c.definition.as_str(), "WM063" | "BQ095" | "BQ052" | "BQ039" | "WM028" | "WM044" | "BQ038" | "JZ40" | "JZ56" | "XQ15" | "BQ067" | "BQ065" | "WM045" | "WM046" | "WM047" | "XG21" | "JZ38" | "BQ041" | "XG12" | "JZ39" | "BQ026" | "XQ26" | "JC064" | "XG28" | "XQ39" | "JC090" | "WM038" | "JZ46" | "JC035" | "JC048" | "BQ091" | "JC068" | "BQ094" | "JZ57" | "JC033" | "JC034" | "JZ29" | "JC039" | "JC053" | "JZ41") || rules::definition(&c.definition)
@@ -1255,7 +1255,7 @@ impl Game {
         if event==Event::Death && source.card.definition==crate::wm026::ID {return;}
         if event==Event::Enter {self.observe_bq056_core_entry(&source);}
         if event == Event::ConfrontationStart {
-            let ability = self.bq049_event_ability(actor,&source).or_else(||self.xg12_event_ability(actor,&source)).unwrap_or_else(crate::mobility::ability);
+            let ability = self.bq058_event_ability(actor,&source).or_else(||self.bq049_event_ability(actor,&source)).or_else(||self.xg12_event_ability(actor,&source)).unwrap_or_else(crate::mobility::ability);
             let declaration = Declaration { actor, source, ability };
             if self.validate_mobility_event_source(&declaration).is_ok()
                 && !self.turn_ability_usage.iter().any(|u| u.ability_key == "mobility"
@@ -1342,6 +1342,7 @@ impl Game {
         self.validate_anchor_declaration(&declaration)?;
         if crate::next20_blue_vampires::related(&declaration.ability) { self.validate_next20_blue_declaration(&declaration)?; }
         if crate::next20_black_wraiths::related(&declaration.ability) { self.validate_next20_black_declaration(&declaration)?; }
+        self.validate_bq058_declaration(&declaration)?;
         self.validate_bq056_declaration(&declaration)?;
         self.validate_batch20_declaration(&declaration)?;
         self.validate_next_blue_gray_declaration(&declaration)?;
@@ -1790,6 +1791,7 @@ impl Game {
         self.validate_bq063_frame(&frame)?;
         self.validate_bq_command_frame(&frame)?;
         self.validate_msbq02_frame(&frame)?;
+        self.validate_bq058_frame(&frame)?;
         self.validate_bq056_frame(&frame)?;
         self.validate_cq27_frame(&frame)?;
         self.validate_bq088_frame(&frame)?;
@@ -1849,6 +1851,7 @@ impl Game {
                 },
                 Op::XQ19FromHand { .. } => self.xq19_place_hand(&frame)?,
                 Op::BQ056Lock{..}=>self.bq056_lock(&frame)?,
+                Op::BQ058Evacuate{..}=>return self.bq058_evacuate(frame),
                 Op::BQ056Repress=>return self.bq056_repress(frame),
                 Op::MSBQ02TaskWin{..}=>self.msbq02_task_win(&frame)?,
                 Op::MSBQ02Loss{..}=>self.msbq02_loss(&frame)?,
@@ -2025,7 +2028,7 @@ impl Game {
                 Op::WM063Resolve => return self.wm063_resolve(frame),
                 Op::WM060RepressTwo => return self.wm060_repress_start(frame),
                 Op::XG12Reattach => self.reattach_source(&frame.source.card.id, &frame.targets[0].id),
-                Op::XG12GrantedMobility { .. } | Op::BQ049Move { .. } => {
+                Op::XG12GrantedMobility { .. } | Op::BQ049Move { .. } | Op::BQ058Move { .. } => {
                     if let Some(region) = self.frame_region(&frame, RegionRef::Target(0)) {
                         self.move_on_board_instance(&frame.source.card.id, region);
                     }
@@ -2906,6 +2909,7 @@ impl Game {
             FrameChoice::BQ027ShownTarget => return self.bq027_choose_shown_target(*frame, chooser, &selected),
             FrameChoice::VampireBlood => return self.vampire_feed_finish(&frame, chooser, &selected),
             FrameChoice::BQ036TopSix { inspected_ids } => return self.bq036_search_finish(&frame, &inspected_ids, &selected),
+            FrameChoice::BQ058Destination=>return self.bq058_finish(&frame,chooser,&a,&selected),
             FrameChoice::BQ056Opponent=>return self.bq056_choose_opponent(&frame,chooser,&a,&selected),
             FrameChoice::BQ056Repress{seat,regions}=>return self.bq056_finish(&frame,chooser,&a,&selected,seat,&regions),
             FrameChoice::MSBQ03{search}=>return self.msbq03_finish(&frame,search,chooser,&a,&selected),

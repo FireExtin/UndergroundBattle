@@ -448,6 +448,9 @@ impl Game {
         let (sealed_permanent, sealed_temporary) = self.jc066_sealed_printed_icons(c, region);
         let mut permanent_result = d.permanent_icons.add(sealed_permanent);
         permanent_result = permanent_result.add(self.wm030_cultist_icons(c, region));
+        let core_support = self.bq058_bonus(c, region);
+        permanent_result.investigation = permanent_result.investigation.saturating_add(core_support);
+        permanent_result.combat = permanent_result.combat.saturating_add(core_support);
         permanent_result.investigation = permanent_result.investigation.saturating_add(self.effective_marker_count(c, crate::batch4_markers::MarkerKind::PermanentInvestigation));
         permanent_result.combat = permanent_result.combat.saturating_add(self.effective_marker_count(c, crate::batch4_markers::MarkerKind::PermanentCombat))
             .saturating_add(self.cq17_combat_bonus(c, region));
@@ -1697,6 +1700,7 @@ impl Game {
                     || self.regions[region].card.id != context.region_instance {
                     return Err("赢区恢复上下文已失效".into());
                 }
+                self.observe_bq058_win(seat, region);
                 self.effects
                     .push_back(Effect::PrepareRegionReturn { region });
                 for owner in 0..self.players.len() {
@@ -1921,6 +1925,11 @@ impl Game {
             {
                 break;
             }
+            // BQ058 replaces return with a responsive move. Freeze no return
+            // batch until that trigger (and responses above it) has resolved.
+            if matches!(self.effects.front(), Some(Effect::PrepareRegionReturn { .. }))
+                && self.stack.iter().any(|i| i.frame.as_ref().is_some_and(|f| f.ability_key == crate::bq058::KEY))
+            { break; }
             if matches!(self.effects.front(), Some(Effect::DeathFinish { death_instance }) if self.death_boundary_waits(death_instance)) { break; }
             if matches!(self.effects.front(), Some(Effect::MysticContinue { .. } | Effect::MysticFinish { .. })) && self.mystic_responses_pending() { break; }
             let Some(effect) = self.effects.pop_front() else {
